@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+    <!--填写你要所要申请访问的目录地址，name最好是你的目录名，path是你要申请的目录-->
+    <!-- external-path:sd ；path:你的应用保存文件的根目录；name随便定义-->
+    <!-- root-path 手机存储根目录 -->
+    <!--<external-path-->
+    <!--name="ext_root"-->
+    <!--path="." />-->
+
+    <external-path
+        name="files_root"
+        path="Android/data/${applicationId}/" />
+
+    <external-path
+        name="external_storage_root"
+        path="." />
+
+    <external-path
+        name="camera_photos"
+        path="." />
+
+    <external-path
+        name="cache"
+        path="Android/data/${applicationId}/cache" />
+
+    <external-path
+        name="images"
+        path="Pictures/" />
+
+    <external-path
+        name="dcim"
+        path="DCIM/" />
+
+    <external-path
+        name="rc_external_path"
+        path="." />
+
+</paths>

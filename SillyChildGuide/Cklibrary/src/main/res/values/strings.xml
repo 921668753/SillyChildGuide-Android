@@ -1,0 +1,38 @@
+<resources>
+    <string name="app_name">CKLibrary</string>
+    <!--工具类-->
+    <string name="forFailure">获取失败</string>
+    <string name="errException"> 很抱歉，程序出现异常。</string>
+
+
+    <!--网络请求-->
+    <string name="checkNetwork">咦，网络好像飞走了</string>
+    <string name="illegalArgumentException">客户端错误，传输了不合法或不正确的数据(非法数据异常)</string>
+    <string name="clientError">客户端未知错误</string>
+    <string name="serverReturnsDataError">服务器返回数据错误</string>
+    <string name="serverReturnsDataNull">暂无数据</string>
+    <string name="serverReturnsDataNull1">服务器返回数据类型错误，导致解析错误</string>
+    <string name="serverReturnsImgDataNull">服务器返回图片数据为空</string>
+    <string name="emporarilyNoData">暂无数据</string>
+    <string name="urlError">客户端请求的URL错误</string>
+    <string name="otherError">其他错误</string>
+    <string name="grammarError">服务器不理解请求的语法</string>
+    <string name="serverError">服务器错误</string>
+    <string name="authenticationError"> 网络请求身份验证错误</string>
+    <string name="serverRejectsRequest">服务器拒绝请求</string>
+    <string name="requestError">客户端请求出错，妨碍了服务器的处理</string>
+    <string name="serverReturnsDataNullJsonError">服务器未返回数据，服务器端错误</string>
+    <string name="jsonError">Json解析错误</string>
+    <string name="clickRefresh">\n点击刷新</string>
+
+
+    <!--下拉刷新文本-->
+    <string name="pullDownRefreshText">下拉刷新</string>
+    <string name="refreshingText">加载中&#8230;</string>
+    <string name="releaseRefreshText">释放更新</string>
+    <string name="noMoreData">没有更多数据了</string>
+
+    <!--SweetAlertDialog-->
+    <string name="cancel1">&#160;&#160;&#160;取&#160;&#160;&#160;&#160;&#160;&#160;&#160;消&#160;&#160;&#160;</string>
+    <string name="confirm">&#160;&#160;&#160;确&#160;&#160;&#160;&#160;&#160;&#160;&#160;定&#160;&#160;&#160;</string>
+</resources>

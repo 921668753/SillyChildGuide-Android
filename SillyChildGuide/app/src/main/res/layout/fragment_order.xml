@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchMatch"
+    android:background="@color/background"
+    android:orientation="vertical">
+
+    <TextView
+        style="@style/Match44"
+        android:background="@color/whiteColors"
+        android:gravity="center"
+        android:text="@string/order"
+        android:textColor="@color/titletextcolors"
+        android:textSize="@dimen/textsize17" />
+
+
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="@dimen/dimen45"-->
+        <!--android:layout_marginTop="@dimen/dimen6"-->
+        <!--android:background="@color/whiteColors"-->
+        <!--android:orientation="horizontal">-->
+
+        <!--<LinearLayout-->
+            <!--android:id="@+id/ll_charterOrder"-->
+            <!--style="@style/AutoMatch"-->
+            <!--android:gravity="center_horizontal"-->
+            <!--android:orientation="vertical">-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/tv_charterOrder"-->
+                <!--style="@style/MatchAuto"-->
+                <!--android:gravity="center"-->
+                <!--android:text="@string/charterOrder"-->
+                <!--android:textColor="@color/greenColors"-->
+                <!--android:textSize="@dimen/textsize14" />-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/tv_charterOrder1"-->
+                <!--android:layout_width="@dimen/dimen25"-->
+                <!--android:layout_height="@dimen/dimen2"-->
+                <!--android:background="@color/greenColors" />-->
+
+
+        <!--</LinearLayout>-->
+
+
+        <!--<LinearLayout-->
+            <!--android:id="@+id/ll_goodOrder"-->
+            <!--style="@style/AutoMatch"-->
+            <!--android:gravity="center_horizontal"-->
+            <!--android:orientation="vertical">-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/tv_goodOrder"-->
+                <!--style="@style/MatchAuto"-->
+                <!--android:gravity="center"-->
+                <!--android:text="@string/goodOrder"-->
+                <!--android:textColor="@color/tabColors"-->
+                <!--android:textSize="@dimen/textsize14" />-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/tv_goodOrder1"-->
+                <!--android:layout_width="@dimen/dimen25"-->
+                <!--android:layout_height="@dimen/dimen2"-->
+                <!--android:background="@color/whiteColors" />-->
+
+        <!--</LinearLayout>-->
+    <!--</LinearLayout>-->
+
+
+    <FrameLayout
+        android:id="@+id/order_content"
+        android:layout_marginTop="@dimen/dimen6"
+        style="@style/MatchAuto" />
+
+</LinearLayout>

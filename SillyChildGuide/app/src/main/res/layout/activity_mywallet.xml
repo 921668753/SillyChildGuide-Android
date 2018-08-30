@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchMatch"
+    android:background="@color/background"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen290"
+        android:background="@mipmap/my_wallet_background">
+
+        <include layout="@layout/common_title" />
+
+        <TextView
+            android:id="@+id/tv_yue"
+            style="@style/WrapWrap"
+            android:layout_centerHorizontal="true"
+            android:paddingLeft="@dimen/dimen20"
+            android:paddingRight="@dimen/dimen20"
+            android:paddingTop="@dimen/dimen100"
+            android:singleLine="true"
+            android:text="¥0.00"
+            android:textColor="@color/whiteColors"
+            android:textSize="@dimen/textsize40" />
+
+        <TextView
+            style="@style/WrapWrap"
+            android:layout_below="@id/tv_yue"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dimen5"
+            android:singleLine="true"
+            android:text="@string/accountBalance"
+            android:textColor="@color/whiteColors"
+            android:textSize="@dimen/textsize14" />
+
+
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen35"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/dimen49"
+            android:layout_marginLeft="@dimen/dimen36"
+            android:layout_marginRight="@dimen/dimen36"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/ll_withdraw"
+                style="@style/AutoMatch"
+                android:background="@drawable/shape_mywallet"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/dimen20"
+                    android:layout_height="@dimen/dimen20"
+                    android:src="@mipmap/my_wallet_withdrawals" />
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:layout_marginLeft="@dimen/dimen10"
+                    android:text="@string/withdrawal"
+                    android:textColor="@color/darkGreen"
+                    android:textSize="@dimen/textsize14" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_bankCard"
+                style="@style/AutoMatch"
+                android:layout_marginLeft="@dimen/dimen34"
+                android:background="@drawable/shape_mywallet"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/dimen20"
+                    android:layout_height="@dimen/dimen20"
+                    android:src="@mipmap/bank_card_icon" />
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:layout_marginLeft="@dimen/dimen10"
+                    android:text="@string/bankCard"
+                    android:textColor="@color/darkGreen"
+                    android:textSize="@dimen/textsize14" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:layout_marginLeft="@dimen/dimen8"
+        android:layout_marginRight="@dimen/dimen8"
+        android:layout_marginTop="@dimen/dimen10"
+        android:background="@drawable/shape_homepage"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/MatchWrap"
+            android:gravity="center"
+            android:paddingBottom="@dimen/dimen5"
+            android:paddingTop="@dimen/dimen15"
+            android:text="@string/withdrawalRuleDescription"
+            android:textColor="@color/titletextcolors"
+            android:textSize="@dimen/textsize14" />
+
+        <TextView
+            style="@style/MatchWrap"
+            android:paddingBottom="@dimen/dimen15"
+            android:paddingLeft="@dimen/dimen10"
+            android:paddingRight="@dimen/dimen10"
+            android:paddingTop="@dimen/dimen15"
+            android:text="@string/withdrawalRuleDescription1"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize12" />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

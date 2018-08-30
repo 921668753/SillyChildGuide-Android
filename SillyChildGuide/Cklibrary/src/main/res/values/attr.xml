@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="WebViewLayout">
+        <attr name="isUpdateTitle" format="boolean" />
+        <!--<attr name="isShowIconBack" format="boolean" />-->
+        <attr name="isJavaScriptEnabled" format="boolean" />
+    </declare-styleable>
+
+</resources>

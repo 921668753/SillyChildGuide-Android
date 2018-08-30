@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchMatch"
+    android:background="@color/partTranslucent"
+    android:fitsSystemWindows="true"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="@dimen/dimen282"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_upgrade"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/WrapWrap"
+            android:paddingBottom="@dimen/dimen18"
+            android:paddingTop="@dimen/dimen18"
+            android:tag="beta_title"
+            android:text="@string/prompting"
+            android:textColor="@color/hintColors"
+            android:textSize="@dimen/textsize14"
+            android:visibility="gone" />
+
+        <ImageView
+            style="@style/MatchWrap"
+            android:tag="beta_upgrade_banner" />
+
+        <TextView
+            style="@style/MatchWrap"
+            android:paddingBottom="@dimen/dimen10"
+            android:paddingLeft="@dimen/dimen15"
+            android:paddingRight="@dimen/dimen15"
+            android:paddingTop="@dimen/dimen10"
+            android:tag="beta_upgrade_info"
+            android:textColor="@color/phonestrColor"
+            android:textSize="@dimen/textsize10" />
+
+        <TextView
+            style="@style/MatchWrap"
+            android:paddingBottom="@dimen/dimen5"
+            android:paddingLeft="@dimen/dimen15"
+            android:paddingRight="@dimen/dimen15"
+            android:tag="beta_upgrade_feature"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize14" />
+
+        <View style="@style/DividerWidth" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen43"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/AutoMatch"
+                android:gravity="center"
+                android:tag="beta_cancel_button"
+                android:textColor="@color/tabColors"
+                android:textSize="@dimen/dimen15" />
+
+            <View
+                style="@style/DividerHeight"
+                android:layout_marginBottom="@dimen/dimen5"
+                android:layout_marginTop="@dimen/dimen5" />
+
+            <TextView
+                style="@style/AutoMatch"
+                android:gravity="center"
+                android:tag="beta_confirm_button"
+                android:textColor="@color/blueColors"
+                android:textSize="@dimen/dimen15" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

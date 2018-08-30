@@ -1,0 +1,34 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion cfgs.compileSdkVersion
+
+    defaultConfig {
+        minSdkVersion cfgs.minSdkVersion
+        targetSdkVersion cfgs.targetSdkVersion
+        versionCode cfgs.versionCode
+        versionName cfgs.versionName
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    api fileTree(include: ['*.jar'], dir: 'libs')
+    api project(':ucrop')
+    api project(':QNPlayerLib')
+    //noinspection GradleCompatible
+    api "com.android.support:appcompat-v7:${cfgs.androidSupportVersion}"
+    //noinspection GradleCompatible
+    api "com.android.support:recyclerview-v7:${cfgs.androidSupportVersion}"
+    api "com.github.bumptech.glide:glide:${cfgs.glide}"
+    api "io.reactivex.rxjava2:rxjava:${cfgs.rxjava}"
+    api "io.reactivex.rxjava2:rxandroid:${cfgs.rxandroid}"
+    //    compile 'com.kymjs.rxvolley:bitmapcore:latest.release'//工具类
+    api "com.kymjs.core:common:${cfgs.common}"
+}

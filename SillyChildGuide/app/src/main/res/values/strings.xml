@@ -1,0 +1,376 @@
+<resources>
+    <string name="app_name">傻孩志司导端</string>
+    <string name="applicationId">com.yinglan.scg</string>
+
+    <!--网络请求-->
+    <!--Dialog-->
+    <string name="loggingLoad">登录中&#8230;</string>
+    <string name="sendingLoad">发送中&#8230;</string>
+    <string name="dataLoad">数据加载中&#8230;</string>
+    <string name="submissionLoad">提交中&#8230;</string>
+    <string name="submitSuccess">提交成功！</string>
+    <string name="crossLoad">上传中&#8230;</string>
+    <string name="download">下载中&#8230;</string>
+    <string name="shareJumpLoad">分享跳转中&#8230;</string>
+    <string name="saveLoad">保存中&#8230;</string>
+    <string name="paymentLoad">支付中&#8230;</string>
+    <string name="cancelLoad">取消中&#8230;</string>
+    <string name="deleteLoad">删除中&#8230;</string>
+    <string name="addLoad">加入中&#8230;</string>
+    <string name="attentionLoad">关注中&#8230;</string>
+    <string name="cancelCttentionLoad">取消关注中&#8230;</string>
+    <string name="reportLoad">举报中&#8230;</string>
+    <string name="customerServiceLoad">连接客服中&#8230;</string>
+    <!--Dialog-->
+
+    <!--公共的-->
+    <string name="videoPathError">视频路径错误</string>
+    <string name="imagePathError">图片路径错误</string>
+    <string name="noData">没有数据</string>
+    <string name="failedUploadPicture">上传图片失败，请重试</string>
+    <string name="failedUploadVideo">上传视频失败，请重试</string>
+    <!--app权限-->
+    <string name="readAndWrite">这款应用需要获取读写权限，才能使用</string>
+    <string name="sdPermission">您拒绝了「SD卡读写权限」所需要的相关权限!请到「设置」开启权限</string>
+    <string name="locationRelatedPermission">您拒绝了「定位」所需要的相关权限!</string>
+
+    <!--充值余额支付-->
+    <string name="operation_error">操作失败,请稍后再试</string>
+    <string name="alipay_system_exception">支付系统异常</string>
+    <string name="alipay_account_exception">此帐号绑定的支付宝账户被冻结或不允许支付</string>
+    <string name="alipay_has_unbound">该用户已解除绑定</string>
+    <string name="alipay_order_error">订单支付失败</string>
+    <string name="alipay_order_cancel">您取消了支付</string>
+    <string name="pay_error">支付失败</string>
+    <string name="pay_network">网络连接异常</string>
+    <string name="pay_result_confirmed">支付结果确认中</string>
+    <string name="alipay_order_canceled">支付已取消</string>
+    <string name="payment_succeed">恭喜您，支付成功！</string>
+    <string name="alipay_succeed">支付成功</string>
+    <string name="wxappinstalled">请先安装微信再进行支付</string>
+    <string name="alipayappinstalled">请先安装支付宝再进行支付</string>
+
+    <!--升级弹框-->
+    <string name="iKnow">我知道了</string>
+
+    <!--引导页-->
+    <string name="skip">跳过 ></string>
+    <string name="experienceImmediately">立即体验</string>
+    <string name="notOpenPositionSwitchClose">本应用需要结合定位功能使用，请点击按钮关闭应用，去打开定位开关后，重启应用即可正常使用</string>
+
+    <!--登录-->
+    <string name="login">登录</string>
+    <string name="number0">0123456789</string>
+    <string name="alphanumeric">ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789</string>
+    <string name="accountNumber">帐号</string>
+    <string name="hintAccountText">请输入号码</string>
+    <string name="inputPhone">请输入正确的帐号</string>
+    <string name="password">密码</string>
+    <string name="hintPasswordText">请输入密码</string>
+    <string name="hintPasswordText3">请输入确认密码</string>
+    <string name="hintPasswordText4">请再次输入密码</string>
+    <string name="hintPasswordText2">账号或密码错误</string>
+    <string name="hintPasswordText1">密码为6～20位内的字母或数字,请正确填写</string>
+    <string name="forgotPassword">忘记密码?</string>
+    <string name="bindingPhone">绑定手机号</string>
+    <string name="binding">绑定</string>
+    <string name="register">注册</string>
+    <string name="noAccount">没有账号？</string>
+    <string name="register1">立即注册</string>
+    <string name="errorCode">请填写验证码</string>
+    <string name="thirdpartylogin">第三方账号快捷登录</string>
+    <string name="thirdqq">QQ</string>
+    <string name="thirdweixin">微信</string>
+    <string name="authorizationLoad">授权中&#8230;</string>
+    <string name="authoriseErr">授权失败，请重试</string>
+    <string name="authoriseErr1">您取消了授权</string>
+    <string name="authoriseErr2">您还没有安装应用,请下载应用</string>
+    <string name="authoriseErr3">没有安装应用</string>
+    <string name="loginErr">登录失败，请重新登录</string>
+    <string name="loginErr1">获取用户信息失败，请重新登录</string>
+    <string name="failedCloudInformation">获取融云信息失败</string>
+    <string name="failedCloudInformation1">获取融云信息失败,请用账号密码登录</string>
+    <string name="man">男</string>
+    <string name="woman">女</string>
+    <string name="secret">保密</string>
+
+    <!--选择国家或地区-->
+    <string name="selectCountry">选择国家或地区</string>
+    <string name="retry">重试</string>
+
+    <!--注册-->
+    <string name="registerPhone">手机号注册</string>
+    <string name="hintPhoneText">请输入手机号</string>
+    <string name="hintPhoneText1">请输入正确的手机号</string>
+    <string name="hintInvitationCode">请输入邀请码</string>
+    <string name="hintPassword1Text">请输入您的密码</string>
+    <string name="hintPassword2Text">请再次输入您的密码</string>
+    <string name="resetpwd">重置密码成功，请登录！</string>
+    <string name="confirmPassword">确认密码</string>
+    <string name="pleasePasswordAgain">请再输入一遍密码</string>
+    <string name="password3">请输入6～20位密码</string>
+    <string name="testget">已发送</string>
+    <string name="passwordMismatch">两次密码输入不一致</string>
+    <string name="retrievePassword">找回密码</string>
+    <string name="verificationCode">验证码</string>
+    <string name="testGetCode">获取验证码</string>
+    <string name="revalidation">重新验证</string>
+    <string name="clickFinish">点击完成代表您同意</string>
+    <string name="myagreement">点击注册即表示您同意</string>
+    <string name="agreement">《傻孩志注册协议》</string>
+    <string name="agreement1">傻孩志注册协议</string>
+    <string name="determine">确定</string>
+
+
+    <!--主界面-->
+    <string name="homePage">首页</string>
+    <string name="workbench">工作台</string>
+    <string name="message">消息</string>
+    <string name="order">订单</string>
+    <string name="mine">我的</string>
+    <string name="clickAgainExitProgram">再按一次退出程序</string>
+
+    <!--消息-->
+    <string name="interactiveMessage">互动消息</string>
+    <string name="systemMessage">系统消息</string>
+
+    <!--系统消息-->
+    <string name="systemMessageDetails">消息详情</string>
+    <string name="noSystemMessage">亲，您还没有系统消息哟~</string>
+    <string name="orderMessage">订单消息</string>
+    <string name="deliveryMessage">物流消息</string>
+    <string name="noMessage">亲，您还没有消息哟~</string>
+
+    <!--选择日期-->
+    <string name="selectDate">选择日期</string>
+    <string name="chooseTimeNeedServe">选择您需要服务的时间</string>
+    <string name="startTime">开始时间：</string>
+    <string name="endTime">结束时间：</string>
+    <string name="today">今天</string>
+    <string name="day">日</string>
+    <string name="one">一</string>
+    <string name="two">二</string>
+    <string name="three">三</string>
+    <string name="four">四</string>
+    <string name="five">五</string>
+    <string name="six">六</string>
+    <string name="year">年</string>
+    <string name="month">月</string>
+    <string name="hour">时</string>
+
+    <!--  个人中心  -->
+    <string name="ordersTotal">订单总数</string>
+    <string name="storeLevel">店铺等级</string>
+    <string name="businessLevel">商家等级</string>
+    <string name="myStores">我的店铺</string>
+    <string name="myWallet">我的钱包</string>
+    <string name="sillyChildCollege">傻孩志学院</string>
+    <string name="sharePolite">分享有礼</string>
+    <string name="setUp">设置</string>
+    <string name="notLogged">您还没有登录</string>
+    <string name="loginImmediately">立即登录</string>
+    <string name="merchants">商家</string>
+    <string name="recertification1">认证失败，请重新认证</string>
+    <string name="certificationProcess">认证审核中，请耐心等待</string>
+    <string name="accountNumberDisabled">账号被禁用，请联系客服</string>
+    <string name="youNotCertified">您还未认证，请先提交认证</string>
+
+    <!--我的   我的车辆-->
+    <string name="delete">删除</string>
+    <string name="myVehicle">我的车辆</string>
+
+
+
+
+    <!--我的   我的车辆    新增车辆-->
+    <string name="addVehicle">新增车辆</string>
+    <string name="carCompany">车检证</string>
+    <string name="vehicleImages">车辆图片</string>
+    <string name="model">车型</string>
+    <string name="seating">座位数</string>
+    <string name="vehicleYear">车辆年份</string>
+    <string name="vehiclePassengerInsurance">车辆是否有乘客保险</string>
+    <string name="submitAudit">提交审核</string>
+
+
+    <!--我的   我的车辆    车辆详情-->
+    <string name="vehicleDetails">车辆详情</string>
+
+    <!--提现成功-->
+    <string name="withdrawalRequestSucceeded">提现申请成功</string>
+    <string name="withdrawalRequestSubmissionSuccess">提现申请提交成功</string>
+    <string name="withdrawalRequestSubmissionSuccess1">我们将在</string>
+    <string name="withdrawalRequestSubmissionSuccess2">个工作日内处理您的提现申请</string>
+    <string name="estimatedTimeArrival">预计到账时间：</string>
+    <string name="cashCard">储蓄卡：</string>
+    <string name="withdrawalAmount">到账金额：</string>
+    <string name="serviceChargeDeducted">(已扣除手续费)</string>
+
+    <!--  个人中心 个人资料 -->
+    <string name="personalData">个人资料</string>
+    <string name="headPortrait">头像</string>
+    <string name="nickname">昵称</string>
+    <string name="save">保存</string>
+    <string name="nicknamehint">请输入昵称</string>
+    <string name="gender">性别</string>
+    <string name="selfIntroduction">自我简介</string>
+    <string name="myPhotoAlbum">我的相册</string>
+    <string name="takephoto">拍照</string>
+    <string name="chooseFromAlbum">从手机相册选择</string>
+
+    <!-- 个人中心 设置昵称-->
+    <string name="setNickname">设置昵称</string>
+    <string name="complete">完成</string>
+
+    <!-- 个人中心 设置性别-->
+    <string name="setSex">设置性别</string>
+
+    <!-- 个人中心 设置自我简介-->
+    <string name="setSelfIntroduction">设置自我简介</string>
+    <string name="personalizedSelfIntroductionHint">一句话描述你的自我简介(最多30个字)</string>
+    <string name="fillSelfIntroduction">请填写您的自我简介</string>
+
+
+    <!-- 个人中心 我的钱包-->
+    <string name="accountBalance">账户余额</string>
+    <string name="withdrawal">提现</string>
+    <string name="bankCard">银行卡</string>
+    <string name="withdrawalRuleDescription">提现规则说明</string>
+    <string name="withdrawalRuleDescription1">1、提现次数：供货商不限制提现次数，到账规则详见“提现周期”规定。\n2、提现账户：可以选择工商银行、农业银行、中国银行、建设银行、邮政银行、招商银行、支付宝、财付通账户。\n3、提现费率：提现费率：0.1%，提现手续费将从余额中扣除。\n4、受限于银行系统规则，请所有商户仔细核对银行提现帐号，由于银行帐号原因引起的提现失败会扣除手续费，且资金返回周期为T+1，感谢配合。</string>
+
+
+    <!--个人中心 我的钱包 账户明细 -->
+    <string name="accountDetails">账户明细</string>
+    <string name="transactionAmount">交易金额</string>
+    <string name="accountNotClarified">亲，您的账户还没有明细哟~</string>
+    <string name="recharge">充值</string>
+    <string name="consumption">消费</string>
+    <string name="refund">退款</string>
+    <string name="ongoing">进行中</string>
+
+
+    <!-- 个人中心 我的钱包  余额提现-->
+    <string name="balanceWithdrawal">余额提现</string>
+    <string name="withdrawalRecord1">请输入提现金额</string>
+    <string name="withdrawalAmount1">提现金额</string>
+    <string name="withdrawalAmount2">可提现金额</string>
+    <string name="withdrawalAmount3">零钱余额¥</string>
+    <string name="toBank">到账银行</string>
+    <string name="modification">修改</string>
+    <string name="noCard">暂无</string>
+    <string name="addCard">添加</string>
+    <string name="tail">尾号</string>
+    <string name="withdrawalRecord">提现记录</string>
+    <string name="accountingDate">到账需要</string>
+    <string name="accountingDate1">个工作日</string>
+    <string name="notHigherWithdrawalLimit">不可高于可提现额度</string>
+    <string name="notHigherWithdrawalLimit1">请输入正确的提现金额</string>
+    <string name="withdrawalsBank1">请输入提现银行</string>
+    <string name="cancel">取消</string>
+    <string name="withdrawCash">确定要提现吗</string>
+    <string name="withdrawalTo">提现到</string>
+    <string name="procedureRrates">，手续费率</string>
+
+
+    <!-- 个人中心 我的钱包  我的银行卡列表-->
+    <string name="myBankCard">我的银行卡</string>
+    <string name="selectBankCard">选择银行卡</string>
+    <string name="chinaBank">中国银行</string>
+    <string name="ccdBank">建设银行</string>
+    <string name="cmbBank">招商银行</string>
+    <string name="deleteCard">确定删除银行卡吗</string>
+    <string name="notAddedBankCard">亲，您还没有添加银行卡哟~</string>
+
+    <!-- 个人中心 我的钱包  我的银行卡列表 添加银行卡-->
+    <string name="addBankCard">添加银行卡</string>
+    <string name="realName">真实姓名</string>
+    <string name="accountHolderName1">请输入持卡人姓名</string>
+    <string name="idNumber">身份证号</string>
+    <string name="pleaseidNumber">请正确填写身份证号码</string>
+    <string name="bankCardNumber">银行卡号</string>
+    <string name="bankCardNumber1">请输入银行卡号</string>
+    <string name="hintName1">请输入正确的姓名</string>
+    <string name="openingBank">开户银行</string>
+    <string name="pleaseSelect">请选择</string>
+    <string name="phone1">手机号</string>
+    <string name="accountText">请填写预留手机号</string>
+    <string name="enterVerifyCode">请输入验证码</string>
+    <string name="ensureSamePerson">请确保姓名、身份证、银行卡开户人为同一个人</string>
+    <string name="confirmAdd">确认添加</string>
+    <string name="toResend">s后重发</string>
+    <string name="openingBank1">请选择开户行</string>
+
+    <!--  个人中心  分享有礼-->
+    <string name="welcomSilly">你的朋友邀请你使用傻孩志并给你发了一个大红包  </string>
+    <string name="sillyChildMyHands">傻孩志在手天下我有</string>
+    <string name="notInstalled">没有安装应用</string>
+    <string name="notInstalled1">您还没有安装应用，请安装应用</string>
+
+    <!--弹框    分享-->
+    <string name="shareTo">分享给好友</string>
+    <string name="weChatFriends">微信好友</string>
+    <string name="circleFriends">朋友圈</string>
+    <string name="QQFriends">QQ好友</string>
+    <string name="qzone">QQ空间</string>
+    <string name="sina">新浪微博</string>
+    <string name="shareSuccess">分享成功啦</string>
+    <string name="shareError">分享失败啦</string>
+    <string name="shareCancel">分享取消了</string>
+    <string name="share">分享</string>
+
+    <!-- 个人中心 设置-->
+    <string name="versionNumber">版本号</string>
+    <string name="versionNumberNo">没有发现版本号</string>
+    <string name="clearCache">清除缓存</string>
+    <string name="clearSuccess">清除成功</string>
+    <string name="helpCenter">帮助中心</string>
+    <string name="feedback">意见反馈</string>
+    <string name="aboutUs">关于我们</string>
+    <string name="logOut">退出登录</string>
+    <string name="latestVersion">已是最新版本</string>
+    <string name="newVersion">有新版本</string>
+    <string name="updateVersion">有新版本是否更新</string>
+    <string name="update">&#160;&#160;&#160;更&#160;&#160;&#160;&#160;&#160;&#160;&#160;新&#160;&#160;&#160;</string>
+
+    <!-- 个人中心 设置  清除缓存弹框-->
+    <string name="prompting">提示</string>
+    <string name="determineClearCache">确定清除系统缓存</string>
+
+    <!-- 设置  意见反馈-->
+    <string name="feedbackType">选择反馈类型</string>
+    <string name="dysfunction">功能异常</string>
+    <string name="experienceProblem">体验问题</string>
+    <string name="newFeatureRecommendations">新功能建议</string>
+    <string name="other">其他</string>
+    <string name="hintCommentsSuggestions">傻孩志APP的每一次进步，都离不开您的意见和建议.</string>
+    <string name="wordLimit">500</string>
+    <string name="submit">提交</string>
+    <string name="noHaveFeedBackType">没有反馈问题类型可选，无法进行反馈操作！将关闭此页面，请移步至客服。</string>
+    <string name="getFeedBackTypeError">无法进行反馈操作！将关闭此页面，您可以移步至客服。</string>
+    <string name="selectorType">请选择反馈问题类型</string>
+    <string name="textDescribe">请填写意见反馈的文字描述</string>
+
+    <!--融云start-->
+    <string name="server_exception">服务器异常</string>
+    <string name="clear_success">清除成功</string>
+    <string name="clear_failure">清除失败</string>
+    <string name="no_read_message">"···"</string>
+    <string name="de_actionbar_system">"系统消息"</string>
+    <string name="main_customer">意见反馈</string>
+    <string name="de_actionbar_sub_defult">"聊天"</string>
+    <string name="cs_evaluation">评价</string>
+    <string name="cs_submit_evaluation">提交评价</string>
+    <string name="cs_evaluate_resolved_title">请问客服是否解决了您的问题</string>
+    <string name="cs_evaluate_resolved">已解决</string>
+    <string name="cs_evaluate_unresolved">未解决</string>
+    <string name="cs_evaluate_star_title">请您对客服进行评价</string>
+    <string name="cs_evaluate_problem_title">存在哪些问题</string>
+    <string name="cs_evaluate_tag_must">必须选择标签</string>
+    <string name="cs_evaluate_input_must">必须输入建议</string>
+    <string name="cs_evaluate_select_must">必选</string>
+    <!--融云end-->
+
+
+
+
+</resources>

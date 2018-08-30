@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchMatch"
+    android:background="@color/background"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_title" />
+
+    <TextView
+        android:id="@+id/tv_chooseTimeNeedServe"
+        style="@style/MatchWrap"
+        android:layout_marginTop="@dimen/dimen6"
+        android:background="@color/whiteColors"
+        android:gravity="center_horizontal"
+        android:paddingBottom="@dimen/dimen25"
+        android:paddingTop="@dimen/dimen15"
+        android:text="@string/chooseTimeNeedServe"
+        android:textColor="@color/greenColors" />
+
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:background="@color/whiteColors"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/dimen23">
+
+        <TextView
+            style="@style/AutoWrap"
+            android:gravity="center"
+            android:text="@string/day"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize12" />
+
+        <TextView
+            style="@style/AutoWrap"
+            android:gravity="center"
+            android:text="@string/one"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize12" />
+
+        <TextView
+            style="@style/AutoWrap"
+            android:gravity="center"
+            android:text="@string/two"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize12" />
+
+        <TextView
+            style="@style/AutoWrap"
+            android:gravity="center"
+            android:text="@string/three"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize12" />
+
+        <TextView
+            style="@style/AutoWrap"
+            android:gravity="center"
+            android:text="@string/four"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize12" />
+
+        <TextView
+            style="@style/AutoWrap"
+            android:gravity="center"
+            android:text="@string/five"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize12" />
+
+        <TextView
+            style="@style/AutoWrap"
+            android:gravity="center"
+            android:text="@string/six"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize12" />
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        style="@style/MatchMatch"
+        android:layout_marginTop="@dimen/dimen6"
+        android:background="@color/whiteColors" />
+
+</LinearLayout>

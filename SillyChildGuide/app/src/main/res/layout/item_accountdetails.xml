@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchWrap"
+    android:background="@color/whiteColors"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/dimen10"
+    android:paddingLeft="@dimen/dimen15"
+    android:paddingRight="@dimen/dimen15"
+    android:paddingTop="@dimen/dimen10">
+
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_detailsType"
+            style="@style/WrapWrap"
+            android:text="提现"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize15" />
+
+        <TextView
+            android:id="@+id/tv_time"
+            style="@style/MatchWrap"
+            android:gravity="right"
+            android:singleLine="true"
+            android:text="2018.05.3 14:49:50"
+            android:textColor="@color/hintColors"
+            android:textSize="@dimen/textsize13" />
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:layout_marginTop="@dimen/dimen7"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/WrapWrap"
+            android:text="@string/transactionAmount"
+            android:textColor="@color/phonenumbercolor"
+            android:textSize="@dimen/textsize12" />
+
+        <TextView
+            android:id="@+id/tv_balance"
+            style="@style/MatchWrap"
+            android:gravity="right"
+            android:singleLine="true"
+            android:text="-200"
+            android:textColor="@color/phonenumbercolor"
+            android:textSize="@dimen/textsize12" />
+    </LinearLayout>
+
+
+</LinearLayout>

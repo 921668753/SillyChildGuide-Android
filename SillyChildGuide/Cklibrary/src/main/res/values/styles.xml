@@ -1,0 +1,49 @@
+<resources>
+
+
+    <style name="transcutestyle" parent="Theme.AppCompat.Dialog">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowFrame">@android:color/transparent</item><!--边框-->
+        <item name="android:windowIsFloating">true</item><!--是否浮现在activity之上-->
+        <item name="android:windowIsTranslucent">true</item><!--半透明-->
+        <item name="android:windowNoTitle">true</item><!--无标题-->
+        <item name="android:windowBackground">@android:color/transparent</item><!--背景透明-->
+        <item name="android:backgroundDimAmount">0.3</item>
+        <item name="android:windowAnimationStyle">@null</item>
+    </style>
+
+    <style name="dialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item><!--边框-->
+        <item name="android:windowIsFloating">true</item><!--是否浮现在activity之上-->
+        <item name="android:windowIsTranslucent">false</item><!--半透明-->
+        <item name="android:windowNoTitle">true</item><!--无标题-->
+        <item name="android:windowBackground">@android:color/transparent</item><!--背景透明-->
+        <item name="android:backgroundDimEnabled">false</item><!--模糊-->
+    </style>
+
+
+    <style name="textview_style">
+        <item name="android:layout_height">@dimen/dimen48</item>
+        <item name="android:layout_width">@dimen/dimen41</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/textColor1</item>
+        <item name="android:textSize">@dimen/dimen30</item>
+    </style>
+
+    <style name="textview_codeStyle">
+        <item name="android:layout_height">@dimen/dimen1</item>
+        <item name="android:layout_width">@dimen/dimen45</item>
+        <item name="android:background">@color/translucent_gray</item>
+        <item name="android:layout_gravity">bottom</item>
+    </style>
+
+    <!--分割线-->
+    <style name="DividerWidth">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/dimen1</item>
+        <item name="android:background">#DDDDDD</item>
+    </style>
+
+</resources>

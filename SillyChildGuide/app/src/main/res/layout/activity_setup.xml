@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchMatch"
+    android:background="@color/background"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_title" />
+
+    <View style="@style/DividerWidth" />
+
+    <!--版本号-->
+    <LinearLayout
+        android:id="@+id/ll_versionNumber"
+        style="@style/Match45"
+        android:background="@color/whiteColors"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/dimen15"
+        android:paddingRight="@dimen/dimen15">
+
+        <TextView
+            style="@style/WrapWrap"
+            android:text="@string/versionNumber"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize15" />
+
+        <View style="@style/AutoWrap" />
+
+        <TextView
+            android:id="@+id/tv_versionname"
+            style="@style/WrapWrap"
+            android:text="V1.0"
+            android:textColor="@color/hintColors"
+            android:textSize="@dimen/textsize15" />
+    </LinearLayout>
+
+
+    <TextView style="@style/DividerWidth" />
+
+
+    <!--清除缓存-->
+    <LinearLayout
+        android:id="@+id/ll_clearCache"
+        style="@style/Match45"
+        android:background="@color/whiteColors"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/dimen15"
+        android:paddingRight="@dimen/dimen15">
+
+        <TextView
+            style="@style/WrapWrap"
+            android:text="@string/clearCache"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize15" />
+
+        <View style="@style/AutoWrap" />
+
+        <TextView
+            android:id="@+id/tv_cache"
+            style="@style/WrapWrap"
+            android:text="18.6KB"
+            android:textColor="@color/hintColors"
+            android:textSize="@dimen/textsize15" />
+    </LinearLayout>
+
+    <TextView style="@style/DividerWidth" />
+
+    <!--帮助中心-->
+    <LinearLayout
+        android:id="@+id/ll_help"
+        style="@style/Match45"
+        android:background="@color/whiteColors"
+        android:gravity="right|center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/dimen15"
+        android:paddingRight="@dimen/dimen15">
+
+        <TextView
+            style="@style/AutoWrap"
+            android:text="@string/helpCenter"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize15" />
+
+        <ImageView
+            style="@style/Image812"
+            android:src="@mipmap/right_arrow" />
+    </LinearLayout>
+
+    <!--意见反馈-->
+    <TextView style="@style/DividerWidth" />
+
+    <LinearLayout
+        android:id="@+id/ll_feedback"
+        style="@style/Match45"
+        android:background="@color/whiteColors"
+        android:gravity="right|center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/dimen15"
+        android:paddingRight="@dimen/dimen15">
+
+        <TextView
+            style="@style/AutoWrap"
+            android:text="@string/feedback"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize15" />
+
+        <ImageView
+            style="@style/Image812"
+            android:src="@mipmap/right_arrow" />
+    </LinearLayout>
+
+    <TextView style="@style/DividerWidth" />
+
+    <!--关于我们-->
+    <LinearLayout
+        android:id="@+id/ll_aboutus"
+        style="@style/Match45"
+        android:background="@color/whiteColors"
+        android:gravity="right|center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/dimen15"
+        android:paddingRight="@dimen/dimen15">
+
+        <TextView
+            style="@style/AutoWrap"
+            android:text="@string/aboutUs"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize15" />
+
+        <ImageView
+            style="@style/Image812"
+            android:src="@mipmap/right_arrow" />
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/tv_logOut"
+        style="@style/Match40"
+        android:layout_marginLeft="@dimen/dimen73"
+        android:layout_marginRight="@dimen/dimen73"
+        android:layout_marginTop="@dimen/dimen20"
+        android:background="@drawable/shape_homepagebtn"
+        android:gravity="center"
+        android:text="@string/logOut"
+        android:textColor="@color/whiteColors"
+        android:textSize="@dimen/textsize16" />
+
+</LinearLayout>

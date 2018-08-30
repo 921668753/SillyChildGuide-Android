@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/WrapWrap">
+
+    <ImageView
+        android:id="@+id/iv_img"
+        style="@style/MatchWrap"
+        android:layout_centerInParent="true"
+        android:adjustViewBounds="true"
+        android:padding="@dimen/dimen7"
+        android:src="@mipmap/feedback_add_pictures" />
+
+    <ImageView
+        android:id="@+id/iv_delete"
+        android:layout_width="@dimen/dimen14"
+        android:layout_height="@dimen/dimen14"
+        android:layout_alignParentRight="true"
+        android:src="@mipmap/mine_dislodge" />
+
+</RelativeLayout>

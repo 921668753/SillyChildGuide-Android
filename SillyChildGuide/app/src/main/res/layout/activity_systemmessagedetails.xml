@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchMatch"
+    android:background="@color/background"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_title" />
+
+    <TextView
+        android:id="@+id/tv_title"
+        style="@style/MatchWrap"
+        android:layout_marginTop="@dimen/dimen6"
+        android:background="@color/whiteColors"
+        android:gravity="center"
+        android:padding="@dimen/dimen15"
+        android:text="白体"
+        android:textColor="@color/textColor"
+        android:textSize="@dimen/textsize15" />
+
+    <TextView
+        android:id="@+id/tv_time"
+        style="@style/MatchWrap"
+        android:background="@color/whiteColors"
+        android:gravity="right"
+        android:paddingBottom="@dimen/dimen15"
+        android:paddingLeft="@dimen/dimen15"
+        android:paddingRight="@dimen/dimen15"
+        android:paddingTop="@dimen/dimen5"
+        android:singleLine="true"
+        android:text="--"
+        android:textColor="@color/hintColors"
+        android:textSize="@dimen/textsize13"
+        android:visibility="visible" />
+
+    <TextView
+        android:id="@+id/tv_content"
+        style="@style/MatchWrap"
+        android:layout_marginTop="@dimen/dimen1"
+        android:background="@color/whiteColors"
+        android:paddingBottom="@dimen/dimen15"
+        android:paddingLeft="@dimen/dimen15"
+        android:paddingRight="@dimen/dimen15"
+        android:paddingTop="@dimen/dimen15"
+        android:text="白体白体白体"
+        android:textColor="@color/hintColors"
+        android:textSize="@dimen/textsize13" />
+
+
+</LinearLayout>

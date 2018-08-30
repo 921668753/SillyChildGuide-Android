@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/content"
+    style="@style/MatchWrap"
+    android:background="@color/whiteColors"
+    android:gravity="center_vertical"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/dimen15"
+    android:paddingRight="@dimen/dimen20">
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_country"
+            style="@style/WrapWrap"
+            android:paddingBottom="@dimen/dimen15"
+            android:paddingTop="@dimen/dimen15"
+            android:text="埃及"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize15" />
+
+        <TextView
+            android:id="@+id/tv_areaCode"
+            style="@style/AutoWrap"
+            android:gravity="right"
+            android:text="0020"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize15" />
+
+    </LinearLayout>
+
+    <TextView style="@style/DividerWidth" />
+
+</LinearLayout>

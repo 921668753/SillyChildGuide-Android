@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/MatchMatch"
+    android:background="@color/background"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_title" />
+
+
+    <ScrollView
+        style="@style/MatchMatch"
+        android:scrollbars="none">
+
+        <RelativeLayout style="@style/MatchMatch">
+
+            <LinearLayout
+                android:id="@+id/ll_headPortrait"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen73"
+                android:layout_marginTop="@dimen/dimen6"
+                android:background="@color/whiteColors"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/dimen15"
+                android:paddingRight="@dimen/dimen15">
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:text="@string/headPortrait"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize14" />
+
+                <LinearLayout
+                    style="@style/AutoWrap"
+                    android:gravity="right"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/iv_headPortrait"
+                        android:layout_width="@dimen/dimen45"
+                        android:layout_height="@dimen/dimen45"
+                        android:scaleType="fitXY"
+                        android:src="@mipmap/avatar" />
+                </LinearLayout>
+
+                <ImageView
+                    style="@style/Image812"
+                    android:layout_marginLeft="@dimen/dimen15"
+                    android:src="@mipmap/right_arrow" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/ll_nickname"
+                style="@style/Match45"
+                android:layout_below="@id/ll_headPortrait"
+                android:layout_marginTop="@dimen/dimen1"
+                android:background="@color/whiteColors"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/dimen15"
+                android:paddingRight="@dimen/dimen15">
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:text="@string/nickname"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize14" />
+
+                <TextView
+                    android:id="@+id/tv_nickname"
+                    style="@style/AutoWrap"
+                    android:gravity="right"
+                    android:singleLine="true"
+                    android:text="粉红色叶子"
+                    android:textColor="@color/hintColors"
+                    android:textSize="@dimen/textsize13" />
+
+                <ImageView
+                    style="@style/Image812"
+                    android:layout_marginLeft="@dimen/dimen10"
+                    android:src="@mipmap/right_arrow" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/ll_gender"
+                style="@style/Match45"
+                android:layout_below="@id/ll_nickname"
+                android:background="@color/whiteColors"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/dimen15"
+                android:paddingRight="@dimen/dimen15">
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:text="@string/gender"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize14" />
+
+                <TextView
+                    android:id="@+id/tv_gender"
+                    style="@style/AutoMatch"
+                    android:gravity="right|center_vertical"
+                    android:singleLine="true"
+                    android:text="女"
+                    android:textColor="@color/hintColors"
+                    android:textSize="@dimen/textsize13" />
+
+                <ImageView
+                    style="@style/Image812"
+                    android:layout_marginLeft="@dimen/dimen10"
+                    android:src="@mipmap/right_arrow" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/ll_selfIntroduction"
+                style="@style/Match45"
+                android:layout_below="@id/ll_gender"
+                android:layout_marginTop="@dimen/dimen1"
+                android:background="@color/whiteColors"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/dimen15"
+                android:paddingRight="@dimen/dimen15">
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:text="@string/selfIntroduction"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize14" />
+
+                <TextView
+                    android:id="@+id/tv_selfIntroduction"
+                    style="@style/AutoMatch"
+                    android:gravity="right|center_vertical"
+                    android:paddingLeft="@dimen/dimen10"
+                    android:singleLine="true"
+                    android:textColor="@color/hintColors"
+                    android:textSize="@dimen/textsize13" />
+
+                <ImageView
+                    style="@style/Image812"
+                    android:layout_marginLeft="@dimen/dimen10"
+                    android:src="@mipmap/right_arrow" />
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/tv_myPhotoAlbum"
+                style="@style/MatchWrap"
+                android:layout_below="@id/ll_selfIntroduction"
+                android:layout_marginTop="@dimen/dimen6"
+                android:background="@color/whiteColors"
+                android:paddingLeft="@dimen/dimen17"
+                android:paddingTop="@dimen/dimen18"
+                android:text="@string/myPhotoAlbum"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/textsize14" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                style="@style/MatchWrap"
+                android:layout_below="@id/tv_myPhotoAlbum"
+                android:background="@color/whiteColors"
+                android:choiceMode="singleChoice"
+                android:divider="@null"
+                android:fadingEdge="none"
+                android:listSelector="@android:color/transparent"
+                android:paddingBottom="@dimen/dimen10"
+                android:paddingLeft="@dimen/dimen15"
+                android:paddingRight="@dimen/dimen25"
+                android:paddingTop="@dimen/dimen10"
+                android:scrollbarStyle="outsideOverlay"
+                app:layoutManager="android.support.v7.widget.GridLayoutManager"
+                app:spanCount="3"
+                tools:listitem="@layout/item_chooseimage" />
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+
+</LinearLayout>

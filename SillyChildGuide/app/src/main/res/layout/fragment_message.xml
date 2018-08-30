@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchMatch"
+    android:background="@color/background"
+    android:orientation="vertical">
+
+    <TextView
+        style="@style/Match44"
+        android:background="@color/whiteColors"
+        android:gravity="center"
+        android:text="@string/message"
+        android:textColor="@color/titletextcolors"
+        android:textSize="@dimen/textsize17" />
+
+    <TextView style="@style/DividerWidth" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen40"
+        android:background="@color/whiteColors"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_interactiveMessage"
+            style="@style/AutoMatch"
+            android:gravity="center"
+            android:text="@string/interactiveMessage"
+            android:textColor="@color/greenColors"
+            android:textSize="@dimen/textsize15" />
+
+        <TextView style="@style/DividerHeight" />
+
+        <TextView
+            android:id="@+id/tv_systemMessage"
+            style="@style/AutoMatch"
+            android:gravity="center"
+            android:text="@string/systemMessage"
+            android:textColor="@color/titletextcolors"
+            android:textSize="@dimen/textsize15" />
+
+    </LinearLayout>
+
+    <TextView style="@style/DividerWidth" />
+
+    <FrameLayout
+        android:id="@+id/main_content"
+        style="@style/MatchAuto" />
+
+</LinearLayout>

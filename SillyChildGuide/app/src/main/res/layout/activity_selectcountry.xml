@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/MatchMatch"
+    android:background="@color/background"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_title" />
+
+    <FrameLayout
+        style="@style/MatchMatch"
+        android:background="@color/whiteColors">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv"
+            style="@style/MatchWrap" />
+
+
+        <com.common.cklibrary.utils.myview.IndexNewBar
+            android:id="@+id/indexBar"
+            android:layout_width="24dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="right"
+            android:layout_marginBottom="@dimen/dimen100"
+            android:layout_marginTop="@dimen/dimen100"
+            app:indexBarPressBackground="@color/partTranslucent"
+            app:indexBarTextSize="@dimen/textsize10" />
+    </FrameLayout>
+</LinearLayout>

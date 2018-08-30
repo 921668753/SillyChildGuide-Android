@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    style="@style/MatchMatch"
+    android:fitsSystemWindows="true"
+    android:gravity="center">
+
+    <LinearLayout
+        style="@style/WrapWrap"
+        android:orientation="vertical"
+        android:background="@drawable/shape_homepage"
+        android:layout_margin="@dimen/dimen45">
+
+        <TextView
+            android:id="@+id/tv_content"
+            style="@style/MatchAuto"
+            android:text="--"
+            android:gravity="center_vertical"
+            android:layout_margin="@dimen/dimen35"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize18"/>
+
+        <View
+            style="@style/DividerWidth"/>
+
+        <TextView
+            android:id="@+id/tv_iknow"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen50"
+            android:gravity="center"
+            android:text="@string/iKnow"
+            android:textSize="@dimen/dimen15"
+            android:textColor="@color/textColor"/>
+
+    </LinearLayout>
+
+</LinearLayout>

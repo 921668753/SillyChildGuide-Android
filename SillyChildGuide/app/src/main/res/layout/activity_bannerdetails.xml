@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/MatchMatch"
+    android:background="@color/background"
+    android:fitsSystemWindows="true"
+    tools:context="com.yinglan.scg.loginregister.register.RegistrationAgreementActivity">
+
+
+    <com.common.cklibrary.utils.myview.WebViewLayout
+        android:id="@+id/web_viewlayout"
+        style="@style/MatchMatch"
+        android:background="@color/whiteColors"
+        app:isJavaScriptEnabled="true"
+        app:isUpdateTitle="true" />
+
+    <!--<include layout="@layout/common_title" />-->
+
+</RelativeLayout>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/MatchMatch"
+    android:background="@color/background"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_title" />
+
+    <TextView style="@style/DividerWidth" />
+
+    <ListView
+        android:id="@+id/lv_bankCard"
+        style="@style/MatchWrap"
+        android:background="@color/background"
+        android:divider="@color/background"
+        android:dividerHeight="@dimen/dimen10"
+        android:overScrollMode="never"
+        android:scrollbars="none"
+        tools:listitem="@layout/item_bankcard" />
+
+    <include layout="@layout/common_error" />
+
+</LinearLayout>

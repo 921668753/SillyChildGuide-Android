@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dimen140"
+    android:background="@color/whiteColors"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/dimen10"
+    android:paddingLeft="@dimen/dimen15"
+    android:paddingRight="@dimen/dimen15"
+    android:paddingTop="@dimen/dimen10">
+
+    <ImageView
+        android:id="@+id/img_back"
+        style="@style/MatchMatch"
+        android:scaleType="fitXY"
+        android:src="@mipmap/bank_card_default" />
+
+    <TextView
+        android:id="@+id/tv_cardName"
+        style="@style/WrapWrap"
+        android:paddingLeft="@dimen/dimen78"
+        android:paddingTop="@dimen/dimen25"
+        android:text="*某"
+        android:textColor="@color/whiteColors"
+        android:textSize="@dimen/textsize17" />
+
+    <TextView
+        android:id="@+id/tv_bankCardName"
+        style="@style/WrapWrap"
+        android:layout_below="@id/tv_cardName"
+        android:paddingLeft="@dimen/dimen78"
+        android:paddingTop="@dimen/dimen10"
+        android:text="建设银行"
+        android:textColor="@color/whiteColors"
+        android:textSize="@dimen/textsize15" />
+
+    <TextView
+        android:id="@+id/tv_tail"
+        style="@style/WrapWrap"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="@dimen/dimen35"
+        android:paddingBottom="@dimen/dimen20"
+        android:paddingLeft="@dimen/dimen78"
+        android:paddingTop="@dimen/dimen5"
+        android:text="621700**********6342"
+        android:textColor="@color/whiteColors"
+        android:textSize="@dimen/textsize13" />
+
+    <ImageView
+        android:id="@+id/img_check"
+        android:layout_width="@dimen/dimen15"
+        android:layout_height="@dimen/dimen10"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/dimen15"
+        android:src="@mipmap/bank_card_check_number"
+        android:visibility="gone" />
+
+
+</RelativeLayout>

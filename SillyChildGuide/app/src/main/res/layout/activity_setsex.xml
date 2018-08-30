@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchMatch"
+    android:background="@color/background"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_title" />
+
+    <View style="@style/DividerWidth" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen35"
+        android:layout_marginTop="@dimen/dimen15"
+        android:background="@color/whiteColors">
+
+        <TextView
+            style="@style/WrapWrap"
+            android:layout_centerVertical="true"
+            android:paddingLeft="@dimen/dimen15"
+            android:text="@string/man"
+            android:textColor="@color/titletextcolors"
+            android:textSize="@dimen/textsize15" />
+
+
+        <ImageView
+            android:id="@+id/img_nan"
+            android:layout_width="@dimen/dimen45"
+            android:layout_height="@dimen/dimen30"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:paddingLeft="@dimen/dimen15"
+            android:paddingRight="@dimen/dimen15"
+            android:src="@mipmap/set_gender_check_the_number" />
+
+    </RelativeLayout>
+
+    <TextView style="@style/DividerWidth" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen35"
+        android:background="@color/whiteColors">
+
+        <TextView
+            style="@style/WrapWrap"
+            android:layout_centerVertical="true"
+            android:paddingLeft="@dimen/dimen15"
+            android:text="@string/woman"
+            android:textColor="@color/titletextcolors"
+            android:textSize="@dimen/textsize15" />
+
+
+        <ImageView
+            android:id="@+id/img_nv"
+            android:layout_width="@dimen/dimen45"
+            android:layout_height="@dimen/dimen30"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:paddingLeft="@dimen/dimen15"
+            android:paddingRight="@dimen/dimen15"
+            android:src="@mipmap/set_gender_check_the_number" />
+
+    </RelativeLayout>
+
+</LinearLayout>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/MatchMatch"
+    android:background="@color/background"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_title" />
+
+    <ScrollView
+        style="@style/MatchMatch"
+        android:scrollbars="none">
+
+        <LinearLayout
+            style="@style/MatchMatch"
+            android:orientation="vertical">
+
+
+            <com.common.cklibrary.utils.myview.ChildListView
+                android:id="@+id/clv_car"
+                style="@style/MatchWrap"
+                android:layout_marginTop="@dimen/dimen6"
+                android:divider="@color/background"
+                android:dividerHeight="@dimen/dimen1"
+                tools:listitem="@layout/item_car" />
+
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen196"
+                android:layout_marginTop="@dimen/dimen6"
+                android:background="@color/whiteColors"
+                android:paddingBottom="@dimen/dimen26"
+                android:paddingLeft="@dimen/dimen30"
+                android:paddingRight="@dimen/dimen30"
+                android:paddingTop="@dimen/dimen26"
+                android:src="@mipmap/tab_workbench_unselected" />
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+
+</LinearLayout>

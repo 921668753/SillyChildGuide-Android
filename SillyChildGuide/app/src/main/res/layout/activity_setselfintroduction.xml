@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchMatch"
+    android:background="@color/background"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_title" />
+
+    <View style="@style/DividerWidth" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen100"
+        android:layout_marginTop="@dimen/dimen15">
+
+        <EditText
+            android:id="@+id/et_selfIntroduction"
+            style="@style/MatchMatch"
+            android:background="@color/whiteColors"
+            android:gravity="start"
+            android:hint="@string/personalizedSelfIntroductionHint"
+            android:maxLength="30"
+            android:padding="@dimen/dimen15"
+            android:textColor="@color/titletextcolors"
+            android:textColorHint="@color/hintColors"
+            android:textCursorDrawable="@drawable/shape_cursor"
+            android:textSize="@dimen/textsize15" />
+
+
+        <TextView
+            android:id="@+id/tv_number"
+            style="@style/WrapWrap"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:paddingBottom="@dimen/dimen15"
+            android:paddingRight="@dimen/dimen15"
+            android:text="0"
+            android:textColor="@color/hintColors"
+            android:textSize="@dimen/textsize13" />
+
+
+    </RelativeLayout>
+
+
+</LinearLayout>

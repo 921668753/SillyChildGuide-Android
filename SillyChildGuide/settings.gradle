@@ -1,0 +1,1 @@
+include ':app', ':Cklibrary', ':IMKit', ':IMLib', ':CallKit', ':CallLib', ':picture_library', ':QNPlayerLib', ':ucrop', ':UMLibrary', ':widget'

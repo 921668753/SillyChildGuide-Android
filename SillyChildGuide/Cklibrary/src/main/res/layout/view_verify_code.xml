@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchWrap">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen48"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_0"
+            style="@style/textview_style" />
+
+
+        <View style="@style/AutoWrap" />
+
+        <TextView
+            android:id="@+id/tv_1"
+            style="@style/textview_style" />
+
+
+        <View style="@style/AutoWrap" />
+
+        <TextView
+            android:id="@+id/tv_2"
+            style="@style/textview_style" />
+
+        <View style="@style/AutoWrap" />
+
+        <TextView
+            android:id="@+id/tv_3"
+            style="@style/textview_style" />
+
+
+        <!--<View style="@style/AutoWrap" />-->
+
+        <!--<TextView-->
+        <!--android:id="@+id/tv_4"-->
+        <!--style="@style/textview_style" />-->
+
+        <!--<View style="@style/AutoWrap" />-->
+
+        <!--<TextView-->
+        <!--android:id="@+id/tv_5"-->
+        <!--style="@style/textview_style" />-->
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen48"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <View style="@style/textview_codeStyle" />
+
+        <View style="@style/AutoWrap" />
+
+        <View style="@style/textview_codeStyle" />
+
+        <View style="@style/AutoWrap" />
+
+        <View style="@style/textview_codeStyle" />
+
+        <View style="@style/AutoWrap" />
+
+        <View style="@style/textview_codeStyle" />
+
+        <!--<View style="@style/AutoWrap" />-->
+
+        <!--<View style="@style/textview_codeStyle" />-->
+
+        <!--<View style="@style/AutoWrap" />-->
+
+        <!--<View style="@style/textview_codeStyle" />-->
+
+    </LinearLayout>
+
+    <com.common.cklibrary.utils.myview.MyEditText
+        android:id="@+id/edit_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@android:color/transparent"
+        android:inputType="number"
+        android:longClickable="false"
+        android:maxLength="6"
+        android:textColor="@android:color/transparent" />
+</RelativeLayout>

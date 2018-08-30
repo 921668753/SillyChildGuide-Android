@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchWrap"
+    android:background="@color/background"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/plan_time_txt_month"
+        style="@style/Match40"
+        android:background="@color/whiteColors"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/dimen20"
+        android:text="Aug 2017"
+        android:textColor="@color/textColor"
+        android:textSize="@dimen/textsize15"
+        android:textStyle="bold" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/plan_time_recycler_content"
+        style="@style/MatchWrap"
+        android:layout_marginBottom="@dimen/dimen6"
+        android:background="@color/whiteColors" />
+
+</LinearLayout>

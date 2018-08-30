@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/MatchMatch"
+    android:fitsSystemWindows="true">
+
+    <cn.bingoogolapple.bgabanner.BGABanner
+        android:id="@+id/banner_guide_foreground"
+        style="@style/MatchMatch"
+        app:banner_pageChangeDuration="1000"
+        app:banner_pointAutoPlayAble="false"
+        app:banner_pointContainerBackground="@android:color/transparent"
+        app:banner_pointDrawable="@android:color/transparent"
+        app:banner_pointTopBottomMargin="15dp"
+        app:banner_transitionEffect="alpha" />
+
+    <TextView
+        android:id="@+id/tv_guide_skip"
+        style="@style/WrapWrap"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/dimen10"
+        android:layout_marginTop="8dp"
+        android:clickable="true"
+        android:padding="4dp"
+        android:text="@string/skip"
+        android:textColor="@color/whiteColors"
+        android:textSize="@dimen/textsize16" />
+
+    <Button
+        android:id="@+id/btn_guide_enter"
+        android:layout_width="@dimen/dimen200"
+        android:layout_height="@dimen/dimen40"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/dimen90"
+        android:background="@drawable/shape_guide"
+        android:text="@string/experienceImmediately"
+        android:textColor="@color/whiteColors"
+        tools:visibility="visible" />
+
+</RelativeLayout>

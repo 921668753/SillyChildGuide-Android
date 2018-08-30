@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#000000</color>
+    <color name="colorPrimaryDark">#000000</color>
+    <color name="colorAccent">#FF4081</color>
+
+
+    <!--标题栏-->
+    <color name="titletextcolors">#000000</color>
+    <color name="titlebackground">#fafafa</color>
+    <color name="background">#f5f9fc</color>
+    <color name="titledivider">#dbdbdb</color>
+    <color name="dividercolors">#cfcfcf</color>
+    <color name="dividercolors1">#cccccc</color>
+    <color name="dividercolors2">#DDDDDD</color>
+    <color name="tabColors">#666666</color>
+    <color name="whiteColors">#ffffff</color>
+
+
+    <!--透明程度-->
+    <color name="black60">#66000000</color>
+    <color name="white20">#ccf8f8f8</color>
+    <color name="black20">#20000000</color>
+    <color name="black50">#50000000</color>
+    <color name="black01">#01000000</color>
+    <color name="partTranslucent">#39000000</color>
+    <color name="white30">#30ffffff</color>
+
+    <!--登录-->
+    <color name="textColor">#333333</color>
+    <color name="grayColors">#888888</color>
+    <color name="hintColors">#999999</color>
+    <color name="greenColors">#2CD052</color>
+    <color name="longinotherdividerbg">#dddddd</color>
+    <color name="cs_evaluate_dialog_divider">#eceef3</color>
+    <color name="gray_two">#f2f2f2</color>
+    <color name="seal_bg">#f0f0f6</color>
+
+    <!--主界面-->
+    <color name="redColors">#ff2e29</color>
+    <color name="blueColors">#3F96F3</color>
+    <color name="phonestrColor">#8e8e8e</color>
+    <color name="fF4E00Colors">#FF4E00</color>
+    <color name="c9FFD2Colors">#C9FFD2</color>
+
+
+
+
+
+
+</resources>

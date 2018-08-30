@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="mainColor">#3592e9</color>
+    <color name="webview_progress">#A7CEF2</color>
+    <color name="titleTextColor">#FFFFFF</color>
+
+    <!--BaseActivity-->
+    <color name="textColor1">#333333</color>
+    <color name="dialogLoadingColor">#2cd052</color>
+    <!--&lt;!&ndash;登录&ndash;&gt;-->
+    <!--<color name="lonincolors">#ff6243</color>-->
+
+    <!--设置支付密码-->
+    <color name="fEFDFDColors">#FEFDFD</color>
+    <color name="fCFCFCColors">#FCFCFC</color>
+    <color name="bEBEC0Colors">#BEBEC0</color>
+    <color name="e8E8EColors">#8E8E8E</color>
+    <color name="f2222Colors">#222222</color>
+
+    <!--修改支付密码-->
+    <color name="translucent_gray">#BBBBBB</color>
+</resources>

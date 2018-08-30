@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/bottombar_group"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dimen50"
+    android:layout_gravity="bottom"
+    android:background="@android:color/white"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:id="@+id/bottombar_homePage"
+        style="@style/AutoMatch"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/dimen5">
+
+        <ImageView
+            android:id="@+id/img_homePage"
+            style="@style/Image20"
+            android:src="@mipmap/default_image" />
+
+        <TextView
+            android:id="@+id/tv_homePage"
+            style="@style/WrapWrap"
+            android:layout_marginTop="@dimen/dimen1"
+            android:text="@string/homePage"
+            android:textColor="@color/tabColors"
+            android:textSize="@dimen/textSize_10" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/bottombar_workbench"
+        style="@style/AutoMatch"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/dimen5">
+
+        <ImageView
+            android:id="@+id/img_workbench"
+            style="@style/Image20"
+            android:src="@mipmap/default_image" />
+
+        <TextView
+            android:id="@+id/tv_workbench"
+            style="@style/WrapWrap"
+            android:layout_marginTop="@dimen/dimen1"
+            android:text="@string/workbench"
+            android:textColor="@color/tabColors"
+            android:textSize="@dimen/textSize_10" />
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/bottombar_message"
+        style="@style/AutoMatch">
+
+        <LinearLayout
+            style="@style/MatchMatch"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/dimen5">
+
+            <ImageView
+                android:id="@+id/img_message"
+                style="@style/Image20"
+                android:src="@mipmap/default_image" />
+
+            <TextView
+                android:id="@+id/tv_message"
+                style="@style/WrapWrap"
+                android:layout_marginTop="@dimen/dimen1"
+                android:text="@string/message"
+                android:textColor="@color/tabColors"
+                android:textSize="@dimen/textSize_10" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_messageTag"
+            android:layout_width="@dimen/dimen10"
+            android:layout_height="@dimen/dimen10"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/dimen20"
+            android:layout_marginTop="@dimen/dimen10"
+            android:background="@drawable/shape_homepage_dot"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/bottombar_activities"
+        style="@style/AutoMatch"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/dimen5">
+
+        <ImageView
+            android:id="@+id/img_activities"
+            style="@style/Image20"
+            android:src="@mipmap/default_image" />
+
+        <TextView
+            android:id="@+id/tv_activities"
+            style="@style/WrapWrap"
+            android:layout_marginTop="@dimen/dimen1"
+            android:text="@string/order"
+            android:textColor="@color/tabColors"
+            android:textSize="@dimen/textSize_10" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/bottombar_mine"
+        style="@style/AutoMatch"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/dimen5">
+
+        <ImageView
+            android:id="@+id/img_mine"
+            style="@style/Image20"
+            android:src="@mipmap/default_image" />
+
+        <TextView
+            android:id="@+id/tv_mine"
+            style="@style/WrapWrap"
+            android:layout_marginTop="@dimen/dimen1"
+            android:text="@string/mine"
+            android:textColor="@color/tabColors"
+            android:textSize="@dimen/textSize_10" />
+    </LinearLayout>
+</LinearLayout>

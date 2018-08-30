@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/MatchMatch"
+    android:background="@color/background"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_title" />
+
+    <cn.bingoogolapple.refreshlayout.BGARefreshLayout
+        android:id="@+id/mRefreshLayout"
+        style="@style/MatchMatch"
+        android:background="@color/background"
+        android:paddingTop="@dimen/dimen10">
+
+        <!-- item_systemmessage -->
+        <ListView
+            android:id="@+id/lv_systemMessage"
+            style="@style/MatchMatch"
+            android:divider="@color/background"
+            android:dividerHeight="@dimen/dimen10"
+            android:listSelector="@android:color/transparent"
+            android:overScrollMode="never"
+            android:paddingLeft="@dimen/dimen10"
+            android:paddingRight="@dimen/dimen10"
+            android:scrollbars="none"
+            tools:listitem="@layout/item_systemmessage" />
+
+    </cn.bingoogolapple.refreshlayout.BGARefreshLayout>
+
+    <include layout="@layout/common_error" />
+
+</LinearLayout>

@@ -1,0 +1,14 @@
+common  此包下主要放置公用的类
+constant  此包下主要放置常量的类
+loginregister 此包下主要放置登录注册的类
+startpage  此包下主要放置启动页和引导页的类
+entity  此包下主要放置实体对象的类
+utils  此包下主要放置工具类
+
+
+
+
+
+
+
+ck

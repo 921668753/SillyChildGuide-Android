@@ -1,0 +1,173 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="drawerArrowStyle">@style/AppTheme.MyDrawerArrowStyle</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:homeAsUpIndicator">@mipmap/back</item>
+    </style>
+    <!--加入一個新的 navigation drarwer 的風格-->
+    <style name="AppTheme.MyDrawerArrowStyle" parent="Widget.AppCompat.DrawerArrowToggle">
+        <!--將 spinBars 屬性設定為 false-->
+        <item name="spinBars">false</item>
+        <!--設定 drawer arrow 的顏色-->
+        <item name="color">@android:color/white</item>
+    </style>
+
+    <!--<style name="AppTheme.NoActionBar">-->
+    <!--<item name="windowActionBar">false</item>-->
+    <!--<item name="windowNoTitle">true</item>-->
+    <!--</style>-->
+
+    <!--<style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />-->
+
+    <!--<style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />-->
+
+    <style name="Theme.AppStartLoadTranslucent" parent="AppTheme">
+        <item name="colorPrimary">@android:color/transparent</item>
+        <item name="colorPrimaryDark">@android:color/transparent</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+
+
+    <!--TitleDividerWidth分割线-->
+    <style name="TitleDividerWidth">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">@color/titledivider</item>
+    </style>
+
+    <!--分割线-->
+    <style name="DividerWidth">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/dimen1</item>
+        <item name="android:background">@color/dividercolors2</item>
+    </style>
+
+    <style name="DividerHeight">
+        <item name="android:layout_width">@dimen/dimen1</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@color/dividercolors2</item>
+    </style>
+
+
+    <style name="TitleBar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/titlebar_height</item>
+        <item name="android:background">@color/whiteColors</item>
+        <item name="bgatitlebar_leftAndRightTextColor">@color/textColor</item>
+        <item name="bgatitlebar_leftAndRightTextSize">@dimen/textsize15</item>
+        <item name="bgatitlebar_titleTextColor">@color/titletextcolors</item>
+        <item name="bgatitlebar_titleTextSize">@dimen/textsize17</item>
+        <item name="bgatitlebar_rightMaxWidth">@dimen/dimen150</item>
+        <item name="bgatitlebar_isTitleTextBold">false</item>
+        <item name="bgatitlebar_leftAndRightPadding">@dimen/dimen14</item>
+    </style>
+
+
+    <style name="Match37">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/dimen37</item>
+    </style>
+
+    <style name="Match40">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/dimen40</item>
+    </style>
+
+    <style name="Match42">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/dimen42</item>
+    </style>
+
+    <style name="Match44">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/dimen44</item>
+    </style>
+
+    <style name="Match45">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/dimen45</item>
+    </style>
+
+    <style name="Match50">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/dimen50</item>
+    </style>
+
+    <style name="Match9035">
+        <item name="android:layout_width">@dimen/dimen90</item>
+        <item name="android:layout_height">@dimen/dimen35</item>
+    </style>
+
+    <style name="Match58">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/dimen58</item>
+    </style>
+
+    <style name="Image20">
+        <item name="android:layout_width">@dimen/dimen20</item>
+        <item name="android:layout_height">@dimen/dimen20</item>
+    </style>
+
+    <style name="Image33">
+        <item name="android:layout_width">@dimen/dimen33</item>
+        <item name="android:layout_height">@dimen/dimen33</item>
+    </style>
+
+
+    <style name="Image46">
+        <item name="android:layout_width">@dimen/dimen46</item>
+        <item name="android:layout_height">@dimen/dimen46</item>
+    </style>
+
+    <style name="Image610">
+        <item name="android:layout_width">@dimen/dimen6</item>
+        <item name="android:layout_height">@dimen/dimen10</item>
+    </style>
+
+    <style name="Image812">
+        <item name="android:layout_width">@dimen/dimen8</item>
+        <item name="android:layout_height">@dimen/dimen12</item>
+    </style>
+
+    <style name="Image40">
+        <item name="android:layout_width">@dimen/dimen40</item>
+        <item name="android:layout_height">@dimen/dimen40</item>
+    </style>
+
+    <style name="MyDialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!--进入时的动画/退出时的动画-->
+        <item name="android:windowAnimationStyle">@style/myAnimation</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <!-- dim:模糊的 阴影效果 -->
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+    <!--弹窗动画-->
+    <style name="myAnimation" parent="android:Animation.Dialog">
+        <!--//进入时的动画-->
+        <item name="@android:windowEnterAnimation">@anim/dialog_enter</item>
+        <!--//退出时的动画-->
+        <item name="@android:windowExitAnimation">@anim/dialog_exit</item>
+    </style>
+
+    <style name="dialogFullscreen">
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+    <style name="HeadImageStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+</resources>
