@@ -219,7 +219,7 @@ public class MainActivity extends BaseActivity implements MainContract.View, Mai
      */
     @SuppressWarnings("deprecation")
     public void cleanColors(int chageIcon) {
-        img_orderReceiving.setImageResource(R.mipmap.tab_message);
+        img_orderReceiving.setImageResource(R.mipmap.tab_orderreceiving);
         tv_orderReceiving.setTextColor(getResources().getColor(R.color.textColor));
         img_service.setImageResource(R.mipmap.tab_message);
         tv_service.setTextColor(getResources().getColor(R.color.textColor));
@@ -230,7 +230,7 @@ public class MainActivity extends BaseActivity implements MainContract.View, Mai
         switch (chageIcon) {
             case 0:
                 img_orderReceiving.setImageResource(R.mipmap.tab_orderreceiving_selected);
-                tv_orderReceiving.setTextColor(getResources().getColor(R.color.greenColors));
+                tv_orderReceiving.setTextColor(getResources().getColor(R.color.f3516dColors));
                 changeFragment(contentFragment);
                 break;
             case 1:
@@ -240,12 +240,12 @@ public class MainActivity extends BaseActivity implements MainContract.View, Mai
                 break;
             case 2:
                 img_message.setImageResource(R.mipmap.tab_message_selected);
-                tv_message.setTextColor(getResources().getColor(R.color.greenColors));
+                tv_message.setTextColor(getResources().getColor(R.color.d0a4fcColors));
                 changeFragment(contentFragment2);
                 break;
             case 3:
                 img_mine.setImageResource(R.mipmap.tab_personal_selected);
-                tv_mine.setTextColor(getResources().getColor(R.color.greenColors));
+                tv_mine.setTextColor(getResources().getColor(R.color.e9e5Colors));
                 changeFragment(contentFragment3);
                 break;
             default:

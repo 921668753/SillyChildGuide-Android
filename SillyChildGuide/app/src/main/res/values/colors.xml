@@ -36,6 +36,7 @@
     <color name="gray_two">#f2f2f2</color>
     <color name="seal_bg">#f0f0f6</color>
 
+
     <!--主界面-->
     <color name="redColors">#ff2e29</color>
     <color name="blueColors">#3F96F3</color>
@@ -44,12 +45,15 @@
     <color name="c9FFD2Colors">#C9FFD2</color>
     <color name="fF5656Colors">#FF5656</color>
     <color name="fF0000Colors">#FF0000</color>
+    <color name="e9e5Colors">#13e9e5</color>
+    <color name="d0a4fcColors">#d0a4fc</color>
+    <color name="f3516dColors">#f3516d</color>
+
 
     <!--我的-->
     <color name="darkGreen">#129130</color>
     <color name="fF2626Colors">#FF2626</color>
     <color name="d22222Color">#222222</color>
-
 
 
 </resources>

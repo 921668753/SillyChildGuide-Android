@@ -17,14 +17,14 @@
         <ImageView
             android:id="@+id/img_orderReceiving"
             style="@style/Image20"
-            android:src="@mipmap/default_image" />
+            android:src="@mipmap/tab_orderreceiving_selected" />
 
         <TextView
             android:id="@+id/tv_orderReceiving"
             style="@style/WrapWrap"
             android:layout_marginTop="@dimen/dimen1"
             android:text="@string/orderReceiving"
-            android:textColor="@color/tabColors"
+            android:textColor="@color/f3516dColors"
             android:textSize="@dimen/textSize_10" />
     </LinearLayout>
 
@@ -46,7 +46,7 @@
             style="@style/WrapWrap"
             android:layout_marginTop="@dimen/dimen1"
             android:text="@string/service"
-            android:textColor="@color/tabColors"
+            android:textColor="@color/textColor"
             android:textSize="@dimen/textSize_10" />
     </LinearLayout>
 
@@ -71,7 +71,7 @@
                 style="@style/WrapWrap"
                 android:layout_marginTop="@dimen/dimen1"
                 android:text="@string/message"
-                android:textColor="@color/tabColors"
+                android:textColor="@color/textColor"
                 android:textSize="@dimen/textSize_10" />
         </LinearLayout>
 
@@ -104,7 +104,7 @@
             style="@style/WrapWrap"
             android:layout_marginTop="@dimen/dimen1"
             android:text="@string/mine"
-            android:textColor="@color/tabColors"
+            android:textColor="@color/textColor"
             android:textSize="@dimen/textSize_10" />
     </LinearLayout>
 </LinearLayout>
