@@ -9,70 +9,34 @@ public class StringNewConstants {
     /**
      * 存放的文件名
      */
-    public static String FILENAME = "shzyShare";
+    public static String FILENAME = "shzgShare";
     /**
      * 文件缓存路径存放的文件名-----图片以及URL请求缓存路径
      */
-    public static String CACHEPATH = "SHZY/Cache";
+    public static String CACHEPATH = "SHZG/Cache";
     /**
      * 图片缓存路径 存放的文件夹名
      */
-    public static String PHOTOCACHE = "SHZY/PhotoCache";
+    public static String PHOTOCACHE = "SHZG/PhotoCache";
     /**
      * 图片保存路径存放的文件夹名
      */
-    public static String PHOTOPATH = "SHZY/PhonePhoto";
+    public static String PHOTOPATH = "SHZG/PhonePhoto";
     /**
      * 下载文件保存路径的文件夹名
      */
-    public static String DOWNLOADPATH = "SHZY/Download";
+    public static String DOWNLOADPATH = "SHZG/Download";
     /**
      * 错误日志存放位置ERRORLOG
      */
-    public static String ERRORLOG = "SHZY/PhoneLog";
+    public static String ERRORLOG = "SHZG/PhoneLog";
 
     /**
      * 安装包名字
      */
-    public static String APKNAME = "/SHZY.apk";
+    public static String APKNAME = "/SHZG.apk";
 
 
-    /**
-     * 环信密码
-     */
-    public static String HuanXin_PED = "123456";
-
-    /**
-     * 包车订单状态：all全部
-     */
-    public static String All = "ALL";
-    /**
-     * 优惠券列表：all全部
-     */
-    public static String AllXX = "all";
-    /**
-     * 包车订单状态：待支付
-     */
-    public static String UNPAY = "UN_PAY";
-    /**
-     * 包车订单状态：进行中
-     */
-    public static String DOING = "DOING";
-    /**
-     * 包车订单状态：待评价
-     */
-    public static String UNCOMMENT = "UN_COMMENT";
-    /**
-     * 包车订单状态：已完成
-     */
-    public static String FINISH = "FINISH";
-
-    public static String BAIDUTABID = "1000004237";
-
-    /**
-     * 地区选择中的字段
-     */
-    public static String CountyLevel = "直辖县级";
 
     /**
      * 主页的后台

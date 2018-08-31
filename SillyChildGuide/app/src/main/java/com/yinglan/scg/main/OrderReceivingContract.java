@@ -9,7 +9,7 @@ import com.common.cklibrary.common.BaseView;
  * Created by ruitu on 2016/9/24.
  */
 
-public interface HomePageContract {
+public interface OrderReceivingContract {
     interface Presenter extends BasePresenter {
 //        /**
 //         * 申请成为店长

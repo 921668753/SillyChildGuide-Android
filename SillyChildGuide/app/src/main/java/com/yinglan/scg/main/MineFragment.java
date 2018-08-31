@@ -214,7 +214,7 @@ public class MineFragment extends BaseFragment implements MineContract.View, BGA
                 setCurrentUserInfo(userInfoBean.getData().getFace(), tv_storesName.getText().toString());
             } else if (disabled == 1) {
                 tv_nature.setVisibility(View.VISIBLE);
-              //  tv_nature.setText(getString(R.string.merchants));
+                //  tv_nature.setText(getString(R.string.merchants));
                 tv_nature.setTextColor(getResources().getColor(R.color.greenColors));
                 if (!StringUtils.isEmpty(userInfoBean.getData().getStore_name())) {
                     setCurrentUserInfo(userInfoBean.getData().getStore_logo(), userInfoBean.getData().getStore_name());
@@ -247,7 +247,7 @@ public class MineFragment extends BaseFragment implements MineContract.View, BGA
             // 设置结果 结果码，一个数据
             startActivityForResult(personalDataIntent, REQUEST_CODE);
         } else if (flag == 2) {
-         //   aty.showActivity(aty, MyStoresActivity.class);
+            //   aty.showActivity(aty, MyStoresActivity.class);
         } else if (flag == 3) {
             aty.showActivity(aty, MyWalletActivity.class);
         } else if (flag == 4) {
@@ -342,12 +342,6 @@ public class MineFragment extends BaseFragment implements MineContract.View, BGA
         super.callMsgEvent(msgEvent);
         if (((String) msgEvent.getData()).equals("RxBusLoginEvent") && mPresenter != null || ((String) msgEvent.getData()).equals("RxBusLogOutEvent") && mPresenter != null) {
             ((MineContract.Presenter) mPresenter).getInfo(aty);
-        } else if (((String) msgEvent.getData()).equals("RxBusAvatarEvent") && mPresenter != null) {
-            String avatar = PreferenceHelper.readString(aty, StringConstants.FILENAME, "avatar", "");
-            if (!StringUtils.isEmpty(avatar)) {
-//                GlideImageLoader.glideLoader(this, avatar + "?imageView2/1/w/70/h/70", img_headPortrait, 0);
-//                GlideImageLoader.glideLoader(this, avatar + "?imageView2/1/w/70/h/70", img_headPortrait1, 0);
-            }
         }
     }
 

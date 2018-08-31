@@ -7,7 +7,7 @@ import com.common.cklibrary.common.BaseView;
  * Created by ruitu on 2016/9/24.
  */
 
-public interface OrderContract {
+public interface ServiceContract {
 
     interface Presenter extends BasePresenter {
 
@@ -15,7 +15,6 @@ public interface OrderContract {
          * 获取分类广告
          */
         void getAdvCat();
-
 
     }
 

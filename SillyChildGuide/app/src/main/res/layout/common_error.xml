@@ -10,13 +10,13 @@
     <ImageView
         android:id="@+id/img_err"
         style="@style/MatchWrap"
-        android:layout_marginTop="@dimen/dimen100"
+        android:layout_marginTop="@dimen/dimen90"
         android:src="@mipmap/no_network" />
 
     <TextView
         android:id="@+id/tv_hintText"
         style="@style/WrapWrap"
-        android:layout_marginTop="@dimen/dimen50"
+        android:layout_marginTop="@dimen/dimen45"
         android:gravity="center"
         android:text="---"
         android:textColor="@color/titletextcolors"
@@ -26,7 +26,7 @@
         android:id="@+id/tv_button"
         android:layout_width="@dimen/dimen130"
         android:layout_height="@dimen/dimen40"
-        android:layout_marginTop="@dimen/dimen50"
+        android:layout_marginTop="@dimen/dimen45"
         android:background="@drawable/shape_login1"
         android:gravity="center"
         android:text="---"

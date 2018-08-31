@@ -110,6 +110,11 @@ public class URLConstants {
     public static String NEWSELECT = APIURL + "news/select.do";
 
     /**
+     * 获取商家店铺信息
+     */
+    public static String STOREINFO = APIURL + "member/store/get.do";
+
+    /**
      * 修改个人信息
      */
     public static String MEMBEREDIT = APIURL + "member/edit.do";

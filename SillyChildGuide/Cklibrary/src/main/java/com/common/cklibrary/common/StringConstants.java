@@ -9,33 +9,33 @@ public class StringConstants {
     /**
      * 存放的文件名
      */
-    public static String FILENAME = "shzyShare";
+    public static String FILENAME = "shzgShare";
     /**
      * 文件缓存路径存放的文件名-----图片以及URL请求缓存路径
      */
-    public static String CACHEPATH = "SHZY/Cache";
+    public static String CACHEPATH = "SHZG/Cache";
     // 文件缓存路径存放，500M，根据自己的需求进行修改(单位bt)
     public static final int CACHE_SIZE = 500 * 1000 * 1000;
     /**
      * 图片缓存路径 存放的文件名
      */
-    public static String PHOTOCACHE = "SHZY/PhotoCache";
+    public static String PHOTOCACHE = "SHZG/PhotoCache";
     /**
      * 图片保存路径存放的文件名
      */
-    public static String PHOTOPATH = "SHZY/PhonePhoto";
+    public static String PHOTOPATH = "SHZG/PhonePhoto";
     /**
      * 视频文件缓存保存路径存放的文件名
      */
-    public static String VIDEOCACHE = "SHZY/VideoCache";
+    public static String VIDEOCACHE = "SHZG/VideoCache";
     /**
      * 下载文件保存路径的文件名
      */
-    public static String DOWNLOADPATH = "SHZY/Download";
+    public static String DOWNLOADPATH = "SHZG/Download";
     /**
      * 错误日志存放位置ERRORLOG
      */
-    public static String ERRORLOG = "SHZY/PhoneLog";
+    public static String ERRORLOG = "SHZG/PhoneLog";
 
     // 图片缓存最大容量，150M，根据自己的需求进行修改 自定义内置磁盘缓存大小.
     public static final int GLIDE_CATCH_SIZE = 1000 * 1000 * 1000;

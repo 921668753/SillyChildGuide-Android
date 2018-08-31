@@ -8,44 +8,44 @@
     android:orientation="horizontal">
 
     <LinearLayout
-        android:id="@+id/bottombar_homePage"
+        android:id="@+id/bottombar_orderReceiving"
         style="@style/AutoMatch"
         android:gravity="center"
         android:orientation="vertical"
         android:paddingTop="@dimen/dimen5">
 
         <ImageView
-            android:id="@+id/img_homePage"
+            android:id="@+id/img_orderReceiving"
             style="@style/Image20"
             android:src="@mipmap/default_image" />
 
         <TextView
-            android:id="@+id/tv_homePage"
+            android:id="@+id/tv_orderReceiving"
             style="@style/WrapWrap"
             android:layout_marginTop="@dimen/dimen1"
-            android:text="@string/homePage"
+            android:text="@string/orderReceiving"
             android:textColor="@color/tabColors"
             android:textSize="@dimen/textSize_10" />
     </LinearLayout>
 
 
     <LinearLayout
-        android:id="@+id/bottombar_workbench"
+        android:id="@+id/bottombar_service"
         style="@style/AutoMatch"
         android:gravity="center"
         android:orientation="vertical"
         android:paddingTop="@dimen/dimen5">
 
         <ImageView
-            android:id="@+id/img_workbench"
+            android:id="@+id/img_service"
             style="@style/Image20"
             android:src="@mipmap/default_image" />
 
         <TextView
-            android:id="@+id/tv_workbench"
+            android:id="@+id/tv_service"
             style="@style/WrapWrap"
             android:layout_marginTop="@dimen/dimen1"
-            android:text="@string/workbench"
+            android:text="@string/service"
             android:textColor="@color/tabColors"
             android:textSize="@dimen/textSize_10" />
     </LinearLayout>
@@ -86,27 +86,6 @@
             android:visibility="gone" />
 
     </RelativeLayout>
-
-    <LinearLayout
-        android:id="@+id/bottombar_activities"
-        style="@style/AutoMatch"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:paddingTop="@dimen/dimen5">
-
-        <ImageView
-            android:id="@+id/img_activities"
-            style="@style/Image20"
-            android:src="@mipmap/default_image" />
-
-        <TextView
-            android:id="@+id/tv_activities"
-            style="@style/WrapWrap"
-            android:layout_marginTop="@dimen/dimen1"
-            android:text="@string/order"
-            android:textColor="@color/tabColors"
-            android:textSize="@dimen/textSize_10" />
-    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/bottombar_mine"

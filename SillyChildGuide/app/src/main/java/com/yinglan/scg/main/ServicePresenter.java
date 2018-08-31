@@ -4,11 +4,11 @@ package com.yinglan.scg.main;
  * Created by ruitu on 2016/9/24.
  */
 
-public class OrderPresenter implements OrderContract.Presenter {
+public class ServicePresenter implements ServiceContract.Presenter {
 
-    private OrderContract.View mView;
+    private ServiceContract.View mView;
 
-    public OrderPresenter(OrderContract.View view) {
+    public ServicePresenter(ServiceContract.View view) {
         mView = view;
         mView.setPresenter(this);
     }

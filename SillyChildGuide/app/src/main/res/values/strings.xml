@@ -125,10 +125,9 @@
 
 
     <!--主界面-->
-    <string name="homePage">首页</string>
-    <string name="workbench">工作台</string>
+    <string name="orderReceiving">接单</string>
+    <string name="service">服务</string>
     <string name="message">消息</string>
-    <string name="order">订单</string>
     <string name="mine">我的</string>
     <string name="clickAgainExitProgram">再按一次退出程序</string>
 

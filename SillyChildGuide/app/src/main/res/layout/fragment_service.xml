@@ -8,7 +8,7 @@
         style="@style/Match44"
         android:background="@color/whiteColors"
         android:gravity="center"
-        android:text="@string/order"
+        android:text="@string/service"
         android:textColor="@color/titletextcolors"
         android:textSize="@dimen/textsize17" />
 

@@ -9,16 +9,16 @@ import com.common.cklibrary.common.BaseFragment;
 import com.yinglan.scg.R;
 
 /**
- * 工作台
+ * 服务
  */
-public class WorkbenchFragment extends BaseFragment {
+public class ServiceFragment extends BaseFragment {
 
     private MainActivity aty;
 
     @Override
     protected View inflaterView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
         aty = (MainActivity) getActivity();
-        return View.inflate(aty, R.layout.fragment_order, null);
+        return View.inflate(aty, R.layout.fragment_service, null);
     }
 
 

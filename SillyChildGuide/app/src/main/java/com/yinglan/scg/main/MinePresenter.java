@@ -24,17 +24,17 @@ public class MinePresenter implements MineContract.Presenter {
     @Override
     public void getInfo(Context context) {
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
-//        RequestClient.getStoreInfo(context, httpParams, new ResponseListener<String>() {
-//            @Override
-//            public void onSuccess(String response) {
-//                mView.getSuccess(response, 0);
-//            }
-//
-//            @Override
-//            public void onFailure(String msg) {
-//                mView.errorMsg(msg, 0);
-//            }
-//        });
+        RequestClient.getStoreInfo(context, httpParams, new ResponseListener<String>() {
+            @Override
+            public void onSuccess(String response) {
+                mView.getSuccess(response, 0);
+            }
+
+            @Override
+            public void onFailure(String msg) {
+                mView.errorMsg(msg, 0);
+            }
+        });
     }
 
     @Override

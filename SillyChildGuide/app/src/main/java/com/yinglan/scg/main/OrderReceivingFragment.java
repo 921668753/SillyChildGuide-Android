@@ -1,34 +1,18 @@
 package com.yinglan.scg.main;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.common.cklibrary.common.BaseFragment;
-import com.common.cklibrary.common.BindView;
-import com.common.cklibrary.common.StringConstants;
-import com.common.cklibrary.common.ViewInject;
-import com.common.cklibrary.utils.JsonUtil;
-import com.common.cklibrary.utils.rx.MsgEvent;
-import com.kymjs.common.PreferenceHelper;
-import com.kymjs.common.StringUtils;
 import com.yinglan.scg.R;
-import com.yinglan.scg.loginregister.LoginActivity;
-import com.yinglan.scg.utils.GlideImageLoader;
-
-import static android.app.Activity.RESULT_OK;
-import static com.yinglan.scg.constant.NumericConstants.RESULT_CODE_GET;
 
 /**
- * 首页
+ * 接单
  * Created by Admin on 2017/8/10.
  */
-public class HomePageFragment extends BaseFragment  {
+public class OrderReceivingFragment extends BaseFragment  {
 
     private MainActivity aty;
 
@@ -72,7 +56,7 @@ public class HomePageFragment extends BaseFragment  {
     @Override
     protected View inflaterView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
         aty = (MainActivity) getActivity();
-        return View.inflate(aty, R.layout.fragment_homepage, null);
+        return View.inflate(aty, R.layout.fragment_orderreceiving, null);
     }
 
 //    @Override

@@ -98,7 +98,6 @@ public class LoginPresenter implements LoginContract.Presenter {
                      * 获取用户信息
                      */
                     UserUtil.saveRcTokenId(KJActivityStack.create().topActivity(), bean.getData().getRong_cloud(), userid);
-                    // getRongYunUserInfo(userid);
                     if (RongIM.getInstance() != null && bean.getData() != null && !StringUtils.isEmpty(bean.getData().getUsername())) {
                         mView.getSuccess("", 1);
                         return;

@@ -474,6 +474,24 @@ public class RequestClient {
     }
 
 
+    /**
+     * 获取商家店铺信息
+     */
+    public static void getStoreInfo(Context context, HttpParams httpParams, ResponseListener<String> listener) {
+        Log.d("tag", "getStoreInfo");
+        doServer(context, new TokenCallback() {
+            @Override
+            public void execute() {
+                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+                if (StringUtils.isEmpty(cookies)) {
+                    listener.onFailure(NumericConstants.TOLINGIN + "");
+                    return;
+                }
+                httpParams.putHeaders("Cookie", cookies);
+                HttpRequest.requestGetHttp(context, URLConstants.STOREINFO, httpParams, listener);
+            }
+        }, listener);
+    }
 
     /**
      * 修改个人信息
@@ -784,7 +802,7 @@ public class RequestClient {
         if (StringUtils.isEmpty(cookies)) {
             Log.d("tag", "onFailure");
             UserUtil.clearUserInfo(context);
-            if (!(context.getClass().getName().contains("MainActivity") || context.getClass().getName().contains("HomePageFragment") || context.getClass().getName().contains("MineFragment"))) {
+            if (!(context.getClass().getName().contains("MainActivity") || context.getClass().getName().contains("OrderReceivingFragment") || context.getClass().getName().contains("MineFragment"))) {
                 /**
                  * 发送消息
                  */
