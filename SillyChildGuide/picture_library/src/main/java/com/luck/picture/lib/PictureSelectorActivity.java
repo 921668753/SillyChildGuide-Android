@@ -808,16 +808,18 @@ public class PictureSelectorActivity extends PictureBaseActivity implements View
         switch (mediaType) {
             case PictureConfig.TYPE_IMAGE:
                 // image
-                if (config.selectionMode == PictureConfig.SINGLE) {
+                if (config.selectionMode == PictureConfig.SINGLE && !config.enableCrop) {
                     result.add(media);
                     onResult(result);
+                } else if (config.selectionMode == PictureConfig.SINGLE && config.enableCrop) {
+                    originalPath = media.getPath();
+                    startCrop(originalPath);
                 } else {
                     List<LocalMedia> selectedImages = adapter.getSelectedImages();
                     ImagesObservable.getInstance().saveLocalMedia(previewImages);
                     bundle.putSerializable(PictureConfig.EXTRA_SELECT_LIST, (Serializable) selectedImages);
                     bundle.putInt(PictureConfig.EXTRA_POSITION, position);
-                    startActivity(PicturePreviewActivity.class, bundle,
-                            config.selectionMode == PictureConfig.SINGLE ? UCrop.REQUEST_CROP : UCropMulti.REQUEST_MULTI_CROP);
+                    startActivity(PicturePreviewActivity.class, bundle, config.selectionMode == PictureConfig.SINGLE ? UCrop.REQUEST_CROP : UCropMulti.REQUEST_MULTI_CROP);
                     overridePendingTransition(R.anim.a5, 0);
                 }
                 break;

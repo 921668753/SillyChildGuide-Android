@@ -138,7 +138,7 @@ public class BindingPhonePresenter implements BindingPhoneContract.Presenter {
                      */
                     UserUtil.saveRcTokenId(KJActivityStack.create().topActivity(), bean.getData().getRong_cloud(), userid);
                     if (RongIM.getInstance() != null && bean.getData() != null && !StringUtils.isEmpty(bean.getData().getUsername())) {
-                        mView.getSuccess("", 2);
+                        getRongYunUserInfo(userid);
                         return;
                     }
                     mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.loginErr1), 1);

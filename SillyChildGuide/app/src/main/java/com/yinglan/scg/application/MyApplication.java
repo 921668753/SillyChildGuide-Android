@@ -6,7 +6,7 @@ import com.tencent.tinker.loader.shareutil.ShareConstants;
 
 /**
  * 程序入口
- * Created by Administrator on 2016/5/13.
+ * Created by Administrator on 2018/5/13.
  */
 public class MyApplication extends TinkerApplication {
 

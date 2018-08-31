@@ -206,30 +206,18 @@ public class MineFragment extends BaseFragment implements MineContract.View, BGA
                 tv_nature.setVisibility(View.VISIBLE);
                 tv_nature.setText(getString(R.string.unapprove));
                 tv_nature.setTextColor(getResources().getColor(R.color.fF0000Colors));
-                setCurrentUserInfo(userInfoBean.getData().getFace(), tv_storesName.getText().toString());
             } else if (disabled == 0) {
                 tv_nature.setVisibility(View.VISIBLE);
                 tv_nature.setText(getString(R.string.audit1));
                 tv_nature.setTextColor(getResources().getColor(R.color.textColor));
-                setCurrentUserInfo(userInfoBean.getData().getFace(), tv_storesName.getText().toString());
             } else if (disabled == 1) {
                 tv_nature.setVisibility(View.VISIBLE);
                 //  tv_nature.setText(getString(R.string.merchants));
                 tv_nature.setTextColor(getResources().getColor(R.color.greenColors));
-                if (!StringUtils.isEmpty(userInfoBean.getData().getStore_name())) {
-                    setCurrentUserInfo(userInfoBean.getData().getStore_logo(), userInfoBean.getData().getStore_name());
-                } else {
-                    setCurrentUserInfo(userInfoBean.getData().getFace(), tv_storesName.getText().toString());
-                }
             } else if (disabled == 2) {
                 tv_nature.setVisibility(View.VISIBLE);
                 tv_nature.setText(getString(R.string.disabled1));
                 tv_nature.setTextColor(getResources().getColor(R.color.fF0000Colors));
-                if (!StringUtils.isEmpty(userInfoBean.getData().getStore_name())) {
-                    setCurrentUserInfo(userInfoBean.getData().getStore_logo(), userInfoBean.getData().getStore_name());
-                } else {
-                    setCurrentUserInfo(userInfoBean.getData().getFace(), tv_storesName.getText().toString());
-                }
             }
             if (!StringUtils.isEmpty(userInfoBean.getData().getOrder_total())) {
                 tv_ordersTotal.setText(userInfoBean.getData().getOrder_total());
@@ -274,16 +262,6 @@ public class MineFragment extends BaseFragment implements MineContract.View, BGA
         PreferenceHelper.write(aty, StringConstants.FILENAME, "nickname", userInfoBean.getData().getNickname());
         PreferenceHelper.write(aty, StringConstants.FILENAME, "face", userInfoBean.getData().getFace());
         PreferenceHelper.write(aty, StringConstants.FILENAME, "lv_name", userInfoBean.getData().getLv_name());
-    }
-
-
-    private void setCurrentUserInfo(String imgUrl, String name) {
-        if (RongIM.getInstance() != null && !StringUtils.isEmpty(name)) {
-            String userid = UserUtil.getRcId(aty);
-            UserInfo userInfo = new UserInfo(userid, name, Uri.parse(imgUrl));
-            RongIM.getInstance().setCurrentUserInfo(userInfo);
-            RongIM.getInstance().setMessageAttachedUserInfo(true);
-        }
     }
 
 

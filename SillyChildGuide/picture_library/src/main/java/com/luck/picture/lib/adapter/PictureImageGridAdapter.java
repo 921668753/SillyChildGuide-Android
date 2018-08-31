@@ -227,10 +227,13 @@ public class PictureImageGridAdapter extends RecyclerView.Adapter<RecyclerView.V
                     }
                     int index = showCamera ? position - 1 : position;
                     boolean eqResult =
-                            mediaMimeType == PictureConfig.TYPE_IMAGE && (enablePreview || selectMode == PictureConfig.SINGLE) || mediaMimeType == PictureConfig.TYPE_VIDEO && (enablePreviewVideo || selectMode == PictureConfig.SINGLE)
-                                    || mediaMimeType == PictureConfig.TYPE_AUDIO && (enablePreviewAudio
-                                    || selectMode == PictureConfig.SINGLE);
-                    if (eqResult) {
+                            mediaMimeType == PictureConfig.TYPE_IMAGE && (enablePreview || selectMode == PictureConfig.SINGLE) ||
+                                    mediaMimeType == PictureConfig.TYPE_VIDEO && (enablePreviewVideo || selectMode == PictureConfig.SINGLE) ||
+                                    mediaMimeType == PictureConfig.TYPE_AUDIO && (enablePreviewAudio || selectMode == PictureConfig.SINGLE);
+                    if (eqResult && mediaMimeType == PictureConfig.TYPE_IMAGE && selectMode == PictureConfig.SINGLE && config.enableCrop) {
+                        changeCheckboxState(contentHolder, image);
+                        imageSelectChangedListener.onPictureClick(image, index);
+                    } else if (eqResult) {
                         imageSelectChangedListener.onPictureClick(image, index);
                     } else {
                         changeCheckboxState(contentHolder, image);
