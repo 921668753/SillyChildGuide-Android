@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchMatch"
+    android:background="@color/background"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_title" />
+
+    <LinearLayout
+        style="@style/Match45"
+        android:layout_marginTop="@dimen/dimen6"
+        android:background="@color/whiteColors"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/ll_forService"
+            style="@style/AutoMatch"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_forService"
+                style="@style/MatchAuto"
+                android:gravity="center"
+                android:text="@string/forService"
+                android:textColor="@color/greenColors"
+                android:textSize="@dimen/textsize14" />
+
+
+            <TextView
+                android:id="@+id/tv_forService1"
+                android:layout_width="@dimen/dimen43"
+                android:layout_height="@dimen/dimen2"
+                android:background="@color/greenColors" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_toEvaluate"
+            style="@style/AutoMatch"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_toEvaluate"
+                style="@style/MatchAuto"
+                android:gravity="center"
+                android:text="@string/toEvaluate"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/textsize14" />
+
+
+            <TextView
+                android:id="@+id/tv_toEvaluate1"
+                android:layout_width="@dimen/dimen43"
+                android:layout_height="@dimen/dimen2"
+                android:background="@color/whiteColors" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_completed"
+            style="@style/AutoMatch"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_completed"
+                style="@style/MatchAuto"
+                android:gravity="center"
+                android:text="@string/completed"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/textsize14" />
+
+
+            <TextView
+                android:id="@+id/tv_completed1"
+                android:layout_width="@dimen/dimen43"
+                android:layout_height="@dimen/dimen2"
+                android:background="@color/whiteColors" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_all"
+            style="@style/AutoMatch"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_all"
+                style="@style/MatchAuto"
+                android:gravity="center"
+                android:text="@string/all"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/textsize14" />
+
+
+            <TextView
+                android:id="@+id/tv_all1"
+                android:layout_width="@dimen/dimen43"
+                android:layout_height="@dimen/dimen2"
+                android:background="@color/whiteColors" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/order_content"
+        style="@style/MatchMatch"
+        android:layout_marginTop="@dimen/dimen6" />
+
+</LinearLayout>

@@ -202,6 +202,14 @@
     <string name="modify">修改</string>
 
 
+    <!--我的   我的订单-->
+    <string name="myOrder">我的订单</string>
+    <string name="forService">待服务</string>
+    <string name="toEvaluate">待评价</string>
+    <string name="completed">已完成</string>
+    <string name="all">全部</string>
+
+
     <!--提现成功-->
     <string name="withdrawalRequestSucceeded">提现申请成功</string>
     <string name="withdrawalRequestSubmissionSuccess">提现申请提交成功</string>
