@@ -11,8 +11,6 @@
         android:id="@+id/main_content"
         style="@style/MatchAuto" />
 
-    <TextView style="@style/DividerWidth" />
-
     <include layout="@layout/main_bottombar" />
 
 </LinearLayout>

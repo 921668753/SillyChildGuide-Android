@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/bottombar_group"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/dimen50"
+    android:layout_height="@dimen/dimen49"
     android:layout_gravity="bottom"
     android:background="@android:color/white"
     android:orientation="horizontal">
@@ -22,7 +22,7 @@
         <TextView
             android:id="@+id/tv_orderReceiving"
             style="@style/WrapWrap"
-            android:layout_marginTop="@dimen/dimen1"
+            android:layout_marginTop="@dimen/dimen4"
             android:text="@string/orderReceiving"
             android:textColor="@color/f3516dColors"
             android:textSize="@dimen/textSize_10" />
@@ -44,7 +44,7 @@
         <TextView
             android:id="@+id/tv_service"
             style="@style/WrapWrap"
-            android:layout_marginTop="@dimen/dimen1"
+            android:layout_marginTop="@dimen/dimen4"
             android:text="@string/service"
             android:textColor="@color/textColor"
             android:textSize="@dimen/textSize_10" />
@@ -64,12 +64,12 @@
             <ImageView
                 android:id="@+id/img_message"
                 style="@style/Image20"
-                android:src="@mipmap/default_image" />
+                android:src="@mipmap/tab_message" />
 
             <TextView
                 android:id="@+id/tv_message"
                 style="@style/WrapWrap"
-                android:layout_marginTop="@dimen/dimen1"
+                android:layout_marginTop="@dimen/dimen4"
                 android:text="@string/message"
                 android:textColor="@color/textColor"
                 android:textSize="@dimen/textSize_10" />
@@ -97,12 +97,12 @@
         <ImageView
             android:id="@+id/img_mine"
             style="@style/Image20"
-            android:src="@mipmap/default_image" />
+            android:src="@mipmap/tab_personal" />
 
         <TextView
             android:id="@+id/tv_mine"
             style="@style/WrapWrap"
-            android:layout_marginTop="@dimen/dimen1"
+            android:layout_marginTop="@dimen/dimen4"
             android:text="@string/mine"
             android:textColor="@color/textColor"
             android:textSize="@dimen/textSize_10" />
