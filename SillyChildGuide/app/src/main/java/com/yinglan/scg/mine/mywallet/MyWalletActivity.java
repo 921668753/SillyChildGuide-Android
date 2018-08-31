@@ -16,12 +16,12 @@ import com.common.cklibrary.utils.MathUtil;
 import com.common.cklibrary.utils.rx.MsgEvent;
 import com.kymjs.common.PreferenceHelper;
 import com.kymjs.common.StringUtils;
-import com.yinglan.scm.R;
-import com.yinglan.scm.entity.mine.mywallet.MyWalletBean;
-import com.yinglan.scm.loginregister.LoginActivity;
-import com.yinglan.scm.mine.mywallet.accountdetails.AccountDetailsActivity;
-import com.yinglan.scm.mine.mywallet.mybankcard.MyBankCardActivity;
-import com.yinglan.scm.mine.mywallet.withdrawal.WithdrawalActivity;
+import com.yinglan.scg.R;
+import com.yinglan.scg.entity.mine.mywallet.MyWalletBean;
+import com.yinglan.scg.loginregister.LoginActivity;
+import com.yinglan.scg.mine.mywallet.accountdetails.AccountDetailsActivity;
+import com.yinglan.scg.mine.mywallet.mybankcard.MyBankCardActivity;
+import com.yinglan.scg.mine.mywallet.withdrawal.WithdrawalActivity;
 
 import cn.bingoogolapple.titlebar.BGATitleBar;
 

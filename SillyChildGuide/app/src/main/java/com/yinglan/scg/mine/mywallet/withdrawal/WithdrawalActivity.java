@@ -15,16 +15,16 @@ import com.common.cklibrary.utils.JsonUtil;
 import com.common.cklibrary.utils.MathUtil;
 import com.kymjs.common.PreferenceHelper;
 import com.kymjs.common.StringUtils;
-import com.yinglan.scm.R;
-import com.yinglan.scm.entity.mine.mywallet.MyWalletBean;
-import com.yinglan.scm.entity.mine.mywallet.withdrawal.WithdrawalBean;
-import com.yinglan.scm.loginregister.LoginActivity;
-import com.yinglan.scm.mine.mywallet.mybankcard.AddBankCardActivity;
-import com.yinglan.scm.mine.mywallet.mybankcard.MyBankCardActivity;
-import com.yinglan.scm.mine.mywallet.withdrawal.withdrawalresult.WithdrawalCompleteActivity;
+import com.yinglan.scg.R;
+import com.yinglan.scg.entity.mine.mywallet.MyWalletBean;
+import com.yinglan.scg.entity.mine.mywallet.withdrawal.WithdrawalBean;
+import com.yinglan.scg.loginregister.LoginActivity;
+import com.yinglan.scg.mine.mywallet.mybankcard.AddBankCardActivity;
+import com.yinglan.scg.mine.mywallet.mybankcard.MyBankCardActivity;
+import com.yinglan.scg.mine.mywallet.withdrawal.withdrawalresult.WithdrawalCompleteActivity;
 
-import static com.yinglan.scm.constant.NumericConstants.REQUEST_CODE_CHOOSE_PHOTO;
-import static com.yinglan.scm.constant.NumericConstants.REQUEST_CODE_SELECT;
+import static com.yinglan.scg.constant.NumericConstants.REQUEST_CODE_CHOOSE_PHOTO;
+import static com.yinglan.scg.constant.NumericConstants.REQUEST_CODE;
 
 
 /**
@@ -151,7 +151,7 @@ public class WithdrawalActivity extends BaseActivity implements WithdrawalContra
             intent.putExtra("withdrawalAmount", getString(R.string.renminbi) + MathUtil.keepTwo(StringUtils.toDouble(et_withdrawalAmount1.getText().toString().trim()) -
                     StringUtils.toDouble(withdrawalBean.getData().getFee_amount())) + getString(R.string.serviceChargeDeducted));
             intent.putExtra("get_time", get_time);
-            startActivityForResult(intent, REQUEST_CODE_SELECT);
+            startActivityForResult(intent, REQUEST_CODE);
         } else if (flag == 2) {
             if (StringUtils.isEmpty(bankCardName) || StringUtils.isEmpty(bankCardNun)) {
                 Intent intent = new Intent(aty, AddBankCardActivity.class);
@@ -181,7 +181,7 @@ public class WithdrawalActivity extends BaseActivity implements WithdrawalContra
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQUEST_CODE_SELECT && resultCode == RESULT_OK) {
+        if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
             String withdrawalAmount = PreferenceHelper.readString(this, StringConstants.FILENAME, "withdrawalAmount");
             tv_money.setText(withdrawalAmount);
             et_withdrawalAmount1.setText("");

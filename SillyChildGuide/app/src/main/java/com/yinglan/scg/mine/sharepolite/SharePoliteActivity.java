@@ -100,7 +100,7 @@ public class SharePoliteActivity extends BaseActivity implements WebViewLayout1.
      */
     public void umShare(SHARE_MEDIA platform) {
         UMImage thumb;
-        thumb = new UMImage(this, R.mipmap.ic_launcher);
+        thumb = new UMImage(this, R.mipmap.android_template);
         UMWeb web = new UMWeb(URLConstants.REGISTERHTML + invite_code);
         web.setTitle(getString(R.string.sillyChildMyHands));//标题
         web.setThumb(thumb);  //缩略图

@@ -12,9 +12,9 @@ import com.common.cklibrary.common.BaseActivity;
 import com.common.cklibrary.common.BindView;
 import com.common.cklibrary.common.ViewInject;
 import com.kymjs.common.StringUtils;
-import com.yinglan.scm.R;
-import com.yinglan.scm.loginregister.LoginActivity;
-import com.yinglan.scm.utils.SoftKeyboardUtils;
+import com.yinglan.scg.R;
+import com.yinglan.scg.loginregister.LoginActivity;
+import com.yinglan.scg.utils.SoftKeyboardUtils;
 
 import cn.bingoogolapple.titlebar.BGATitleBar;
 

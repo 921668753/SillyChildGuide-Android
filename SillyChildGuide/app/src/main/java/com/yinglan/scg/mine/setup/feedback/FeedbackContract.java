@@ -2,6 +2,7 @@ package com.yinglan.scg.mine.setup.feedback;
 
 import com.common.cklibrary.common.BasePresenter;
 import com.common.cklibrary.common.BaseView;
+import com.luck.picture.lib.entity.LocalMedia;
 
 import java.util.List;
 
@@ -12,17 +13,11 @@ import java.util.List;
 public interface FeedbackContract {
 
     interface Presenter extends BasePresenter {
-        /**
-         * 上传图片
-         *
-         * @param imgPath
-         */
-        void upPictures(String imgPath);
 
         /**
          * 提交反馈
          */
-        void postAdvice(String feedType, String content, List<String> imgs);
+        void postAdvice(String feedType, String content, List<LocalMedia> selectList);
 
     }
 

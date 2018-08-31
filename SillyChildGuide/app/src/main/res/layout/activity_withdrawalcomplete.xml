@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchMatch"
+    android:background="@color/background"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_title" />
+
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:layout_margin="@dimen/dimen15"
+        android:layout_marginTop="@dimen/dimen6"
+        android:background="@drawable/shape_homepage"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="@dimen/dimen75"
+            android:layout_height="@dimen/dimen75"
+            android:layout_marginTop="@dimen/dimen30"
+            android:scaleType="fitXY"
+            android:src="@mipmap/withdrawals_success_icon" />
+
+        <TextView
+            style="@style/WrapWrap"
+            android:paddingTop="@dimen/dimen30"
+            android:text="@string/withdrawalRequestSubmissionSuccess"
+            android:textColor="@color/titletextcolors"
+            android:textSize="@dimen/textsize15" />
+
+        <TextView
+            android:id="@+id/tv_withdrawalRequestSubmissionSuccess"
+            style="@style/WrapWrap"
+            android:layout_marginBottom="@dimen/dimen15"
+            android:paddingTop="@dimen/dimen5"
+            android:text="@string/withdrawalRequestSubmissionSuccess1"
+            android:textColor="@color/hintColors"
+            android:textSize="@dimen/textsize15" />
+
+        <TextView style="@style/DividerWidth" />
+
+
+        <LinearLayout
+            style="@style/MatchWrap"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/dimen15"
+            android:paddingRight="@dimen/dimen15"
+            android:paddingTop="@dimen/dimen12">
+
+            <TextView
+                style="@style/WrapWrap"
+                android:text="@string/estimatedTimeArrival"
+                android:textColor="@color/tabColors"
+                android:textSize="@dimen/textsize12" />
+
+            <TextView
+                android:id="@+id/tv_estimatedTimeArrival"
+                style="@style/WrapWrap"
+                android:paddingLeft="@dimen/dimen25"
+                android:singleLine="true"
+                android:text="2018-05-20 13:14:20"
+                android:textColor="@color/titletextcolors"
+                android:textSize="@dimen/textsize12" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/MatchWrap"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/dimen15"
+            android:paddingRight="@dimen/dimen15"
+            android:paddingTop="@dimen/dimen6">
+
+            <TextView
+                style="@style/WrapWrap"
+                android:text="@string/cashCard"
+                android:textColor="@color/tabColors"
+                android:textSize="@dimen/textsize12" />
+
+            <TextView
+                android:id="@+id/tv_cashCard"
+                style="@style/WrapWrap"
+                android:paddingLeft="@dimen/dimen61"
+                android:singleLine="true"
+                android:text="建设银行 尾号2018"
+                android:textColor="@color/titletextcolors"
+                android:textSize="@dimen/textsize12" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            style="@style/MatchWrap"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/dimen15"
+            android:paddingRight="@dimen/dimen15"
+            android:paddingTop="@dimen/dimen6">
+
+            <TextView
+                style="@style/WrapWrap"
+                android:text="@string/withdrawalAmount"
+                android:textColor="@color/tabColors"
+                android:textSize="@dimen/textsize12" />
+
+            <TextView
+                android:id="@+id/tv_withdrawalAmount"
+                style="@style/WrapWrap"
+                android:paddingLeft="@dimen/dimen49"
+                android:singleLine="true"
+                android:text="¥1314.20"
+                android:textColor="@color/fF0000Colors"
+                android:textSize="@dimen/textsize12" />
+
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/tv_complete"
+            style="@style/Match40"
+            android:layout_marginBottom="@dimen/dimen20"
+            android:layout_marginLeft="@dimen/dimen57"
+            android:layout_marginRight="@dimen/dimen57"
+            android:layout_marginTop="@dimen/dimen20"
+            android:background="@drawable/shape_logout"
+            android:gravity="center"
+            android:text="@string/complete"
+            android:textColor="@color/whiteColors"
+            android:textSize="@dimen/textsize16" />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

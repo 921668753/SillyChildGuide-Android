@@ -141,7 +141,7 @@
         android:layout_marginLeft="@dimen/dimen73"
         android:layout_marginRight="@dimen/dimen73"
         android:layout_marginTop="@dimen/dimen20"
-        android:background="@drawable/shape_homepagebtn"
+        android:background="@drawable/shape_logout"
         android:gravity="center"
         android:text="@string/logOut"
         android:textColor="@color/whiteColors"

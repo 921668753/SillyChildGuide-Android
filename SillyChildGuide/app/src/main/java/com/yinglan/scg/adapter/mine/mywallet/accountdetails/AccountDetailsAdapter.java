@@ -2,11 +2,11 @@ package com.yinglan.scg.adapter.mine.mywallet.accountdetails;
 
 import android.content.Context;
 
+import com.common.cklibrary.utils.DataUtil;
 import com.common.cklibrary.utils.MathUtil;
 import com.kymjs.common.StringUtils;
 import com.yinglan.scg.R;
 import com.yinglan.scg.entity.mine.mywallet.accountdetails.AccountDetailsBean.DataBean.ResultBean;
-import com.yinglan.scg.utils.DataUtil;
 
 import cn.bingoogolapple.baseadapter.BGAAdapterViewAdapter;
 import cn.bingoogolapple.baseadapter.BGAViewHolderHelper;

@@ -35,7 +35,7 @@
                 android:paddingLeft="@dimen/dimen30"
                 android:paddingRight="@dimen/dimen30"
                 android:paddingTop="@dimen/dimen26"
-                android:src="@mipmap/tab_workbench_unselected" />
+                android:src="@mipmap/default_image" />
 
         </LinearLayout>
 

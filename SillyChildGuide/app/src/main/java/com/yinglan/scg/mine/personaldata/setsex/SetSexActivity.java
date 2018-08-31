@@ -8,8 +8,8 @@ import android.widget.ImageView;
 import com.common.cklibrary.common.BaseActivity;
 import com.common.cklibrary.common.BindView;
 import com.common.cklibrary.common.ViewInject;
-import com.yinglan.scm.R;
-import com.yinglan.scm.loginregister.LoginActivity;
+import com.yinglan.scg.R;
+import com.yinglan.scg.loginregister.LoginActivity;
 
 import cn.bingoogolapple.titlebar.BGATitleBar;
 

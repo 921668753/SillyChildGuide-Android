@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchMatch"
+    android:fitsSystemWindows="true"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="@dimen/dimen250"
+        android:layout_height="@dimen/dimen163"
+        android:layout_marginBottom="@dimen/dimen8"
+        android:background="@color/whiteColors"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_takephoto"
+            style="@style/MatchAuto"
+            android:gravity="center"
+            android:text="@string/takephoto"
+            android:textColor="@color/titletextcolors"
+            android:textSize="@dimen/textsize15" />
+
+        <View style="@style/DividerWidth" />
+
+        <TextView
+            android:id="@+id/tv_choosefromalbum"
+            style="@style/MatchAuto"
+            android:gravity="center"
+            android:text="@string/chooseFromAlbum"
+            android:textColor="@color/titletextcolors"
+            android:textSize="@dimen/textsize15" />
+
+        <View style="@style/DividerWidth" />
+
+        <TextView
+            android:id="@+id/tv_cancel"
+            style="@style/MatchAuto"
+            android:gravity="center"
+            android:text="@string/cancel"
+            android:textColor="@color/titletextcolors"
+            android:textSize="@dimen/textsize15" />
+    </LinearLayout>
+
+
+</LinearLayout>

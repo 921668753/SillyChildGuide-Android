@@ -35,7 +35,6 @@
     </style>
 
 
-
     <!--TitleDividerWidth分割线-->
     <style name="TitleDividerWidth">
         <item name="android:layout_width">match_parent</item>
@@ -96,6 +95,11 @@
         <item name="android:layout_height">@dimen/dimen45</item>
     </style>
 
+    <style name="Match49">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/dimen49</item>
+    </style>
+
     <style name="Match50">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/dimen50</item>
@@ -130,6 +134,11 @@
     <style name="Image610">
         <item name="android:layout_width">@dimen/dimen6</item>
         <item name="android:layout_height">@dimen/dimen10</item>
+    </style>
+
+    <style name="Image712">
+        <item name="android:layout_width">@dimen/dimen7</item>
+        <item name="android:layout_height">@dimen/dimen12</item>
     </style>
 
     <style name="Image812">

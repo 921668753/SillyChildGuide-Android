@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchMatch"
+    android:background="@color/background"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_title" />
+
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:layout_marginTop="@dimen/dimen6"
+        android:background="@color/whiteColors"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/WrapWrap"
+            android:paddingLeft="@dimen/dimen15"
+            android:paddingTop="@dimen/dimen15"
+            android:text="@string/toBank"
+            android:textColor="@color/titletextcolors"
+            android:textSize="@dimen/textsize14" />
+
+        <LinearLayout
+            android:id="@+id/ll_bank"
+            style="@style/AutoWrap"
+            android:gravity="center_vertical"
+            android:minHeight="@dimen/dimen68"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/dimen51">
+
+            <TextView
+                android:id="@+id/tv_withdrawalBank"
+                style="@style/WrapWrap"
+                android:singleLine="true"
+                android:text="中国银行（尾号3215）"
+                android:textColor="@color/fF0000Colors"
+                android:textSize="@dimen/textsize14" />
+
+            <TextView
+                android:id="@+id/tv_poundage"
+                style="@style/MatchWrap"
+                android:layout_marginTop="@dimen/dimen5"
+                android:background="@color/whiteColors"
+                android:paddingRight="@dimen/dimen15"
+                android:text="提现到中国银行，手续费率0.1%"
+                android:textColor="@color/titletextcolors"
+                android:textSize="@dimen/textsize12" />
+
+        </LinearLayout>
+
+
+        <ImageView
+            android:layout_width="@dimen/dimen15"
+            android:layout_height="@dimen/dimen15"
+            android:layout_gravity="center"
+            android:layout_marginRight="@dimen/dimen15"
+            android:src="@mipmap/bank_card_right_arrow" />
+
+    </LinearLayout>
+
+
+    <TextView style="@style/DividerWidth" />
+
+
+    <TextView
+        style="@style/MatchWrap"
+        android:background="@color/whiteColors"
+        android:paddingLeft="@dimen/dimen15"
+        android:paddingTop="@dimen/dimen15"
+        android:text="@string/withdrawalAmount1"
+        android:textColor="@color/titletextcolors"
+        android:textSize="@dimen/textsize14" />
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:background="@color/whiteColors"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/dimen10"
+        android:paddingTop="@dimen/dimen25">
+
+        <TextView
+            style="@style/WrapWrap"
+            android:paddingLeft="@dimen/dimen15"
+            android:text="@string/renminbi"
+            android:textColor="@color/titletextcolors"
+            android:textSize="@dimen/textsize25" />
+
+        <EditText
+            android:id="@+id/et_withdrawalAmount1"
+            style="@style/AutoMatch"
+            android:background="@color/whiteColors"
+            android:inputType="numberDecimal"
+            android:paddingLeft="@dimen/dimen10"
+            android:paddingRight="@dimen/dimen15"
+            android:singleLine="true"
+            android:textColor="@color/titletextcolors"
+            android:textCursorDrawable="@drawable/shape_cursor"
+            android:textSize="@dimen/textsize25" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:background="@color/whiteColors"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/dimen38"
+        android:paddingRight="@dimen/dimen38">
+
+        <TextView style="@style/DividerWidth" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/MatchWrap"
+        android:background="@color/whiteColors"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/WrapWrap"
+            android:paddingBottom="@dimen/dimen15"
+            android:paddingLeft="@dimen/dimen38"
+            android:paddingTop="@dimen/dimen15"
+            android:text="@string/withdrawalAmount3"
+            android:textColor="@color/titletextcolors"
+            android:textSize="@dimen/textsize13" />
+
+        <TextView
+            android:id="@+id/tv_money"
+            style="@style/WrapWrap"
+            android:singleLine="true"
+            android:text="0.00"
+            android:textColor="@color/titletextcolors"
+            android:textSize="@dimen/textsize13" />
+
+        <TextView
+            android:id="@+id/tv_accountingDate"
+            style="@style/WrapWrap"
+            android:layout_marginLeft="@dimen/dimen31"
+            android:text="@string/accountingDate"
+            android:textColor="@color/fF0000Colors"
+            android:textSize="@dimen/textsize13" />
+
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/tv_confirmSubmit"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen40"
+        android:layout_marginLeft="@dimen/dimen73"
+        android:layout_marginRight="@dimen/dimen73"
+        android:layout_marginTop="@dimen/dimen15"
+        android:background="@drawable/shape_logout"
+        android:gravity="center"
+        android:text="@string/confirm"
+        android:textColor="@color/whiteColors"
+        android:textSize="@dimen/textsize15" />
+
+
+</LinearLayout>

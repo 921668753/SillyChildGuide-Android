@@ -39,7 +39,7 @@
         <TextView
             style="@style/WrapWrap"
             android:text="@string/transactionAmount"
-            android:textColor="@color/phonenumbercolor"
+            android:textColor="@color/d22222Color"
             android:textSize="@dimen/textsize12" />
 
         <TextView
@@ -48,7 +48,7 @@
             android:gravity="right"
             android:singleLine="true"
             android:text="-200"
-            android:textColor="@color/phonenumbercolor"
+            android:textColor="@color/d22222Color"
             android:textSize="@dimen/textsize12" />
     </LinearLayout>
 

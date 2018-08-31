@@ -12,15 +12,15 @@ import com.common.cklibrary.common.BaseActivity;
 import com.common.cklibrary.common.BindView;
 import com.common.cklibrary.common.ViewInject;
 import com.common.cklibrary.utils.JsonUtil;
-import com.yinglan.scm.R;
-import com.yinglan.scm.adapter.mine.mywallet.mybankcard.MyBankCardViewAdapter;
-import com.yinglan.scm.entity.mine.mywallet.mybankcard.MyBankCardBean;
-import com.yinglan.scm.loginregister.LoginActivity;
-import com.yinglan.scm.mine.mywallet.mybankcard.dialog.SubmitBouncedDialog;
+import com.yinglan.scg.R;
+import com.yinglan.scg.adapter.mine.mywallet.mybankcard.MyBankCardViewAdapter;
+import com.yinglan.scg.entity.mine.mywallet.mybankcard.MyBankCardBean;
+import com.yinglan.scg.loginregister.LoginActivity;
+import com.yinglan.scg.mine.mywallet.mybankcard.dialog.SubmitBouncedDialog;
 
 import cn.bingoogolapple.titlebar.BGATitleBar;
 
-import static com.yinglan.scm.constant.NumericConstants.REQUEST_CODE_CHOOSE_PHOTO;
+import static com.yinglan.scg.constant.NumericConstants.REQUEST_CODE_CHOOSE_PHOTO;
 
 
 /**

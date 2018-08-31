@@ -7,8 +7,8 @@ import com.common.cklibrary.utils.JsonUtil;
 import com.common.cklibrary.utils.httputil.HttpUtilParams;
 import com.common.cklibrary.utils.httputil.ResponseListener;
 import com.kymjs.rxvolley.client.HttpParams;
-import com.yinglan.scm.R;
-import com.yinglan.scm.retrofit.RequestClient;
+import com.yinglan.scg.R;
+import com.yinglan.scg.retrofit.RequestClient;
 
 import java.util.HashMap;
 import java.util.Map;

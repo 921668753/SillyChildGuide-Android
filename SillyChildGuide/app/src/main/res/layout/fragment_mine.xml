@@ -5,7 +5,6 @@
     android:fitsSystemWindows="true"
     android:orientation="vertical">
 
-
     <cn.bingoogolapple.refreshlayout.BGARefreshLayout
         android:id="@+id/mRefreshLayout"
         style="@style/MatchMatch">
@@ -19,347 +18,347 @@
                 style="@style/MatchMatch"
                 android:gravity="center_horizontal">
 
-                <!--<ImageView-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="@dimen/dimen204"-->
-                    <!--android:background="@mipmap/mine_background" />-->
-
-                <!--<LinearLayout-->
-                    <!--android:id="@+id/ll_mine"-->
-                    <!--style="@style/MatchWrap"-->
-                    <!--android:layout_marginLeft="@dimen/dimen18"-->
-                    <!--android:layout_marginRight="@dimen/dimen18"-->
-                    <!--android:layout_marginTop="@dimen/dimen85"-->
-                    <!--android:background="@drawable/shape_mine"-->
-                    <!--android:gravity="center"-->
-                    <!--android:minHeight="@dimen/dimen143"-->
-                    <!--android:orientation="vertical">-->
-
-                    <!--<LinearLayout-->
-                        <!--android:id="@+id/ll_mineTop"-->
-                        <!--style="@style/MatchWrap"-->
-                        <!--android:gravity="center_vertical"-->
-                        <!--android:orientation="horizontal"-->
-                        <!--android:visibility="visible">-->
-
-                        <!--<ImageView-->
-                            <!--android:id="@+id/img_head"-->
-                            <!--android:layout_width="@dimen/dimen58"-->
-                            <!--android:layout_height="@dimen/dimen58"-->
-                            <!--android:layout_margin="@dimen/dimen16"-->
-                            <!--android:src="@mipmap/avatar" />-->
-
-
-                        <!--<LinearLayout-->
-                            <!--style="@style/AutoMatch"-->
-                            <!--android:layout_marginLeft="@dimen/dimen25"-->
-                            <!--android:gravity="center_vertical"-->
-                            <!--android:orientation="vertical">-->
-
-                            <!--<TextView-->
-                                <!--android:id="@+id/tv_storesName"-->
-                                <!--style="@style/WrapWrap"-->
-                                <!--android:text="小仙女集结地"-->
-                                <!--android:textColor="@color/titletextcolors"-->
-                                <!--android:textSize="@dimen/textsize16" />-->
-
-                            <!--<TextView-->
-                                <!--android:id="@+id/tv_nature"-->
-                                <!--style="@style/WrapWrap"-->
-                                <!--android:layout_marginTop="@dimen/dimen15"-->
-                                <!--android:text="商家"-->
-                                <!--android:textColor="@color/greenColors"-->
-                                <!--android:textSize="@dimen/textsize13" />-->
-
-                        <!--</LinearLayout>-->
-
-                        <!--<ImageView-->
-                            <!--style="@style/Image712"-->
-                            <!--android:layout_marginLeft="@dimen/dimen16"-->
-                            <!--android:layout_marginRight="@dimen/dimen16"-->
-                            <!--android:scaleType="fitXY"-->
-                            <!--android:src="@mipmap/right_arrow" />-->
-
-                    <!--</LinearLayout>-->
-
-
-                    <!--<TextView-->
-                        <!--android:id="@+id/tv_divider"-->
-                        <!--style="@style/DividerWidth"-->
-                        <!--android:visibility="visible" />-->
-
-                    <!--<LinearLayout-->
-                        <!--android:id="@+id/ll_mineBot"-->
-                        <!--style="@style/MatchWrap"-->
-                        <!--android:orientation="horizontal"-->
-                        <!--android:visibility="visible">-->
-
-
-                        <!--<LinearLayout-->
-                            <!--style="@style/AutoWrap"-->
-                            <!--android:gravity="center"-->
-                            <!--android:orientation="vertical">-->
-
-                            <!--<TextView-->
-                                <!--style="@style/WrapWrap"-->
-                                <!--android:layout_marginTop="@dimen/dimen10"-->
-                                <!--android:text="@string/ordersTotal"-->
-                                <!--android:textColor="@color/titletextcolors"-->
-                                <!--android:textSize="@dimen/textsize13" />-->
-
-                            <!--<TextView-->
-                                <!--android:id="@+id/tv_ordersTotal"-->
-                                <!--style="@style/WrapWrap"-->
-                                <!--android:layout_marginBottom="@dimen/dimen10"-->
-                                <!--android:layout_marginTop="@dimen/dimen10"-->
-                                <!--android:text="0"-->
-                                <!--android:textColor="@color/textColor"-->
-                                <!--android:textSize="@dimen/textsize12" />-->
-
-                        <!--</LinearLayout>-->
-
-                        <!--<LinearLayout-->
-                            <!--style="@style/AutoMatch"-->
-                            <!--android:gravity="center"-->
-                            <!--android:orientation="vertical">-->
-
-                            <!--<TextView-->
-                                <!--style="@style/WrapWrap"-->
-                                <!--android:text="@string/storeLevel"-->
-                                <!--android:textColor="@color/titletextcolors"-->
-                                <!--android:textSize="@dimen/textsize13" />-->
-
-                            <!--<TextView-->
-                                <!--android:id="@+id/tv_storeLevel"-->
-                                <!--android:layout_width="@dimen/dimen20"-->
-                                <!--android:layout_height="@dimen/dimen16"-->
-                                <!--android:layout_marginTop="@dimen/dimen7"-->
-                                <!--android:background="@mipmap/mine_grade_icon"-->
-                                <!--android:gravity="bottom|center_horizontal"-->
-                                <!--android:text="0"-->
-                                <!--android:textColor="@color/whiteColors"-->
-                                <!--android:textSize="@dimen/textsize8" />-->
-                        <!--</LinearLayout>-->
-
-                        <!--<LinearLayout-->
-                            <!--style="@style/AutoMatch"-->
-                            <!--android:gravity="center"-->
-                            <!--android:orientation="vertical">-->
-
-                            <!--<TextView-->
-                                <!--style="@style/WrapWrap"-->
-                                <!--android:text="@string/businessLevel"-->
-                                <!--android:textColor="@color/titletextcolors"-->
-                                <!--android:textSize="@dimen/textsize13" />-->
-
-                            <!--<TextView-->
-                                <!--android:id="@+id/tv_businessLevel"-->
-                                <!--android:layout_width="@dimen/dimen20"-->
-                                <!--android:layout_height="@dimen/dimen16"-->
-                                <!--android:layout_marginTop="@dimen/dimen7"-->
-                                <!--android:background="@mipmap/mine_grade_icon"-->
-                                <!--android:gravity="bottom|center_horizontal"-->
-                                <!--android:text="0"-->
-                                <!--android:textColor="@color/whiteColors"-->
-                                <!--android:textSize="@dimen/textsize8" />-->
-
-                        <!--</LinearLayout>-->
-
-                    <!--</LinearLayout>-->
-
-
-                    <!--<TextView-->
-                        <!--android:id="@+id/tv_notLogged"-->
-                        <!--style="@style/WrapWrap"-->
-                        <!--android:text="@string/notLogged"-->
-                        <!--android:textColor="@color/titletextcolors"-->
-                        <!--android:textSize="@dimen/textsize14"-->
-                        <!--android:visibility="gone" />-->
-
-                    <!--<TextView-->
-                        <!--android:id="@+id/tv_loginImmediately"-->
-                        <!--android:layout_width="@dimen/dimen130"-->
-                        <!--android:layout_height="@dimen/dimen40"-->
-                        <!--android:layout_marginTop="@dimen/dimen10"-->
-                        <!--android:background="@drawable/shape_login1"-->
-                        <!--android:gravity="center"-->
-                        <!--android:text="@string/loginImmediately"-->
-                        <!--android:textColor="@color/whiteColors"-->
-                        <!--android:textSize="@dimen/textsize16"-->
-                        <!--android:visibility="gone" />-->
-
-                <!--</LinearLayout>-->
-
-
-                <!--<LinearLayout-->
-                    <!--android:id="@+id/ll_myStores"-->
-                    <!--style="@style/Match49"-->
-                    <!--android:layout_below="@id/ll_mine"-->
-                    <!--android:layout_marginLeft="@dimen/dimen5"-->
-                    <!--android:layout_marginRight="@dimen/dimen5"-->
-                    <!--android:layout_marginTop="@dimen/dimen15"-->
-                    <!--android:background="@drawable/shape_homepage"-->
-                    <!--android:gravity="center_vertical"-->
-                    <!--android:orientation="horizontal">-->
-
-                    <!--<ImageView-->
-                        <!--style="@style/Image20"-->
-                        <!--android:layout_marginLeft="@dimen/dimen15"-->
-                        <!--android:layout_marginRight="@dimen/dimen15"-->
-                        <!--android:src="@mipmap/mine_shop_icon" />-->
-
-                    <!--<TextView-->
-                        <!--style="@style/AutoWrap"-->
-                        <!--android:text="@string/myStores"-->
-                        <!--android:textColor="@color/titletextcolors"-->
-                        <!--android:textSize="@dimen/textsize13" />-->
-
-                    <!--<ImageView-->
-                        <!--style="@style/Image712"-->
-                        <!--android:layout_marginRight="@dimen/dimen15"-->
-                        <!--android:scaleType="fitXY"-->
-                        <!--android:src="@mipmap/right_arrow" />-->
-
-                <!--</LinearLayout>-->
-
-                <!--<LinearLayout-->
-                    <!--android:id="@+id/ll_centre"-->
-                    <!--style="@style/MatchWrap"-->
-                    <!--android:layout_below="@id/ll_myStores"-->
-                    <!--android:layout_marginLeft="@dimen/dimen5"-->
-                    <!--android:layout_marginRight="@dimen/dimen5"-->
-                    <!--android:layout_marginTop="@dimen/dimen15"-->
-                    <!--android:background="@drawable/shape_homepage"-->
-                    <!--android:orientation="vertical">-->
-
-                    <!--<LinearLayout-->
-                        <!--android:id="@+id/ll_myWallet"-->
-                        <!--style="@style/Match49"-->
-                        <!--android:gravity="center_vertical"-->
-                        <!--android:orientation="horizontal">-->
-
-                        <!--<ImageView-->
-                            <!--style="@style/Image20"-->
-                            <!--android:layout_marginLeft="@dimen/dimen15"-->
-                            <!--android:layout_marginRight="@dimen/dimen15"-->
-                            <!--android:src="@mipmap/mine_wallet_icon" />-->
-
-                        <!--<TextView-->
-                            <!--style="@style/AutoWrap"-->
-                            <!--android:text="@string/myWallet"-->
-                            <!--android:textColor="@color/titletextcolors"-->
-                            <!--android:textSize="@dimen/textsize13" />-->
-
-                        <!--<ImageView-->
-                            <!--style="@style/Image712"-->
-                            <!--android:layout_marginRight="@dimen/dimen15"-->
-                            <!--android:scaleType="fitXY"-->
-                            <!--android:src="@mipmap/right_arrow" />-->
-
-
-                    <!--</LinearLayout>-->
-
-                    <!--<TextView-->
-                        <!--style="@style/DividerWidth"-->
-                        <!--android:layout_marginLeft="@dimen/dimen15" />-->
-
-                    <!--<LinearLayout-->
-                        <!--android:id="@+id/ll_sillyChildCollege"-->
-                        <!--style="@style/Match49"-->
-                        <!--android:gravity="center_vertical"-->
-                        <!--android:orientation="horizontal">-->
-
-                        <!--<ImageView-->
-                            <!--style="@style/Image20"-->
-                            <!--android:layout_marginLeft="@dimen/dimen15"-->
-                            <!--android:layout_marginRight="@dimen/dimen15"-->
-                            <!--android:src="@mipmap/mine_college_icon" />-->
-
-                        <!--<TextView-->
-                            <!--style="@style/AutoWrap"-->
-                            <!--android:text="@string/sillyChildCollege"-->
-                            <!--android:textColor="@color/titletextcolors"-->
-                            <!--android:textSize="@dimen/textsize13" />-->
-
-                        <!--<ImageView-->
-                            <!--style="@style/Image712"-->
-                            <!--android:layout_marginRight="@dimen/dimen15"-->
-                            <!--android:scaleType="fitXY"-->
-                            <!--android:src="@mipmap/right_arrow" />-->
-
-                    <!--</LinearLayout>-->
-
-                <!--</LinearLayout>-->
-
-
-                <!--<LinearLayout-->
-                    <!--style="@style/MatchWrap"-->
-                    <!--android:layout_below="@id/ll_centre"-->
-                    <!--android:layout_marginLeft="@dimen/dimen5"-->
-                    <!--android:layout_marginRight="@dimen/dimen5"-->
-                    <!--android:layout_marginTop="@dimen/dimen15"-->
-                    <!--android:background="@drawable/shape_homepage"-->
-                    <!--android:orientation="vertical">-->
-
-                    <!--<LinearLayout-->
-                        <!--android:id="@+id/ll_sharePolite"-->
-                        <!--style="@style/Match49"-->
-                        <!--android:gravity="center_vertical"-->
-                        <!--android:orientation="horizontal"-->
-                        <!--android:visibility="gone">-->
-
-                        <!--<ImageView-->
-                            <!--style="@style/Image20"-->
-                            <!--android:layout_marginLeft="@dimen/dimen15"-->
-                            <!--android:layout_marginRight="@dimen/dimen15"-->
-                            <!--android:src="@mipmap/mine_sharing_courtesy_icon" />-->
-
-                        <!--<TextView-->
-                            <!--style="@style/AutoWrap"-->
-                            <!--android:text="@string/sharePolite"-->
-                            <!--android:textColor="@color/titletextcolors"-->
-                            <!--android:textSize="@dimen/textsize13" />-->
-
-                        <!--<ImageView-->
-                            <!--style="@style/Image712"-->
-                            <!--android:layout_marginRight="@dimen/dimen15"-->
-                            <!--android:scaleType="fitXY"-->
-                            <!--android:src="@mipmap/right_arrow" />-->
-
-                    <!--</LinearLayout>-->
-
-                    <!--<TextView-->
-                        <!--style="@style/DividerWidth"-->
-                        <!--android:layout_marginLeft="@dimen/dimen15"-->
-                        <!--android:visibility="gone" />-->
-
-                    <!--<LinearLayout-->
-                        <!--android:id="@+id/ll_setUp"-->
-                        <!--style="@style/Match49"-->
-                        <!--android:gravity="center_vertical"-->
-                        <!--android:orientation="horizontal">-->
-
-                        <!--<ImageView-->
-                            <!--style="@style/Image20"-->
-                            <!--android:layout_marginLeft="@dimen/dimen15"-->
-                            <!--android:layout_marginRight="@dimen/dimen15"-->
-                            <!--android:src="@mipmap/mine_set_up" />-->
-
-                        <!--<TextView-->
-                            <!--style="@style/AutoWrap"-->
-                            <!--android:text="@string/setUp"-->
-                            <!--android:textColor="@color/titletextcolors"-->
-                            <!--android:textSize="@dimen/textsize13" />-->
-
-                        <!--<ImageView-->
-                            <!--style="@style/Image712"-->
-                            <!--android:layout_marginRight="@dimen/dimen15"-->
-                            <!--android:scaleType="fitXY"-->
-                            <!--android:src="@mipmap/right_arrow" />-->
-
-                    <!--</LinearLayout>-->
-
-                <!--</LinearLayout>-->
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen204"
+                    android:background="@mipmap/mine_background" />
+
+                <LinearLayout
+                    android:id="@+id/ll_mine"
+                    style="@style/MatchWrap"
+                    android:layout_marginLeft="@dimen/dimen18"
+                    android:layout_marginRight="@dimen/dimen18"
+                    android:layout_marginTop="@dimen/dimen85"
+                    android:background="@drawable/shape_mine"
+                    android:gravity="center"
+                    android:minHeight="@dimen/dimen143"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/ll_mineTop"
+                        style="@style/MatchWrap"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:visibility="visible">
+
+                        <ImageView
+                            android:id="@+id/img_head"
+                            android:layout_width="@dimen/dimen58"
+                            android:layout_height="@dimen/dimen58"
+                            android:layout_margin="@dimen/dimen16"
+                            android:src="@mipmap/avatar" />
+
+
+                        <LinearLayout
+                            style="@style/AutoMatch"
+                            android:layout_marginLeft="@dimen/dimen25"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/tv_storesName"
+                                style="@style/WrapWrap"
+                                android:text="小仙女集结地"
+                                android:textColor="@color/titletextcolors"
+                                android:textSize="@dimen/textsize16" />
+
+                            <TextView
+                                android:id="@+id/tv_nature"
+                                style="@style/WrapWrap"
+                                android:layout_marginTop="@dimen/dimen15"
+                                android:text="商家"
+                                android:textColor="@color/greenColors"
+                                android:textSize="@dimen/textsize13" />
+
+                        </LinearLayout>
+
+                        <ImageView
+                            style="@style/Image712"
+                            android:layout_marginLeft="@dimen/dimen16"
+                            android:layout_marginRight="@dimen/dimen16"
+                            android:scaleType="fitXY"
+                            android:src="@mipmap/right_arrow" />
+
+                    </LinearLayout>
+
+
+                    <TextView
+                        android:id="@+id/tv_divider"
+                        style="@style/DividerWidth"
+                        android:visibility="visible" />
+
+                    <LinearLayout
+                        android:id="@+id/ll_mineBot"
+                        style="@style/MatchWrap"
+                        android:orientation="horizontal"
+                        android:visibility="visible">
+
+
+                        <LinearLayout
+                            style="@style/AutoWrap"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <TextView
+                                style="@style/WrapWrap"
+                                android:layout_marginTop="@dimen/dimen10"
+                                android:text="@string/ordersTotal"
+                                android:textColor="@color/titletextcolors"
+                                android:textSize="@dimen/textsize13" />
+
+                            <TextView
+                                android:id="@+id/tv_ordersTotal"
+                                style="@style/WrapWrap"
+                                android:layout_marginBottom="@dimen/dimen10"
+                                android:layout_marginTop="@dimen/dimen10"
+                                android:text="0"
+                                android:textColor="@color/textColor"
+                                android:textSize="@dimen/textsize12" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            style="@style/AutoMatch"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <TextView
+                                style="@style/WrapWrap"
+                                android:text="@string/storeLevel"
+                                android:textColor="@color/titletextcolors"
+                                android:textSize="@dimen/textsize13" />
+
+                            <TextView
+                                android:id="@+id/tv_storeLevel"
+                                android:layout_width="@dimen/dimen20"
+                                android:layout_height="@dimen/dimen16"
+                                android:layout_marginTop="@dimen/dimen7"
+                                android:background="@mipmap/mine_grade_icon"
+                                android:gravity="bottom|center_horizontal"
+                                android:text="0"
+                                android:textColor="@color/whiteColors"
+                                android:textSize="@dimen/textsize8" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            style="@style/AutoMatch"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <TextView
+                                style="@style/WrapWrap"
+                                android:text="@string/businessLevel"
+                                android:textColor="@color/titletextcolors"
+                                android:textSize="@dimen/textsize13" />
+
+                            <TextView
+                                android:id="@+id/tv_businessLevel"
+                                android:layout_width="@dimen/dimen20"
+                                android:layout_height="@dimen/dimen16"
+                                android:layout_marginTop="@dimen/dimen7"
+                                android:background="@mipmap/mine_grade_icon"
+                                android:gravity="bottom|center_horizontal"
+                                android:text="0"
+                                android:textColor="@color/whiteColors"
+                                android:textSize="@dimen/textsize8" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+
+                    <TextView
+                        android:id="@+id/tv_notLogged"
+                        style="@style/WrapWrap"
+                        android:text="@string/notLogged"
+                        android:textColor="@color/titletextcolors"
+                        android:textSize="@dimen/textsize14"
+                        android:visibility="gone" />
+
+                    <TextView
+                        android:id="@+id/tv_loginImmediately"
+                        android:layout_width="@dimen/dimen130"
+                        android:layout_height="@dimen/dimen40"
+                        android:layout_marginTop="@dimen/dimen10"
+                        android:background="@drawable/shape_login1"
+                        android:gravity="center"
+                        android:text="@string/loginImmediately"
+                        android:textColor="@color/whiteColors"
+                        android:textSize="@dimen/textsize16"
+                        android:visibility="gone" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/ll_myStores"
+                    style="@style/Match49"
+                    android:layout_below="@id/ll_mine"
+                    android:layout_marginLeft="@dimen/dimen5"
+                    android:layout_marginRight="@dimen/dimen5"
+                    android:layout_marginTop="@dimen/dimen15"
+                    android:background="@drawable/shape_homepage"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        style="@style/Image20"
+                        android:layout_marginLeft="@dimen/dimen15"
+                        android:layout_marginRight="@dimen/dimen15"
+                        android:src="@mipmap/default_image" />
+
+                    <TextView
+                        style="@style/AutoWrap"
+                        android:text="@string/myStores"
+                        android:textColor="@color/titletextcolors"
+                        android:textSize="@dimen/textsize13" />
+
+                    <ImageView
+                        style="@style/Image712"
+                        android:layout_marginRight="@dimen/dimen15"
+                        android:scaleType="fitXY"
+                        android:src="@mipmap/right_arrow" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_centre"
+                    style="@style/MatchWrap"
+                    android:layout_below="@id/ll_myStores"
+                    android:layout_marginLeft="@dimen/dimen5"
+                    android:layout_marginRight="@dimen/dimen5"
+                    android:layout_marginTop="@dimen/dimen15"
+                    android:background="@drawable/shape_homepage"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/ll_myWallet"
+                        style="@style/Match49"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            style="@style/Image20"
+                            android:layout_marginLeft="@dimen/dimen15"
+                            android:layout_marginRight="@dimen/dimen15"
+                            android:src="@mipmap/mine_wallet_icon" />
+
+                        <TextView
+                            style="@style/AutoWrap"
+                            android:text="@string/myWallet"
+                            android:textColor="@color/titletextcolors"
+                            android:textSize="@dimen/textsize13" />
+
+                        <ImageView
+                            style="@style/Image712"
+                            android:layout_marginRight="@dimen/dimen15"
+                            android:scaleType="fitXY"
+                            android:src="@mipmap/right_arrow" />
+
+
+                    </LinearLayout>
+
+                    <TextView
+                        style="@style/DividerWidth"
+                        android:layout_marginLeft="@dimen/dimen15" />
+
+                    <LinearLayout
+                        android:id="@+id/ll_sillyChildCollege"
+                        style="@style/Match49"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            style="@style/Image20"
+                            android:layout_marginLeft="@dimen/dimen15"
+                            android:layout_marginRight="@dimen/dimen15"
+                            android:src="@mipmap/mine_college_icon" />
+
+                        <TextView
+                            style="@style/AutoWrap"
+                            android:text="@string/sillyChildCollege"
+                            android:textColor="@color/titletextcolors"
+                            android:textSize="@dimen/textsize13" />
+
+                        <ImageView
+                            style="@style/Image712"
+                            android:layout_marginRight="@dimen/dimen15"
+                            android:scaleType="fitXY"
+                            android:src="@mipmap/right_arrow" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    style="@style/MatchWrap"
+                    android:layout_below="@id/ll_centre"
+                    android:layout_marginLeft="@dimen/dimen5"
+                    android:layout_marginRight="@dimen/dimen5"
+                    android:layout_marginTop="@dimen/dimen15"
+                    android:background="@drawable/shape_homepage"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/ll_sharePolite"
+                        style="@style/Match49"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:visibility="gone">
+
+                        <ImageView
+                            style="@style/Image20"
+                            android:layout_marginLeft="@dimen/dimen15"
+                            android:layout_marginRight="@dimen/dimen15"
+                            android:src="@mipmap/mine_sharing_courtesy_icon" />
+
+                        <TextView
+                            style="@style/AutoWrap"
+                            android:text="@string/sharePolite"
+                            android:textColor="@color/titletextcolors"
+                            android:textSize="@dimen/textsize13" />
+
+                        <ImageView
+                            style="@style/Image712"
+                            android:layout_marginRight="@dimen/dimen15"
+                            android:scaleType="fitXY"
+                            android:src="@mipmap/right_arrow" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        style="@style/DividerWidth"
+                        android:layout_marginLeft="@dimen/dimen15"
+                        android:visibility="gone" />
+
+                    <LinearLayout
+                        android:id="@+id/ll_setUp"
+                        style="@style/Match49"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            style="@style/Image20"
+                            android:layout_marginLeft="@dimen/dimen15"
+                            android:layout_marginRight="@dimen/dimen15"
+                            android:src="@mipmap/mine_set_up" />
+
+                        <TextView
+                            style="@style/AutoWrap"
+                            android:text="@string/setUp"
+                            android:textColor="@color/titletextcolors"
+                            android:textSize="@dimen/textsize13" />
+
+                        <ImageView
+                            style="@style/Image712"
+                            android:layout_marginRight="@dimen/dimen15"
+                            android:scaleType="fitXY"
+                            android:src="@mipmap/right_arrow" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
 
             </RelativeLayout>
 

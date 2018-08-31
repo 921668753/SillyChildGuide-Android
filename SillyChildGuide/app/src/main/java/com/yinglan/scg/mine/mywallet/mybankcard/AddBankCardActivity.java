@@ -17,11 +17,11 @@ import com.common.cklibrary.common.BindView;
 import com.common.cklibrary.common.ViewInject;
 import com.common.cklibrary.utils.ActivityTitleUtils;
 import com.common.cklibrary.utils.JsonUtil;
-import com.yinglan.scm.R;
-import com.yinglan.scm.entity.mine.mywallet.mybankcard.AddBankCardBean;
-import com.yinglan.scm.entity.mine.mywallet.mybankcard.BankBean;
-import com.yinglan.scm.loginregister.LoginActivity;
-import com.yinglan.scm.utils.SoftKeyboardUtils;
+import com.yinglan.scg.R;
+import com.yinglan.scg.entity.mine.mywallet.mybankcard.AddBankCardBean;
+import com.yinglan.scg.entity.mine.mywallet.mybankcard.BankBean;
+import com.yinglan.scg.loginregister.LoginActivity;
+import com.yinglan.scg.utils.SoftKeyboardUtils;
 
 import java.util.List;
 

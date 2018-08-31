@@ -1,17 +1,13 @@
 package com.yinglan.scg.mine.personaldata;
 
 import com.common.cklibrary.common.KJActivityStack;
-import com.common.cklibrary.common.StringConstants;
-import com.common.cklibrary.utils.BitmapCoreUtil;
-import com.common.cklibrary.utils.DataCleanManager;
 import com.common.cklibrary.utils.JsonUtil;
 import com.common.cklibrary.utils.httputil.HttpUtilParams;
 import com.common.cklibrary.utils.httputil.ResponseListener;
 import com.kymjs.common.StringUtils;
 import com.kymjs.rxvolley.client.HttpParams;
-import com.nanchen.compresshelper.FileUtil;
-import com.yinglan.scm.R;
-import com.yinglan.scm.retrofit.RequestClient;
+import com.yinglan.scg.R;
+import com.yinglan.scg.retrofit.RequestClient;
 
 import java.io.File;
 import java.util.HashMap;
@@ -37,20 +33,6 @@ public class PersonalDataPresenter implements PersonalDataContract.Presenter {
             return;
         }
         File oldFile = new File(path);
-        if (!(FileUtil.isFileExists(oldFile))) {
-            mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.imagePathError), 0);
-            return;
-        }
-        long fileSize = 0;
-        try {
-            fileSize = DataCleanManager.getFileSize(oldFile);
-        } catch (Exception e) {
-            e.printStackTrace();
-            fileSize = 0;
-        }
-        if (fileSize >= StringConstants.COMPRESSION_SIZE) {
-            oldFile = BitmapCoreUtil.customCompression(oldFile);
-        }
         RequestClient.upLoadImg(KJActivityStack.create().topActivity(), oldFile, 0, new ResponseListener<String>() {
             @Override
             public void onSuccess(String response) {

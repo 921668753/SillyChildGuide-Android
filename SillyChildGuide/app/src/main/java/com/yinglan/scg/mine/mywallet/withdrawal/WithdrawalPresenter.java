@@ -6,9 +6,9 @@ import com.common.cklibrary.utils.httputil.HttpUtilParams;
 import com.common.cklibrary.utils.httputil.ResponseListener;
 import com.kymjs.common.StringUtils;
 import com.kymjs.rxvolley.client.HttpParams;
-import com.yinglan.scm.R;
-import com.yinglan.scm.mine.mywallet.withdrawal.dialog.SubmitBouncedDialog;
-import com.yinglan.scm.retrofit.RequestClient;
+import com.yinglan.scg.R;
+import com.yinglan.scg.mine.mywallet.withdrawal.dialog.SubmitBouncedDialog;
+import com.yinglan.scg.retrofit.RequestClient;
 
 
 /**

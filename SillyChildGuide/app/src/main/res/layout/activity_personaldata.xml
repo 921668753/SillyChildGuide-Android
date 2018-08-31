@@ -9,7 +9,6 @@
 
     <include layout="@layout/common_title" />
 
-
     <ScrollView
         style="@style/MatchMatch"
         android:scrollbars="none">

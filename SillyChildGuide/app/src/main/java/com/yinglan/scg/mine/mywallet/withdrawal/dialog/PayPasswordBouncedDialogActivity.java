@@ -3,7 +3,7 @@ package com.yinglan.scg.mine.mywallet.withdrawal.dialog;
 import android.content.Intent;
 
 import com.common.cklibrary.common.BaseActivity;
-import com.yinglan.scm.R;
+import com.yinglan.scg.R;
 
 
 /**

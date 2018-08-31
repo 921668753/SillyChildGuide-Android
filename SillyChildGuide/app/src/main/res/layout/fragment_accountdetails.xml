@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/MatchMatch"
+    android:background="@color/background"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_title" />
+
+    <View style="@style/DividerWidth" />
+
+    <cn.bingoogolapple.refreshlayout.BGARefreshLayout
+        android:id="@+id/mRefreshLayout"
+        style="@style/MatchMatch"
+        android:background="@color/background">
+        <!-- item_companyguidemassage -->
+        <ListView
+            android:id="@+id/lv_detail"
+            style="@style/MatchMatch"
+            android:divider="@color/background"
+            android:dividerHeight="@dimen/dimen1"
+            android:overScrollMode="never"
+            android:scrollbars="none"
+            tools:listitem="@layout/item_accountdetails" />
+
+    </cn.bingoogolapple.refreshlayout.BGARefreshLayout>
+
+    <include layout="@layout/common_error" />
+
+</LinearLayout>

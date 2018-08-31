@@ -9,8 +9,8 @@ import com.common.cklibrary.common.KJActivityStack;
 import com.common.cklibrary.utils.ActivityTitleUtils;
 import com.common.cklibrary.utils.rx.MsgEvent;
 import com.common.cklibrary.utils.rx.RxBus;
-import com.yinglan.scm.R;
-import com.yinglan.scm.mine.mywallet.withdrawal.WithdrawalActivity;
+import com.yinglan.scg.R;
+import com.yinglan.scg.mine.mywallet.withdrawal.WithdrawalActivity;
 
 /**
  * 提现成功/提现失败

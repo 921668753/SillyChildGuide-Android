@@ -33,6 +33,8 @@
     <string name="readAndWrite">这款应用需要获取读写权限，才能使用</string>
     <string name="sdPermission">您拒绝了「SD卡读写权限」所需要的相关权限!请到「设置」开启权限</string>
     <string name="locationRelatedPermission">您拒绝了「定位」所需要的相关权限!</string>
+    <string name="denyPermission">您拒绝了「图片选择」所需要的相关权限!</string>
+    <string name="needPermission">图片选择需要以下权限:\n\n1.访问设备上的照片\n\n2.拍照\n\n3.读写权限</string>
 
     <!--充值余额支付-->
     <string name="operation_error">操作失败,请稍后再试</string>
@@ -169,7 +171,12 @@
     <string name="setUp">设置</string>
     <string name="notLogged">您还没有登录</string>
     <string name="loginImmediately">立即登录</string>
-    <string name="merchants">商家</string>
+    <string name="certified">已认证</string>
+    <string name="audit">待审核</string>
+    <string name="unapprove">审核未通过</string>
+    <string name="audit1">账号待审核</string>
+    <string name="disabled">已禁用</string>
+    <string name="disabled1">账号被禁用</string>
     <string name="recertification1">认证失败，请重新认证</string>
     <string name="certificationProcess">认证审核中，请耐心等待</string>
     <string name="accountNumberDisabled">账号被禁用，请联系客服</string>
@@ -178,8 +185,6 @@
     <!--我的   我的车辆-->
     <string name="delete">删除</string>
     <string name="myVehicle">我的车辆</string>
-
-
 
 
     <!--我的   我的车辆    新增车辆-->
@@ -195,6 +200,8 @@
 
     <!--我的   我的车辆    车辆详情-->
     <string name="vehicleDetails">车辆详情</string>
+    <string name="modify">修改</string>
+
 
     <!--提现成功-->
     <string name="withdrawalRequestSucceeded">提现申请成功</string>
@@ -237,6 +244,7 @@
     <string name="bankCard">银行卡</string>
     <string name="withdrawalRuleDescription">提现规则说明</string>
     <string name="withdrawalRuleDescription1">1、提现次数：供货商不限制提现次数，到账规则详见“提现周期”规定。\n2、提现账户：可以选择工商银行、农业银行、中国银行、建设银行、邮政银行、招商银行、支付宝、财付通账户。\n3、提现费率：提现费率：0.1%，提现手续费将从余额中扣除。\n4、受限于银行系统规则，请所有商户仔细核对银行提现帐号，由于银行帐号原因引起的提现失败会扣除手续费，且资金返回周期为T+1，感谢配合。</string>
+    <string name="renminbi">¥</string>
 
 
     <!--个人中心 我的钱包 账户明细 -->
@@ -349,6 +357,7 @@
     <string name="getFeedBackTypeError">无法进行反馈操作！将关闭此页面，您可以移步至客服。</string>
     <string name="selectorType">请选择反馈问题类型</string>
     <string name="textDescribe">请填写意见反馈的文字描述</string>
+    <string name="videoOnlyAddOne">视频只能添加一个</string>
 
     <!--融云start-->
     <string name="server_exception">服务器异常</string>
