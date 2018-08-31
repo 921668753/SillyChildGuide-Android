@@ -1,4 +1,4 @@
-package com.yinglan.scg.services;
+package com.yinglan.scg.main.service;
 
 import android.app.Service;
 import android.content.Intent;

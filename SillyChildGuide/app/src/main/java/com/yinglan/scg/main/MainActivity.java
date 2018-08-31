@@ -27,9 +27,9 @@ import com.yinglan.scg.loginregister.LoginActivity;
 import com.yinglan.scg.message.SystemMessageFragment.MessageReceiver;
 import com.yinglan.scg.message.interactivemessage.imuitl.RongCloudEvent;
 import com.yinglan.scg.message.interactivemessage.imuitl.UserUtil;
-import com.yinglan.scg.receivers.MainCallBack;
-import com.yinglan.scg.receivers.MainReceiver;
-import com.yinglan.scg.services.MainService;
+import com.yinglan.scg.main.service.receivers.MainCallBack;
+import com.yinglan.scg.main.service.receivers.MainReceiver;
+import com.yinglan.scg.main.service.MainService;
 
 import cn.jpush.android.api.BasicPushNotificationBuilder;
 import cn.jpush.android.api.JPushInterface;

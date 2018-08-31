@@ -1,4 +1,4 @@
-package com.yinglan.scg.receivers;
+package com.yinglan.scg.main.service.receivers;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

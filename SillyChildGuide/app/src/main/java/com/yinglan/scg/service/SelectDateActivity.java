@@ -1,4 +1,4 @@
-package com.yinglan.scg.homepage;
+package com.yinglan.scg.service;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;

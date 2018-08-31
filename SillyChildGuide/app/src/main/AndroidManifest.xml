@@ -115,7 +115,7 @@
             android:screenOrientation="portrait" />
 
         <!--主界面的后台-->
-        <service android:name=".services.MainService" />
+        <service android:name=".main.service.MainService" />
 
 
         <!--消息  系统消息列表-->

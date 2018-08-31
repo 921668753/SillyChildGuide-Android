@@ -1,4 +1,4 @@
-package com.yinglan.scg.receivers;
+package com.yinglan.scg.main.service.receivers;
 
 /**
  * Created by Administrator on 2017/11/28.
