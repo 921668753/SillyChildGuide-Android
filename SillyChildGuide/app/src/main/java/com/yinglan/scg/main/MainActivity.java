@@ -229,12 +229,12 @@ public class MainActivity extends BaseActivity implements MainContract.View, Mai
         tv_mine.setTextColor(getResources().getColor(R.color.textColor));
         switch (chageIcon) {
             case 0:
-                img_orderReceiving.setImageResource(R.mipmap.tab_message);
+                img_orderReceiving.setImageResource(R.mipmap.tab_orderreceiving_selected);
                 tv_orderReceiving.setTextColor(getResources().getColor(R.color.greenColors));
                 changeFragment(contentFragment);
                 break;
             case 1:
-                img_service.setImageResource(R.mipmap.tab_message);
+                img_service.setImageResource(R.mipmap.tab_service_selected);
                 tv_service.setTextColor(getResources().getColor(R.color.greenColors));
                 changeFragment(contentFragment1);
                 break;
@@ -249,7 +249,7 @@ public class MainActivity extends BaseActivity implements MainContract.View, Mai
                 changeFragment(contentFragment3);
                 break;
             default:
-                img_orderReceiving.setImageResource(R.mipmap.tab_message);
+                img_orderReceiving.setImageResource(R.mipmap.tab_orderreceiving_selected);
                 tv_orderReceiving.setTextColor(getResources().getColor(R.color.greenColors));
                 changeFragment(contentFragment);
                 break;

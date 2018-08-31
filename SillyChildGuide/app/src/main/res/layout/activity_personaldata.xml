@@ -158,7 +158,8 @@
                 android:paddingTop="@dimen/dimen18"
                 android:text="@string/myPhotoAlbum"
                 android:textColor="@color/textColor"
-                android:textSize="@dimen/textsize14" />
+                android:textSize="@dimen/textsize14"
+                android:visibility="gone" />
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recyclerView"
@@ -174,6 +175,7 @@
                 android:paddingRight="@dimen/dimen25"
                 android:paddingTop="@dimen/dimen10"
                 android:scrollbarStyle="outsideOverlay"
+                android:visibility="gone"
                 app:layoutManager="android.support.v7.widget.GridLayoutManager"
                 app:spanCount="3"
                 tools:listitem="@layout/item_chooseimage" />
