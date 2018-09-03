@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/MatchWrap"
+    android:background="@color/background">
+
+    <TextView
+        android:id="@+id/tv_statusOrder"
+        style="@style/WrapWrap"
+        android:layout_marginBottom="@dimen/dimen9"
+        android:layout_marginLeft="@dimen/dimen27"
+        android:layout_marginTop="@dimen/dimen9"
+        android:background="@drawable/shape_airporttransportationorder"
+        android:paddingBottom="@dimen/dimen7"
+        android:paddingLeft="@dimen/dimen18"
+        android:paddingRight="@dimen/dimen18"
+        android:paddingTop="@dimen/dimen7"
+        android:text="@string/ongoing"
+        android:textColor="@color/greenColors"
+        android:textSize="@dimen/textsize14" />
+
+    <!--<com.common.cklibrary.utils.myview.ChildListView-->
+    <!--android:id="@+id/clv_order"-->
+    <!--style="@style/MatchWrap"-->
+    <!--android:divider="@color/background"-->
+    <!--android:dividerHeight="@dimen/dimen6"-->
+    <!--tools:listitem="@layout/item_airporttransportationorder" />-->
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv"
+        style="@style/MatchWrap"
+        android:layout_below="@id/tv_statusOrder"
+        android:divider="@color/background"
+        android:dividerHeight="@dimen/dimen6"
+        android:overScrollMode="never"
+        android:scrollbars="none"
+        tools:listitem="@layout/item_airporttransportationorder" />
+
+</RelativeLayout>

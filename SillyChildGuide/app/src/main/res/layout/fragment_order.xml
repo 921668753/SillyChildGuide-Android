@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/MatchMatch"
+    android:background="@color/background"
+    android:orientation="vertical">
+
+    <cn.bingoogolapple.refreshlayout.BGARefreshLayout
+        android:id="@+id/mRefreshLayout"
+        style="@style/MatchAuto">
+
+        <!-- item_companyguidemassage -->
+
+        <!--<ListView-->
+        <!--android:id="@+id/lv_order"-->
+        <!--style="@style/MatchMatch"-->
+        <!--android:divider="@color/background"-->
+        <!--android:dividerHeight="@dimen/dimen10"-->
+        <!--android:overScrollMode="never"-->
+        <!--android:scrollbars="none"-->
+        <!--tools:listitem="@layout/item_airporttransportationorder" />-->
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_order"
+            style="@style/MatchMatch"
+            android:divider="@color/background"
+            android:dividerHeight="@dimen/dimen10"
+            android:overScrollMode="never"
+            android:scrollbars="none"
+            tools:listitem="@layout/item_airporttransportationorder" />
+
+    </cn.bingoogolapple.refreshlayout.BGARefreshLayout>
+
+    <include layout="@layout/common_error" />
+
+</LinearLayout>

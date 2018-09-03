@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dimen75"
+    android:layout_marginTop="@dimen/dimen1"
+    android:background="@color/whiteColors"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_width="@dimen/dimen100"
+        android:layout_height="@dimen/dimen55"
+        android:layout_marginLeft="@dimen/dimen27"
+        android:background="@color/greenColors"
+        android:orientation="vertical">
+
+
+        <TextView
+            style="@style/MatchAuto"
+            android:layout_margin="@dimen/dimen1"
+            android:background="@color/whiteColors"
+            android:gravity="center"
+            android:text="苏E23456"
+            android:textColor="@color/greenColors"
+            android:textSize="@dimen/textsize12" />
+
+        <TextView
+            style="@style/MatchAuto"
+            android:layout_marginBottom="@dimen/dimen1"
+            android:layout_marginLeft="@dimen/dimen1"
+            android:layout_marginRight="@dimen/dimen1"
+            android:background="@color/whiteColors"
+            android:gravity="center"
+            android:text="车型"
+            android:textColor="@color/greenColors"
+            android:textSize="@dimen/textsize12" />
+    </LinearLayout>
+
+    <TextView style="@style/AutoWrap" />
+
+
+    <TextView
+        android:layout_width="@dimen/dimen144"
+        android:layout_height="@dimen/dimen38"
+        android:layout_marginRight="@dimen/dimen27"
+        android:background="@drawable/shape_quickorder"
+        android:gravity="center"
+        android:text="@string/quickOrder"
+        android:textColor="@color/whiteColors"
+        android:textSize="@dimen/textsize12" />
+
+    <TextView
+        android:layout_width="@dimen/dimen144"
+        android:layout_height="@dimen/dimen38"
+        android:layout_marginRight="@dimen/dimen27"
+        android:background="@drawable/shape_quickorder"
+        android:gravity="center"
+        android:text="@string/endTheOrder"
+        android:textColor="@color/whiteColors"
+        android:textSize="@dimen/textsize12"
+        android:visibility="gone" />
+
+
+</LinearLayout>

@@ -131,6 +131,41 @@
     <string name="mine">我的</string>
     <string name="clickAgainExitProgram">再按一次退出程序</string>
 
+    <!--接单-->
+    <string name="missedOrders">错过的订单</string>
+    <string name="waitingResponseOrders">以下是等待响应的订单</string>
+
+    <!--接单详情-->
+    <string name="serviceTime">服务时间</string>
+    <string name="placeDeparture">出发地点</string>
+    <string name="deliveredAirport">送达机场</string>
+    <string name="reserveRequirements">预定要求</string>
+    <string name="orderNumber">订单号</string>
+    <string name="dueThat">预定说明</string>
+    <string name="descriptionThat">费用说明</string>
+    <string name="actualRevenueComposition">实际收入构成</string>
+    <string name="aggregate">总计</string>
+    <string name="quickOrder">快速接单</string>
+    <string name="detailedItinerary">详细行程</string>
+    <string name="customPreferences">定制偏好</string>
+    <string name="travelPreferences">出行偏好</string>
+    <string name="foodPreferences">美食偏好</string>
+    <string name="accommodationPreferences">住宿偏好</string>
+    <string name="lineDetails">线路详情</string>
+    <string name="determineOrder">您确定接单？</string>
+    <string name="unwillingnessTakeOrders">不愿意接单？</string>
+
+
+    <!--服务-->
+    <string name="order">订单</string>
+    <string name="waitingResponseService">以下是待执行的服务</string>
+    <string name="travelCalendar">行程日历</string>
+
+    <!--服务订单详情-->
+    <string name="endTheOrder">结束订单</string>
+    <string name="finalizeOrder">您确定结束订单？</string>
+
+
     <!--消息-->
     <string name="interactiveMessage">互动消息</string>
     <string name="systemMessage">系统消息</string>
@@ -181,45 +216,6 @@
     <string name="accountNumberDisabled">账号被禁用，请联系客服</string>
     <string name="youNotCertified">您还未认证，请先提交认证</string>
 
-    <!--我的   我的车辆-->
-    <string name="delete">删除</string>
-    <string name="myVehicle">我的车辆</string>
-
-
-    <!--我的   我的车辆    新增车辆-->
-    <string name="addVehicle">新增车辆</string>
-    <string name="carCompany">车检证</string>
-    <string name="vehicleImages">车辆图片</string>
-    <string name="model">车型</string>
-    <string name="seating">座位数</string>
-    <string name="vehicleYear">车辆年份</string>
-    <string name="vehiclePassengerInsurance">车辆是否有乘客保险</string>
-    <string name="submitAudit">提交审核</string>
-
-
-    <!--我的   我的车辆    车辆详情-->
-    <string name="vehicleDetails">车辆详情</string>
-    <string name="modify">修改</string>
-
-
-    <!--我的   我的订单-->
-    <string name="myOrder">我的订单</string>
-    <string name="forService">待服务</string>
-    <string name="toEvaluate">待评价</string>
-    <string name="completed">已完成</string>
-    <string name="all">全部</string>
-
-
-    <!--提现成功-->
-    <string name="withdrawalRequestSucceeded">提现申请成功</string>
-    <string name="withdrawalRequestSubmissionSuccess">提现申请提交成功</string>
-    <string name="withdrawalRequestSubmissionSuccess1">我们将在</string>
-    <string name="withdrawalRequestSubmissionSuccess2">个工作日内处理您的提现申请</string>
-    <string name="estimatedTimeArrival">预计到账时间：</string>
-    <string name="cashCard">储蓄卡：</string>
-    <string name="withdrawalAmount">到账金额：</string>
-    <string name="serviceChargeDeducted">(已扣除手续费)</string>
-
     <!--  个人中心 个人资料 -->
     <string name="personalData">个人资料</string>
     <string name="headPortrait">头像</string>
@@ -243,6 +239,56 @@
     <string name="setSelfIntroduction">设置自我简介</string>
     <string name="personalizedSelfIntroductionHint">一句话描述你的自我简介(最多30个字)</string>
     <string name="fillSelfIntroduction">请填写您的自我简介</string>
+
+    <!-- 个人中心 认证信息-->
+    <string name="authenticationInformation">认证信息</string>
+
+
+
+    <!--我的   我的车辆-->
+    <string name="delete">删除</string>
+    <string name="myVehicle">我的车辆</string>
+
+
+    <!--我的   我的车辆    新增车辆-->
+    <string name="addVehicle">新增车辆</string>
+    <string name="carCompany">车检证</string>
+    <string name="vehicleImages">车辆图片</string>
+    <string name="model">车型</string>
+    <string name="canTakeNumber">可乘人数</string>
+    <string name="canPutBaggage">可放行李</string>
+    <string name="vehicleYear">车辆年份</string>
+    <string name="vehiclePassengerInsurance">车辆是否有乘客保险</string>
+    <string name="submitAudit">提交审核</string>
+
+
+    <!--我的   我的车辆    车辆详情-->
+    <string name="vehicleDetails">车辆详情</string>
+    <string name="modify">修改</string>
+
+
+    <!--我的   我的订单-->
+    <string name="myOrder">我的订单</string>
+    <string name="forService">待服务</string>
+    <string name="toEvaluate">待评价</string>
+    <string name="completed">已完成</string>
+    <string name="all">全部</string>
+
+    <!--我的   我的订单   待服务-->
+    <string name="pending">待完成</string>
+    <string name="orderAmount">订单金额</string>
+    <string name="noOrder">亲，您还没有订单哟~</string>
+
+
+    <!--提现成功-->
+    <string name="withdrawalRequestSucceeded">提现申请成功</string>
+    <string name="withdrawalRequestSubmissionSuccess">提现申请提交成功</string>
+    <string name="withdrawalRequestSubmissionSuccess1">我们将在</string>
+    <string name="withdrawalRequestSubmissionSuccess2">个工作日内处理您的提现申请</string>
+    <string name="estimatedTimeArrival">预计到账时间：</string>
+    <string name="cashCard">储蓄卡：</string>
+    <string name="withdrawalAmount">到账金额：</string>
+    <string name="serviceChargeDeducted">(已扣除手续费)</string>
 
 
     <!-- 个人中心 我的钱包-->
@@ -385,8 +431,6 @@
     <string name="cs_evaluate_input_must">必须输入建议</string>
     <string name="cs_evaluate_select_must">必选</string>
     <!--融云end-->
-
-
 
 
 </resources>

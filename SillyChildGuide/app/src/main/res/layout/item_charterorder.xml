@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchWrap"
+    android:background="@color/background"
+    android:orientation="vertical">
+
+    <TextView
+        style="@style/MatchWrap"
+        android:background="@color/whiteColors"
+        android:paddingLeft="@dimen/dimen28"
+        android:paddingTop="@dimen/dimen16"
+        android:text="包车"
+        android:textColor="@color/greenColors"
+        android:textSize="@dimen/textsize15"
+        android:textStyle="bold" />
+
+    <TextView
+        style="@style/MatchWrap"
+        android:background="@color/whiteColors"
+        android:paddingBottom="@dimen/dimen20"
+        android:paddingLeft="@dimen/dimen28"
+        android:paddingRight="@dimen/dimen28"
+        android:paddingTop="@dimen/dimen14"
+        android:text="东京室内包车"
+        android:textColor="@color/tabColors"
+        android:textSize="@dimen/textsize15" />
+
+    <TextView
+        style="@style/MatchWrap"
+        android:background="@color/whiteColors"
+        android:paddingBottom="@dimen/dimen18"
+        android:paddingLeft="@dimen/dimen28"
+        android:text="2018-08-27   周一  09:00"
+        android:textColor="@color/hintColors"
+        android:textSize="@dimen/textsize12" />
+
+    <LinearLayout
+        style="@style/Match44"
+        android:layout_marginTop="@dimen/dimen3"
+        android:background="@color/whiteColors"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/WrapWrap"
+            android:layout_marginLeft="@dimen/dimen28"
+            android:text="@string/orderAmount"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize15" />
+
+
+        <TextView
+            style="@style/AutoWrap"
+            android:gravity="right"
+            android:paddingRight="@dimen/dimen28"
+            android:text="RMB  2000"
+            android:textColor="@color/fF3232Colors"
+            android:textSize="@dimen/textsize15" />
+
+    </LinearLayout>
+
+</LinearLayout>

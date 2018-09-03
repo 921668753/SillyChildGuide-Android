@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchWrap"
+    android:background="@color/whiteColors"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+
+    <TextView
+        style="@style/AutoWrap"
+        android:layout_marginLeft="@dimen/dimen39"
+        android:layout_marginRight="@dimen/dimen10"
+        android:paddingBottom="@dimen/dimen12"
+        android:paddingTop="@dimen/dimen12"
+        android:text="订单收入"
+        android:textColor="@color/hintColors"
+        android:textSize="@dimen/textsize12" />
+
+    <TextView
+        style="@style/WrapWrap"
+        android:layout_marginRight="@dimen/dimen39"
+        android:text="RMB  2100.00"
+        android:textColor="@color/fF5656Colors"
+        android:textSize="@dimen/textsize12" />
+
+</LinearLayout>

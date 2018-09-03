@@ -16,13 +16,12 @@
             style="@style/MatchMatch"
             android:orientation="vertical">
 
-
             <com.common.cklibrary.utils.myview.ChildListView
                 android:id="@+id/clv_car"
                 style="@style/MatchWrap"
                 android:layout_marginTop="@dimen/dimen6"
                 android:divider="@color/background"
-                android:dividerHeight="@dimen/dimen1"
+                android:dividerHeight="@dimen/dimen10"
                 tools:listitem="@layout/item_car" />
 
 

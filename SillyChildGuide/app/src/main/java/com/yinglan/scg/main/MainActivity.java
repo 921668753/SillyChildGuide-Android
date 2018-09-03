@@ -221,7 +221,7 @@ public class MainActivity extends BaseActivity implements MainContract.View, Mai
     public void cleanColors(int chageIcon) {
         img_orderReceiving.setImageResource(R.mipmap.tab_orderreceiving);
         tv_orderReceiving.setTextColor(getResources().getColor(R.color.textColor));
-        img_service.setImageResource(R.mipmap.tab_message);
+        img_service.setImageResource(R.mipmap.tab_service);
         tv_service.setTextColor(getResources().getColor(R.color.textColor));
         img_message.setImageResource(R.mipmap.tab_message);
         tv_message.setTextColor(getResources().getColor(R.color.textColor));
@@ -240,7 +240,7 @@ public class MainActivity extends BaseActivity implements MainContract.View, Mai
                 break;
             case 2:
                 img_message.setImageResource(R.mipmap.tab_message_selected);
-                tv_message.setTextColor(getResources().getColor(R.color.d0a4fcColors));
+                tv_message.setTextColor(getResources().getColor(R.color.ff9955Colors));
                 changeFragment(contentFragment2);
                 break;
             case 3:

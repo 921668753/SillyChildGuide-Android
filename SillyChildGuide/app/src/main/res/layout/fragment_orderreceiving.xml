@@ -1,9 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     style="@style/MatchMatch"
-    android:background="@color/background"
-    android:fitsSystemWindows="true"
+    android:background="@color/whiteColors"
     android:orientation="vertical">
 
+    <TextView
+        android:layout_width="@dimen/dimen83"
+        android:layout_height="@dimen/dimen27"
+        android:layout_gravity="right"
+        android:layout_marginRight="@dimen/dimen27"
+        android:layout_marginTop="@dimen/dimen15"
+        android:background="@drawable/shape_missedorders"
+        android:gravity="center"
+        android:text="@string/missedOrders"
+        android:textColor="@color/greenColors"
+        android:textSize="@dimen/textsize12" />
+
+    <TextView
+        style="@style/MatchWrap"
+        android:paddingLeft="@dimen/dimen27"
+        android:paddingTop="@dimen/dimen15"
+        android:text="@string/orderReceiving"
+        android:textColor="@color/greenColors"
+        android:textSize="@dimen/textsize30"
+        android:textStyle="bold" />
+
+    <TextView
+        style="@style/MatchWrap"
+        android:paddingBottom="@dimen/dimen17"
+        android:paddingLeft="@dimen/dimen27"
+        android:paddingTop="@dimen/dimen13"
+        android:text="@string/waitingResponseOrders"
+        android:textColor="@color/hintColors"
+        android:textSize="@dimen/textsize13" />
+
+
+    <cn.bingoogolapple.refreshlayout.BGARefreshLayout
+        android:id="@+id/mRefreshLayout"
+        style="@style/MatchAuto"
+        android:background="@color/background"
+        android:paddingTop="@dimen/dimen6">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_order"
+            style="@style/MatchMatch"
+            android:divider="@color/background"
+            android:dividerHeight="@dimen/dimen10"
+            android:overScrollMode="never"
+            android:scrollbars="none"
+            tools:listitem="@layout/item_airporttransportationorder" />
+
+    </cn.bingoogolapple.refreshlayout.BGARefreshLayout>
+
+    <include layout="@layout/common_error" />
 
 </LinearLayout>

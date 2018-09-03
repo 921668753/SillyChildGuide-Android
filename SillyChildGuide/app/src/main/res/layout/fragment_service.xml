@@ -1,76 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     style="@style/MatchMatch"
-    android:background="@color/background"
+    android:background="@color/whiteColors"
     android:orientation="vertical">
 
     <TextView
-        style="@style/Match44"
-        android:background="@color/whiteColors"
+        android:layout_width="@dimen/dimen77"
+        android:layout_height="@dimen/dimen27"
+        android:layout_gravity="right"
+        android:layout_marginRight="@dimen/dimen27"
+        android:layout_marginTop="@dimen/dimen15"
+        android:background="@drawable/shape_missedorders"
         android:gravity="center"
+        android:text="@string/order"
+        android:textColor="@color/greenColors"
+        android:textSize="@dimen/textsize12" />
+
+    <TextView
+        style="@style/MatchWrap"
+        android:paddingLeft="@dimen/dimen27"
+        android:paddingTop="@dimen/dimen15"
         android:text="@string/service"
-        android:textColor="@color/titletextcolors"
-        android:textSize="@dimen/textsize17" />
+        android:textColor="@color/greenColors"
+        android:textSize="@dimen/textsize30"
+        android:textStyle="bold" />
+
+    <TextView
+        style="@style/MatchWrap"
+        android:paddingBottom="@dimen/dimen17"
+        android:paddingLeft="@dimen/dimen27"
+        android:paddingTop="@dimen/dimen13"
+        android:text="@string/waitingResponseService"
+        android:textColor="@color/hintColors"
+        android:textSize="@dimen/textsize13" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen53"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/AutoWrap"
+            android:paddingLeft="@dimen/dimen27"
+            android:text="2018年8月"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize18"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            style="@style/WrapMatch"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/dimen10">
+
+            <ImageView
+                android:layout_width="@dimen/dimen18"
+                android:layout_height="@dimen/dimen20"
+                android:src="@mipmap/img_travelcalendar" />
 
 
-    <!--<LinearLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="@dimen/dimen45"-->
-        <!--android:layout_marginTop="@dimen/dimen6"-->
-        <!--android:background="@color/whiteColors"-->
-        <!--android:orientation="horizontal">-->
+            <TextView
+                style="@style/WrapWrap"
+                android:gravity="center"
+                android:paddingLeft="@dimen/dimen5"
+                android:paddingRight="@dimen/dimen27"
+                android:text="@string/travelCalendar"
+                android:textColor="@color/hintColors"
+                android:textSize="@dimen/textsize15" />
+        </LinearLayout>
+    </LinearLayout>
 
-        <!--<LinearLayout-->
-            <!--android:id="@+id/ll_charterOrder"-->
-            <!--style="@style/AutoMatch"-->
-            <!--android:gravity="center_horizontal"-->
-            <!--android:orientation="vertical">-->
+    <cn.bingoogolapple.refreshlayout.BGARefreshLayout
+        android:id="@+id/mRefreshLayout"
+        style="@style/MatchAuto"
+        android:background="@color/background"
+        android:paddingTop="@dimen/dimen6">
 
-            <!--<TextView-->
-                <!--android:id="@+id/tv_charterOrder"-->
-                <!--style="@style/MatchAuto"-->
-                <!--android:gravity="center"-->
-                <!--android:text="@string/charterOrder"-->
-                <!--android:textColor="@color/greenColors"-->
-                <!--android:textSize="@dimen/textsize14" />-->
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_order"
+            style="@style/MatchMatch"
+            android:divider="@color/background"
+            android:dividerHeight="@dimen/dimen10"
+            android:overScrollMode="never"
+            android:scrollbars="none"
+            tools:listitem="@layout/item_airporttransportationorder" />
 
-            <!--<TextView-->
-                <!--android:id="@+id/tv_charterOrder1"-->
-                <!--android:layout_width="@dimen/dimen25"-->
-                <!--android:layout_height="@dimen/dimen2"-->
-                <!--android:background="@color/greenColors" />-->
+    </cn.bingoogolapple.refreshlayout.BGARefreshLayout>
 
-
-        <!--</LinearLayout>-->
-
-
-        <!--<LinearLayout-->
-            <!--android:id="@+id/ll_goodOrder"-->
-            <!--style="@style/AutoMatch"-->
-            <!--android:gravity="center_horizontal"-->
-            <!--android:orientation="vertical">-->
-
-            <!--<TextView-->
-                <!--android:id="@+id/tv_goodOrder"-->
-                <!--style="@style/MatchAuto"-->
-                <!--android:gravity="center"-->
-                <!--android:text="@string/goodOrder"-->
-                <!--android:textColor="@color/tabColors"-->
-                <!--android:textSize="@dimen/textsize14" />-->
-
-            <!--<TextView-->
-                <!--android:id="@+id/tv_goodOrder1"-->
-                <!--android:layout_width="@dimen/dimen25"-->
-                <!--android:layout_height="@dimen/dimen2"-->
-                <!--android:background="@color/whiteColors" />-->
-
-        <!--</LinearLayout>-->
-    <!--</LinearLayout>-->
-
-
-    <FrameLayout
-        android:id="@+id/order_content"
-        android:layout_marginTop="@dimen/dimen6"
-        style="@style/MatchAuto" />
+    <include layout="@layout/common_error" />
 
 </LinearLayout>

@@ -14,7 +14,6 @@ import com.common.cklibrary.utils.ActivityTitleUtils;
 import com.kymjs.common.Log;
 import com.yinglan.scg.R;
 
-
 /**
  * 我的订单
  */
@@ -180,21 +179,33 @@ public class MyOrderActivity extends BaseActivity {
      */
     @SuppressWarnings("deprecation")
     public void cleanColors(int chageIcon) {
-        tv_goodOrder.setTextColor(getResources().getColor(R.color.textColor));
-        tv_goodOrder1.setBackgroundColor(getResources().getColor(R.color.whiteColors));
-        tv_charterOrder.setTextColor(getResources().getColor(R.color.textColor));
-        tv_charterOrder1.setBackgroundColor(getResources().getColor(R.color.whiteColors));
+        tv_forService.setTextColor(getResources().getColor(R.color.textColor));
+        tv_forService1.setBackgroundColor(getResources().getColor(R.color.whiteColors));
+        tv_toEvaluate.setTextColor(getResources().getColor(R.color.textColor));
+        tv_toEvaluate1.setBackgroundColor(getResources().getColor(R.color.whiteColors));
+        tv_completed.setTextColor(getResources().getColor(R.color.textColor));
+        tv_completed1.setBackgroundColor(getResources().getColor(R.color.whiteColors));
+        tv_all.setTextColor(getResources().getColor(R.color.textColor));
+        tv_all1.setBackgroundColor(getResources().getColor(R.color.whiteColors));
         if (chageIcon == 0) {
-            tv_goodOrder.setTextColor(getResources().getColor(R.color.greenColors));
-            tv_goodOrder1.setBackgroundColor(getResources().getColor(R.color.greenColors));
+            tv_forService.setTextColor(getResources().getColor(R.color.greenColors));
+            tv_forService1.setBackgroundColor(getResources().getColor(R.color.greenColors));
             changeFragment(baseFragment);
         } else if (chageIcon == 1) {
-            tv_charterOrder.setTextColor(getResources().getColor(R.color.greenColors));
-            tv_charterOrder1.setBackgroundColor(getResources().getColor(R.color.greenColors));
+            tv_toEvaluate.setTextColor(getResources().getColor(R.color.greenColors));
+            tv_toEvaluate1.setBackgroundColor(getResources().getColor(R.color.greenColors));
             changeFragment(baseFragment1);
+        } else if (chageIcon == 2) {
+            tv_completed.setTextColor(getResources().getColor(R.color.greenColors));
+            tv_completed1.setBackgroundColor(getResources().getColor(R.color.greenColors));
+            changeFragment(baseFragment2);
+        } else if (chageIcon == 3) {
+            tv_all.setTextColor(getResources().getColor(R.color.greenColors));
+            tv_all1.setBackgroundColor(getResources().getColor(R.color.greenColors));
+            changeFragment(baseFragment3);
         } else {
-            tv_goodOrder.setTextColor(getResources().getColor(R.color.greenColors));
-            tv_goodOrder1.setBackgroundColor(getResources().getColor(R.color.greenColors));
+            tv_forService.setTextColor(getResources().getColor(R.color.greenColors));
+            tv_forService1.setBackgroundColor(getResources().getColor(R.color.greenColors));
             changeFragment(baseFragment);
         }
     }

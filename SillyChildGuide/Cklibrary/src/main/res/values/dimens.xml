@@ -75,6 +75,7 @@
     <dimen name="dimen74">74dp</dimen>
     <dimen name="dimen75">75dp</dimen>
     <dimen name="dimen76">76dp</dimen>
+    <dimen name="dimen77">77dp</dimen>
     <dimen name="dimen78">78dp</dimen>
     <dimen name="dimen79">79dp</dimen>
     <dimen name="dimen80">80dp</dimen>
@@ -115,6 +116,7 @@
     <dimen name="dimen140">140dp</dimen>
     <dimen name="dimen142">142dp</dimen>
     <dimen name="dimen143">143dp</dimen>
+    <dimen name="dimen144">144dp</dimen>
     <dimen name="dimen147">147dp</dimen>
     <dimen name="dimen150">150dp</dimen>
     <dimen name="dimen151">151dp</dimen>

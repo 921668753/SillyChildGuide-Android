@@ -44,9 +44,10 @@
     <color name="fF4E00Colors">#FF4E00</color>
     <color name="c9FFD2Colors">#C9FFD2</color>
     <color name="fF5656Colors">#FF5656</color>
+    <color name="fF5B5BColors">#FF5B5B</color>
     <color name="fF0000Colors">#FF0000</color>
     <color name="e9e5Colors">#13e9e5</color>
-    <color name="d0a4fcColors">#d0a4fc</color>
+    <color name="ff9955Colors">#ff9955</color>
     <color name="f3516dColors">#f3516d</color>
 
 
@@ -54,6 +55,6 @@
     <color name="darkGreen">#129130</color>
     <color name="fF2626Colors">#FF2626</color>
     <color name="d22222Color">#222222</color>
-
+    <color name="fF3232Colors">#FF3232</color>
 
 </resources>

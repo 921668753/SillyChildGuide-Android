@@ -39,7 +39,7 @@
         <ImageView
             android:id="@+id/img_service"
             style="@style/Image20"
-            android:src="@mipmap/default_image" />
+            android:src="@mipmap/tab_service" />
 
         <TextView
             android:id="@+id/tv_service"
