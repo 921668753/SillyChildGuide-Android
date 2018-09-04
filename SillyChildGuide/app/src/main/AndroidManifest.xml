@@ -150,6 +150,75 @@
             android:name=".mine.personaldata.setnickname.SetNickNameActivity"
             android:screenOrientation="portrait" />
 
+        <!--我的  个人资料  认证信息-->
+        <activity
+            android:name=".mine.personaldata.authenticationinformation.AuthenticationInformationActivity"
+            android:screenOrientation="portrait" />
+
+        <!--我的  个人资料  认证信息   服务地区-->
+        <activity
+            android:name=".mine.personaldata.authenticationinformation.servicearea.ServiceAreaActivity"
+            android:screenOrientation="portrait" />
+
+        <!--我的  个人资料  认证信息    服务地区搜索-->
+        <activity
+            android:name=".mine.personaldata.authenticationinformation.servicearea.search.AreaSearchActivity"
+            android:screenOrientation="portrait" />
+
+        <!--我的  个人资料  认证信息    服务地区搜索   搜索结果-->
+        <activity
+            android:name=".mine.personaldata.authenticationinformation.servicearea.search.AreaSearchListActivity"
+            android:screenOrientation="portrait" />
+
+        <!--我的  我的车辆-->
+        <activity
+            android:name=".mine.myvehicle.MyVehicleActivity"
+            android:screenOrientation="portrait" />
+
+        <!--我的  我的车辆  车辆详情-->
+        <activity
+            android:name=".mine.myvehicle.VehicleDetailsActivity"
+            android:screenOrientation="portrait" />
+
+        <!--我的  我的车辆   新增车辆-->
+        <activity
+            android:name=".mine.myvehicle.AddVehicleActivity"
+            android:screenOrientation="portrait" />
+
+        <!--我的  我的车辆   新增车辆   车型-->
+        <activity
+            android:name=".mine.myvehicle.model.ModelActivity"
+            android:screenOrientation="portrait" />
+
+        <!--我的  我的车辆   新增车辆  车型搜索-->
+        <activity
+            android:name=".mine.myvehicle.model.search.ModelSearchActivity"
+            android:screenOrientation="portrait" />
+
+        <!--我的  我的车辆   新增车辆     车型搜索-搜索结果 -->
+        <activity
+            android:name=".mine.myvehicle.model.search.ModelSearchListActivity"
+            android:screenOrientation="portrait" />
+
+        <!--我的  我的订单 -->
+        <activity
+            android:name=".mine.myorder.MyOrderActivity"
+            android:screenOrientation="portrait" />
+
+        <!--我的 我的订单 线路订单详情 -->
+        <activity
+            android:name=".mine.myorder.orderdetails.CharterOrderDetailsActivity"
+            android:screenOrientation="portrait" />
+
+        <!--我的 我的订单 线路订单详情 -->
+        <activity
+            android:name=".mine.myorder.orderdetails.LineOrderDetailsActivity"
+            android:screenOrientation="portrait" />
+
+        <!--我的 我的订单 私人定制订单详情 -->
+        <activity
+            android:name=".mine.myorder.orderdetails.PrivateCustomOrderDetailsActivity"
+            android:screenOrientation="portrait" />
 
         <!--我的  我的钱包-->
         <activity
@@ -180,7 +249,6 @@
         <activity
             android:name=".mine.mywallet.mybankcard.AddBankCardActivity"
             android:screenOrientation="portrait" />
-
 
         <!--我的  傻孩子学院-->
         <activity
