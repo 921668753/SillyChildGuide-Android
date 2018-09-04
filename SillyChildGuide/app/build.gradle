@@ -27,9 +27,9 @@ android {
         }
         manifestPlaceholders = [
                 JPUSH_PKGNAME : applicationId,
-                JPUSH_APPKEY  : "f33675352d0f85cb754fa4b7", //JPush上注册的包名对应的appkey.
+                JPUSH_APPKEY  : "17702d87c51be25d226d8d8d", //JPush上注册的包名对应的appkey.
                 JPUSH_CHANNEL : "developer-default", //暂时填写默认值即可.
-                UMENG_APPKEY  : "5b21fb46b27b0a67a00000af",//友盟分享上注册的包名对应的appkey.
+                UMENG_APPKEY  : "5b8e38c4b27b0a64570001e5",//友盟分享上注册的包名对应的appkey.
                 BAIDU_APPKEY  : "yFsR6oDpLXznfvrwxKCRpDi2MuUbuvzI",//百度定位上注册的包名对应的appkey.
                 RONGYUN_APPKEY: "pkfcgjstpo5w8"//融云即时通讯上注册的包名对应的appkey.
         ]
@@ -88,8 +88,8 @@ android {
             buildConfigField "String", "TENGXUNBUGLY_APPID", "\"783b064cfd\""
             buildConfigField "String", "TENGXUNBUGLY_APPKEY", "\"3a193db3-b0b5-4073-bc11-ccaf5bfff5b8\""
             buildConfigField "String", "UMENG_APPKEY", "\"5b21fb46b27b0a67a00000af\""
-            buildConfigField "String", "SiNA_WEIBOKEY", "\"2695656281\""
-            buildConfigField "String", "SiNA_WEIBOSECRET", "\"c45c1c7feb3bfc2c2b1da20cd3594a19\""
+            buildConfigField "String", "SiNA_WEIBOKEY", "\"1117283607\""
+            buildConfigField "String", "SiNA_WEIBOSECRET", "\"e1bcc755a0b4f3f7a5840e38ac8b2274\""
             buildConfigField "String", "QQ_APPID", "\"1106980891\""
             buildConfigField "String", "QQ_APPKEY", "\"u7RkX4rG9XZxBbd9\""
             buildConfigField "String", "RONGYUN_APPKEY", "\"pkfcgjstpo5w8\""
@@ -115,8 +115,8 @@ android {
             buildConfigField "String", "TENGXUNBUGLY_APPID", "\"783b064cfd\""
             buildConfigField "String", "TENGXUNBUGLY_APPKEY", "\"3a193db3-b0b5-4073-bc11-ccaf5bfff5b8\""
             buildConfigField "String", "UMENG_APPKEY", "\"5b21fb46b27b0a67a00000af\""
-            buildConfigField "String", "SiNA_WEIBOKEY", "\"2695656281\""
-            buildConfigField "String", "SiNA_WEIBOSECRET", "\"c45c1c7feb3bfc2c2b1da20cd3594a19\""
+            buildConfigField "String", "SiNA_WEIBOKEY", "\"1117283607\""
+            buildConfigField "String", "SiNA_WEIBOSECRET", "\"e1bcc755a0b4f3f7a5840e38ac8b2274\""
             buildConfigField "String", "QQ_APPID", "\"1106980891\""
             buildConfigField "String", "QQ_APPKEY", "\"u7RkX4rG9XZxBbd9\""
             buildConfigField "String", "RONGYUN_APPKEY", "\"pkfcgjstpo5w8\""

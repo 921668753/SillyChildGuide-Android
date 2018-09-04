@@ -8,7 +8,6 @@ import com.yinglan.scg.R;
  */
 public class AuthenticationInformationActivity extends BaseActivity {
 
-
     @Override
     public void setRootView() {
         setContentView(R.layout.activity_authenticationinformation);

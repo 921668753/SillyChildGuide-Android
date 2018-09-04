@@ -196,14 +196,18 @@
 
     <!--  个人中心  -->
     <string name="ordersTotal">订单总数</string>
+    <string name="guideTotal">司导总数</string>
+    <string name="serviceLevel">服务等级</string>
     <string name="storeLevel">店铺等级</string>
     <string name="businessLevel">商家等级</string>
-    <string name="myStores">我的店铺</string>
     <string name="myWallet">我的钱包</string>
-    <string name="sillyChildCollege">傻孩志学院</string>
+    <string name="sillyChildCollege">傻孩子学院</string>
     <string name="sharePolite">分享有礼</string>
     <string name="setUp">设置</string>
+    <string name="notLogin">您还没有登录</string>
+    <string name="editData">编辑资料</string>
     <string name="notLogged">您还没有登录</string>
+    <string name="loginOrRegister">登录/注册 ></string>
     <string name="loginImmediately">立即登录</string>
     <string name="certified">已认证</string>
     <string name="audit">待审核</string>
@@ -242,8 +246,15 @@
 
     <!-- 个人中心 认证信息-->
     <string name="authenticationInformation">认证信息</string>
+    <string name="mandatory">（必填）</string>
+    <string name="serviceArea">服务地区</string>
+    <string name="skillsInformation">技能信息（选填）</string>
 
-
+    <!-- 个人中心 认证信息  服务地区 搜索-->
+    <string name="recentSearch">最近搜索</string>
+    <string name="cityYouServe">您将在哪座城市提供服务</string>
+    <string name="clearSearch">确定清空搜索</string>
+    <string name="enterSearchContent">请输入您要搜索的内容</string>
 
     <!--我的   我的车辆-->
     <string name="delete">删除</string>
@@ -258,8 +269,14 @@
     <string name="canTakeNumber">可乘人数</string>
     <string name="canPutBaggage">可放行李</string>
     <string name="vehicleYear">车辆年份</string>
+    <string name="licensePlateNumber">车牌号</string>
+    <string name="pleaseEnterlicensePlateNumber">请输入车牌号</string>
     <string name="vehiclePassengerInsurance">车辆是否有乘客保险</string>
     <string name="submitAudit">提交审核</string>
+    <string name="modifyData">修改资料</string>
+    <string name="submittedReview">您的认证资料已提交审核，请耐心等待</string>
+
+
 
 
     <!--我的   我的车辆    车辆详情-->
@@ -278,6 +295,10 @@
     <string name="pending">待完成</string>
     <string name="orderAmount">订单金额</string>
     <string name="noOrder">亲，您还没有订单哟~</string>
+    <string name="userEvaluation">用户评价</string>
+    <string name="evaluateGuest">对客人进行评价</string>
+    <string name="submitEvaluation">提交评价</string>
+
 
 
     <!--提现成功-->

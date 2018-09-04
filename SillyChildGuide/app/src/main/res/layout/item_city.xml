@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/dimen109"
+    android:layout_height="@dimen/dimen140"
+    android:background="@color/whiteColors"
+    android:paddingBottom="@dimen/dimen12"
+    android:paddingTop="@dimen/dimen24">
+
+    <ImageView
+        android:id="@+id/img_classification"
+        style="@style/MatchMatch"
+        android:scaleType="fitXY"
+        android:src="@mipmap/placeholderfigure" />
+
+
+    <TextView
+        style="@style/MatchMatch"
+        android:background="@color/black50" />
+
+
+    <LinearLayout
+        style="@style/WrapWrap"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_classificationName"
+            style="@style/WrapWrap"
+            android:gravity="center"
+            android:paddingLeft="@dimen/dimen9"
+            android:paddingRight="@dimen/dimen9"
+            android:text="刚果民主共和国"
+            android:textColor="@color/whiteColors"
+            android:textSize="@dimen/textsize13" />
+
+        <TextView
+            android:id="@+id/tv_airportName"
+            style="@style/WrapWrap"
+            android:gravity="center"
+            android:paddingLeft="@dimen/dimen9"
+            android:paddingRight="@dimen/dimen9"
+            android:text="刚果民主共和国"
+            android:textColor="@color/whiteColors"
+            android:textSize="@dimen/textsize13"
+            android:visibility="gone" />
+
+    </LinearLayout>
+
+
+</RelativeLayout>

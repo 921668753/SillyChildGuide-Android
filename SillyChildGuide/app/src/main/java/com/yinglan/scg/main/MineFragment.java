@@ -2,7 +2,7 @@ package com.yinglan.scg.main;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.net.Uri;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.common.cklibrary.common.BaseFragment;
@@ -25,6 +27,8 @@ import com.yinglan.scg.R;
 import com.yinglan.scg.entity.main.UserInfoBean;
 import com.yinglan.scg.loginregister.LoginActivity;
 import com.yinglan.scg.message.interactivemessage.imuitl.UserUtil;
+import com.yinglan.scg.mine.myorder.MyOrderActivity;
+import com.yinglan.scg.mine.myvehicle.MyVehicleActivity;
 import com.yinglan.scg.mine.mywallet.MyWalletActivity;
 import com.yinglan.scg.mine.personaldata.PersonalDataActivity;
 import com.yinglan.scg.mine.setup.HelpCenterActivity;
@@ -33,8 +37,6 @@ import com.yinglan.scg.mine.sharepolite.SharePoliteActivity;
 import com.yinglan.scg.utils.GlideImageLoader;
 
 import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
-import io.rong.imkit.RongIM;
-import io.rong.imlib.model.UserInfo;
 
 import static android.app.Activity.RESULT_OK;
 import static com.yinglan.scg.constant.NumericConstants.REQUEST_CODE;
@@ -45,48 +47,61 @@ import static com.yinglan.scg.constant.URLConstants.COLLEGE;
  * Created by Admin on 2017/8/10.
  */
 @SuppressLint("NewApi")
-public class MineFragment extends BaseFragment implements MineContract.View, BGARefreshLayout.BGARefreshLayoutDelegate {
+public class MineFragment extends BaseFragment implements MineContract.View, View.OnScrollChangeListener, BGARefreshLayout.BGARefreshLayoutDelegate {
 
     private MainActivity aty;
 
     @BindView(id = R.id.mRefreshLayout)
     private BGARefreshLayout mRefreshLayout;
 
-    @BindView(id = R.id.ll_mineTop, click = true)
-    private LinearLayout ll_mineTop;
+    @BindView(id = R.id.sv_mine)
+    private ScrollView sv_mine;
 
-    @BindView(id = R.id.img_head)
-    private ImageView img_head;
+    @BindView(id = R.id.rl_title)
+    private RelativeLayout rl_title;
 
-    @BindView(id = R.id.tv_storesName)
-    private TextView tv_storesName;
+    @BindView(id = R.id.tv_title)
+    private TextView tv_title;
 
-    @BindView(id = R.id.tv_nature)
-    private TextView tv_nature;
+    @BindView(id = R.id.ll_notLogin, click = true)
+    private LinearLayout ll_notLogin;
+
+    @BindView(id = R.id.tv_editData1, click = true)
+    private TextView tv_editData1;
 
     @BindView(id = R.id.tv_divider)
     private TextView tv_divider;
 
-    @BindView(id = R.id.ll_mineBot)
-    private LinearLayout ll_mineBot;
+    @BindView(id = R.id.tv_editData, click = true)
+    private TextView tv_editData;
+
+    @BindView(id = R.id.tv_minetouxiang)
+    private TextView tv_minetouxiang;
+
+    @BindView(id = R.id.iv_minetouxiang, click = true)
+    private ImageView iv_minetouxiang;
+
+    @BindView(id = R.id.tv_nickname, click = true)
+    private TextView tv_nickname;
+
+    @BindView(id = R.id.tv_serialNumber)
+    private TextView tv_serialNumber;
 
     @BindView(id = R.id.tv_ordersTotal)
     private TextView tv_ordersTotal;
 
-    @BindView(id = R.id.tv_storeLevel)
-    private TextView tv_storeLevel;
+    @BindView(id = R.id.tv_guideTotal)
+    private TextView tv_guideTotal;
 
-    @BindView(id = R.id.tv_businessLevel)
-    private TextView tv_businessLevel;
+    @BindView(id = R.id.tv_serviceLevel)
+    private TextView tv_serviceLevel;
 
-    @BindView(id = R.id.tv_notLogged)
-    private TextView tv_notLogged;
 
-    @BindView(id = R.id.tv_loginImmediately, click = true)
-    private TextView tv_loginImmediately;
+    @BindView(id = R.id.ll_myVehicle, click = true)
+    private LinearLayout ll_myVehicle;
 
-    @BindView(id = R.id.ll_myStores, click = true)
-    private LinearLayout ll_myStores;
+    @BindView(id = R.id.ll_myOrder, click = true)
+    private LinearLayout ll_myOrder;
 
     @BindView(id = R.id.ll_myWallet, click = true)
     private LinearLayout ll_myWallet;
@@ -96,6 +111,7 @@ public class MineFragment extends BaseFragment implements MineContract.View, BGA
 
     @BindView(id = R.id.ll_sharePolite, click = true)
     private LinearLayout ll_sharePolite;
+
 
     @BindView(id = R.id.ll_setUp, click = true)
     private LinearLayout ll_setUp;
@@ -117,6 +133,7 @@ public class MineFragment extends BaseFragment implements MineContract.View, BGA
     protected void initWidget(View parentView) {
         super.initWidget(parentView);
         RefreshLayoutUtil.initRefreshLayout(mRefreshLayout, this, aty, false);
+        sv_mine.setOnScrollChangeListener(this);
         mRefreshLayout.beginRefreshing();
     }
 
@@ -125,41 +142,35 @@ public class MineFragment extends BaseFragment implements MineContract.View, BGA
     protected void widgetClick(View v) {
         super.widgetClick(v);
         switch (v.getId()) {
-            case R.id.ll_mineTop:
+            case R.id.tv_editData:
                 ((MineContract.Presenter) mPresenter).getIsLogin(aty, 1);
                 break;
-            case R.id.tv_loginImmediately:
-                errorMsg("", 1);
+            case R.id.tv_editData1:
+                ((MineContract.Presenter) mPresenter).getIsLogin(aty, 1);
                 break;
-            case R.id.ll_myStores:
-                int disabled = PreferenceHelper.readInt(aty, StringConstants.FILENAME, "disabled", 3);
-                if (disabled == -1) {
-                    errorMsg(getString(R.string.recertification1), 2);
-                    return;
-                } else if (disabled == 0) {
-                    errorMsg(getString(R.string.certificationProcess), 2);
-                    return;
-                } else if (disabled == 2) {
-                    errorMsg(getString(R.string.accountNumberDisabled), 2);
-                    return;
-                } else if (disabled == 3) {
-                    errorMsg(getString(R.string.youNotCertified), 2);
-                    return;
-                }
+            case R.id.iv_minetouxiang:
+                ((MineContract.Presenter) mPresenter).getIsLogin(aty, 1);
+                break;
+            case R.id.ll_notLogin:
+                aty.showActivity(aty, LoginActivity.class);
+                break;
+            case R.id.ll_myVehicle:
                 ((MineContract.Presenter) mPresenter).getIsLogin(aty, 2);
                 break;
-            case R.id.ll_myWallet:
+            case R.id.ll_myOrder:
                 ((MineContract.Presenter) mPresenter).getIsLogin(aty, 3);
+                break;
+            case R.id.ll_myWallet:
+                ((MineContract.Presenter) mPresenter).getIsLogin(aty, 4);
                 break;
             case R.id.ll_sillyChildCollege:
                 Intent intent = new Intent(aty, HelpCenterActivity.class);
                 intent.putExtra("title", getString(R.string.sillyChildCollege));
                 intent.putExtra("url", COLLEGE);
                 aty.showActivity(aty, intent);
-                //  aty.showActivity(aty, SillyChildCollegeActivity.class);
                 break;
             case R.id.ll_sharePolite:
-                ((MineContract.Presenter) mPresenter).getIsLogin(aty, 4);
+                ((MineContract.Presenter) mPresenter).getIsLogin(aty, 5);
                 break;
             case R.id.ll_setUp:
                 aty.showActivity(aty, SetUpActivity.class);
@@ -178,72 +189,39 @@ public class MineFragment extends BaseFragment implements MineContract.View, BGA
         if (flag == 0) {
             Log.e("用户信息", "结果：" + success);
             UserInfoBean userInfoBean = (UserInfoBean) JsonUtil.getInstance().json2Obj(success, UserInfoBean.class);
-//            if (userInfoBean == null || userInfoBean.getData() == null || StringUtils.toInt(userInfoBean.getData().getStore_id(), 0) <= 0) {
-//                errorMsg(getString(R.string.serverReturnsDataError), 0);
-//                return;
-//            }
-            tv_notLogged.setVisibility(View.GONE);
-            tv_loginImmediately.setVisibility(View.GONE);
-            ll_mineTop.setVisibility(View.VISIBLE);
-            tv_divider.setVisibility(View.VISIBLE);
-            ll_mineBot.setVisibility(View.VISIBLE);
-            saveUserInfo(userInfoBean);
-            if (StringUtils.isEmpty(userInfoBean.getData().getFace())) {
-                img_head.setImageResource(R.mipmap.avatar);
-            } else {
-                GlideImageLoader.glideLoader(aty, userInfoBean.getData().getFace(), img_head, 0, R.mipmap.avatar);
+            if (userInfoBean != null && userInfoBean.getData() != null) {
+                ll_notLogin.setVisibility(View.GONE);
+                tv_editData.setVisibility(View.VISIBLE);
+                tv_editData1.setVisibility(View.VISIBLE);
+                tv_minetouxiang.setVisibility(View.VISIBLE);
+                iv_minetouxiang.setVisibility(View.VISIBLE);
+                tv_nickname.setVisibility(View.VISIBLE);
+                tv_serialNumber.setVisibility(View.VISIBLE);
+                saveUserInfo(userInfoBean);
+                tv_nickname.setText(userInfoBean.getData().getNick_name());
+                if (StringUtils.isEmpty(userInfoBean.getData().getFace())) {
+                    iv_minetouxiang.setImageResource(R.mipmap.avatar);
+                } else {
+                    GlideImageLoader.glideLoader(aty, userInfoBean.getData().getFace(), iv_minetouxiang, 0, R.mipmap.avatar);
+                }
+                tv_serialNumber.setText(userInfoBean.getData().getShz());
+                tv_ordersTotal.setText(userInfoBean.getData().getConcern_number());
+                tv_guideTotal.setText(userInfoBean.getData().getFans_number());
+                tv_serviceLevel.setText(userInfoBean.getData().getCollected_number());
             }
-            String mobile = PreferenceHelper.readString(aty, StringConstants.FILENAME, "mobile");
-            if (!StringUtils.isEmpty(userInfoBean.getData().getNickname())) {
-                tv_storesName.setText(userInfoBean.getData().getNickname());
-            } else {
-                tv_storesName.setText(mobile);
-            }
-            int disabled = StringUtils.toInt(userInfoBean.getData().getDisabled(), 3);
-            if (disabled == 3) {
-                tv_nature.setVisibility(View.GONE);
-            } else if (disabled == -1) {
-                tv_nature.setVisibility(View.VISIBLE);
-                tv_nature.setText(getString(R.string.unapprove));
-                tv_nature.setTextColor(getResources().getColor(R.color.fF0000Colors));
-            } else if (disabled == 0) {
-                tv_nature.setVisibility(View.VISIBLE);
-                tv_nature.setText(getString(R.string.audit1));
-                tv_nature.setTextColor(getResources().getColor(R.color.textColor));
-            } else if (disabled == 1) {
-                tv_nature.setVisibility(View.VISIBLE);
-                //  tv_nature.setText(getString(R.string.merchants));
-                tv_nature.setTextColor(getResources().getColor(R.color.greenColors));
-            } else if (disabled == 2) {
-                tv_nature.setVisibility(View.VISIBLE);
-                tv_nature.setText(getString(R.string.disabled1));
-                tv_nature.setTextColor(getResources().getColor(R.color.fF0000Colors));
-            }
-            if (!StringUtils.isEmpty(userInfoBean.getData().getOrder_total())) {
-                tv_ordersTotal.setText(userInfoBean.getData().getOrder_total());
-            }
-            if (!StringUtils.isEmpty(userInfoBean.getData().getStore_level())) {
-                tv_storeLevel.setText(userInfoBean.getData().getStore_level());
-            }
-            if (!StringUtils.isEmpty(userInfoBean.getData().getLv_id())) {
-                tv_businessLevel.setText(userInfoBean.getData().getLv_id());
-            }
-
         } else if (flag == 1) {
             Intent personalDataIntent = new Intent(aty, PersonalDataActivity.class);
             // 获取内容
             // 设置结果 结果码，一个数据
             startActivityForResult(personalDataIntent, REQUEST_CODE);
         } else if (flag == 2) {
-            //   aty.showActivity(aty, MyStoresActivity.class);
+            aty.showActivity(aty, MyVehicleActivity.class);
         } else if (flag == 3) {
-            aty.showActivity(aty, MyWalletActivity.class);
+            aty.showActivity(aty, MyOrderActivity.class);
         } else if (flag == 4) {
+            aty.showActivity(aty, MyWalletActivity.class);
+        } else if (flag == 5) {
             aty.showActivity(aty, SharePoliteActivity.class);
-        } else if (flag == 6) {
-            Intent intent = new Intent(aty, MainActivity.class);
-            intent.putExtra("newChageIcon", 0);
-            aty.showActivity(aty, intent);
         }
         dismissLoadingDialog();
     }
@@ -252,18 +230,23 @@ public class MineFragment extends BaseFragment implements MineContract.View, BGA
      * 用户信息本地化
      */
     private void saveUserInfo(UserInfoBean userInfoBean) {
-        PreferenceHelper.write(aty, StringConstants.FILENAME, "store_name", userInfoBean.getData().getStore_name());
-        PreferenceHelper.write(aty, StringConstants.FILENAME, "store_id", userInfoBean.getData().getStore_id());
-        PreferenceHelper.write(aty, StringConstants.FILENAME, "disabled", StringUtils.toInt(userInfoBean.getData().getDisabled(), 3));
-        PreferenceHelper.write(aty, StringConstants.FILENAME, "store_logo", userInfoBean.getData().getStore_logo());
-        PreferenceHelper.write(aty, StringConstants.FILENAME, "order_total", userInfoBean.getData().getOrder_total());
-        PreferenceHelper.write(aty, StringConstants.FILENAME, "store_level", userInfoBean.getData().getStore_level());
-        PreferenceHelper.write(aty, StringConstants.FILENAME, "lv_id", userInfoBean.getData().getLv_id());
-        PreferenceHelper.write(aty, StringConstants.FILENAME, "nickname", userInfoBean.getData().getNickname());
+        PreferenceHelper.write(aty, StringConstants.FILENAME, "username", userInfoBean.getData().getUsername());
+        PreferenceHelper.write(aty, StringConstants.FILENAME, "nick_name", userInfoBean.getData().getNick_name());
+        PreferenceHelper.write(aty, StringConstants.FILENAME, "birthday", userInfoBean.getData().getBirthday());
+        PreferenceHelper.write(aty, StringConstants.FILENAME, "shz", userInfoBean.getData().getShz());
         PreferenceHelper.write(aty, StringConstants.FILENAME, "face", userInfoBean.getData().getFace());
-        PreferenceHelper.write(aty, StringConstants.FILENAME, "lv_name", userInfoBean.getData().getLv_name());
+        PreferenceHelper.write(aty, StringConstants.FILENAME, "sex", userInfoBean.getData().getSex());
+        PreferenceHelper.write(aty, StringConstants.FILENAME, "province", userInfoBean.getData().getProvince());
+        PreferenceHelper.write(aty, StringConstants.FILENAME, "province_id", userInfoBean.getData().getProvince_id());
+        PreferenceHelper.write(aty, StringConstants.FILENAME, "city", userInfoBean.getData().getCity());
+        PreferenceHelper.write(aty, StringConstants.FILENAME, "city_id", userInfoBean.getData().getCity_id());
+        PreferenceHelper.write(aty, StringConstants.FILENAME, "region", userInfoBean.getData().getRegion());
+        PreferenceHelper.write(aty, StringConstants.FILENAME, "region_id", userInfoBean.getData().getRegion_id());
+        PreferenceHelper.write(aty, StringConstants.FILENAME, "address", userInfoBean.getData().getAddress());
+        PreferenceHelper.write(aty, StringConstants.FILENAME, "signature", userInfoBean.getData().getSignature());
+        PreferenceHelper.write(aty, StringConstants.FILENAME, "mobile", userInfoBean.getData().getMobile());
+        PreferenceHelper.write(aty, StringConstants.FILENAME, "invite_code", userInfoBean.getData().getInvite_code());
     }
-
 
     @Override
     public void errorMsg(String msg, int flag) {
@@ -284,18 +267,23 @@ public class MineFragment extends BaseFragment implements MineContract.View, BGA
      */
     private void initDefaultInfo() {
         UserUtil.clearUserInfo(aty);
-        ll_mineTop.setVisibility(View.GONE);
-        tv_divider.setVisibility(View.GONE);
-        ll_mineBot.setVisibility(View.GONE);
-        tv_notLogged.setVisibility(View.VISIBLE);
-        tv_loginImmediately.setVisibility(View.VISIBLE);
+        tv_editData.setVisibility(View.GONE);
+        tv_editData1.setVisibility(View.GONE);
+        tv_minetouxiang.setVisibility(View.GONE);
+        iv_minetouxiang.setVisibility(View.GONE);
+        tv_nickname.setVisibility(View.GONE);
+        tv_serialNumber.setVisibility(View.GONE);
+        ll_notLogin.setVisibility(View.VISIBLE);
+        tv_ordersTotal.setText("0");
+        tv_guideTotal.setText("0");
+        tv_serviceLevel.setText("0");
     }
 
     @Override
     public void onBGARefreshLayoutBeginRefreshing(BGARefreshLayout refreshLayout) {
         mRefreshLayout.endRefreshing();
         showLoadingDialog(getString(R.string.dataLoad));
-        ((MineContract.Presenter) mPresenter).getInfo(aty);
+        ((MinePresenter) mPresenter).getInfo(aty);
     }
 
     @Override
@@ -303,12 +291,41 @@ public class MineFragment extends BaseFragment implements MineContract.View, BGA
         return false;
     }
 
+    @Override
+    public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+        if (scrollY <= 0) {
+            rl_title.setBackgroundColor(Color.TRANSPARENT);
+            //                          设置文字颜色，黑色，加透明度
+            tv_title.setTextColor(Color.TRANSPARENT);
+            tv_editData1.setTextColor(Color.TRANSPARENT);
+            tv_divider.setBackgroundColor(Color.TRANSPARENT);
+            Log.e("111", "y <= 0");
+        } else if (scrollY > 0 && scrollY <= 200) {
+            float scale = (float) scrollY / 200;
+            float alpha = (255 * scale);
+            // 只是layout背景透明(仿知乎滑动效果)白色透明
+            rl_title.setBackgroundColor(Color.argb((int) alpha, 255, 255, 255));
+            //    设置文字颜色，黑色，加透明度
+            tv_title.setTextColor(Color.argb((int) alpha, 0, 0, 0));
+            tv_editData1.setTextColor(Color.argb((int) alpha, 0, 0, 0));
+            tv_divider.setBackgroundColor(Color.argb((int) alpha, 0, 0, 0));
+            Log.e("111", "y > 0 && y <= imageHeight");
+        } else {
+//                          白色不透明
+            rl_title.setBackgroundColor(Color.argb((int) 255, 255, 255, 255));
+            //                          设置文字颜色
+            //黑色
+            tv_title.setTextColor(Color.argb((int) 255, 0, 0, 0));
+            tv_editData1.setTextColor(Color.argb((int) 255, 0, 0, 0));
+            tv_divider.setBackgroundColor(getResources().getColor(R.color.dividercolors2));
+        }
+    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {// 如果等于1
-            ((MineContract.Presenter) mPresenter).getInfo(aty);
+            ((MinePresenter) mPresenter).getInfo(aty);
         }
     }
 
@@ -318,9 +335,9 @@ public class MineFragment extends BaseFragment implements MineContract.View, BGA
     @Override
     public void callMsgEvent(MsgEvent msgEvent) {
         super.callMsgEvent(msgEvent);
-        if (((String) msgEvent.getData()).equals("RxBusLoginEvent") && mPresenter != null || ((String) msgEvent.getData()).equals("RxBusLogOutEvent") && mPresenter != null) {
-            ((MineContract.Presenter) mPresenter).getInfo(aty);
+        if (((String) msgEvent.getData()).equals("RxBusLoginEvent") && mPresenter != null || ((String) msgEvent.getData()).equals("RxBusLogOutEvent") && mPresenter != null || ((String) msgEvent.getData()).equals("RxBusMineFragmentEvent") && mPresenter != null) {
+            ((MinePresenter) mPresenter).getInfo(aty);
         }
-    }
 
+    }
 }

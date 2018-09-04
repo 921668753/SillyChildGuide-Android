@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     style="@style/MatchWrap"
-    android:background="@color/background">
+    android:background="@color/background"
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/tv_statusOrder"
@@ -26,15 +26,21 @@
     <!--android:dividerHeight="@dimen/dimen6"-->
     <!--tools:listitem="@layout/item_airporttransportationorder" />-->
 
+    <include layout="@layout/item_airporttransportationorder" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv"
-        style="@style/MatchWrap"
-        android:layout_below="@id/tv_statusOrder"
-        android:divider="@color/background"
-        android:dividerHeight="@dimen/dimen6"
-        android:overScrollMode="never"
-        android:scrollbars="none"
-        tools:listitem="@layout/item_airporttransportationorder" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen1" />
 
-</RelativeLayout>
+    <include layout="@layout/item_charterorder" />
+    <!--<android.support.v7.widget.RecyclerView-->
+    <!--android:id="@+id/rv"-->
+    <!--style="@style/MatchWrap"-->
+    <!--android:layout_below="@id/tv_statusOrder"-->
+    <!--android:divider="@color/background"-->
+    <!--android:dividerHeight="@dimen/dimen6"-->
+    <!--android:overScrollMode="never"-->
+    <!--android:scrollbars="none"-->
+    <!--tools:listitem="@layout/item_airporttransportationorder" />-->
+
+</LinearLayout>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/MatchMatch"
+    android:background="@color/background"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <LinearLayout
+        style="@style/Match44"
+        android:background="@color/whiteColors"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/ll_search"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dimen34"
+            android:layout_marginLeft="@dimen/dimen12"
+            android:layout_weight="1"
+            android:background="@drawable/shape_communitysearch"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="@dimen/dimen16"
+                android:layout_height="@dimen/dimen14"
+                android:layout_marginLeft="@dimen/dimen14"
+                android:src="@mipmap/community_search" />
+
+            <TextView
+                android:id="@+id/tv_search"
+                style="@style/AutoMatch"
+                android:background="@android:color/transparent"
+                android:gravity="center_vertical"
+                android:hint="@string/cityYouServe"
+                android:paddingLeft="@dimen/dimen7"
+                android:paddingRight="@dimen/dimen12"
+                android:singleLine="true"
+                android:textColor="@color/textColor"
+                android:textColorHint="@color/hintColors"
+                android:textSize="@dimen/textsize12" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_cancel"
+            style="@style/WrapMatch"
+            android:gravity="center"
+            android:paddingLeft="@dimen/dimen12"
+            android:paddingRight="@dimen/dimen12"
+            android:text="@string/cancel"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize14" />
+
+    </LinearLayout>
+
+    <GridView
+        android:id="@+id/gv_city"
+        style="@style/MatchMatch"
+        android:layout_marginBottom="@dimen/dimen6"
+        android:layout_marginTop="@dimen/dimen6"
+        android:background="@color/whiteColors"
+        android:horizontalSpacing="@dimen/dimen13"
+        android:numColumns="3"
+        android:overScrollMode="never"
+        android:paddingLeft="@dimen/dimen13"
+        android:paddingRight="@dimen/dimen13"
+        android:scrollbars="none"
+        android:verticalSpacing="@dimen/dimen6"
+        tools:listitem="@layout/item_city" />
+
+    <include layout="@layout/common_error" />
+
+</LinearLayout>

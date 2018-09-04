@@ -2,12 +2,211 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     style="@style/MatchMatch"
     android:background="@color/background"
-    android:fitsSystemWindows="true">
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
 
     <include layout="@layout/common_title" />
 
+    <ScrollView
+        style="@style/MatchMatch"
+        android:scrollbars="none">
+
+        <LinearLayout
+            style="@style/MatchMatch"
+            android:orientation="vertical">
+
+            <LinearLayout
+                style="@style/Match45"
+                android:layout_marginTop="@dimen/dimen6"
+                android:background="@color/whiteColors"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:text="@string/authenticationInformation"
+                    android:textColor="@color/tabColors"
+                    android:textSize="@dimen/textsize15" />
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:text="@string/mandatory"
+                    android:textColor="@color/fF4A4AColors"
+                    android:textSize="@dimen/textsize15" />
 
 
+            </LinearLayout>
+
+
+            <LinearLayout
+                style="@style/Match45"
+                android:layout_marginTop="@dimen/dimen1"
+                android:background="@color/whiteColors"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:paddingLeft="@dimen/dimen30"
+                    android:text="@string/serviceArea"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize15" />
+
+                <TextView
+                    style="@style/AutoWrap"
+                    android:layout_marginRight="@dimen/dimen30"
+                    android:gravity="right"
+                    android:text="东京"
+                    android:textColor="@color/tabColors"
+                    android:textSize="@dimen/textsize14" />
+
+
+                <ImageView
+                    style="@style/Image815"
+                    android:layout_marginRight="@dimen/dimen30"
+                    android:src="@mipmap/arrow" />
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen174"
+                android:layout_marginTop="@dimen/dimen1"
+                android:background="@color/whiteColors"
+                android:paddingBottom="@dimen/dimen4"
+                android:paddingLeft="@dimen/dimen2"
+                android:paddingRight="@dimen/dimen2"
+                android:paddingTop="@dimen/dimen4">
+
+                <ImageView
+                    style="@style/MatchMatch"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/img_car_company" />
+
+
+                <TextView
+                    style="@style/MatchMatch"
+                    android:background="@drawable/shape_authenticationinformation" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen174"
+                android:layout_marginTop="@dimen/dimen1"
+                android:background="@color/whiteColors"
+                android:paddingBottom="@dimen/dimen4"
+                android:paddingLeft="@dimen/dimen2"
+                android:paddingRight="@dimen/dimen2"
+                android:paddingTop="@dimen/dimen4">
+
+                <ImageView
+                    style="@style/MatchMatch"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/img_driving_licence" />
+
+
+                <TextView
+                    style="@style/MatchMatch"
+                    android:background="@drawable/shape_authenticationinformation" />
+
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen174"
+                android:layout_marginTop="@dimen/dimen1"
+                android:background="@color/whiteColors"
+                android:paddingBottom="@dimen/dimen4"
+                android:paddingLeft="@dimen/dimen2"
+                android:paddingRight="@dimen/dimen2"
+                android:paddingTop="@dimen/dimen4">
+
+                <ImageView
+                    style="@style/MatchMatch"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/img_hold_card_face" />
+
+
+                <TextView
+                    style="@style/MatchMatch"
+                    android:background="@drawable/shape_authenticationinformation" />
+
+            </RelativeLayout>
+
+
+            <TextView
+                style="@style/Match45"
+                android:layout_marginTop="@dimen/dimen1"
+                android:background="@color/whiteColors"
+                android:gravity="center"
+                android:text="@string/skillsInformation"
+                android:textColor="@color/tabColors"
+                android:textSize="@dimen/textsize15" />
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen174"
+                android:layout_marginTop="@dimen/dimen1"
+                android:background="@color/whiteColors"
+                android:paddingBottom="@dimen/dimen4"
+                android:paddingLeft="@dimen/dimen2"
+                android:paddingRight="@dimen/dimen2"
+                android:paddingTop="@dimen/dimen4">
+
+                <ImageView
+                    style="@style/MatchMatch"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/img_legally" />
+
+
+                <TextView
+                    style="@style/MatchMatch"
+                    android:background="@drawable/shape_authenticationinformation" />
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen174"
+                android:layout_marginTop="@dimen/dimen1"
+                android:background="@color/whiteColors"
+                android:paddingBottom="@dimen/dimen4"
+                android:paddingLeft="@dimen/dimen2"
+                android:paddingRight="@dimen/dimen2"
+                android:paddingTop="@dimen/dimen4">
+
+                <ImageView
+                    style="@style/MatchMatch"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/img_yacht_driving_license" />
+
+                <TextView
+                    style="@style/MatchMatch"
+                    android:background="@drawable/shape_authenticationinformation" />
+
+            </RelativeLayout>
+
+
+            <TextView
+                style="@style/Match50"
+                android:layout_marginTop="@dimen/dimen42"
+                android:background="@color/greenColors"
+                android:gravity="center"
+                android:text="@string/submitAudit"
+                android:textColor="@color/whiteColors"
+                android:textSize="@dimen/textsize18" />
+
+
+        </LinearLayout>
+
+
+    </ScrollView>
 
 
 </LinearLayout>

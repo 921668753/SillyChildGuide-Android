@@ -35,7 +35,7 @@
     <color name="cs_evaluate_dialog_divider">#eceef3</color>
     <color name="gray_two">#f2f2f2</color>
     <color name="seal_bg">#f0f0f6</color>
-
+    <color name="e5EBF0Colors">#E5EBF0</color>
 
     <!--主界面-->
     <color name="redColors">#ff2e29</color>
@@ -49,12 +49,14 @@
     <color name="e9e5Colors">#13e9e5</color>
     <color name="ff9955Colors">#ff9955</color>
     <color name="f3516dColors">#f3516d</color>
-
+    <color name="eBF1F6Colors">#EBF1F6</color>
 
     <!--我的-->
     <color name="darkGreen">#129130</color>
     <color name="fF2626Colors">#FF2626</color>
     <color name="d22222Color">#222222</color>
     <color name="fF3232Colors">#FF3232</color>
+    <color name="fF4A4AColors">#FF4A4A</color>
+
 
 </resources>

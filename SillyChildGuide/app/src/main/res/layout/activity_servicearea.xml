@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/MatchMatch"
+    android:background="@color/background"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_title" />
+
+    <LinearLayout
+        style="@style/MatchMatch"
+        android:layout_marginTop="@dimen/dimen6"
+        android:orientation="horizontal">
+
+        <ListView
+            android:id="@+id/lv_countries"
+            android:layout_width="@dimen/dimen100"
+            android:layout_height="match_parent"
+            android:background="@color/whiteColors"
+            android:divider="@null"
+            android:listSelector="@android:color/transparent"
+            android:scrollbars="none"
+            tools:listitem="@layout/item_countries" />
+
+        <GridView
+            android:id="@+id/gv_countriesClassification"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/dimen4"
+            android:layout_weight="1"
+            android:background="@color/whiteColors"
+            android:horizontalSpacing="@dimen/dimen17"
+            android:numColumns="2"
+            android:overScrollMode="never"
+            android:paddingLeft="@dimen/dimen19"
+            android:paddingRight="@dimen/dimen19"
+            android:scrollbars="none"
+            android:verticalSpacing="0dp"
+            tools:listitem="@layout/item_city" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

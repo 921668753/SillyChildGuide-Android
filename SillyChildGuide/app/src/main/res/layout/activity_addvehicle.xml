@@ -98,10 +98,14 @@
 
                 <TextView
                     style="@style/WrapWrap"
+                    android:paddingRight="@dimen/dimen10"
                     android:text="丰田艾尔法"
                     android:textColor="@color/hintColors"
                     android:textSize="@dimen/textsize14" />
 
+                <ImageView
+                    style="@style/Image713"
+                    android:src="@mipmap/arrow" />
 
             </LinearLayout>
 
@@ -126,11 +130,14 @@
 
                 <TextView
                     style="@style/WrapWrap"
+                    android:paddingRight="@dimen/dimen10"
                     android:text="8"
                     android:textColor="@color/hintColors"
                     android:textSize="@dimen/textsize14" />
 
-
+                <ImageView
+                    style="@style/Image713"
+                    android:src="@mipmap/arrow" />
             </LinearLayout>
 
             <LinearLayout
@@ -153,10 +160,14 @@
 
                 <TextView
                     style="@style/WrapWrap"
+                    android:paddingRight="@dimen/dimen10"
                     android:text="8"
                     android:textColor="@color/hintColors"
                     android:textSize="@dimen/textsize14" />
 
+                <ImageView
+                    style="@style/Image713"
+                    android:src="@mipmap/arrow" />
 
             </LinearLayout>
 
@@ -180,10 +191,46 @@
 
                 <TextView
                     style="@style/WrapWrap"
+                    android:paddingRight="@dimen/dimen10"
                     android:text="2018"
                     android:textColor="@color/hintColors"
                     android:textSize="@dimen/textsize14" />
 
+                <ImageView
+                    style="@style/Image713"
+                    android:src="@mipmap/arrow" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/ll_licensePlateNumber"
+                style="@style/Match45"
+                android:layout_below="@id/ll_vehicleYear"
+                android:layout_marginTop="@dimen/dimen1"
+                android:background="@color/whiteColors"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/dimen20"
+                android:paddingRight="@dimen/dimen20">
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:text="@string/licensePlateNumber"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize14" />
+
+
+                <EditText
+                    style="@style/MatchMatch"
+                    android:background="@android:color/transparent"
+                    android:gravity="right|center_vertical"
+                    android:hint="@string/pleaseEnterlicensePlateNumber"
+                    android:singleLine="true"
+                    android:textColor="@color/textColor"
+                    android:textColorHint="@color/hintColors"
+                    android:textCursorDrawable="@drawable/shape_cursor"
+                    android:textSize="@dimen/textsize14" />
 
             </LinearLayout>
 
@@ -191,7 +238,7 @@
             <LinearLayout
                 android:id="@+id/ll_vehiclePassengerInsurance"
                 style="@style/Match45"
-                android:layout_below="@id/ll_vehicleYear"
+                android:layout_below="@id/ll_licensePlateNumber"
                 android:layout_marginTop="@dimen/dimen6"
                 android:background="@color/whiteColors"
                 android:gravity="center_vertical"

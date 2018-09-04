@@ -1,369 +1,448 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     style="@style/MatchMatch"
-    android:background="@color/background"
     android:fitsSystemWindows="true"
     android:orientation="vertical">
 
     <cn.bingoogolapple.refreshlayout.BGARefreshLayout
         android:id="@+id/mRefreshLayout"
-        style="@style/MatchMatch">
+        style="@style/MatchMatch"
+        android:background="@color/background">
 
         <ScrollView
             android:id="@+id/sv_mine"
             style="@style/MatchMatch"
             android:scrollbars="none">
 
-            <RelativeLayout
+            <LinearLayout
                 style="@style/MatchMatch"
-                android:gravity="center_horizontal">
+                android:orientation="vertical">
 
-                <ImageView
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/dimen204"
-                    android:background="@mipmap/mine_background" />
-
-                <LinearLayout
-                    android:id="@+id/ll_mine"
-                    style="@style/MatchWrap"
-                    android:layout_marginLeft="@dimen/dimen18"
-                    android:layout_marginRight="@dimen/dimen18"
-                    android:layout_marginTop="@dimen/dimen85"
-                    android:background="@drawable/shape_mine"
-                    android:gravity="center"
-                    android:minHeight="@dimen/dimen143"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-                        android:id="@+id/ll_mineTop"
-                        style="@style/MatchWrap"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal"
-                        android:visibility="visible">
-
-                        <ImageView
-                            android:id="@+id/img_head"
-                            android:layout_width="@dimen/dimen58"
-                            android:layout_height="@dimen/dimen58"
-                            android:layout_margin="@dimen/dimen16"
-                            android:src="@mipmap/avatar" />
-
-
-                        <LinearLayout
-                            style="@style/AutoMatch"
-                            android:layout_marginLeft="@dimen/dimen25"
-                            android:gravity="center_vertical"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:id="@+id/tv_storesName"
-                                style="@style/WrapWrap"
-                                android:text="小仙女集结地"
-                                android:textColor="@color/titletextcolors"
-                                android:textSize="@dimen/textsize16" />
-
-                            <TextView
-                                android:id="@+id/tv_nature"
-                                style="@style/WrapWrap"
-                                android:layout_marginTop="@dimen/dimen15"
-                                android:text="商家"
-                                android:textColor="@color/greenColors"
-                                android:textSize="@dimen/textsize13" />
-
-                        </LinearLayout>
-
-                        <ImageView
-                            style="@style/Image712"
-                            android:layout_marginLeft="@dimen/dimen16"
-                            android:layout_marginRight="@dimen/dimen16"
-                            android:scaleType="fitXY"
-                            android:src="@mipmap/right_arrow" />
-
-                    </LinearLayout>
-
+                    android:layout_height="@dimen/dimen242"
+                    android:background="@mipmap/mine_background">
 
                     <TextView
-                        android:id="@+id/tv_divider"
-                        style="@style/DividerWidth"
-                        android:visibility="visible" />
+                        android:id="@+id/tv_editData"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/dimen44"
+                        android:layout_alignParentRight="true"
+                        android:gravity="center_vertical|right"
+                        android:paddingRight="@dimen/dimen15"
+                        android:text="@string/editData"
+                        android:textColor="@color/whiteColors"
+                        android:textSize="@dimen/textsize13"
+                        android:visibility="gone" />
+
+                    <TextView
+                        android:id="@+id/tv_minetouxiang"
+                        android:layout_width="@dimen/dimen71"
+                        android:layout_height="@dimen/dimen71"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/dimen29"
+                        android:background="@drawable/shape_mine_dot"
+                        android:visibility="gone" />
+
+                    <ImageView
+                        android:id="@+id/iv_minetouxiang"
+                        android:layout_width="@dimen/dimen69"
+                        android:layout_height="@dimen/dimen69"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/dimen30"
+                        android:src="@mipmap/avatar"
+                        android:visibility="gone" />
+
+                    <TextView
+                        android:id="@+id/tv_nickname"
+                        style="@style/WrapWrap"
+                        android:layout_below="@id/iv_minetouxiang"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/dimen9"
+                        android:text="@string/loginOrRegister"
+                        android:textColor="@color/whiteColors"
+                        android:textSize="@dimen/textsize15"
+                        android:visibility="gone" />
+
+                    <TextView
+                        android:id="@+id/tv_serialNumber"
+                        style="@style/WrapWrap"
+                        android:layout_below="@id/tv_nickname"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/dimen7"
+                        android:text="SHZ0427"
+                        android:textColor="@color/whiteColors"
+                        android:textSize="@dimen/textsize10"
+                        android:visibility="gone" />
+
+                    <TextView
+                        android:id="@+id/tv_synopsis"
+                        style="@style/MatchWrap"
+                        android:layout_below="@id/tv_serialNumber"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/dimen25"
+                        android:gravity="center"
+                        android:paddingLeft="@dimen/dimen24"
+                        android:paddingRight="@dimen/dimen24"
+                        android:singleLine="true"
+                        android:text="简介:某年某月某日，下午某时，天气晴，我在某地，想念你。 "
+                        android:textColor="@color/whiteColors"
+                        android:textSize="@dimen/textsize11"
+                        android:visibility="gone" />
 
                     <LinearLayout
-                        android:id="@+id/ll_mineBot"
                         style="@style/MatchWrap"
-                        android:orientation="horizontal"
-                        android:visibility="visible">
-
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginBottom="@dimen/dimen25"
+                        android:layout_marginLeft="@dimen/dimen50"
+                        android:layout_marginRight="@dimen/dimen50"
+                        android:gravity="center"
+                        android:orientation="horizontal">
 
                         <LinearLayout
                             style="@style/AutoWrap"
                             android:gravity="center"
                             android:orientation="vertical">
-
-                            <TextView
-                                style="@style/WrapWrap"
-                                android:layout_marginTop="@dimen/dimen10"
-                                android:text="@string/ordersTotal"
-                                android:textColor="@color/titletextcolors"
-                                android:textSize="@dimen/textsize13" />
 
                             <TextView
                                 android:id="@+id/tv_ordersTotal"
                                 style="@style/WrapWrap"
-                                android:layout_marginBottom="@dimen/dimen10"
-                                android:layout_marginTop="@dimen/dimen10"
                                 android:text="0"
-                                android:textColor="@color/textColor"
+                                android:textColor="@color/whiteColors"
+                                android:textSize="@dimen/textsize14" />
+
+                            <TextView
+                                style="@style/WrapWrap"
+                                android:text="@string/ordersTotal"
+                                android:textColor="@color/whiteColors"
                                 android:textSize="@dimen/textsize12" />
 
                         </LinearLayout>
 
+
+                        <TextView
+                            android:layout_width="@dimen/dimen1"
+                            android:layout_height="@dimen/dimen16"
+                            android:background="@color/whiteColors" />
+
                         <LinearLayout
-                            style="@style/AutoMatch"
+                            style="@style/AutoWrap"
                             android:gravity="center"
                             android:orientation="vertical">
 
                             <TextView
+                                android:id="@+id/tv_guideTotal"
                                 style="@style/WrapWrap"
-                                android:text="@string/storeLevel"
-                                android:textColor="@color/titletextcolors"
-                                android:textSize="@dimen/textsize13" />
-
-                            <TextView
-                                android:id="@+id/tv_storeLevel"
-                                android:layout_width="@dimen/dimen20"
-                                android:layout_height="@dimen/dimen16"
-                                android:layout_marginTop="@dimen/dimen7"
-                                android:background="@mipmap/mine_grade_icon"
-                                android:gravity="bottom|center_horizontal"
                                 android:text="0"
                                 android:textColor="@color/whiteColors"
-                                android:textSize="@dimen/textsize8" />
+                                android:textSize="@dimen/textsize14" />
+
+                            <TextView
+                                style="@style/WrapWrap"
+                                android:text="@string/guideTotal"
+                                android:textColor="@color/whiteColors"
+                                android:textSize="@dimen/textsize12" />
+
                         </LinearLayout>
 
+                        <TextView
+                            android:layout_width="@dimen/dimen1"
+                            android:layout_height="@dimen/dimen16"
+                            android:background="@color/whiteColors" />
+
+
                         <LinearLayout
-                            style="@style/AutoMatch"
+                            style="@style/AutoWrap"
                             android:gravity="center"
                             android:orientation="vertical">
 
                             <TextView
+                                android:id="@+id/tv_serviceLevel"
                                 style="@style/WrapWrap"
-                                android:text="@string/businessLevel"
-                                android:textColor="@color/titletextcolors"
-                                android:textSize="@dimen/textsize13" />
-
-                            <TextView
-                                android:id="@+id/tv_businessLevel"
-                                android:layout_width="@dimen/dimen20"
-                                android:layout_height="@dimen/dimen16"
-                                android:layout_marginTop="@dimen/dimen7"
-                                android:background="@mipmap/mine_grade_icon"
-                                android:gravity="bottom|center_horizontal"
                                 android:text="0"
                                 android:textColor="@color/whiteColors"
-                                android:textSize="@dimen/textsize8" />
+                                android:textSize="@dimen/textsize14" />
+
+                            <TextView
+                                style="@style/WrapWrap"
+                                android:text="@string/serviceLevel"
+                                android:textColor="@color/whiteColors"
+                                android:textSize="@dimen/textsize12" />
 
                         </LinearLayout>
 
                     </LinearLayout>
 
 
-                    <TextView
-                        android:id="@+id/tv_notLogged"
+                    <LinearLayout
+                        android:id="@+id/ll_notLogin"
                         style="@style/WrapWrap"
-                        android:text="@string/notLogged"
-                        android:textColor="@color/titletextcolors"
-                        android:textSize="@dimen/textsize14"
-                        android:visibility="gone" />
-
-                    <TextView
-                        android:id="@+id/tv_loginImmediately"
-                        android:layout_width="@dimen/dimen130"
-                        android:layout_height="@dimen/dimen40"
-                        android:layout_marginTop="@dimen/dimen10"
-                        android:background="@drawable/shape_login1"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
                         android:gravity="center"
-                        android:text="@string/loginImmediately"
-                        android:textColor="@color/whiteColors"
-                        android:textSize="@dimen/textsize16"
-                        android:visibility="gone" />
+                        android:orientation="vertical"
+                        android:visibility="visible">
 
-                </LinearLayout>
+                        <TextView
+                            style="@style/WrapWrap"
+                            android:text="@string/notLogin"
+                            android:textColor="@color/whiteColors"
+                            android:textSize="@dimen/textsize14"
+                            android:visibility="visible" />
+
+                        <TextView
+                            android:layout_width="@dimen/dimen130"
+                            android:layout_height="@dimen/dimen40"
+                            android:layout_marginTop="@dimen/dimen10"
+                            android:background="@drawable/shape_login1"
+                            android:gravity="center"
+                            android:text="@string/loginImmediately"
+                            android:textColor="@color/whiteColors"
+                            android:textSize="@dimen/textsize16" />
+
+                    </LinearLayout>
 
 
+                </RelativeLayout>
+
+
+                <!--我的钱包-->
                 <LinearLayout
-                    android:id="@+id/ll_myStores"
-                    style="@style/Match49"
-                    android:layout_below="@id/ll_mine"
-                    android:layout_marginLeft="@dimen/dimen5"
-                    android:layout_marginRight="@dimen/dimen5"
-                    android:layout_marginTop="@dimen/dimen15"
-                    android:background="@drawable/shape_homepage"
+                    android:id="@+id/ll_myVehicle"
+                    style="@style/Match45"
+                    android:layout_marginTop="@dimen/dimen10"
+                    android:background="@color/whiteColors"
                     android:gravity="center_vertical"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/dimen27"
+                    android:paddingRight="@dimen/dimen27">
 
                     <ImageView
                         style="@style/Image20"
-                        android:layout_marginLeft="@dimen/dimen15"
-                        android:layout_marginRight="@dimen/dimen15"
-                        android:src="@mipmap/default_image" />
+                        android:src="@mipmap/mine_myvehicle" />
 
                     <TextView
                         style="@style/AutoWrap"
-                        android:text="@string/myStores"
-                        android:textColor="@color/titletextcolors"
+                        android:layout_marginLeft="@dimen/dimen12"
+                        android:text="@string/myVehicle"
+                        android:textColor="@color/textColor"
                         android:textSize="@dimen/textsize13" />
 
                     <ImageView
-                        style="@style/Image712"
-                        android:layout_marginRight="@dimen/dimen15"
-                        android:scaleType="fitXY"
-                        android:src="@mipmap/right_arrow" />
+                        style="@style/Image610"
+                        android:src="@mipmap/arrow" />
 
                 </LinearLayout>
 
+
+                <!--我的订单-->
                 <LinearLayout
-                    android:id="@+id/ll_centre"
-                    style="@style/MatchWrap"
-                    android:layout_below="@id/ll_myStores"
-                    android:layout_marginLeft="@dimen/dimen5"
-                    android:layout_marginRight="@dimen/dimen5"
-                    android:layout_marginTop="@dimen/dimen15"
-                    android:background="@drawable/shape_homepage"
-                    android:orientation="vertical">
+                    android:id="@+id/ll_myOrder"
+                    style="@style/Match45"
+                    android:layout_marginTop="@dimen/dimen10"
+                    android:background="@color/whiteColors"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/dimen27"
+                    android:paddingRight="@dimen/dimen27">
 
-                    <LinearLayout
-                        android:id="@+id/ll_myWallet"
-                        style="@style/Match49"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            style="@style/Image20"
-                            android:layout_marginLeft="@dimen/dimen15"
-                            android:layout_marginRight="@dimen/dimen15"
-                            android:src="@mipmap/mine_wallet_icon" />
-
-                        <TextView
-                            style="@style/AutoWrap"
-                            android:text="@string/myWallet"
-                            android:textColor="@color/titletextcolors"
-                            android:textSize="@dimen/textsize13" />
-
-                        <ImageView
-                            style="@style/Image712"
-                            android:layout_marginRight="@dimen/dimen15"
-                            android:scaleType="fitXY"
-                            android:src="@mipmap/right_arrow" />
-
-
-                    </LinearLayout>
+                    <ImageView
+                        style="@style/Image20"
+                        android:src="@mipmap/mine_myorder" />
 
                     <TextView
-                        style="@style/DividerWidth"
-                        android:layout_marginLeft="@dimen/dimen15" />
+                        style="@style/AutoWrap"
+                        android:layout_marginLeft="@dimen/dimen12"
+                        android:text="@string/myOrder"
+                        android:textColor="@color/textColor"
+                        android:textSize="@dimen/textsize13" />
 
-                    <LinearLayout
-                        android:id="@+id/ll_sillyChildCollege"
-                        style="@style/Match49"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal">
+                    <ImageView
+                        style="@style/Image610"
+                        android:src="@mipmap/arrow" />
 
-                        <ImageView
-                            style="@style/Image20"
-                            android:layout_marginLeft="@dimen/dimen15"
-                            android:layout_marginRight="@dimen/dimen15"
-                            android:src="@mipmap/mine_college_icon" />
+                </LinearLayout>
 
-                        <TextView
-                            style="@style/AutoWrap"
-                            android:text="@string/sillyChildCollege"
-                            android:textColor="@color/titletextcolors"
-                            android:textSize="@dimen/textsize13" />
+                <!--我的钱包-->
+                <LinearLayout
+                    android:id="@+id/ll_myWallet"
+                    style="@style/Match45"
+                    android:layout_marginTop="@dimen/dimen10"
+                    android:background="@color/whiteColors"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/dimen27"
+                    android:paddingRight="@dimen/dimen27">
 
-                        <ImageView
-                            style="@style/Image712"
-                            android:layout_marginRight="@dimen/dimen15"
-                            android:scaleType="fitXY"
-                            android:src="@mipmap/right_arrow" />
+                    <ImageView
+                        style="@style/Image20"
+                        android:src="@mipmap/mine_mywallet" />
 
-                    </LinearLayout>
+                    <TextView
+                        style="@style/AutoWrap"
+                        android:layout_marginLeft="@dimen/dimen12"
+                        android:text="@string/myWallet"
+                        android:textColor="@color/textColor"
+                        android:textSize="@dimen/textsize13" />
+
+                    <ImageView
+                        style="@style/Image610"
+                        android:src="@mipmap/arrow" />
 
                 </LinearLayout>
 
 
                 <LinearLayout
-                    style="@style/MatchWrap"
-                    android:layout_below="@id/ll_centre"
-                    android:layout_marginLeft="@dimen/dimen5"
-                    android:layout_marginRight="@dimen/dimen5"
-                    android:layout_marginTop="@dimen/dimen15"
-                    android:background="@drawable/shape_homepage"
-                    android:orientation="vertical">
+                    android:id="@+id/ll_sillyChildCollege"
+                    style="@style/Match45"
+                    android:layout_marginTop="@dimen/dimen10"
+                    android:background="@color/whiteColors"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/dimen27"
+                    android:paddingRight="@dimen/dimen27">
 
-                    <LinearLayout
-                        android:id="@+id/ll_sharePolite"
-                        style="@style/Match49"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal"
-                        android:visibility="gone">
-
-                        <ImageView
-                            style="@style/Image20"
-                            android:layout_marginLeft="@dimen/dimen15"
-                            android:layout_marginRight="@dimen/dimen15"
-                            android:src="@mipmap/mine_sharing_courtesy_icon" />
-
-                        <TextView
-                            style="@style/AutoWrap"
-                            android:text="@string/sharePolite"
-                            android:textColor="@color/titletextcolors"
-                            android:textSize="@dimen/textsize13" />
-
-                        <ImageView
-                            style="@style/Image712"
-                            android:layout_marginRight="@dimen/dimen15"
-                            android:scaleType="fitXY"
-                            android:src="@mipmap/right_arrow" />
-
-                    </LinearLayout>
+                    <ImageView
+                        style="@style/Image20"
+                        android:src="@mipmap/mine_sillychildcollege" />
 
                     <TextView
-                        style="@style/DividerWidth"
-                        android:layout_marginLeft="@dimen/dimen15"
-                        android:visibility="gone" />
+                        style="@style/AutoWrap"
+                        android:layout_marginLeft="@dimen/dimen12"
+                        android:text="@string/sillyChildCollege"
+                        android:textColor="@color/textColor"
+                        android:textSize="@dimen/textsize13" />
 
-                    <LinearLayout
-                        android:id="@+id/ll_setUp"
-                        style="@style/Match49"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal">
 
-                        <ImageView
-                            style="@style/Image20"
-                            android:layout_marginLeft="@dimen/dimen15"
-                            android:layout_marginRight="@dimen/dimen15"
-                            android:src="@mipmap/mine_set_up" />
+                    <ImageView
+                        style="@style/Image610"
+                        android:src="@mipmap/arrow" />
+                </LinearLayout>
 
-                        <TextView
-                            style="@style/AutoWrap"
-                            android:text="@string/setUp"
-                            android:textColor="@color/titletextcolors"
-                            android:textSize="@dimen/textsize13" />
 
-                        <ImageView
-                            style="@style/Image712"
-                            android:layout_marginRight="@dimen/dimen15"
-                            android:scaleType="fitXY"
-                            android:src="@mipmap/right_arrow" />
+                <!--分享有礼-->
+                <LinearLayout
+                    android:id="@+id/ll_sharePolite"
+                    style="@style/Match45"
+                    android:layout_marginTop="@dimen/dimen1"
+                    android:background="@color/whiteColors"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/dimen27"
+                    android:paddingRight="@dimen/dimen27">
 
-                    </LinearLayout>
+                    <ImageView
+                        style="@style/Image20"
+                        android:src="@mipmap/mine_sharepolite" />
+
+                    <TextView
+                        style="@style/AutoWrap"
+                        android:layout_marginLeft="@dimen/dimen12"
+                        android:text="@string/sharePolite"
+                        android:textColor="@color/textColor"
+                        android:textSize="@dimen/textsize13" />
+
+
+                    <ImageView
+                        style="@style/Image610"
+                        android:src="@mipmap/arrow" />
+                </LinearLayout>
+
+
+                <!--设置-->
+                <LinearLayout
+                    android:id="@+id/ll_setUp"
+                    style="@style/Match45"
+                    android:layout_marginTop="@dimen/dimen1"
+                    android:background="@color/whiteColors"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/dimen27"
+                    android:paddingRight="@dimen/dimen27">
+
+                    <ImageView
+                        style="@style/Image20"
+                        android:src="@mipmap/mine_setup" />
+
+                    <TextView
+                        style="@style/AutoWrap"
+                        android:layout_marginLeft="@dimen/dimen12"
+                        android:text="@string/setUp"
+                        android:textColor="@color/textColor"
+                        android:textSize="@dimen/textsize13" />
+
+                    <ImageView
+                        style="@style/Image610"
+                        android:src="@mipmap/arrow" />
 
                 </LinearLayout>
 
-            </RelativeLayout>
 
+                <!--VIP紧急电话-->
+                <!--<LinearLayout-->
+                <!--android:id="@+id/ll_vipEmergencyCall"-->
+                <!--style="@style/Match45"-->
+                <!--android:layout_marginTop="@dimen/dimen1"-->
+                <!--android:background="@color/whiteColors"-->
+                <!--android:gravity="center_vertical"-->
+                <!--android:paddingLeft="@dimen/dimen22"-->
+                <!--android:paddingRight="@dimen/dimen22">-->
+
+                <!--<ImageView-->
+                <!--style="@style/Image20"-->
+                <!--android:src="@mipmap/minevipemergencycallxxx" />-->
+
+                <!--<TextView-->
+                <!--style="@style/AutoWrap"-->
+                <!--android:layout_marginLeft="@dimen/dimen12"-->
+                <!--android:text="@string/vipEmergencyCall"-->
+                <!--android:textColor="@color/textColor"-->
+                <!--android:textSize="@dimen/textsize13" />-->
+
+
+                <!--<ImageView-->
+                <!--style="@style/Image610"-->
+                <!--android:src="@mipmap/arrow1" />-->
+
+                <!--</LinearLayout>-->
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen20" />
+
+            </LinearLayout>
         </ScrollView>
 
     </cn.bingoogolapple.refreshlayout.BGARefreshLayout>
 
-</LinearLayout>
+    <RelativeLayout
+        android:id="@+id/rl_title"
+        style="@style/Match45"
+        android:background="@android:color/transparent"
+        android:visibility="visible">
+
+        <TextView
+            android:id="@+id/tv_title"
+            style="@style/WrapWrap"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="@string/mine"
+            android:textColor="@android:color/transparent"
+            android:textSize="@dimen/textsize17" />
+
+        <TextView
+            android:id="@+id/tv_editData1"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dimen44"
+            android:layout_alignParentRight="true"
+            android:gravity="center_vertical|right"
+            android:paddingRight="@dimen/dimen15"
+            android:text="@string/editData"
+            android:textColor="@android:color/transparent"
+            android:textSize="@dimen/textsize13"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tv_divider"
+            style="@style/DividerWidth"
+            android:layout_alignParentBottom="true"
+            android:visibility="gone" />
+    </RelativeLayout>
+</RelativeLayout>

@@ -6,10 +6,10 @@ import com.yinglan.scg.R;
 /**
  * 线路订单详情
  */
-public class CharterOrderDetailsActivity extends BaseActivity {
+public class CharterDetailsActivity extends BaseActivity {
 
     @Override
     public void setRootView() {
-        setContentView(R.layout.activity_charterorderdetails);
+        setContentView(R.layout.activity_charterdetails);
     }
 }
