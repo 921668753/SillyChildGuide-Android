@@ -4,14 +4,14 @@
     android:layout_height="wrap_content">
 
     <RelativeLayout
-        android:layout_width="@dimen/dimen85"
-        android:layout_height="@dimen/dimen85"
+        android:layout_width="@dimen/dimen107"
+        android:layout_height="@dimen/dimen107"
         android:layout_centerInParent="true">
 
         <ImageView
             android:id="@+id/fiv"
-            android:layout_width="@dimen/dimen80"
-            android:layout_height="@dimen/dimen80"
+            android:layout_width="@dimen/dimen102"
+            android:layout_height="@dimen/dimen102"
             android:padding="@dimen/dimen5"
             android:scaleType="centerCrop"
             android:src="@color/whiteColors" />
@@ -33,7 +33,7 @@
 
         <TextView
             android:id="@+id/tv_duration"
-            android:layout_width="80dp"
+            android:layout_width="@dimen/dimen97"
             android:layout_height="30dp"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="5dp"

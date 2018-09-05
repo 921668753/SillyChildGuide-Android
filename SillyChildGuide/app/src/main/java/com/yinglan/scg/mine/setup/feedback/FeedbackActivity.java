@@ -28,7 +28,7 @@ import com.luck.picture.lib.entity.LocalMedia;
 import com.luck.picture.lib.permissions.RxPermissions;
 import com.luck.picture.lib.tools.PictureFileUtils;
 import com.yinglan.scg.R;
-import com.yinglan.scg.adapter.GridImageAdapter;
+import com.yinglan.scg.adapter.mine.setup.GridImageAdapter;
 import com.yinglan.scg.loginregister.LoginActivity;
 
 import java.util.ArrayList;

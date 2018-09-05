@@ -24,11 +24,9 @@ import com.luck.picture.lib.entity.LocalMedia;
 import com.luck.picture.lib.permissions.RxPermissions;
 import com.luck.picture.lib.tools.PictureFileUtils;
 import com.yinglan.scg.R;
-import com.yinglan.scg.adapter.GridImageAdapter;
+import com.yinglan.scg.adapter.mine.myvehicle.GridImageAdapter;
 import com.yinglan.scg.loginregister.LoginActivity;
 import com.yinglan.scg.mine.myvehicle.model.ModelActivity;
-import com.yinglan.scg.mine.personaldata.authenticationinformation.servicearea.ServiceAreaActivity;
-import com.yinglan.scg.mine.setup.feedback.FeedbackActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -149,7 +147,7 @@ public class AddVehicleActivity extends BaseActivity implements AddVehicleContra
     @Override
     public void initWidget() {
         super.initWidget();
-        FullyGridLayoutManager manager = new FullyGridLayoutManager(this, 4, GridLayoutManager.VERTICAL, false);
+        FullyGridLayoutManager manager = new FullyGridLayoutManager(this, 3, GridLayoutManager.VERTICAL, false);
         rv_vehicleImages.setLayoutManager(manager);
         adapter.setList(selectList);
         adapter.setSelectMax(maxSelectNum);

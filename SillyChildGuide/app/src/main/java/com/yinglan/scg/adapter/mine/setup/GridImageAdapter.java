@@ -1,4 +1,4 @@
-package com.yinglan.scg.adapter;
+package com.yinglan.scg.adapter.mine.setup;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
