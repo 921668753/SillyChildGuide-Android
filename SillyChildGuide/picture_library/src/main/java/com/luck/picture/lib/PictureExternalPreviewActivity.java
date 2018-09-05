@@ -1,6 +1,7 @@
 package com.luck.picture.lib;
 
 import android.Manifest;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.PointF;
 import android.graphics.drawable.Drawable;
@@ -47,6 +48,7 @@ import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.Serializable;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -64,6 +66,7 @@ import io.reactivex.disposables.Disposable;
 public class PictureExternalPreviewActivity extends PictureBaseActivity implements View.OnClickListener {
     private ImageButton left_back;
     private TextView tv_title;
+    private TextView tv_del;
     private PreviewViewPager viewPager;
     private List<LocalMedia> images = new ArrayList<>();
     private int position = 0;
@@ -72,6 +75,7 @@ public class PictureExternalPreviewActivity extends PictureBaseActivity implemen
     private LayoutInflater inflater;
     private RxPermissions rxPermissions;
     private loadDataThread loadDataThread;
+    private boolean deleteShow;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,17 +83,25 @@ public class PictureExternalPreviewActivity extends PictureBaseActivity implemen
         setContentView(R.layout.picture_activity_external_preview);
         inflater = LayoutInflater.from(this);
         tv_title = (TextView) findViewById(R.id.picture_title);
+        tv_del = (TextView) findViewById(R.id.picture_del);
         left_back = (ImageButton) findViewById(R.id.left_back);
         viewPager = (PreviewViewPager) findViewById(R.id.preview_pager);
         position = getIntent().getIntExtra(PictureConfig.EXTRA_POSITION, 0);
         directory_path = getIntent().getStringExtra(PictureConfig.DIRECTORY_PATH);
         images = (List<LocalMedia>) getIntent().getSerializableExtra(PictureConfig.EXTRA_PREVIEW_SELECT_LIST);
+        deleteShow = getIntent().getBooleanExtra(PictureConfig.EXTRA_DELETE_SHOW, false);
         left_back.setOnClickListener(this);
+        tv_del.setOnClickListener(this);
         initViewPageAdapterData();
     }
 
     private void initViewPageAdapterData() {
         tv_title.setText(position + 1 + "/" + images.size());
+        if (deleteShow) {
+            tv_del.setVisibility(View.VISIBLE);
+        } else {
+            tv_del.setVisibility(View.GONE);
+        }
         adapter = new SimpleFragmentAdapter();
         viewPager.setAdapter(adapter);
         viewPager.setCurrentItem(position);
@@ -100,8 +112,9 @@ public class PictureExternalPreviewActivity extends PictureBaseActivity implemen
             }
 
             @Override
-            public void onPageSelected(int position) {
-                tv_title.setText(position + 1 + "/" + images.size());
+            public void onPageSelected(int position1) {
+                position = position1;
+                tv_title.setText(position1 + 1 + "/" + images.size());
             }
 
             @Override
@@ -112,8 +125,19 @@ public class PictureExternalPreviewActivity extends PictureBaseActivity implemen
 
     @Override
     public void onClick(View v) {
-        finish();
-        overridePendingTransition(0, R.anim.a3);
+        int i = v.getId();
+        if (i == R.id.left_back) {
+            if (deleteShow) {
+                Intent intent = new Intent();
+                intent.putExtra(PictureConfig.EXTRA_PREVIEW_SELECT_LIST, (Serializable) images);
+                setResult(RESULT_OK, intent);
+            }
+            finish();
+            overridePendingTransition(0, R.anim.a3);
+        } else if (i == R.id.picture_del) {
+            showDelLoadDialog(position);
+        }
+
     }
 
     public class SimpleFragmentAdapter extends PagerAdapter {
@@ -331,6 +355,43 @@ public class PictureExternalPreviewActivity extends PictureBaseActivity implemen
         dialog.show();
     }
 
+    /**
+     * 删除图片提示
+     */
+    private void showDelLoadDialog(final int position) {
+        final CustomDialog dialog = new CustomDialog(PictureExternalPreviewActivity.this,
+                ScreenUtils.getScreenWidth(PictureExternalPreviewActivity.this) * 3 / 4,
+                ScreenUtils.getScreenHeight(PictureExternalPreviewActivity.this) / 4,
+                R.layout.picture_wind_base_dialog_xml, R.style.Theme_dialog);
+        Button btn_cancel = (Button) dialog.findViewById(R.id.btn_cancel);
+        Button btn_commit = (Button) dialog.findViewById(R.id.btn_commit);
+        TextView tv_title = (TextView) dialog.findViewById(R.id.tv_title);
+        TextView tv_content = (TextView) dialog.findViewById(R.id.tv_content);
+        tv_title.setText(getString(R.string.picture_prompt));
+        tv_content.setText(getString(R.string.picture_prompt_del));
+        btn_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+        btn_commit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                images.remove(position);
+                adapter.notifyDataSetChanged();
+                dialog.dismiss();
+                if (images == null || images.size() <= 0) {
+                    Intent intent = new Intent();
+                    intent.putExtra(PictureConfig.EXTRA_PREVIEW_SELECT_LIST, (Serializable) images);
+                    setResult(RESULT_OK, intent);
+                    finish();
+                    overridePendingTransition(0, R.anim.a3);
+                }
+            }
+        });
+        dialog.show();
+    }
 
     // 进度条线程
     public class loadDataThread extends Thread {

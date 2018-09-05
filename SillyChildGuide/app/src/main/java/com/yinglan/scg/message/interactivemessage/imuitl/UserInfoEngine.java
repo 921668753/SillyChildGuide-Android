@@ -9,7 +9,7 @@ import com.common.cklibrary.utils.httputil.HttpUtilParams;
 import com.common.cklibrary.utils.httputil.ResponseListener;
 import com.kymjs.common.StringUtils;
 import com.kymjs.rxvolley.client.HttpParams;
-import com.yinglan.scg.entity.RongCloudBean;
+import com.yinglan.scg.entity.loginregister.RongCloudBean;
 import com.yinglan.scg.retrofit.RequestClient;
 
 import io.rong.imkit.RongIM;

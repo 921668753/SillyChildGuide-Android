@@ -194,6 +194,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
     public void getSuccess(String s, int flag) {
         if (flag == 0) {
             LoginBean bean = (LoginBean) JsonUtil.getInstance().json2Obj(s, LoginBean.class);
+            PreferenceHelper.write(aty, StringConstants.FILENAME, "approve_status", bean.getData().getApprove_status());
             PreferenceHelper.write(aty, StringConstants.FILENAME, "mobile", et_accountNumber.getText().toString());
             PreferenceHelper.write(aty, StringConstants.FILENAME, "face", bean.getData().getFace());
             PreferenceHelper.write(aty, StringConstants.FILENAME, "username", bean.getData().getUsername());
@@ -212,7 +213,10 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
              * 发送消息
              */
             RxBus.getInstance().post(new MsgEvent<String>("RxBusLoginEvent"));
-            // showActivity(aty, AuthenticationInformationActivity.class);
+            int approve_status = PreferenceHelper.readInt(aty, StringConstants.FILENAME, "approve_status", 0);
+            if (approve_status == 0) {
+                showActivity(aty, AuthenticationInformationActivity.class);
+            }
             finish();
         } else if (flag == 2) {
             LoginBean bean = (LoginBean) JsonUtil.getInstance().json2Obj(s, LoginBean.class);

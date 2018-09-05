@@ -198,8 +198,6 @@
     <string name="ordersTotal">订单总数</string>
     <string name="guideTotal">司导总数</string>
     <string name="serviceLevel">服务等级</string>
-    <string name="storeLevel">店铺等级</string>
-    <string name="businessLevel">商家等级</string>
     <string name="myWallet">我的钱包</string>
     <string name="sillyChildCollege">傻孩子学院</string>
     <string name="sharePolite">分享有礼</string>
@@ -249,6 +247,19 @@
     <string name="mandatory">（必填）</string>
     <string name="serviceArea">服务地区</string>
     <string name="skillsInformation">技能信息（选填）</string>
+    <string name="submitAuthenticationInformation">确认提交认证资料信息</string>
+    <string name="submitAuthenticationInformation1">您的认证资料已提交审核，请耐心等待</string>
+    <string name="selectServiceArea">请选择服务地区</string>
+    <string name="uploadVehicleInspection">请上传车检证</string>
+    <string name="uploadDriverLicense">请上传驾驶证</string>
+    <string name="uploadHoldingIdCard">请上传手持身份证正面照</string>
+
+
+
+
+
+
+
 
     <!-- 个人中心 认证信息  服务地区 搜索-->
     <string name="recentSearch">最近搜索</string>

@@ -21,6 +21,7 @@ public class LoginBean extends BaseResult<LoginBean.DataBean> {
 
         @SerializedName("result")
         private String resultX;
+        private int approve_status;
         private String face;
         private String level;
         private String rong_cloud;
@@ -32,6 +33,14 @@ public class LoginBean extends BaseResult<LoginBean.DataBean> {
 
         public void setResultX(String resultX) {
             this.resultX = resultX;
+        }
+
+        public int getApprove_status() {
+            return approve_status;
+        }
+
+        public void setApprove_status(int approve_status) {
+            this.approve_status = approve_status;
         }
 
         public String getFace() {

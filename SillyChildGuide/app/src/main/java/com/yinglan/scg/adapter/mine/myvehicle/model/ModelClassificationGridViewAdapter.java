@@ -4,7 +4,7 @@ import android.content.Context;
 import android.view.View;
 
 import com.yinglan.scg.R;
-import com.yinglan.scg.entity.mine.personaldata.authenticationinformation.ServiceAreaByCountryIdBean.DataBean;
+import com.yinglan.scg.entity.mine.myvehicle.model.ModelNameListBean.DataBean;
 import com.yinglan.scg.utils.GlideImageLoader;
 
 import cn.bingoogolapple.baseadapter.BGAAdapterViewAdapter;
@@ -12,7 +12,7 @@ import cn.bingoogolapple.baseadapter.BGAViewHolderHelper;
 
 
 /**
- *  服务地区分类---GridView
+ *  车型分类---GridView
  */
 public class ModelClassificationGridViewAdapter extends BGAAdapterViewAdapter<DataBean> {
 
@@ -33,7 +33,7 @@ public class ModelClassificationGridViewAdapter extends BGAAdapterViewAdapter<Da
         /**
          * 城市名字
          */
-        helper.setText(R.id.tv_classificationName, model.getRegion_name());
+        helper.setText(R.id.tv_classificationName, model.getModel_name());
 
         /**
          * 机场名字

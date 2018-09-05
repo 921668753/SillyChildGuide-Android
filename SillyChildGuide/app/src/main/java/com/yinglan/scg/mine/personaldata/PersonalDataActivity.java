@@ -31,11 +31,11 @@ import com.yinglan.scg.adapter.GridImageAdapter;
 import com.yinglan.scg.constant.NumericConstants;
 import com.yinglan.scg.entity.mine.personaldata.PersonalDataBean;
 import com.yinglan.scg.loginregister.LoginActivity;
+import com.yinglan.scg.mine.personaldata.authenticationinformation.AuthenticationInformationActivity;
 import com.yinglan.scg.mine.personaldata.dialog.PictureSourceDialog;
 import com.yinglan.scg.mine.personaldata.setnickname.SetNickNameActivity;
 import com.yinglan.scg.mine.personaldata.setselfintroduction.SetSelfIntroductionActivity;
 import com.yinglan.scg.mine.personaldata.setsex.SetSexActivity;
-import com.yinglan.scg.mine.setup.feedback.FeedbackActivity;
 import com.yinglan.scg.utils.GlideImageLoader;
 
 import java.util.ArrayList;
@@ -47,15 +47,12 @@ import io.reactivex.disposables.Disposable;
 import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.EasyPermissions;
 
-import static com.yinglan.scg.constant.NumericConstants.REQUEST_CODE_PREVIEW;
 import static com.yinglan.scg.constant.NumericConstants.RESULT_CODE_ORDER;
 import static com.yinglan.scg.constant.NumericConstants.RESULT_CODE_BASKET_ADD;
 import static com.yinglan.scg.constant.NumericConstants.RESULT_CODE_BASKET_MINUS;
 import static com.yinglan.scg.constant.NumericConstants.RESULT_CODE_BASKET_MINUSALL;
 import static com.yinglan.scg.constant.NumericConstants.RESULT_CODE_BASKET_MOVE;
-import static com.yinglan.scg.constant.NumericConstants.RESULT_CODE_GET;
 import static com.yinglan.scg.constant.NumericConstants.RESULT_CODE_PAYMENT_SUCCEED;
-import static com.yinglan.scg.constant.NumericConstants.RESULT_CODE_PRODUCT;
 
 /**
  * 个人资料
@@ -89,6 +86,12 @@ public class PersonalDataActivity extends BaseActivity implements PersonalDataCo
     @BindView(id = R.id.tv_selfIntroduction)
     private TextView tv_selfIntroduction;
 
+    @BindView(id = R.id.ll_authenticationInformation, click = true)
+    private LinearLayout ll_authenticationInformation;
+
+    @BindView(id = R.id.tv_authenticationInformation)
+    private TextView tv_authenticationInformation;
+
     @BindView(id = R.id.recyclerView)
     private RecyclerView recyclerView;
 
@@ -100,7 +103,6 @@ public class PersonalDataActivity extends BaseActivity implements PersonalDataCo
     private List<LocalMedia> selectList = null;
     private GridImageAdapter adapter;
     private int themeId;
-    private int chooseMode = PictureMimeType.ofImage();
     private int aspect_ratio_x = 16, aspect_ratio_y = 9;
     private int maxSelectNum = 9;
 
@@ -220,6 +222,11 @@ public class PersonalDataActivity extends BaseActivity implements PersonalDataCo
                 Intent setSelfIntroductionIntent = new Intent(this, SetSelfIntroductionActivity.class);
                 setSelfIntroductionIntent.putExtra("selfIntroduction", selfIntroduction);
                 startActivityForResult(setSelfIntroductionIntent, RESULT_CODE_BASKET_MINUSALL);
+                break;
+            case R.id.ll_authenticationInformation:
+                Intent authenticationInformationIntent = new Intent(this, AuthenticationInformationActivity.class);
+                //  authenticationInformationIntent.putExtra("selfIntroduction", selfIntroduction);
+                startActivityForResult(authenticationInformationIntent, RESULT_CODE_BASKET_MOVE);
                 break;
         }
     }
@@ -371,6 +378,10 @@ public class PersonalDataActivity extends BaseActivity implements PersonalDataCo
                     selectList = PictureSelector.obtainMultipleResult(data);
                     adapter.setList(selectList);
                     adapter.notifyDataSetChanged();
+                    break;
+                case RESULT_CODE_BASKET_MOVE:
+                    // 认证结果结果回调
+                    tv_authenticationInformation.setText(getString(R.string.certificationProcess));
                     break;
             }
         }

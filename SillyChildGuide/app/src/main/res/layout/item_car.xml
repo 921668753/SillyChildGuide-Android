@@ -11,6 +11,7 @@
 
 
         <TextView
+            android:id="@+id/tv_auditStatus"
             style="@style/AutoWrap"
             android:layout_marginBottom="@dimen/dimen16"
             android:paddingLeft="@dimen/dimen30"
@@ -20,6 +21,7 @@
             android:textSize="@dimen/textsize14" />
 
         <TextView
+            android:id="@+id/tv_delete"
             android:layout_width="@dimen/dimen70"
             android:layout_height="@dimen/dimen25"
             android:layout_marginRight="@dimen/dimen30"
@@ -40,6 +42,7 @@
 
 
         <ImageView
+            android:id="@+id/img_car"
             android:layout_width="@dimen/dimen200"
             android:layout_height="@dimen/dimen138"
             android:layout_marginBottom="@dimen/dimen11"
@@ -55,12 +58,14 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/tv_carBrand"
                 style="@style/WrapWrap"
                 android:text="车品牌"
                 android:textColor="@color/textColor"
                 android:textSize="@dimen/textsize14" />
 
             <TextView
+                android:id="@+id/tv_carModels"
                 style="@style/WrapWrap"
                 android:layout_marginTop="@dimen/dimen24"
                 android:text="车型号"
@@ -68,6 +73,7 @@
                 android:textSize="@dimen/textsize14" />
 
             <TextView
+                android:id="@+id/tv_seatNumber"
                 style="@style/WrapWrap"
                 android:layout_marginTop="@dimen/dimen24"
                 android:text="车座数"

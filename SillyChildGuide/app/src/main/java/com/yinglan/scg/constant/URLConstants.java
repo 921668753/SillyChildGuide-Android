@@ -122,6 +122,51 @@ public class URLConstants {
     public static String MEMBERINFO = APIURL + "member/get.do";
 
     /**
+     * 资料信息 - 司导证件资料上传
+     */
+    public static String ADDCERTIFICATION = APIURL + "material/add_certification.do";
+
+    /**
+     * 资料信息 - 获取司导证件信息
+     */
+    public static String GETCERTIFICATIONDETAIL = APIURL + "material/get_certification_detail.do";
+
+    /**
+     * 资料信息 - 获取国家信息
+     */
+    public static String GETCOUNTRYLIST = APIURL + "model/get_country_list.do";
+
+    /**
+     * 资料信息 - 获取城市列表
+     */
+    public static String GETCITYLIST = APIURL + "model/get_city_list.do";
+
+    /**
+     * 获取用户车辆列表
+     */
+    public static String GETMODELLIST = APIURL + "material/get_model_list.do";
+
+    /**
+     * 获取用户车辆详细信息
+     */
+    public static String GETMODELDETAIL = APIURL + "material/get_model_detail.do";
+
+    /**
+     * 司导上传车辆信息
+     */
+    public static String EIDTMODEL = APIURL + "material/eidt_model.do";
+
+    /**
+     * 获取车辆品牌列表
+     */
+    public static String GETMODELBRANDLIST = APIURL + "model/get_model_brand_list.do";
+
+    /**
+     * 获取车辆名称列表
+     */
+    public static String GETMODELNAMELIST = APIURL + "model/get_model_name_list.do";
+
+    /**
      * 获取钱包余额
      */
     public static String PURSEGET = APIURL + "purse/get.do";

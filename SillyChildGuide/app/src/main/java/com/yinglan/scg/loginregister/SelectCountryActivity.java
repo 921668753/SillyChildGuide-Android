@@ -12,9 +12,9 @@ import com.common.cklibrary.utils.JsonUtil;
 import com.common.cklibrary.utils.myview.IndexNewBar;
 import com.mcxtzhang.indexlib.suspension.SuspensionDecoration;
 import com.yinglan.scg.R;
-import com.yinglan.scg.adapter.SelectCountryViewAdapter;
-import com.yinglan.scg.entity.SelectCountryBean;
-import com.yinglan.scg.entity.SelectCountryBean.ResultBean;
+import com.yinglan.scg.adapter.loginregister.SelectCountryViewAdapter;
+import com.yinglan.scg.entity.loginregister.SelectCountryBean;
+import com.yinglan.scg.entity.loginregister.SelectCountryBean.ResultBean;
 import com.yinglan.scg.utils.decoration.DividerItemDecoration;
 
 import java.util.ArrayList;

@@ -148,10 +148,42 @@
             </LinearLayout>
 
 
+            <LinearLayout
+                android:id="@+id/ll_authenticationInformation"
+                style="@style/Match45"
+                android:layout_below="@id/ll_selfIntroduction"
+                android:layout_marginTop="@dimen/dimen1"
+                android:background="@color/whiteColors"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/dimen15"
+                android:paddingRight="@dimen/dimen15">
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:text="@string/authenticationInformation"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize14" />
+
+                <TextView
+                    android:id="@+id/tv_authenticationInformation"
+                    style="@style/AutoMatch"
+                    android:gravity="right|center_vertical"
+                    android:paddingLeft="@dimen/dimen10"
+                    android:singleLine="true"
+                    android:textColor="@color/hintColors"
+                    android:textSize="@dimen/textsize13" />
+
+                <ImageView
+                    style="@style/Image812"
+                    android:layout_marginLeft="@dimen/dimen10"
+                    android:src="@mipmap/right_arrow" />
+            </LinearLayout>
+
+
             <TextView
                 android:id="@+id/tv_myPhotoAlbum"
                 style="@style/MatchWrap"
-                android:layout_below="@id/ll_selfIntroduction"
+                android:layout_below="@id/ll_authenticationInformation"
                 android:layout_marginTop="@dimen/dimen6"
                 android:background="@color/whiteColors"
                 android:paddingLeft="@dimen/dimen17"

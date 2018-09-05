@@ -10,16 +10,10 @@ import com.common.cklibrary.utils.httputil.ResponseListener;
 import com.kymjs.common.StringUtils;
 import com.kymjs.rxvolley.client.HttpParams;
 import com.yinglan.scg.R;
-import com.yinglan.scg.entity.RongCloudBean;
+import com.yinglan.scg.entity.loginregister.RongCloudBean;
 import com.yinglan.scg.entity.loginregister.LoginBean;
 import com.yinglan.scg.message.interactivemessage.imuitl.UserUtil;
 import com.yinglan.scg.retrofit.RequestClient;
-
-import org.json.JSONObject;
-
-import javax.crypto.Mac;
-import javax.crypto.SecretKey;
-import javax.crypto.spec.SecretKeySpec;
 
 import cn.jpush.android.api.JPushInterface;
 import io.rong.imkit.RongIM;

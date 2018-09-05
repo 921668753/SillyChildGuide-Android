@@ -1,4 +1,4 @@
-package com.yinglan.scg.entity;
+package com.yinglan.scg.entity.loginregister;
 
 import com.common.cklibrary.entity.BaseResult;
 import com.mcxtzhang.indexlib.IndexBar.bean.BaseIndexPinyinBean;

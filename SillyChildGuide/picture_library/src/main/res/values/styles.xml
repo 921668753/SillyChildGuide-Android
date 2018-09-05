@@ -91,6 +91,8 @@
         <item name="picture.num.style">@drawable/num_oval</item>
         <!--预览界面标题文字颜色-->
         <item name="picture.ac_preview.title.textColor">@color/white</item>
+        <!--预览界面删除文字颜色-->
+        <item name="picture.ac_preview.delete.textColor">@color/white</item>
         <!--预览界面已完成文字颜色-->
         <item name="picture.ac_preview.complete.textColor">@color/picture_preview_text_color</item>
         <!--预览界面标题栏背景色-->

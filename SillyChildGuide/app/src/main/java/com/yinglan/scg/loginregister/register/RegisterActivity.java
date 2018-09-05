@@ -188,6 +188,7 @@ public class RegisterActivity extends BaseActivity implements RegisterContract.V
             time.start();
         } else if (flag == 1) {
             LoginBean bean = (LoginBean) JsonUtil.getInstance().json2Obj(s, LoginBean.class);
+            PreferenceHelper.write(aty, StringConstants.FILENAME, "approve_status", bean.getData().getApprove_status());
             PreferenceHelper.write(aty, StringConstants.FILENAME, "mobile", et_accountNumber.getText().toString());
             PreferenceHelper.write(aty, StringConstants.FILENAME, "face", bean.getData().getFace());
             PreferenceHelper.write(aty, StringConstants.FILENAME, "username", bean.getData().getUsername());
@@ -201,7 +202,10 @@ public class RegisterActivity extends BaseActivity implements RegisterContract.V
             MobclickAgent.onProfileSignIn(et_accountNumber.getText().toString());
             CrashReport.putUserData(this, "mobile", et_accountNumber.getText().toString());
             dismissLoadingDialog();
-            showActivity(aty, AuthenticationInformationActivity.class);
+            int approve_status = PreferenceHelper.readInt(aty, StringConstants.FILENAME, "approve_status", 0);
+            if (approve_status == 0) {
+                showActivity(aty, AuthenticationInformationActivity.class);
+            }
             KJActivityStack.create().finishActivity(LoginActivity.class);
             aty.finish();
         }

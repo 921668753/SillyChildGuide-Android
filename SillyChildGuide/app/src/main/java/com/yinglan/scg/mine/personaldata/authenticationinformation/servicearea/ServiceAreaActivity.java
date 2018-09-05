@@ -1,11 +1,13 @@
 package com.yinglan.scg.mine.personaldata.authenticationinformation.servicearea;
 
-
 import android.content.Intent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.common.cklibrary.common.BaseActivity;
 import com.common.cklibrary.common.BindView;
@@ -36,6 +38,22 @@ public class ServiceAreaActivity extends BaseActivity implements ServiceAreaCont
     @BindView(id = R.id.gv_countriesClassification)
     private GridView gv_countriesClassification;
 
+
+    /**
+     * 错误提示页
+     */
+    @BindView(id = R.id.ll_commonError)
+    private LinearLayout ll_commonError;
+
+    @BindView(id = R.id.img_err)
+    private ImageView img_err;
+
+    @BindView(id = R.id.tv_hintText)
+    private TextView tv_hintText;
+
+    @BindView(id = R.id.tv_button, click = true)
+    private TextView tv_button;
+
     private ServiceAreaClassificationListViewAdapter mListViewAdapter = null;
 
     private ServiceAreaClassificationGridViewAdapter mGridViewAdapter = null;
@@ -43,10 +61,6 @@ public class ServiceAreaActivity extends BaseActivity implements ServiceAreaCont
     private List<ServiceAreaCountryListBean.DataBean> serviceAreaCountryList;
 
     private ServiceAreaCountryListBean.DataBean serviceAreaCountryBean = null;
-
-    private String title = "";
-    private int type = 0;
-
 
     @Override
     public void setRootView() {
@@ -59,15 +73,12 @@ public class ServiceAreaActivity extends BaseActivity implements ServiceAreaCont
         mPresenter = new ServiceAreaPresenter(this);
         mListViewAdapter = new ServiceAreaClassificationListViewAdapter(this);
         mGridViewAdapter = new ServiceAreaClassificationGridViewAdapter(this);
-        title = getIntent().getStringExtra("title");
-        type = getIntent().getIntExtra("type", 0);
     }
 
     @Override
     public void initWidget() {
         super.initWidget();
-        //  ActivityTitleUtils.initToolbar(aty, title, true, R.id.titlebar);
-        titlebar.setTitleText(title);
+        titlebar.setTitleText(getString(R.string.serviceArea));
         titlebar.setRightDrawable(getResources().getDrawable(R.mipmap.img_search));
         BGATitleBar.SimpleDelegate simpleDelegate = new BGATitleBar.SimpleDelegate() {
             @Override
@@ -81,7 +92,6 @@ public class ServiceAreaActivity extends BaseActivity implements ServiceAreaCont
                 super.onClickRightCtv();
                 //分享
                 Intent intent = new Intent(aty, AreaSearchActivity.class);
-                intent.putExtra("type", type);
                 showActivity(aty, intent);
             }
         };
@@ -91,7 +101,19 @@ public class ServiceAreaActivity extends BaseActivity implements ServiceAreaCont
         gv_countriesClassification.setAdapter(mGridViewAdapter);
         gv_countriesClassification.setOnItemClickListener(this);
         showLoadingDialog(getString(R.string.dataLoad));
-        ((ServiceAreaContract.Presenter) mPresenter).getAirportCountryList();
+        ((ServiceAreaContract.Presenter) mPresenter).getCountryList();
+    }
+
+    @Override
+    public void widgetClick(View v) {
+        super.widgetClick(v);
+        switch (v.getId()) {
+            case R.id.tv_button:
+                if (tv_button.getText().toString().contains(getString(R.string.retry))) {
+                    ((ServiceAreaContract.Presenter) mPresenter).getCityList(serviceAreaCountryBean.getCountry_id());
+                }
+                break;
+        }
     }
 
     @Override
@@ -99,11 +121,11 @@ public class ServiceAreaActivity extends BaseActivity implements ServiceAreaCont
         if (adapterView.getId() == R.id.lv_countries) {
             selectClassification(position);
         } else if (adapterView.getId() == R.id.gv_countriesClassification) {
-//            Intent intent = new Intent(aty, SelectProductAirportTransportationActivity.class);
-//            intent.putExtra("airport_id", mGridViewAdapter.getItem(position).getAirport_id());
-//            intent.putExtra("name", mGridViewAdapter.getItem(position).getCountry_name() + mGridViewAdapter.getItem(position).getRegion_name() + mGridViewAdapter.getItem(position).getAirport_name() + title);
-//            intent.putExtra("type", type);
-//            showActivity(aty, intent);
+            Intent intent = getIntent();
+            intent.putExtra("city_id", mGridViewAdapter.getItem(position).getCity_id());
+            intent.putExtra("city_name", mGridViewAdapter.getItem(position).getCity_name());
+            setResult(RESULT_OK, intent);
+            finish();
         }
     }
 
@@ -122,6 +144,12 @@ public class ServiceAreaActivity extends BaseActivity implements ServiceAreaCont
             }
         } else if (flag == 1) {
             ServiceAreaByCountryIdBean airportByCountryIdBean = (ServiceAreaByCountryIdBean) JsonUtil.getInstance().json2Obj(success, ServiceAreaByCountryIdBean.class);
+            if (airportByCountryIdBean.getData() == null || airportByCountryIdBean.getData().size() <= 0) {
+                errorMsg(getString(R.string.noData), 1);
+                return;
+            }
+            ll_commonError.setVisibility(View.GONE);
+            gv_countriesClassification.setVisibility(View.VISIBLE);
             mGridViewAdapter.clear();
             mGridViewAdapter.addNewData(airportByCountryIdBean.getData());
             dismissLoadingDialog();
@@ -138,7 +166,7 @@ public class ServiceAreaActivity extends BaseActivity implements ServiceAreaCont
             if (position == i || position == i && position == 0) {
                 serviceAreaCountryBean = serviceAreaCountryList.get(i);
                 serviceAreaCountryBean.setIsSelected(1);
-                ((ServiceAreaContract.Presenter) mPresenter).getAirportByCountryId(serviceAreaCountryBean.getCountry_id());
+                ((ServiceAreaContract.Presenter) mPresenter).getCityList(serviceAreaCountryBean.getCountry_id());
             } else {
                 serviceAreaCountryList.get(i).setIsSelected(0);
             }
@@ -150,6 +178,24 @@ public class ServiceAreaActivity extends BaseActivity implements ServiceAreaCont
     @Override
     public void errorMsg(String msg, int flag) {
         dismissLoadingDialog();
+        if (flag == 1) {
+            ll_commonError.setVisibility(View.VISIBLE);
+            gv_countriesClassification.setVisibility(View.GONE);
+            if (msg.contains(getString(R.string.checkNetwork))) {
+                img_err.setImageResource(R.mipmap.no_network);
+                tv_hintText.setText(msg);
+                tv_button.setText(getString(R.string.retry));
+            } else if (msg.contains(getString(R.string.noData))) {
+                img_err.setImageResource(R.mipmap.no_data);
+                tv_hintText.setText(msg);
+                tv_button.setVisibility(View.GONE);
+            } else {
+                img_err.setImageResource(R.mipmap.no_data);
+                tv_hintText.setText(msg);
+                tv_button.setText(getString(R.string.retry));
+            }
+            return;
+        }
         ViewInject.toast(msg);
     }
 

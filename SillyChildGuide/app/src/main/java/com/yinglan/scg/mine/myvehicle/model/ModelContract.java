@@ -12,14 +12,14 @@ public interface ModelContract {
     interface Presenter extends BasePresenter {
 
         /**
-         * 获取国家列表
+         * 获取车辆品牌列表
          */
-        void getAirportCountryList();
+        void getModelBrandList();
 
         /**
-         * 获取分类
+         * 获取车辆名称列表
          */
-        void getAirportByCountryId(int country_id);
+        void getModelNameList(int brand_id);
 
     }
 

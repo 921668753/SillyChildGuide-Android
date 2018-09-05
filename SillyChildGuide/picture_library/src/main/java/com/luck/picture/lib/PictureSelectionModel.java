@@ -435,6 +435,21 @@ public class PictureSelectionModel {
     }
 
     /**
+     * 提供外部预览图片方法 是否显示删除
+     *
+     * @param position
+     * @param medias
+     */
+    public void openExternalPreview(int position, List<LocalMedia> medias, boolean isShowDel) {
+        if (selector != null) {
+            selector.externalPicturePreview(position, medias, isShowDel);
+        } else {
+            throw new NullPointerException("This PictureSelector is Null");
+        }
+    }
+
+
+    /**
      * 提供外部预览图片方法-带自定义下载保存路径
      *
      * @param position

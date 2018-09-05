@@ -34,11 +34,11 @@
                     android:textColor="@color/fF4A4AColors"
                     android:textSize="@dimen/textsize15" />
 
-
             </LinearLayout>
 
 
             <LinearLayout
+                android:id="@+id/ll_serviceArea"
                 style="@style/Match45"
                 android:layout_marginTop="@dimen/dimen1"
                 android:background="@color/whiteColors"
@@ -53,13 +53,13 @@
                     android:textSize="@dimen/textsize15" />
 
                 <TextView
+                    android:id="@+id/tv_serviceArea"
                     style="@style/AutoWrap"
                     android:layout_marginRight="@dimen/dimen30"
                     android:gravity="right"
-                    android:text="东京"
+                    android:text="@string/pleaseSelect"
                     android:textColor="@color/tabColors"
                     android:textSize="@dimen/textsize14" />
-
 
                 <ImageView
                     style="@style/Image815"
@@ -79,8 +79,8 @@
                 android:paddingTop="@dimen/dimen4">
 
                 <ImageView
+                    android:id="@+id/img_carCompany"
                     style="@style/MatchMatch"
-                    android:scaleType="fitXY"
                     android:src="@mipmap/img_car_company" />
 
 
@@ -102,8 +102,8 @@
                 android:paddingTop="@dimen/dimen4">
 
                 <ImageView
+                    android:id="@+id/img_drivingLicence"
                     style="@style/MatchMatch"
-                    android:scaleType="fitXY"
                     android:src="@mipmap/img_driving_licence" />
 
 
@@ -126,8 +126,8 @@
                 android:paddingTop="@dimen/dimen4">
 
                 <ImageView
+                    android:id="@+id/img_holdCardFace"
                     style="@style/MatchMatch"
-                    android:scaleType="fitXY"
                     android:src="@mipmap/img_hold_card_face" />
 
 
@@ -159,8 +159,8 @@
                 android:paddingTop="@dimen/dimen4">
 
                 <ImageView
+                    android:id="@+id/img_legally"
                     style="@style/MatchMatch"
-                    android:scaleType="fitXY"
                     android:src="@mipmap/img_legally" />
 
 
@@ -182,8 +182,8 @@
                 android:paddingTop="@dimen/dimen4">
 
                 <ImageView
+                    android:id="@+id/img_yachtDrivingLicense"
                     style="@style/MatchMatch"
-                    android:scaleType="fitXY"
                     android:src="@mipmap/img_yacht_driving_license" />
 
                 <TextView
@@ -194,6 +194,7 @@
 
 
             <TextView
+                android:id="@+id/tv_submitAudit"
                 style="@style/Match50"
                 android:layout_marginTop="@dimen/dimen42"
                 android:background="@color/greenColors"

@@ -28,6 +28,7 @@
     <string name="picture_warning">暂无媒体文件！</string>
     <string name="picture_prompt">提示</string>
     <string name="picture_prompt_content">是否保存图片至手机？</string>
+    <string name="picture_prompt_del">是否删除该图片？</string>
     <string name="picture_save_error">图片保存失败</string>
     <string name="picture_save_success">图片保存成功至</string>
     <string name="picture_all_audio">所有音频</string>

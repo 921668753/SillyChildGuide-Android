@@ -10,12 +10,9 @@ import android.widget.TextView;
 
 import com.common.cklibrary.common.BaseActivity;
 import com.common.cklibrary.common.BindView;
-import com.common.cklibrary.utils.JsonUtil;
 import com.yinglan.scg.R;
 import com.yinglan.scg.adapter.mine.personaldata.search.ServiceAreaGridViewAdapter;
 import com.yinglan.scg.loginregister.LoginActivity;
-
-import java.util.List;
 
 import static com.yinglan.scg.constant.NumericConstants.REQUEST_CODE;
 
@@ -69,7 +66,6 @@ public class AreaSearchListActivity extends BaseActivity implements AreaSearchLi
         mPresenter = new AreaSearchListPresenter(this);
         mAdapter = new ServiceAreaGridViewAdapter(this);
         name = getIntent().getStringExtra("name");
-        type = getIntent().getIntExtra("type", 0);
         showLoadingDialog(getString(R.string.dataLoad));
         ((AreaSearchListContract.Presenter) mPresenter).getProductByAirportId(name, type);
     }
@@ -109,10 +105,10 @@ public class AreaSearchListActivity extends BaseActivity implements AreaSearchLi
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//        Intent intent = new Intent(aty, PriceInformationActivity.class);
-//        intent.putExtra("product_id", mAdapter.getItem(position).getId());
-//        intent.putExtra("type", type);
-//        showActivity(aty, intent);
+        Intent intent = new Intent();
+        intent.putExtra("", "");
+        intent.putExtra("", "");
+        setResult(RESULT_OK, intent);
     }
 
     @Override

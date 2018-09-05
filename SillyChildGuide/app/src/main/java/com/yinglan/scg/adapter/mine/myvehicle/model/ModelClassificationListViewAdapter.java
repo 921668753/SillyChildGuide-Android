@@ -3,14 +3,14 @@ package com.yinglan.scg.adapter.mine.myvehicle.model;
 import android.content.Context;
 
 import com.yinglan.scg.R;
-import com.yinglan.scg.entity.mine.personaldata.authenticationinformation.ServiceAreaCountryListBean.DataBean;
+import com.yinglan.scg.entity.mine.myvehicle.model.ModelBrandListBean.DataBean;
 
 import cn.bingoogolapple.baseadapter.BGAAdapterViewAdapter;
 import cn.bingoogolapple.baseadapter.BGAViewHolderHelper;
 
 
 /**
- * 服务地区分类---ListView
+ * 车型分类---ListView
  */
 public class ModelClassificationListViewAdapter extends BGAAdapterViewAdapter<DataBean> {
 
@@ -36,6 +36,6 @@ public class ModelClassificationListViewAdapter extends BGAAdapterViewAdapter<Da
         /**
          * 名字
          */
-        helper.setText(R.id.tv_country, model.getCountry_name());
+        helper.setText(R.id.tv_country, model.getModel_brand());
     }
 }

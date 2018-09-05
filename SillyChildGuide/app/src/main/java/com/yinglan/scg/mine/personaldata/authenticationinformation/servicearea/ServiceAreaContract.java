@@ -14,12 +14,12 @@ public interface ServiceAreaContract {
         /**
          * 获取国家列表
          */
-        void getAirportCountryList();
+        void getCountryList();
 
         /**
-         * 获取分类
+         * 获取城市列表
          */
-        void getAirportByCountryId(int country_id);
+        void getCityList(int country_id);
 
     }
 

@@ -63,9 +63,6 @@ public class AreaSearchActivity extends BaseActivity implements TagFlowLayout.On
 
     private ClearSearchDialog clearSearchDialog = null;
 
-    private int type = 0;//1.接机2.送机。3包车4.私人定制5.线路
-
-
     @Override
     public void setRootView() {
         setContentView(R.layout.activity_areasearch);
@@ -75,7 +72,6 @@ public class AreaSearchActivity extends BaseActivity implements TagFlowLayout.On
     public void initData() {
         super.initData();
         recentSearchList = new ArrayList<DataBean>();
-        type = getIntent().getIntExtra("type", 0);
         recentSearchTagAdapter = new RecentSearchTagAdapter(this, recentSearchList);
         initClearSearchDialog();
     }
@@ -87,17 +83,7 @@ public class AreaSearchActivity extends BaseActivity implements TagFlowLayout.On
         clearSearchDialog = new ClearSearchDialog(this, getString(R.string.clearSearch)) {
             @Override
             public void deleteCollectionDo(int addressId) {
-                if (type == 1) {
-                    PreferenceHelper.write(aty, StringConstants.FILENAME, "recentSearchAirportPickupHistory", null);
-                } else if (type == 2) {
-                    PreferenceHelper.write(aty, StringConstants.FILENAME, "recentSearchAirportDropOffHistory", null);
-                } else if (type == 3) {
-                    PreferenceHelper.write(aty, StringConstants.FILENAME, "recentSearchByTheDayCharterHistory", null);
-                } else if (type == 4) {
-
-                } else if (type == 5) {
-                    PreferenceHelper.write(aty, StringConstants.FILENAME, "recentSearchBoutiqueLineHistory", null);
-                }
+                PreferenceHelper.write(aty, StringConstants.FILENAME, "recentSearchAreaHistory", null);
                 ll_recentSearch.setVisibility(View.GONE);
                 tfl_recentSearch.setVisibility(View.GONE);
             }
@@ -120,7 +106,7 @@ public class AreaSearchActivity extends BaseActivity implements TagFlowLayout.On
                         return handled;
                     }
                     SoftKeyboardUtils.packUpKeyboard(aty);
-                    saveRecentSearchHistory(textView.getText().toString().trim(), type);
+                    saveRecentSearchHistory(textView.getText().toString().trim(), 0);
                     Intent beautyCareIntent = new Intent();
                     if (getIntent().getIntExtra("tag", 0) == 1) {
                         beautyCareIntent.putExtra("name", textView.getText().toString().trim());
@@ -128,7 +114,7 @@ public class AreaSearchActivity extends BaseActivity implements TagFlowLayout.On
                     } else {
                         beautyCareIntent.setClass(aty, AreaSearchListActivity.class);
                         beautyCareIntent.putExtra("name", textView.getText().toString().trim());
-                        beautyCareIntent.putExtra("type", type);
+                        beautyCareIntent.putExtra("type", 0);
                         showActivity(aty, beautyCareIntent);
                     }
                     finish();
@@ -137,7 +123,7 @@ public class AreaSearchActivity extends BaseActivity implements TagFlowLayout.On
                 return handled;
             }
         });
-        readRecentSearchHistory(type);
+        readRecentSearchHistory(0);
     }
 
 
@@ -161,17 +147,7 @@ public class AreaSearchActivity extends BaseActivity implements TagFlowLayout.On
         baseResult.setResult(1);
         Collections.reverse(recentSearchList);
         baseResult.setData(recentSearchList);
-        if (type == 1) {
-            PreferenceHelper.write(aty, StringConstants.FILENAME, "recentSearchAirportPickupHistory", JsonUtil.getInstance().obj2JsonString(baseResult));
-        } else if (type == 2) {
-            PreferenceHelper.write(aty, StringConstants.FILENAME, "recentSearchAirportDropOffHistory", JsonUtil.getInstance().obj2JsonString(baseResult));
-        } else if (type == 3) {
-            PreferenceHelper.write(aty, StringConstants.FILENAME, "recentSearchByTheDayCharterHistory", JsonUtil.getInstance().obj2JsonString(baseResult));
-        } else if (type == 4) {
-
-        } else if (type == 5) {
-            PreferenceHelper.write(aty, StringConstants.FILENAME, "recentSearchBoutiqueLineHistory", JsonUtil.getInstance().obj2JsonString(baseResult));
-        }
+        PreferenceHelper.write(aty, StringConstants.FILENAME, "recentSearchAreaHistory", JsonUtil.getInstance().obj2JsonString(baseResult));
     }
 
     /**
@@ -179,17 +155,7 @@ public class AreaSearchActivity extends BaseActivity implements TagFlowLayout.On
      */
     private void readRecentSearchHistory(int type) {
         String recentSearch = "";
-        if (type == 1) {
-            recentSearch = PreferenceHelper.readString(aty, StringConstants.FILENAME, "recentSearchAirportPickupHistory", "");
-        } else if (type == 2) {
-            recentSearch = PreferenceHelper.readString(aty, StringConstants.FILENAME, "recentSearchAirportDropOffHistory", "");
-        } else if (type == 3) {
-            recentSearch = PreferenceHelper.readString(aty, StringConstants.FILENAME, "recentSearchByTheDayCharterHistory", "");
-        } else if (type == 4) {
-
-        } else if (type == 5) {
-            recentSearch = PreferenceHelper.readString(aty, StringConstants.FILENAME, "recentSearchBoutiqueLineHistory", "");
-        }
+        recentSearch = PreferenceHelper.readString(aty, StringConstants.FILENAME, "recentSearchAreaHistory", "");
         if (StringUtils.isEmpty(recentSearch)) {
             ll_recentSearch.setVisibility(View.GONE);
             tfl_recentSearch.setVisibility(View.GONE);

@@ -1,6 +1,5 @@
 package com.yinglan.scg.mine.setup.dialog;
 
-import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
@@ -8,13 +7,14 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
 
+import com.common.cklibrary.common.BaseDialog;
 import com.yinglan.scg.R;
 
 /**
  * 清除缓存提示
  * Created by Administrator on 2017/9/5.
  */
-public abstract class ClearCacheDialog extends Dialog implements View.OnClickListener {
+public abstract class ClearCacheDialog extends BaseDialog implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

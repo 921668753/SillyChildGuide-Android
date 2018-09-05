@@ -12,7 +12,7 @@ import cn.bingoogolapple.baseadapter.BGAViewHolderHelper;
 
 
 /**
- *  服务地区分类---GridView
+ * 服务地区分类---GridView
  */
 public class ServiceAreaClassificationGridViewAdapter extends BGAAdapterViewAdapter<DataBean> {
 
@@ -27,13 +27,13 @@ public class ServiceAreaClassificationGridViewAdapter extends BGAAdapterViewAdap
         /**
          * 图片
          */
-        GlideImageLoader.glideOrdinaryLoader(mContext, model.getPicture(), helper.getImageView(R.id.img_classification), R.mipmap.placeholderfigure);
+        GlideImageLoader.glideOrdinaryLoader(mContext, model.getCity_picture(), helper.getImageView(R.id.img_classification), R.mipmap.placeholderfigure);
 
 
         /**
          * 城市名字
          */
-        helper.setText(R.id.tv_classificationName, model.getRegion_name());
+        helper.setText(R.id.tv_classificationName, model.getCity_name());
 
         /**
          * 机场名字

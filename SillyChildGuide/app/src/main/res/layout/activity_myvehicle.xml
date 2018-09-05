@@ -26,6 +26,7 @@
 
 
             <ImageView
+                android:id="@+id/img_addCar"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dimen196"
                 android:layout_marginTop="@dimen/dimen6"
@@ -34,7 +35,7 @@
                 android:paddingLeft="@dimen/dimen30"
                 android:paddingRight="@dimen/dimen30"
                 android:paddingTop="@dimen/dimen26"
-                android:src="@mipmap/default_image" />
+                android:src="@mipmap/img_addcar" />
 
         </LinearLayout>
 

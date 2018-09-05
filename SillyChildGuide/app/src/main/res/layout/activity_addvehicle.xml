@@ -70,8 +70,8 @@
                 android:listSelector="@android:color/transparent"
                 android:overScrollMode="never"
                 android:paddingBottom="@dimen/dimen10"
-                android:paddingLeft="@dimen/dimen18"
-                android:paddingRight="@dimen/dimen18"
+                android:paddingLeft="@dimen/dimen20"
+                android:paddingRight="@dimen/dimen20"
                 android:paddingTop="@dimen/dimen10"
                 android:scrollbarStyle="outsideOverlay"
                 app:layoutManager="android.support.v7.widget.GridLayoutManager"
@@ -97,9 +97,10 @@
 
 
                 <TextView
+                    android:id="@+id/tv_model"
                     style="@style/WrapWrap"
                     android:paddingRight="@dimen/dimen10"
-                    android:text="丰田艾尔法"
+                    android:text="@string/pleaseSelect"
                     android:textColor="@color/hintColors"
                     android:textSize="@dimen/textsize14" />
 
@@ -129,6 +130,7 @@
 
 
                 <TextView
+                    android:id="@+id/tv_canTakeNumber"
                     style="@style/WrapWrap"
                     android:paddingRight="@dimen/dimen10"
                     android:text="8"
@@ -159,6 +161,7 @@
 
 
                 <TextView
+                    android:id="@+id/tv_canPutBaggage"
                     style="@style/WrapWrap"
                     android:paddingRight="@dimen/dimen10"
                     android:text="8"
@@ -190,6 +193,7 @@
 
 
                 <TextView
+                    android:id="@+id/tv_vehicleYear"
                     style="@style/WrapWrap"
                     android:paddingRight="@dimen/dimen10"
                     android:text="2018"
@@ -222,6 +226,7 @@
 
 
                 <EditText
+                    android:id="@+id/et_licensePlateNumber"
                     style="@style/MatchMatch"
                     android:background="@android:color/transparent"
                     android:gravity="right|center_vertical"
@@ -254,6 +259,7 @@
 
 
                 <ImageView
+                    android:id="@+id/img_vehiclePassengerInsurance"
                     android:layout_width="@dimen/dimen59"
                     android:layout_height="match_parent"
                     android:paddingBottom="@dimen/dimen5"

@@ -5,7 +5,10 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.common.cklibrary.common.BaseActivity;
 import com.common.cklibrary.common.BindView;
@@ -14,6 +17,8 @@ import com.common.cklibrary.utils.JsonUtil;
 import com.yinglan.scg.R;
 import com.yinglan.scg.adapter.mine.myvehicle.model.ModelClassificationGridViewAdapter;
 import com.yinglan.scg.adapter.mine.myvehicle.model.ModelClassificationListViewAdapter;
+import com.yinglan.scg.entity.mine.myvehicle.model.ModelBrandListBean;
+import com.yinglan.scg.entity.mine.myvehicle.model.ModelNameListBean;
 import com.yinglan.scg.entity.mine.personaldata.authenticationinformation.ServiceAreaByCountryIdBean;
 import com.yinglan.scg.entity.mine.personaldata.authenticationinformation.ServiceAreaCountryListBean;
 import com.yinglan.scg.mine.myvehicle.model.search.ModelSearchActivity;
@@ -36,16 +41,28 @@ public class ModelActivity extends BaseActivity implements ModelContract.View, A
     @BindView(id = R.id.gv_countriesClassification)
     private GridView gv_countriesClassification;
 
+    /**
+     * 错误提示页
+     */
+    @BindView(id = R.id.ll_commonError)
+    private LinearLayout ll_commonError;
+
+    @BindView(id = R.id.img_err)
+    private ImageView img_err;
+
+    @BindView(id = R.id.tv_hintText)
+    private TextView tv_hintText;
+
+    @BindView(id = R.id.tv_button, click = true)
+    private TextView tv_button;
+
     private ModelClassificationListViewAdapter mListViewAdapter = null;
 
     private ModelClassificationGridViewAdapter mGridViewAdapter = null;
 
-    private List<ServiceAreaCountryListBean.DataBean> serviceAreaCountryList;
+    private List<ModelBrandListBean.DataBean> modelBrandList;
 
-    private ServiceAreaCountryListBean.DataBean serviceAreaCountryBean = null;
-
-    private String title = "";
-    private int type = 0;
+    private ModelBrandListBean.DataBean modelBrandBean = null;
 
 
     @Override
@@ -59,15 +76,12 @@ public class ModelActivity extends BaseActivity implements ModelContract.View, A
         mPresenter = new ModelPresenter(this);
         mListViewAdapter = new ModelClassificationListViewAdapter(this);
         mGridViewAdapter = new ModelClassificationGridViewAdapter(this);
-        title = getIntent().getStringExtra("title");
-        type = getIntent().getIntExtra("type", 0);
     }
 
     @Override
     public void initWidget() {
         super.initWidget();
-        //  ActivityTitleUtils.initToolbar(aty, title, true, R.id.titlebar);
-        titlebar.setTitleText(title);
+        titlebar.setTitleText(getString(R.string.model));
         titlebar.setRightDrawable(getResources().getDrawable(R.mipmap.img_search));
         BGATitleBar.SimpleDelegate simpleDelegate = new BGATitleBar.SimpleDelegate() {
             @Override
@@ -81,7 +95,6 @@ public class ModelActivity extends BaseActivity implements ModelContract.View, A
                 super.onClickRightCtv();
                 //分享
                 Intent intent = new Intent(aty, ModelSearchActivity.class);
-                intent.putExtra("type", type);
                 showActivity(aty, intent);
             }
         };
@@ -91,7 +104,19 @@ public class ModelActivity extends BaseActivity implements ModelContract.View, A
         gv_countriesClassification.setAdapter(mGridViewAdapter);
         gv_countriesClassification.setOnItemClickListener(this);
         showLoadingDialog(getString(R.string.dataLoad));
-        ((ModelContract.Presenter) mPresenter).getAirportCountryList();
+        ((ModelContract.Presenter) mPresenter).getModelBrandList();
+    }
+
+    @Override
+    public void widgetClick(View v) {
+        super.widgetClick(v);
+        switch (v.getId()) {
+            case R.id.tv_button:
+                if (tv_button.getText().toString().contains(getString(R.string.retry))) {
+                    ((ModelContract.Presenter) mPresenter).getModelNameList(modelBrandBean.getModel_brand_id());
+                }
+                break;
+        }
     }
 
     @Override
@@ -99,11 +124,11 @@ public class ModelActivity extends BaseActivity implements ModelContract.View, A
         if (adapterView.getId() == R.id.lv_countries) {
             selectClassification(position);
         } else if (adapterView.getId() == R.id.gv_countriesClassification) {
-//            Intent intent = new Intent(aty, SelectProductAirportTransportationActivity.class);
-//            intent.putExtra("airport_id", mGridViewAdapter.getItem(position).getAirport_id());
-//            intent.putExtra("name", mGridViewAdapter.getItem(position).getCountry_name() + mGridViewAdapter.getItem(position).getRegion_name() + mGridViewAdapter.getItem(position).getAirport_name() + title);
-//            intent.putExtra("type", type);
-//            showActivity(aty, intent);
+            Intent intent = getIntent();
+            intent.putExtra("model_name_id", mGridViewAdapter.getItem(position).getModel_name_id());
+            intent.putExtra("model_name", mGridViewAdapter.getItem(position).getModel_name());
+            setResult(RESULT_OK, intent);
+            finish();
         }
     }
 
@@ -115,15 +140,21 @@ public class ModelActivity extends BaseActivity implements ModelContract.View, A
     @Override
     public void getSuccess(String success, int flag) {
         if (flag == 0) {
-            ServiceAreaCountryListBean serviceAreaCountryListBean = (ServiceAreaCountryListBean) JsonUtil.getInstance().json2Obj(success, ServiceAreaCountryListBean.class);
-            serviceAreaCountryList = serviceAreaCountryListBean.getData();
-            if (serviceAreaCountryList != null && serviceAreaCountryList.size() > 0) {
+            ModelBrandListBean modelBrandListBean = (ModelBrandListBean) JsonUtil.getInstance().json2Obj(success, ModelBrandListBean.class);
+            modelBrandList = modelBrandListBean.getData();
+            if (modelBrandList != null && modelBrandList.size() > 0) {
                 selectClassification(0);
             }
         } else if (flag == 1) {
-            ServiceAreaByCountryIdBean airportByCountryIdBean = (ServiceAreaByCountryIdBean) JsonUtil.getInstance().json2Obj(success, ServiceAreaByCountryIdBean.class);
+            ModelNameListBean modelNameListBean = (ModelNameListBean) JsonUtil.getInstance().json2Obj(success, ModelNameListBean.class);
+            if (modelNameListBean.getData() == null || modelNameListBean.getData().size() <= 0) {
+                errorMsg(getString(R.string.noData), 1);
+                return;
+            }
+            ll_commonError.setVisibility(View.GONE);
+            gv_countriesClassification.setVisibility(View.VISIBLE);
             mGridViewAdapter.clear();
-            mGridViewAdapter.addNewData(airportByCountryIdBean.getData());
+            mGridViewAdapter.addNewData(modelNameListBean.getData());
             dismissLoadingDialog();
         }
     }
@@ -134,22 +165,40 @@ public class ModelActivity extends BaseActivity implements ModelContract.View, A
      * @param position
      */
     private void selectClassification(int position) {
-        for (int i = 0; i < serviceAreaCountryList.size(); i++) {
+        for (int i = 0; i < modelBrandList.size(); i++) {
             if (position == i || position == i && position == 0) {
-                serviceAreaCountryBean = serviceAreaCountryList.get(i);
-                serviceAreaCountryBean.setIsSelected(1);
-                ((ModelContract.Presenter) mPresenter).getAirportByCountryId(serviceAreaCountryBean.getCountry_id());
+                modelBrandBean = modelBrandList.get(i);
+                modelBrandBean.setIsSelected(1);
+                ((ModelContract.Presenter) mPresenter).getModelNameList(modelBrandBean.getModel_brand_id());
             } else {
-                serviceAreaCountryList.get(i).setIsSelected(0);
+                modelBrandList.get(i).setIsSelected(0);
             }
         }
         mListViewAdapter.clear();
-        mListViewAdapter.addNewData(serviceAreaCountryList);
+        mListViewAdapter.addNewData(modelBrandList);
     }
 
     @Override
     public void errorMsg(String msg, int flag) {
         dismissLoadingDialog();
+        if (flag == 1) {
+            ll_commonError.setVisibility(View.VISIBLE);
+            gv_countriesClassification.setVisibility(View.GONE);
+            if (msg.contains(getString(R.string.checkNetwork))) {
+                img_err.setImageResource(R.mipmap.no_network);
+                tv_hintText.setText(msg);
+                tv_button.setText(getString(R.string.retry));
+            } else if (msg.contains(getString(R.string.noData))) {
+                img_err.setImageResource(R.mipmap.no_data);
+                tv_hintText.setText(msg);
+                tv_button.setVisibility(View.GONE);
+            } else {
+                img_err.setImageResource(R.mipmap.no_data);
+                tv_hintText.setText(msg);
+                tv_button.setText(getString(R.string.retry));
+            }
+            return;
+        }
         ViewInject.toast(msg);
     }
 

@@ -16,6 +16,8 @@ import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.luck.picture.lib.config.PictureConfig.DEL_FLAG;
+
 /**
  * author：luck
  * project：PictureSelector
@@ -151,6 +153,24 @@ public final class PictureSelector {
             getActivity().overridePendingTransition(R.anim.a5, 0);
         }
     }
+
+    /**
+     * set preview image
+     *
+     * @param position
+     * @param medias
+     */
+    public void externalPicturePreview(int position, List<LocalMedia> medias, boolean isShowdel) {
+        if (!DoubleUtils.isFastDoubleClick()) {
+            Intent intent = new Intent(getActivity(), PictureExternalPreviewActivity.class);
+            intent.putExtra(PictureConfig.EXTRA_PREVIEW_SELECT_LIST, (Serializable) medias);
+            intent.putExtra(PictureConfig.EXTRA_POSITION, position);
+            intent.putExtra(PictureConfig.EXTRA_DELETE_SHOW, isShowdel);
+            getActivity().startActivityForResult(intent, DEL_FLAG);
+            getActivity().overridePendingTransition(R.anim.a5, 0);
+        }
+    }
+
 
     /**
      * set preview image

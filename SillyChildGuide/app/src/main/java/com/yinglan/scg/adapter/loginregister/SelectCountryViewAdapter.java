@@ -1,4 +1,4 @@
-package com.yinglan.scg.adapter;
+package com.yinglan.scg.adapter.loginregister;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.yinglan.scg.R;
-import com.yinglan.scg.entity.SelectCountryBean.ResultBean;
+import com.yinglan.scg.entity.loginregister.SelectCountryBean.ResultBean;
 
 import java.util.List;
 

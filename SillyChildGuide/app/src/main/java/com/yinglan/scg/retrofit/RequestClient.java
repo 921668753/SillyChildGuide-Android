@@ -394,7 +394,6 @@ public class RequestClient {
     }
 
 
-
     /**
      * 获取系统消息首页
      */
@@ -448,10 +447,6 @@ public class RequestClient {
             }
         }, listener);
     }
-
-
-
-
 
 
     /**
@@ -532,8 +527,134 @@ public class RequestClient {
     }
 
 
+    /**
+     * 资料信息 - 司导证件资料上传
+     */
+    public static void postAddCertification(Context context, HttpParams httpParams, ResponseListener<String> listener) {
+        Log.d("tag", "postAddCertification");
+        doServer(context, new TokenCallback() {
+            @Override
+            public void execute() {
+                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+                if (StringUtils.isEmpty(cookies)) {
+                    listener.onFailure(NumericConstants.TOLINGIN + "");
+                    return;
+                }
+                httpParams.putHeaders("Cookie", cookies);
+                HttpRequest.requestPostFORMHttp(context, URLConstants.ADDCERTIFICATION, httpParams, listener);
+            }
+        }, listener);
+    }
+
+    /**
+     * 资料信息 - 获取司导证件信息
+     */
+    public static void getCertificationDetail(Context context, HttpParams httpParams, ResponseListener<String> listener) {
+        Log.d("tag", "getCertificationDetail");
+        doServer(context, new TokenCallback() {
+            @Override
+            public void execute() {
+                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+                if (StringUtils.isEmpty(cookies)) {
+                    listener.onFailure(NumericConstants.TOLINGIN + "");
+                    return;
+                }
+                httpParams.putHeaders("Cookie", cookies);
+                HttpRequest.requestGetHttp(context, URLConstants.GETCERTIFICATIONDETAIL, httpParams, listener);
+            }
+        }, listener);
+    }
+
+    /**
+     * 资料信息 - 获取国家信息
+     */
+    public static void getCountryList(Context context, HttpParams httpParams, ResponseListener<String> listener) {
+        Log.d("tag", "getCountryList");
+        HttpRequest.requestGetHttp(context, URLConstants.GETCOUNTRYLIST, httpParams, listener);
+    }
+
+    /**
+     * 资料信息 - 获取城市列表
+     */
+    public static void getCityList(Context context, HttpParams httpParams, ResponseListener<String> listener) {
+        Log.d("tag", "getCityList");
+        HttpRequest.requestGetHttp(context, URLConstants.GETCITYLIST, httpParams, listener);
+    }
 
 
+    /**
+     * 获取用户车辆列表
+     */
+    public static void getModelList(Context context, HttpParams httpParams, ResponseListener<String> listener) {
+        Log.d("tag", "getModelList");
+        doServer(context, new TokenCallback() {
+            @Override
+            public void execute() {
+                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+                if (StringUtils.isEmpty(cookies)) {
+                    listener.onFailure(NumericConstants.TOLINGIN + "");
+                    return;
+                }
+                httpParams.putHeaders("Cookie", cookies);
+                HttpRequest.requestGetHttp(context, URLConstants.GETMODELLIST, httpParams, listener);
+            }
+        }, listener);
+    }
+
+    /**
+     * 获取用户车辆详细信息
+     */
+    public static void getModelDetail(Context context, HttpParams httpParams, ResponseListener<String> listener) {
+        Log.d("tag", "getModelDetail");
+        doServer(context, new TokenCallback() {
+            @Override
+            public void execute() {
+                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+                if (StringUtils.isEmpty(cookies)) {
+                    listener.onFailure(NumericConstants.TOLINGIN + "");
+                    return;
+                }
+                httpParams.putHeaders("Cookie", cookies);
+                HttpRequest.requestGetHttp(context, URLConstants.GETMODELDETAIL, httpParams, listener);
+            }
+        }, listener);
+    }
+
+    /**
+     * 司导上传车辆信息
+     */
+    public static void postEidtModel(Context context, HttpParams httpParams, ResponseListener<String> listener) {
+        Log.d("tag", "postEidtModel");
+        doServer(context, new TokenCallback() {
+            @Override
+            public void execute() {
+                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+                if (StringUtils.isEmpty(cookies)) {
+                    listener.onFailure(NumericConstants.TOLINGIN + "");
+                    return;
+                }
+                httpParams.putHeaders("Cookie", cookies);
+                HttpRequest.requestPostFORMHttp(context, URLConstants.EIDTMODEL, httpParams, listener);
+            }
+        }, listener);
+    }
+
+
+    /**
+     * 获取车辆品牌列表
+     */
+    public static void getModelBrandList(Context context, HttpParams httpParams, ResponseListener<String> listener) {
+        Log.d("tag", "getModelBrandList");
+        HttpRequest.requestGetHttp(context, URLConstants.GETMODELBRANDLIST, httpParams, listener);
+    }
+
+    /**
+     * 获取车辆名称列表
+     */
+    public static void getModelNameList(Context context, HttpParams httpParams, ResponseListener<String> listener) {
+        Log.d("tag", "getModelNameList");
+        HttpRequest.requestGetHttp(context, URLConstants.GETMODELNAMELIST, httpParams, listener);
+    }
 
     /**
      * 获取钱包余额
