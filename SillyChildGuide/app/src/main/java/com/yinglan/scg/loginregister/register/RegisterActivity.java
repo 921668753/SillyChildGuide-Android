@@ -22,6 +22,7 @@ import com.yinglan.scg.R;
 import com.yinglan.scg.entity.loginregister.LoginBean;
 import com.yinglan.scg.loginregister.LoginActivity;
 import com.yinglan.scg.message.interactivemessage.imuitl.UserUtil;
+import com.yinglan.scg.mine.personaldata.authenticationinformation.AuthenticationInformationActivity;
 import com.yinglan.scg.mine.setup.HelpCenterActivity;
 
 import static android.text.InputType.TYPE_CLASS_TEXT;
@@ -200,6 +201,7 @@ public class RegisterActivity extends BaseActivity implements RegisterContract.V
             MobclickAgent.onProfileSignIn(et_accountNumber.getText().toString());
             CrashReport.putUserData(this, "mobile", et_accountNumber.getText().toString());
             dismissLoadingDialog();
+            showActivity(aty, AuthenticationInformationActivity.class);
             KJActivityStack.create().finishActivity(LoginActivity.class);
             aty.finish();
         }

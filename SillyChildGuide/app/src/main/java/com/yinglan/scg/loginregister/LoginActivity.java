@@ -32,6 +32,7 @@ import com.yinglan.scg.message.interactivemessage.imuitl.UserUtil;
 import com.umeng.socialize.UMAuthListener;
 import com.umeng.socialize.UMShareAPI;
 import com.umeng.socialize.bean.SHARE_MEDIA;
+import com.yinglan.scg.mine.personaldata.authenticationinformation.AuthenticationInformationActivity;
 
 import java.util.Map;
 
@@ -211,6 +212,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
              * 发送消息
              */
             RxBus.getInstance().post(new MsgEvent<String>("RxBusLoginEvent"));
+            // showActivity(aty, AuthenticationInformationActivity.class);
             finish();
         } else if (flag == 2) {
             LoginBean bean = (LoginBean) JsonUtil.getInstance().json2Obj(s, LoginBean.class);

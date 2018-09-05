@@ -9,21 +9,19 @@ public class URLConstants {
     /**
      * 正式服务器地址URL
      */
-    public static String SERVERURL = "http://store.api.shahaizhi.com/";
+    //  public static String SERVERURL = "http://user.api.shahaizhi.com/";
+    public static String SERVERURL1 = "http://www.shahaizhi.com/";
 
     /**
      * 测试服务器地址URL
      */
-//    public static String SERVERURL = "http://api.shahaizi.keiousoft.com/";
+    public static String SERVERURL = "http://192.168.1.247:8080/";
     //public static String SERVERURL = "http://api.shahaizi.keiousoft.com/";
-
-
-    public static String SERVERURL1 = "http://www.shahaizhi.com/";
 
     /**
      * 请求地址URL
      */
-    public static String APIURL = SERVERURL + "api/seller/";
+    public static String APIURL = SERVERURL + "api/guide/";
 
     /**
      * 获取七牛云key-ok
@@ -34,7 +32,7 @@ public class URLConstants {
     /**
      * 根据融云token获取头像性别昵称
      */
-    public static String SYSRONGCLOUD = APIURL + "sys/rongCloud.do";
+    public static String SYSRONGCLOUD = APIURL + "member/rongCloud.do";
 
     /**
      * 置换Token  get请求
@@ -44,44 +42,44 @@ public class URLConstants {
     /**
      * 登录
      */
-    public static String USERLOGIN = APIURL + "sys/login.do";
+    public static String USERLOGIN = APIURL + "member/login.do";
 
     /**
      * 获取会员登录状态
      */
-    public static String ISLOGIN = APIURL + "sys/islogin.do";
+    public static String ISLOGIN = APIURL + "member/islogin.do";
 
     /**
      * 退出登录
      */
-    public static String LOGOUT = APIURL + "sys/third.do";
+    public static String LOGOUT = APIURL + "member/exit.do";
 
     /**
      * 第三方登录
      */
-    public static String USERTHIRDLOGIN = APIURL + "sys/third.do";
+    public static String USERTHIRDLOGIN = APIURL + "member/third.do";
 
     /**
      * 获取第三方登录验证码
      */
-    public static String THIRDCODE = APIURL + "sys/thirdCode.do";
+    public static String THIRDCODE = APIURL + "member/thirdCode.do";
 
     /**
      * 短信验证码【手机号注册】
      * 验证码类型 reg=注册 resetpwd=找回密码 login=登陆 bind=绑定手机号.
      */
-    public static String SENDREGISTER = APIURL + "sys/code.do";
+    public static String SENDREGISTER = APIURL + "member/code.do";
 
     /**
      * 短信验证码【找回、修改密码】
      * 验证码类型 reg=注册 resetpwd=找回密码 login=登陆 bind=绑定手机号.
      */
-    public static String SENDFINFDCODE = APIURL + "sys/find.do";
+    public static String SENDFINFDCODE = APIURL + "member/find.do";
 
     /**
      * 用户注册
      */
-    public static String REGISTER = APIURL + "sys/regist.do";
+    public static String REGISTER = APIURL + "member/regist.do";
 
     /**
      * 用户注册协议
@@ -91,8 +89,7 @@ public class URLConstants {
     /**
      * 更改密码【手机】
      */
-    public static String USERRESTPWD = APIURL + "sys/edit.do";
-
+    public static String USERRESTPWD = APIURL + "member/edit.do";
 
     /**
      * 获取系统消息首页

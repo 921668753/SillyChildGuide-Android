@@ -6,6 +6,7 @@
     android:orientation="vertical">
 
     <TextView
+        android:id="@+id/tv_missedOrders"
         android:layout_width="@dimen/dimen83"
         android:layout_height="@dimen/dimen27"
         android:layout_gravity="right"

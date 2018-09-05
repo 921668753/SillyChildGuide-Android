@@ -1,56 +1,82 @@
 package com.yinglan.scg.main;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.common.cklibrary.common.BaseFragment;
+import com.common.cklibrary.common.BindView;
+import com.common.cklibrary.common.ViewInject;
+import com.common.cklibrary.utils.RefreshLayoutUtil;
+import com.common.cklibrary.utils.rx.MsgEvent;
 import com.yinglan.scg.R;
+import com.yinglan.scg.adapter.main.OrderReceivingRvViewAdapter;
+import com.yinglan.scg.constant.NumericConstants;
+import com.yinglan.scg.loginregister.LoginActivity;
+import com.yinglan.scg.orderreceiving.CharterDetailsActivity;
+import com.yinglan.scg.orderreceiving.LineDetailsActivity;
+import com.yinglan.scg.orderreceiving.MissedOrdersActivity;
+import com.yinglan.scg.orderreceiving.PrivateCustomDetailsActivity;
+
+import cn.bingoogolapple.baseadapter.BGAOnRVItemClickListener;
+import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
+
+import static android.app.Activity.RESULT_OK;
+import static com.yinglan.scg.constant.NumericConstants.RESULT_CODE_GET;
 
 /**
  * 接单
  * Created by Admin on 2017/8/10.
  */
-public class OrderReceivingFragment extends BaseFragment  {
+public class OrderReceivingFragment extends BaseFragment implements OrderReceivingContract.View, BGARefreshLayout.BGARefreshLayoutDelegate, BGAOnRVItemClickListener {
 
     private MainActivity aty;
 
-//    @BindView(id = R.id.img_departmentGuide, click = true)
-//    private ImageView img_departmentGuide;
-//
-//    @BindView(id = R.id.ll_guide, click = true)
-//    private LinearLayout ll_guide;
-//
-//    @BindView(id = R.id.img_guideLogo)
-//    private ImageView img_guideLogo;
-//
-//    @BindView(id = R.id.tv_guideName)
-//    private TextView tv_guideName;
-//
-//    @BindView(id = R.id.tv_guideNum)
-//    private TextView tv_guideNum;
-//
-//    @BindView(id = R.id.img_guideCertified)
-//    private ImageView img_guideCertified;
-//
-//    @BindView(id = R.id.img_asmanager, click = true)
-//    private ImageView img_asmanager;
-//
-//    @BindView(id = R.id.ll_store, click = true)
-//    private LinearLayout ll_store;
-//
-//    @BindView(id = R.id.img_storeLogo)
-//    private ImageView img_storeLogo;
-//
-//    @BindView(id = R.id.tv_storeName)
-//    private TextView tv_storeName;
-//
-//    @BindView(id = R.id.tv_shopNum)
-//    private TextView tv_shopNum;
-//
-//    @BindView(id = R.id.img_shopCertified)
-//    private ImageView img_shopCertified;
+    @BindView(id = R.id.tv_missedOrders, click = true)
+    private TextView tv_missedOrders;
+
+    @BindView(id = R.id.mRefreshLayout, click = true)
+    private BGARefreshLayout mRefreshLayout;
+
+    @BindView(id = R.id.rv_order)
+    private RecyclerView rv_order;
+
+    private OrderReceivingRvViewAdapter mAdapter;
+
+    /**
+     * 错误提示页
+     */
+    @BindView(id = R.id.ll_commonError)
+    private LinearLayout ll_commonError;
+
+    @BindView(id = R.id.img_err)
+    private ImageView img_err;
+
+    @BindView(id = R.id.tv_hintText)
+    private TextView tv_hintText;
+
+    @BindView(id = R.id.tv_button, click = true)
+    private TextView tv_button;
+
+    /**
+     * 当前页码
+     */
+    private int mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
+    /**
+     * 总页码
+     */
+    private int totalPageNumber = NumericConstants.START_PAGE_NUMBER;
+    /**
+     * 是否加载更多
+     */
+    private boolean isShowLoadingMore = false;
+    private int selectedPosition = 0;
 
 
     @Override
@@ -59,194 +85,204 @@ public class OrderReceivingFragment extends BaseFragment  {
         return View.inflate(aty, R.layout.fragment_orderreceiving, null);
     }
 
-//    @Override
-//    protected void initData() {
-//        super.initData();
-//     //   mPresenter = new HomePagePresenter(this);
-//        showLoadingDialog(getString(R.string.dataLoad));
-//        ((HomePageContract.Presenter) mPresenter).getHomePage(aty);
-//    }
-//
-//    @Override
-//    protected void initWidget(View parentView) {
-//        super.initWidget(parentView);
-//        img_departmentGuide.setVisibility(View.VISIBLE);
-//        ll_guide.setVisibility(View.GONE);
-//        img_asmanager.setVisibility(View.VISIBLE);
-//        ll_store.setVisibility(View.GONE);
-//    }
-//
-//    /**
-//     * @param v 控件监听事件
-//     */
-//    @Override
-//    protected void widgetClick(View v) {
-//        super.widgetClick(v);
-//        switch (v.getId()) {
-//            case R.id.img_departmentGuide:
-//                ((HomePageContract.Presenter) mPresenter).getIsLogin(aty, 1);
-//                break;
-//            case R.id.ll_guide:
-//
-//                ((HomePageContract.Presenter) mPresenter).getIsLogin(aty, 2);
-//                break;
-//            case R.id.img_asmanager:
-//                ((HomePageContract.Presenter) mPresenter).getIsLogin(aty, 3);
-//                break;
-//            case R.id.ll_store:
-//                ((HomePageContract.Presenter) mPresenter).getIsLogin(aty, 4);
-//                break;
-//            default:
-//                break;
-//        }
-//    }
-//
-//    @Override
-//    public void setPresenter(HomePageContract.Presenter presenter) {
-//        mPresenter = presenter;
-//    }
-//
-//    @Override
-//    public void getSuccess(String success, int flag) {
-//        if (flag == 0) {
-//            UserInfoBean userInfoBean = (UserInfoBean) JsonUtil.getInstance().json2Obj(success, UserInfoBean.class);
-//            if (userInfoBean != null && userInfoBean.getData() != null) {
-//                saveUserInfo(userInfoBean);
-//                int disabled = PreferenceHelper.readInt(aty, StringConstants.FILENAME, "disabled", 3);
-//                if (disabled == -1) {
-//                    img_departmentGuide.setVisibility(View.VISIBLE);
-//                    ll_guide.setVisibility(View.GONE);
-//                    img_asmanager.setVisibility(View.GONE);
-//                    ll_store.setVisibility(View.VISIBLE);
-//                    GlideImageLoader.glideLoader(aty, userInfoBean.getData().getStore_logo(), img_storeLogo, 0, R.mipmap.avatar);
-//                    tv_storeName.setText(userInfoBean.getData().getStore_name());
-//                    tv_shopNum.setText(getString(R.string.shopNum) + userInfoBean.getData().getStore_id());
-//                    img_shopCertified.setImageResource(R.mipmap.home_not_through);
-//                } else if (disabled == 0) {
-//                    img_departmentGuide.setVisibility(View.VISIBLE);
-//                    ll_guide.setVisibility(View.GONE);
-//                    img_asmanager.setVisibility(View.GONE);
-//                    ll_store.setVisibility(View.VISIBLE);
-//                    GlideImageLoader.glideLoader(aty, userInfoBean.getData().getStore_logo(), img_storeLogo, 0, R.mipmap.avatar);
-//                    tv_storeName.setText(userInfoBean.getData().getStore_name());
-//                    tv_shopNum.setText(getString(R.string.shopNum) + userInfoBean.getData().getStore_id());
-//                    img_shopCertified.setImageResource(R.mipmap.home_under_review);
-//                } else if (disabled == 1) {
-//                    img_departmentGuide.setVisibility(View.VISIBLE);
-//                    ll_guide.setVisibility(View.GONE);
-//                    img_asmanager.setVisibility(View.GONE);
-//                    ll_store.setVisibility(View.VISIBLE);
-//                    GlideImageLoader.glideLoader(aty, userInfoBean.getData().getStore_logo(), img_storeLogo, 0, R.mipmap.avatar);
-//                    tv_storeName.setText(userInfoBean.getData().getStore_name());
-//                    tv_shopNum.setText(getString(R.string.shopNum) + userInfoBean.getData().getStore_id());
-//                    img_shopCertified.setImageResource(R.mipmap.home_certified);
-//                } else if (disabled == 2) {
-//                    img_departmentGuide.setVisibility(View.VISIBLE);
-//                    ll_guide.setVisibility(View.GONE);
-//                    img_asmanager.setVisibility(View.GONE);
-//                    ll_store.setVisibility(View.VISIBLE);
-//                    GlideImageLoader.glideLoader(aty, userInfoBean.getData().getStore_logo(), img_storeLogo, 0, R.mipmap.avatar);
-//                    tv_storeName.setText(userInfoBean.getData().getStore_name());
-//                    tv_shopNum.setText(getString(R.string.shopNum) + userInfoBean.getData().getStore_id());
-//                    img_shopCertified.setImageResource(R.mipmap.home_disabled);
-//                } else {
-//                    img_departmentGuide.setVisibility(View.VISIBLE);
-//                    ll_guide.setVisibility(View.GONE);
-//                    img_asmanager.setVisibility(View.VISIBLE);
-//                    ll_store.setVisibility(View.GONE);
-//                }
+    @Override
+    protected void initData() {
+        super.initData();
+        mAdapter = new OrderReceivingRvViewAdapter(rv_order);
+        mPresenter = new OrderReceivingPresenter(this);
+    }
+
+    @Override
+    protected void initWidget(View parentView) {
+        super.initWidget(parentView);
+        RefreshLayoutUtil.initRefreshLayout(mRefreshLayout, this, aty, true);
+        rv_order.setAdapter(mAdapter);
+        mAdapter.setOnRVItemClickListener(this);
+        //    mAdapter.setOnItemChildClickListener(this);
+        mRefreshLayout.beginRefreshing();
+    }
+
+    /**
+     * @param v 控件监听事件
+     */
+    @Override
+    protected void widgetClick(View v) {
+        super.widgetClick(v);
+        switch (v.getId()) {
+            case R.id.tv_missedOrders:
+                ((OrderReceivingContract.Presenter) mPresenter).getIsLogin(aty, 1);
+                break;
+            case R.id.tv_button:
+                if (tv_button.getText().toString().contains(getString(R.string.retry))) {
+                    mRefreshLayout.beginRefreshing();
+                    return;
+                }
+                aty.showActivity(aty, LoginActivity.class);
+                break;
+        }
+    }
+
+    @Override
+    public void onRVItemClick(ViewGroup parent, View itemView, int position) {
+        selectedPosition = position;
+        ((OrderReceivingContract.Presenter) mPresenter).getIsLogin(aty, 2);
+    }
+
+    @Override
+    public void onBGARefreshLayoutBeginRefreshing(BGARefreshLayout refreshLayout) {
+        mRefreshLayout.endRefreshing();
+        mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
+        showLoadingDialog(getString(R.string.dataLoad));
+        // ((OrderReceivingContract.Presenter) mPresenter).get(aty, status, mMorePageNumber);
+    }
+
+    @Override
+    public boolean onBGARefreshLayoutBeginLoadingMore(BGARefreshLayout refreshLayout) {
+        mRefreshLayout.endLoadingMore();
+        if (!isShowLoadingMore) {
+            return false;
+        }
+        mMorePageNumber++;
+        if (mMorePageNumber > totalPageNumber) {
+            ViewInject.toast(getString(R.string.noMoreData));
+            return false;
+        }
+        showLoadingDialog(getString(R.string.dataLoad));
+        //  ((OrderReceivingContract.Presenter) mPresenter).getChartOrder(aty, status, mMorePageNumber);
+        return true;
+    }
+
+    @Override
+    public void setPresenter(OrderReceivingContract.Presenter presenter) {
+        mPresenter = presenter;
+    }
+
+    @Override
+    public void getSuccess(String success, int flag) {
+        if (flag == 0) {
+            isShowLoadingMore = true;
+            mRefreshLayout.setPullDownRefreshEnable(true);
+            ll_commonError.setVisibility(View.GONE);
+            mRefreshLayout.setVisibility(View.VISIBLE);
+//            CharterOrderBean charterOrderBean = (CharterOrderBean) JsonUtil.getInstance().json2Obj(success, CharterOrderBean.class);
+//            if (charterOrderBean.getData() == null && mMorePageNumber == NumericConstants.START_PAGE_NUMBER ||
+//                    charterOrderBean.getData().getResultX() == null && mMorePageNumber == NumericConstants.START_PAGE_NUMBER ||
+//                    charterOrderBean.getData().getResultX().size() <= 0 && mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
+//                errorMsg(getString(R.string.noOrder), 0);
+//                return;
+//            } else if (charterOrderBean.getData() == null && mMorePageNumber > NumericConstants.START_PAGE_NUMBER ||
+//                    charterOrderBean.getData().getResultX() == null && mMorePageNumber > NumericConstants.START_PAGE_NUMBER ||
+//                    charterOrderBean.getData().getResultX().size() <= 0 && mMorePageNumber > NumericConstants.START_PAGE_NUMBER) {
+//                ViewInject.toast(getString(R.string.noMoreData));
+//                isShowLoadingMore = false;
+//                dismissLoadingDialog();
+//                mRefreshLayout.endLoadingMore();
+//                return;
+//            }
+//            mMorePageNumber = charterOrderBean.getData().getCurrentPageNo();
+//            totalPageNumber = charterOrderBean.getData().getTotalPageCount();
+//            if (mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
+//                mRefreshLayout.endRefreshing();
+//                mAdapter.clear();
+//                mAdapter.addNewData(charterOrderBean.getData().getResultX());
 //            } else {
-//                img_departmentGuide.setVisibility(View.VISIBLE);
-//                ll_guide.setVisibility(View.GONE);
-//                img_asmanager.setVisibility(View.VISIBLE);
-//                ll_store.setVisibility(View.GONE);
+//                mRefreshLayout.endLoadingMore();
+//                mAdapter.addMoreData(charterOrderBean.getData().getResultX());
 //            }
-//        } else if (flag == 1) {
-//            Intent intent = new Intent(aty, GuideCertificationActivity.class);
-//            startActivityForResult(intent, RESULT_CODE_GET);
-//        } else if (flag == 2) {
-//            int disabled = PreferenceHelper.readInt(aty, StringConstants.FILENAME, "disabled", 3);
-//            if (disabled == 1 || disabled == 2) {
-//                return;
+            dismissLoadingDialog();
+        } else if (flag == 1) {
+            aty.showActivity(aty, MissedOrdersActivity.class);
+        } else if (flag == 2) {
+            Intent intent = new Intent(aty, CharterDetailsActivity.class);
+            intent.putExtra("id", mAdapter.getItem(selectedPosition).getOrder_id());
+//            if () {
+//                intent.setClass(aty, CharterDetailsActivity.class);
+//            } else if (mAdapter.getItem(position)) {
+//                intent.setClass(aty, PrivateCustomDetailsActivity.class);
+//            } else if (mAdapter.getItem(position)) {
+//                intent.setClass(aty, LineDetailsActivity.class);
 //            }
-//            Intent intent = new Intent(aty, GuideCertificationActivity.class);
-//            startActivityForResult(intent, RESULT_CODE_GET);
-//        } else if (flag == 3) {
-//            Intent intent = new Intent(aty, StoreCertificationActivity.class);
-//            startActivityForResult(intent, RESULT_CODE_GET);
-//        } else if (flag == 4) {
-//            int disabled = PreferenceHelper.readInt(aty, StringConstants.FILENAME, "disabled", 3);
-//            if (disabled == 1 || disabled == 2) {
-//                return;
-//            }
-//            Intent intent = new Intent(aty, StoreCertificationActivity.class);
-//            startActivityForResult(intent, RESULT_CODE_GET);
-//        }
-//        dismissLoadingDialog();
-//    }
-//
-//    /**
-//     * 用户信息本地化
-//     */
-//    private void saveUserInfo(UserInfoBean userInfoBean) {
-//        PreferenceHelper.write(aty, StringConstants.FILENAME, "store_name", userInfoBean.getData().getStore_name());
-//        PreferenceHelper.write(aty, StringConstants.FILENAME, "store_id", userInfoBean.getData().getStore_id());
-//        PreferenceHelper.write(aty, StringConstants.FILENAME, "disabled", StringUtils.toInt(userInfoBean.getData().getDisabled(), 3));
-//        PreferenceHelper.write(aty, StringConstants.FILENAME, "store_logo", userInfoBean.getData().getStore_logo());
-//        PreferenceHelper.write(aty, StringConstants.FILENAME, "order_total", userInfoBean.getData().getOrder_total());
-//        PreferenceHelper.write(aty, StringConstants.FILENAME, "store_level", userInfoBean.getData().getStore_level());
-//        PreferenceHelper.write(aty, StringConstants.FILENAME, "lv_id", userInfoBean.getData().getLv_id());
-//        PreferenceHelper.write(aty, StringConstants.FILENAME, "nickname", userInfoBean.getData().getNickname());
-//        PreferenceHelper.write(aty, StringConstants.FILENAME, "face", userInfoBean.getData().getFace());
-//        PreferenceHelper.write(aty, StringConstants.FILENAME, "lv_name", userInfoBean.getData().getLv_name());
-//    }
-//
-//
-//    @Override
-//    public void errorMsg(String msg, int flag) {
-//        dismissLoadingDialog();
-//        if (flag == 1 && isLogin(msg) || flag == 2 && isLogin(msg) || flag == 3 && isLogin(msg) || flag == 4 && isLogin(msg)) {
-//            aty.showActivity(aty, LoginActivity.class);
-//            return;
-//        }
-//        if (flag == 0 && isLogin(msg)) {
-//            img_departmentGuide.setVisibility(View.VISIBLE);
-//            ll_guide.setVisibility(View.GONE);
-//            img_asmanager.setVisibility(View.VISIBLE);
-//            ll_store.setVisibility(View.GONE);
-//            return;
-//        }
-//        ViewInject.toast(msg);
-//    }
-//
-//    @Override
-//    public void onChange() {
-//        super.onChange();
-//    }
-//
-//
-//    @Override
-//    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//        switch (requestCode) {
-//            case RESULT_CODE_GET:
-//                if (resultCode == RESULT_OK && data != null) {
-//                    ((HomePageContract.Presenter) mPresenter).getHomePage(aty);
-//                }
-//                break;
-//        }
-//    }
-//
-//    /**
-//     * 在接收消息的时候，选择性接收消息：
-//     */
-//    @Override
-//    public void callMsgEvent(MsgEvent msgEvent) {
-//        super.callMsgEvent(msgEvent);
-//        if (((String) msgEvent.getData()).equals("RxBusLoginEvent") && mPresenter != null || ((String) msgEvent.getData()).equals("RxBusLogOutEvent") && mPresenter != null) {
-//            //    et_enterNameStore.setText("");
-//            ((HomePageContract.Presenter) mPresenter).getHomePage(aty);
-//        }
-//    }
+            startActivityForResult(intent, RESULT_CODE_GET);
+        }
+        dismissLoadingDialog();
+    }
+
+    @Override
+    public void errorMsg(String msg, int flag) {
+        dismissLoadingDialog();
+        if (flag == 0) {
+            dismissLoadingDialog();
+            isShowLoadingMore = false;
+            if (mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
+                mRefreshLayout.endRefreshing();
+            } else {
+                mRefreshLayout.endLoadingMore();
+            }
+            mRefreshLayout.setPullDownRefreshEnable(false);
+            mRefreshLayout.setVisibility(View.GONE);
+            ll_commonError.setVisibility(View.VISIBLE);
+            tv_hintText.setVisibility(View.VISIBLE);
+            tv_button.setVisibility(View.VISIBLE);
+            if (isLogin(msg)) {
+                img_err.setImageResource(R.mipmap.no_login);
+                tv_hintText.setVisibility(View.GONE);
+                tv_button.setText(getString(R.string.login));
+                // ViewInject.toast(getString(R.string.reloginPrompting));
+                aty.showActivity(aty, LoginActivity.class);
+                return;
+            } else if (msg.contains(getString(R.string.checkNetwork))) {
+                img_err.setImageResource(R.mipmap.no_network);
+                tv_hintText.setText(msg);
+                tv_button.setText(getString(R.string.retry));
+            } else if (msg.contains(getString(R.string.noOrder))) {
+                img_err.setImageResource(R.mipmap.no_data);
+                tv_hintText.setText(msg);
+                tv_button.setVisibility(View.GONE);
+            } else {
+                img_err.setImageResource(R.mipmap.no_data);
+                tv_hintText.setText(msg);
+                tv_button.setText(getString(R.string.retry));
+            }
+        } else if (flag == 1 || flag == 2) {
+            dismissLoadingDialog();
+            if (isLogin(msg)) {
+                aty.showActivity(aty, LoginActivity.class);
+                return;
+            }
+            ViewInject.toast(msg);
+        }
+    }
+
+    @Override
+    public void onChange() {
+        super.onChange();
+    }
+
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case RESULT_CODE_GET:
+                if (resultCode == RESULT_OK && data != null) {
+                    mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
+                    // ((OrderReceivingContract.Presenter) mPresenter).get(aty, status, mMorePageNumber);
+                }
+                break;
+        }
+    }
+
+
+    /**
+     * 在接收消息的时候，选择性接收消息：
+     */
+    @Override
+    public void callMsgEvent(MsgEvent msgEvent) {
+        super.callMsgEvent(msgEvent);
+        if (((String) msgEvent.getData()).equals("RxBusLoginEvent") && mPresenter != null || ((String) msgEvent.getData()).equals("RxBusLogOutEvent") && mPresenter != null) {
+            mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
+            // ((OrderReceivingContract.Presenter) mPresenter).get(aty, status, mMorePageNumber);
+        }
+    }
 
 }
