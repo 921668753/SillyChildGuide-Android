@@ -22,7 +22,6 @@ public class UserInfoBean extends BaseResult<UserInfoBean.DataBean> implements S
          * remark : 你好啊！
          * guide_level_name : 黄金司导
          */
-
         private String face;
         private int sex;
         private int order_number;
@@ -32,6 +31,7 @@ public class UserInfoBean extends BaseResult<UserInfoBean.DataBean> implements S
         private String remark;
         private String guide_level_name;
         private String approve_status;
+        private String invite_code;
 
         public String getGuide_level_color() {
             return guide_level_color;
@@ -103,6 +103,14 @@ public class UserInfoBean extends BaseResult<UserInfoBean.DataBean> implements S
 
         public void setApprove_status(String approve_status) {
             this.approve_status = approve_status;
+        }
+
+        public String getInvite_code() {
+            return invite_code;
+        }
+
+        public void setInvite_code(String invite_code) {
+            this.invite_code = invite_code;
         }
     }
 }

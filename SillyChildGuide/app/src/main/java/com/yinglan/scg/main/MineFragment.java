@@ -206,9 +206,9 @@ public class MineFragment extends BaseFragment implements MineContract.View, Vie
                 }
                 String shz = PreferenceHelper.readString(aty, StringConstants.FILENAME, "shz", "");
                 tv_serialNumber.setText(shz);
-                tv_serialNumber.setTextColor(Integer.parseInt(userInfoBean.getData().getGuide_level_color(), 16));
                 tv_ordersTotal.setText(userInfoBean.getData().getOrder_number() + "");
                 tv_guideLevel.setText(userInfoBean.getData().getGuide_level_name());
+                tv_guideLevel.setTextColor(Color.parseColor("#" + userInfoBean.getData().getGuide_level_color()));
                 tv_serviceLevel.setText(userInfoBean.getData().getService_level());
             }
         } else if (flag == 1) {
@@ -242,6 +242,7 @@ public class MineFragment extends BaseFragment implements MineContract.View, Vie
         PreferenceHelper.write(aty, StringConstants.FILENAME, "sex", userInfoBean.getData().getSex());
         PreferenceHelper.write(aty, StringConstants.FILENAME, "remark", userInfoBean.getData().getRemark());
         PreferenceHelper.write(aty, StringConstants.FILENAME, "service_level", userInfoBean.getData().getService_level());
+        PreferenceHelper.write(aty, StringConstants.FILENAME, "invite_code", userInfoBean.getData().getInvite_code());
     }
 
     @Override
