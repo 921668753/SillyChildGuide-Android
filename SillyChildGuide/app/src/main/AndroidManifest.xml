@@ -176,9 +176,6 @@
             android:screenOrientation="portrait" />
 
         <!--我的  我的车辆  车辆详情-->
-        <activity
-            android:name=".mine.myvehicle.VehicleDetailsActivity"
-            android:screenOrientation="portrait" />
 
         <!--我的  我的车辆   新增车辆-->
         <activity

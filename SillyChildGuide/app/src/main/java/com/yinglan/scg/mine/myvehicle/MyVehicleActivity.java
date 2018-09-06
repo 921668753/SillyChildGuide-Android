@@ -16,6 +16,7 @@ import com.yinglan.scg.R;
 import com.yinglan.scg.adapter.mine.myvehicle.MyVehicleViewAdapter;
 import com.yinglan.scg.entity.mine.myvehicle.MyVehicleBean;
 import com.yinglan.scg.loginregister.LoginActivity;
+import com.yinglan.scg.mine.myvehicle.dialog.SubmitDeleteDialog;
 
 import cn.bingoogolapple.baseadapter.BGAOnItemChildClickListener;
 
@@ -33,6 +34,7 @@ public class MyVehicleActivity extends BaseActivity implements MyVehicleContract
     private ImageView img_addCar;
 
     private MyVehicleViewAdapter mAdapter;
+    private SubmitDeleteDialog submitDeleteDialog;
 
     @Override
     public void setRootView() {
@@ -45,9 +47,26 @@ public class MyVehicleActivity extends BaseActivity implements MyVehicleContract
         super.initData();
         mPresenter = new MyVehiclePresenter(this);
         mAdapter = new MyVehicleViewAdapter(this);
+        initDialog();
         showLoadingDialog(getString(R.string.dataLoad));
         ((MyVehicleContract.Presenter) mPresenter).getMyVehicleList();
     }
+
+    private void initDialog() {
+        submitDeleteDialog = new SubmitDeleteDialog(this) {
+            @Override
+            public void submitAuditDo(int id) {
+                dismiss();
+                postsubmitDelete(id);
+            }
+        };
+    }
+
+    private void postsubmitDelete(int id) {
+        showLoadingDialog(getString(R.string.deleteLoad));
+        ((MyVehicleContract.Presenter) mPresenter).getMyVehicleList();
+    }
+
 
     @Override
     public void initWidget() {
@@ -72,7 +91,13 @@ public class MyVehicleActivity extends BaseActivity implements MyVehicleContract
     @Override
     public void onItemChildClick(ViewGroup parent, View childView, int position) {
         if (childView.getId() == R.id.tv_delete) {
-
+            if (submitDeleteDialog == null) {
+                initDialog();
+            }
+            if (submitDeleteDialog != null && !submitDeleteDialog.isShowing()) {
+                submitDeleteDialog.show();
+                submitDeleteDialog.setId(mAdapter.getItem(position).getId());
+            }
         }
     }
 
@@ -121,5 +146,14 @@ public class MyVehicleActivity extends BaseActivity implements MyVehicleContract
         ((MyVehicleContract.Presenter) mPresenter).getMyVehicleList();
     }
 
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (submitDeleteDialog != null) {
+            submitDeleteDialog.cancel();
+        }
+        submitDeleteDialog = null;
+        mAdapter.clear();
+        mAdapter = null;
+    }
 }

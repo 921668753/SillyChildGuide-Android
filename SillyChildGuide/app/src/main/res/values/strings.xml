@@ -273,6 +273,7 @@
     <string name="delete">删除</string>
     <string name="myVehicle">我的车辆</string>
     <string name="modelYourCar">请输入您爱车的型号</string>
+    <string name="confirmDeletionVehicleInformation">确认删除该车辆信息</string>
 
     <!--我的   我的车辆    新增车辆-->
     <string name="addVehicle">新增车辆</string>
