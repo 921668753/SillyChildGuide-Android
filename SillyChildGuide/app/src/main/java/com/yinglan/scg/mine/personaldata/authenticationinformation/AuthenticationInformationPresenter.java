@@ -2,25 +2,17 @@ package com.yinglan.scg.mine.personaldata.authenticationinformation;
 
 import com.common.cklibrary.common.KJActivityStack;
 import com.common.cklibrary.common.StringConstants;
-import com.common.cklibrary.utils.JsonUtil;
 import com.common.cklibrary.utils.httputil.HttpUtilParams;
 import com.common.cklibrary.utils.httputil.ResponseListener;
 import com.common.cklibrary.utils.httputil.ResponseProgressbarListener;
-import com.kymjs.common.Log;
 import com.kymjs.common.PreferenceHelper;
 import com.kymjs.common.StringUtils;
 import com.kymjs.rxvolley.client.HttpParams;
 import com.luck.picture.lib.entity.LocalMedia;
-import com.qiniu.android.http.ResponseInfo;
-import com.qiniu.android.storage.UpCompletionHandler;
 import com.yinglan.scg.R;
 import com.yinglan.scg.retrofit.RequestClient;
-import com.yinglan.scg.retrofit.uploadimg.UploadManagerUtil;
 
-import org.json.JSONException;
-import org.json.JSONObject;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
