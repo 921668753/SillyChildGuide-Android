@@ -9,7 +9,6 @@ import com.kymjs.rxvolley.client.HttpParams;
 import com.yinglan.scg.R;
 import com.yinglan.scg.retrofit.RequestClient;
 
-import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -32,8 +31,7 @@ public class PersonalDataPresenter implements PersonalDataContract.Presenter {
             mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.noData), 0);
             return;
         }
-        File oldFile = new File(path);
-        RequestClient.upLoadImg(KJActivityStack.create().topActivity(), oldFile, 0, new ResponseListener<String>() {
+        RequestClient.upLoadImg(KJActivityStack.create().topActivity(), path, 0, new ResponseListener<String>() {
             @Override
             public void onSuccess(String response) {
                 mView.getSuccess(response, 0);

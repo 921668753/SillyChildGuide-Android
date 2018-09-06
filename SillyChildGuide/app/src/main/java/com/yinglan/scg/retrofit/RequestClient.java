@@ -37,8 +37,6 @@ import com.yinglan.scg.entity.loginregister.LoginBean;
 import com.yinglan.scg.entity.startpage.QiNiuKeyBean;
 import com.yinglan.scg.message.interactivemessage.imuitl.UserUtil;
 import com.yinglan.scg.retrofit.uploadimg.UploadManagerUtil;
-import com.yinglan.scg.constant.NumericConstants;
-import com.yinglan.scg.constant.URLConstants;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -61,7 +59,7 @@ public class RequestClient {
     /**
      * 上传头像图片
      */
-    public static void upLoadImg(Context context, File file, int type, ResponseListener<String> listener) {
+    public static void upLoadImg(Context context, String filePath, int type, ResponseListener<String> listener) {
         long nowTime = System.currentTimeMillis();
         String qiNiuImgTime = PreferenceHelper.readString(context, StringConstants.FILENAME, "qiNiuImgTime", "");
         long qiNiuImgTime1 = 0;
@@ -72,7 +70,7 @@ public class RequestClient {
         }
         long refreshTime = nowTime - qiNiuImgTime1 - (8 * 60 * 60 * 1000);
         if (refreshTime <= 0) {
-            upLoadImgQiNiuYun(context, file, type, listener);
+            upLoadImgQiNiuYun(context, filePath, type, listener);
             return;
         }
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
@@ -87,7 +85,7 @@ public class RequestClient {
                 PreferenceHelper.write(context, StringConstants.FILENAME, "qiNiuToken", qiNiuKeyBean.getData().getAuthToken());
                 PreferenceHelper.write(context, StringConstants.FILENAME, "qiNiuImgHost", qiNiuKeyBean.getData().getHost());
                 PreferenceHelper.write(context, StringConstants.FILENAME, "qiNiuImgTime", String.valueOf(System.currentTimeMillis()));
-                upLoadImgQiNiuYun(context, file, type, listener);
+                upLoadImgQiNiuYun(context, filePath, type, listener);
             }
 
             @Override
@@ -102,14 +100,14 @@ public class RequestClient {
     /**
      * 获取七牛云Token
      */
-    private static void upLoadImgQiNiuYun(Context context, File file, int type, ResponseListener<String> listener) {
+    private static void upLoadImgQiNiuYun(Context context, String filePath, int type, ResponseListener<String> listener) {
         String token = PreferenceHelper.readString(context, StringConstants.FILENAME, "qiNiuToken");
         //     if (type == 0) {
         String key = null;
         Log.d("ReadFragment", "key" + key);
         if (type == 0) {
             //参数 图片路径,图片名,token,成功的回调
-            UploadManagerUtil.getInstance().getUploadManager().put(file.getPath(), key, token, new UpCompletionHandler() {
+            UploadManagerUtil.getInstance().getUploadManager().put(filePath, key, token, new UpCompletionHandler() {
                 @Override
                 public void complete(String key, ResponseInfo responseInfo, JSONObject jsonObject) {
                     Log.d("ReadFragment", "key" + key + "responseInfo" + JsonUtil.obj2JsonString(responseInfo) + "jsObj:" + String.valueOf(jsonObject));
@@ -151,7 +149,7 @@ public class RequestClient {
                     .recorder(recorder, keyGen)
                     .build();
             //参数 图片路径,图片名,token,成功的回调
-            UploadManagerUtil.getInstance(config).getUploadManager().put(file.getPath(), key, token, new UpCompletionHandler() {
+            UploadManagerUtil.getInstance(config).getUploadManager().put(filePath, key, token, new UpCompletionHandler() {
                 @Override
                 public void complete(String key, ResponseInfo responseInfo, JSONObject jsonObject) {
                     Log.d("ReadFragment", "key" + key + "responseInfo" + JsonUtil.obj2JsonString(responseInfo) + "jsObj:" + String.valueOf(jsonObject));

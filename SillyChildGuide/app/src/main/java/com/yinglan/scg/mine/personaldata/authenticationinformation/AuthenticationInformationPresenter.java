@@ -5,6 +5,7 @@ import com.common.cklibrary.common.StringConstants;
 import com.common.cklibrary.utils.JsonUtil;
 import com.common.cklibrary.utils.httputil.HttpUtilParams;
 import com.common.cklibrary.utils.httputil.ResponseListener;
+import com.common.cklibrary.utils.httputil.ResponseProgressbarListener;
 import com.kymjs.common.Log;
 import com.kymjs.common.PreferenceHelper;
 import com.kymjs.common.StringUtils;
@@ -19,6 +20,7 @@ import com.yinglan.scg.retrofit.uploadimg.UploadManagerUtil;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -111,50 +113,37 @@ public class AuthenticationInformationPresenter implements AuthenticationInforma
                 }
                 continue;
             }
-            String token = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "qiNiuToken");
             //参数 图片路径,图片名,token,成功的回调
             int finalI = i;
-            UploadManagerUtil.getInstance().getUploadManager().put(selectList.get(i).getPath(), null, token, new UpCompletionHandler() {
+            RequestClient.upLoadImg(KJActivityStack.create().topActivity(), selectList.get(i).getPath(), 1, new ResponseProgressbarListener<String>() {
                 @Override
-                public void complete(String key, ResponseInfo responseInfo, JSONObject jsonObject) {
-                    Log.d("ReadFragment", "key" + key + "responseInfo" + JsonUtil.obj2JsonString(responseInfo) + "jsObj:" + String.valueOf(jsonObject));
-                    if (responseInfo.isOK()) {
-                        String host = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "qiNiuImgHost");
-                        String headpicPath = null;
-                        try {
-                            headpicPath = host + jsonObject.getString("name");
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                            KJActivityStack.create().topActivity().runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.failedUploadPicture), 1);
-                                    return;
-                                }
-                            });
-                            return;
-                        }
-                        int selectListSize = PreferenceHelper.readInt(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "selectListSize", 0);
-                        selectListSize = selectListSize + 1;
-                        PreferenceHelper.write(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "selectListSize", selectListSize);
-                        Log.i("ReadFragment", "complete: " + headpicPath);
-                        selectList.get(finalI).setHttpPath(headpicPath);
-                        if (selectListSize == selectList.size()) {
-                            postEidtCertification2(city_id, selectList);
-                            selectList.clear();
-                        }
-                        return;
+                public void onProgress(String progress) {
+                    //  mView.showLoadingDialog(KJActivityStack.create().topActivity().getString(R.string.crossLoad) + progress + "%");
+                }
+
+                @Override
+                public void onSuccess(String response) {
+                    selectList.get(finalI).setHttpPath(response);
+                    int selectListSize = PreferenceHelper.readInt(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "selectListSize", 0);
+                    selectListSize = selectListSize + 1;
+                    PreferenceHelper.write(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "selectListSize", selectListSize);
+                    if (selectListSize == selectList.size()) {
+                        postEidtCertification2(city_id, selectList);
+                        selectList.clear();
                     }
+                }
+
+                @Override
+                public void onFailure(String msg) {
                     KJActivityStack.create().topActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.failedUploadPicture), 1);
+                            mView.errorMsg(msg, 1);
                             return;
                         }
                     });
-                    return;
                 }
-            }, null);
+            });
         }
     }
 

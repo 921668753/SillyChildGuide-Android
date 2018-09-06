@@ -27,8 +27,8 @@
     <string name="videoPathError">视频路径错误</string>
     <string name="imagePathError">图片路径错误</string>
     <string name="noData">没有数据</string>
-    <string name="failedUploadPicture">上传图片失败，请重试</string>
-    <string name="failedUploadVideo">上传视频失败，请重试</string>
+    <string name="failedUploadPicture">上传失败，请重试</string>
+    <string name="failedUploadVideo">上传失败，请重试</string>
     <!--app权限-->
     <string name="readAndWrite">这款应用需要获取读写权限，才能使用</string>
     <string name="sdPermission">您拒绝了「SD卡读写权限」所需要的相关权限!请到「设置」开启权限</string>
