@@ -468,26 +468,6 @@ public class RequestClient {
         });
     }
 
-
-    /**
-     * 获取商家店铺信息
-     */
-    public static void getStoreInfo(Context context, HttpParams httpParams, ResponseListener<String> listener) {
-        Log.d("tag", "getStoreInfo");
-        doServer(context, new TokenCallback() {
-            @Override
-            public void execute() {
-                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
-                if (StringUtils.isEmpty(cookies)) {
-                    listener.onFailure(NumericConstants.TOLINGIN + "");
-                    return;
-                }
-                httpParams.putHeaders("Cookie", cookies);
-                HttpRequest.requestGetHttp(context, URLConstants.STOREINFO, httpParams, listener);
-            }
-        }, listener);
-    }
-
     /**
      * 修改个人信息
      */
@@ -581,6 +561,14 @@ public class RequestClient {
         HttpRequest.requestGetHttp(context, URLConstants.GETCITYLIST, httpParams, listener);
     }
 
+    /**
+     * 资料信息 - 模糊查询城市信息
+     */
+    public static void getCityListByName(Context context, HttpParams httpParams, ResponseListener<String> listener) {
+        Log.d("tag", "getCityListByName");
+        HttpRequest.requestPostFORMHttp(context, URLConstants.GETCITYLISTBYNAME, httpParams, listener);
+    }
+
 
     /**
      * 获取用户车辆列表
@@ -655,6 +643,15 @@ public class RequestClient {
         Log.d("tag", "getModelNameList");
         HttpRequest.requestGetHttp(context, URLConstants.GETMODELNAMELIST, httpParams, listener);
     }
+
+    /**
+     * 获取车辆名称列表
+     */
+    public static void getModelListByName(Context context, HttpParams httpParams, ResponseListener<String> listener) {
+        Log.d("tag", "getModelNameList");
+        HttpRequest.requestPostFORMHttp(context, URLConstants.GETMODELLISTBYNAME, httpParams, listener);
+    }
+
 
     /**
      * 获取钱包余额

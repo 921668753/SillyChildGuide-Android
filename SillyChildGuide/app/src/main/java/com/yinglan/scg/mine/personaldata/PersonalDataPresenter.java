@@ -41,7 +41,12 @@ public class PersonalDataPresenter implements PersonalDataContract.Presenter {
 
             @Override
             public void onFailure(String msg) {
-                mView.errorMsg(msg, 0);
+                KJActivityStack.create().topActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        mView.errorMsg(msg, 0);
+                    }
+                });
             }
         });
     }

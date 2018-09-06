@@ -107,14 +107,9 @@ public class URLConstants {
     public static String NEWSELECT = APIURL + "news/select.do";
 
     /**
-     * 获取商家店铺信息
-     */
-    public static String STOREINFO = APIURL + "member/store/get.do";
-
-    /**
      * 修改个人信息
      */
-    public static String MEMBEREDIT = APIURL + "member/edit.do";
+    public static String MEMBEREDIT = APIURL + "member/edit_guide.do";
 
     /**
      * 获取个人信息
@@ -142,6 +137,11 @@ public class URLConstants {
     public static String GETCITYLIST = APIURL + "model/get_city_list.do";
 
     /**
+     * 资料信息 - 模糊查询城市信息
+     */
+    public static String GETCITYLISTBYNAME = APIURL + "model/get_city_list_by_name.do";
+
+    /**
      * 获取用户车辆列表
      */
     public static String GETMODELLIST = APIURL + "material/get_model_list.do";
@@ -167,44 +167,49 @@ public class URLConstants {
     public static String GETMODELNAMELIST = APIURL + "model/get_model_name_list.do";
 
     /**
+     * 模糊查询车辆列表信息
+     */
+    public static String GETMODELLISTBYNAME = APIURL + "model/get_model_list_by_name.do";
+
+    /**
      * 获取钱包余额
      */
-    public static String PURSEGET = APIURL + "purse/get.do";
+    public static String PURSEGET = APIURL + "wallet/get.do";
 
     /**
      * 获取账户钱包明细
      */
-    public static String PURSEDETAIL = APIURL + "purse/detail.do";
+    public static String PURSEDETAIL = APIURL + "wallet/detail.do";
 
     /**
      * 提现
      */
-    public static String PURSECASH = APIURL + "purse/cash.do";
+    public static String PURSECASH = APIURL + "wallet/cash.do";
 
     /**
      * 银行卡列表
      */
-    public static String PURSELIST = APIURL + "purse/list.do";
+    public static String PURSELIST = APIURL + "wallet/list.do";
 
     /**
      * 银行卡列表
      */
-    public static String PURSEBANK = APIURL + "purse/banks.do";
+    public static String PURSEBANK = APIURL + "wallet/banks.do";
 
     /**
      * 删除银行卡
      */
-    public static String PURSEREMOVE = APIURL + "purse/remove.do";
+    public static String PURSEREMOVE = APIURL + "wallet/remove.do";
 
     /**
      * 设置默认银行卡
      */
-    public static String PURSEDEFAULT = APIURL + "purse/default.do";
+    public static String PURSEDEFAULT = APIURL + "wallet/default.do";
 
     /**
      * 添加银行卡(可添加支付宝账号)
      */
-    public static String PURSEADD = APIURL + "purse/add.do";
+    public static String PURSEADD = APIURL + "wallet/add.do";
 
     /**
      * 提交意见反馈

@@ -14,7 +14,7 @@ public interface AreaSearchListContract {
         /**
          * 获取分类
          */
-        void getProductByAirportId(String name, int category);
+        void getCityListByName(String name);
 
     }
 

@@ -10,9 +10,11 @@ import com.common.cklibrary.common.BaseActivity;
 import com.common.cklibrary.common.BindView;
 import com.common.cklibrary.common.ViewInject;
 import com.common.cklibrary.utils.ActivityTitleUtils;
+import com.common.cklibrary.utils.JsonUtil;
 import com.common.cklibrary.utils.myview.ChildListView;
 import com.yinglan.scg.R;
 import com.yinglan.scg.adapter.mine.myvehicle.MyVehicleViewAdapter;
+import com.yinglan.scg.entity.mine.myvehicle.MyVehicleBean;
 import com.yinglan.scg.loginregister.LoginActivity;
 
 import cn.bingoogolapple.baseadapter.BGAOnItemChildClickListener;
@@ -76,8 +78,8 @@ public class MyVehicleActivity extends BaseActivity implements MyVehicleContract
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Intent intent = new Intent(aty, VehicleDetailsActivity.class);
-
+        Intent intent = new Intent(aty, AddVehicleActivity.class);
+        intent.putExtra("model_id", mAdapter.getItem(position).getId());
         startActivityForResult(intent, RESULT_CODE_GET);
     }
 
@@ -88,14 +90,19 @@ public class MyVehicleActivity extends BaseActivity implements MyVehicleContract
 
     @Override
     public void getSuccess(String success, int flag) {
+        dismissLoadingDialog();
         if (flag == 0) {
-
-
+            MyVehicleBean myVehicleBean = (MyVehicleBean) JsonUtil.getInstance().json2Obj(success, MyVehicleBean.class);
+            if (myVehicleBean == null || myVehicleBean.getData() == null || myVehicleBean.getData().size() <= 0) {
+                return;
+            }
+            mAdapter.clear();
+            mAdapter.addNewData(myVehicleBean.getData());
         } else if (flag == 1) {
 
 
         }
-        dismissLoadingDialog();
+
     }
 
     @Override

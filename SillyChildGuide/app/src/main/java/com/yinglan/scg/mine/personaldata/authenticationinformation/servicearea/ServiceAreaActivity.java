@@ -11,8 +11,11 @@ import android.widget.TextView;
 
 import com.common.cklibrary.common.BaseActivity;
 import com.common.cklibrary.common.BindView;
+import com.common.cklibrary.common.StringConstants;
 import com.common.cklibrary.common.ViewInject;
 import com.common.cklibrary.utils.JsonUtil;
+import com.common.cklibrary.utils.rx.MsgEvent;
+import com.kymjs.common.PreferenceHelper;
 import com.yinglan.scg.R;
 import com.yinglan.scg.adapter.mine.personaldata.ServiceAreaClassificationGridViewAdapter;
 import com.yinglan.scg.adapter.mine.personaldata.ServiceAreaClassificationListViewAdapter;
@@ -23,6 +26,8 @@ import com.yinglan.scg.mine.personaldata.authenticationinformation.servicearea.s
 import java.util.List;
 
 import cn.bingoogolapple.titlebar.BGATitleBar;
+
+import static com.yinglan.scg.constant.NumericConstants.RESULT_CODE_PRODUCT;
 
 /**
  * 服务地区
@@ -92,7 +97,7 @@ public class ServiceAreaActivity extends BaseActivity implements ServiceAreaCont
                 super.onClickRightCtv();
                 //分享
                 Intent intent = new Intent(aty, AreaSearchActivity.class);
-                showActivity(aty, intent);
+                startActivityForResult(intent, RESULT_CODE_PRODUCT);
             }
         };
         titlebar.setDelegate(simpleDelegate);
@@ -197,6 +202,36 @@ public class ServiceAreaActivity extends BaseActivity implements ServiceAreaCont
             return;
         }
         ViewInject.toast(msg);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK && requestCode == RESULT_CODE_PRODUCT) {
+            Intent intent = getIntent();
+            intent.putExtra("city_id", data.getIntExtra("city_id", 0));
+            intent.putExtra("city_name", data.getStringExtra("city_name"));
+            setResult(RESULT_OK, intent);
+            finish();
+        }
+    }
+
+    /**
+     * 在接收消息的时候，选择性接收消息：
+     */
+    @Override
+    public void callMsgEvent(MsgEvent msgEvent) {
+        super.callMsgEvent(msgEvent);
+        if (((String) msgEvent.getData()).equals("RxBusAreaSearchListEvent")) {
+            int city_id = PreferenceHelper.readInt(aty, StringConstants.FILENAME, "AreaSearchListcity_id", 0);
+            String city_name = PreferenceHelper.readString(aty, StringConstants.FILENAME, "AreaSearchListcity_name", "");
+            Intent intent = getIntent();
+            intent.putExtra("city_id", city_id);
+            intent.putExtra("city_name", city_name);
+            setResult(RESULT_OK, intent);
+            finish();
+        }
+
     }
 
 }

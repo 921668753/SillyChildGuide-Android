@@ -13,17 +13,20 @@ public class LoginBean extends BaseResult<LoginBean.DataBean> {
     public class DataBean {
         /**
          * result : true
-         * face :
-         * level : 普通会员
-         * rong_cloud : uebBjWGteL5w0pcJ3K6KcFKqBBz4L12yws/FYu6flNARzmCj3SW3qSG/LbY2sBJ6F0iFqZ+9ojHueSr25fWEow==
-         * username : 17051335257
+         * face : http://img.shahaizhi.com/FhNs89NJnXwRP3DiTJZObPms2cWa
+         * shz : SHZ14
+         * level : 黄金会员
+         * approve_status : 2
+         * rong_cloud : WzOcwBsEyK3NVwyOtMlufVrV/8ctfhpCZvfH8p9x+KZ7vtLDHzh38uyKNu08kGZP5GR91/etQ3iZ7IsldGLgtg==
+         * username : 18550875927
          */
 
         @SerializedName("result")
         private String resultX;
-        private int approve_status;
         private String face;
+        private String shz;
         private String level;
+        private int approve_status;
         private String rong_cloud;
         private String username;
 
@@ -35,14 +38,6 @@ public class LoginBean extends BaseResult<LoginBean.DataBean> {
             this.resultX = resultX;
         }
 
-        public int getApprove_status() {
-            return approve_status;
-        }
-
-        public void setApprove_status(int approve_status) {
-            this.approve_status = approve_status;
-        }
-
         public String getFace() {
             return face;
         }
@@ -51,12 +46,28 @@ public class LoginBean extends BaseResult<LoginBean.DataBean> {
             this.face = face;
         }
 
+        public String getShz() {
+            return shz;
+        }
+
+        public void setShz(String shz) {
+            this.shz = shz;
+        }
+
         public String getLevel() {
             return level;
         }
 
         public void setLevel(String level) {
             this.level = level;
+        }
+
+        public int getApprove_status() {
+            return approve_status;
+        }
+
+        public void setApprove_status(int approve_status) {
+            this.approve_status = approve_status;
         }
 
         public String getRong_cloud() {

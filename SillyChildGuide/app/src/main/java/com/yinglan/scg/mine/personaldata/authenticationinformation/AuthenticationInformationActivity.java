@@ -10,22 +10,28 @@ import android.widget.TextView;
 
 import com.common.cklibrary.common.BaseActivity;
 import com.common.cklibrary.common.BindView;
+import com.common.cklibrary.common.KJActivityStack;
 import com.common.cklibrary.common.StringConstants;
 import com.common.cklibrary.common.ViewInject;
 import com.common.cklibrary.utils.ActivityTitleUtils;
+import com.common.cklibrary.utils.JsonUtil;
+import com.common.cklibrary.utils.rx.MsgEvent;
 import com.kymjs.common.FileUtils;
+import com.kymjs.common.PreferenceHelper;
+import com.kymjs.common.StringUtils;
 import com.luck.picture.lib.PictureSelector;
 import com.luck.picture.lib.config.PictureConfig;
 import com.luck.picture.lib.config.PictureMimeType;
 import com.luck.picture.lib.entity.LocalMedia;
 import com.yinglan.scg.R;
 import com.yinglan.scg.constant.NumericConstants;
+import com.yinglan.scg.entity.mine.personaldata.authenticationinformation.AuthenticationInformationBean;
 import com.yinglan.scg.loginregister.LoginActivity;
+import com.yinglan.scg.main.MinePresenter;
 import com.yinglan.scg.mine.personaldata.authenticationinformation.dialog.SubmitAuditDialog;
 import com.yinglan.scg.mine.personaldata.authenticationinformation.servicearea.ServiceAreaActivity;
 import com.yinglan.scg.utils.GlideImageLoader;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -108,6 +114,11 @@ public class AuthenticationInformationActivity extends BaseActivity implements A
         selectLegallyList = new ArrayList<LocalMedia>();
         selectYachtDrivingLicenseList = new ArrayList<LocalMedia>();
         initDialog();
+        int approve_status = PreferenceHelper.readInt(aty, StringConstants.FILENAME, "approve_status", 0);
+        if (approve_status != 0) {
+            showLoadingDialog(getString(R.string.dataLoad));
+            ((AuthenticationInformationContract.Presenter) mPresenter).getCertificationDetail();
+        }
     }
 
     private void initDialog() {
@@ -131,7 +142,6 @@ public class AuthenticationInformationActivity extends BaseActivity implements A
         super.initWidget();
         ActivityTitleUtils.initToolbar(aty, getString(R.string.authenticationInformation), true, R.id.titlebar);
         themeId = R.style.picture_default_style;
-
     }
 
 
@@ -249,6 +259,7 @@ public class AuthenticationInformationActivity extends BaseActivity implements A
                 submitAuditDialog.show();
             }
         } else if (flag == 1) {
+            PreferenceHelper.write(aty, StringConstants.FILENAME, "approve_status", 1);
             if (submitAuditDialog == null) {
                 initDialog();
             }
@@ -257,8 +268,52 @@ public class AuthenticationInformationActivity extends BaseActivity implements A
             }
             submitAuditDialog.setContentText();
         } else if (flag == 2) {
-
-
+            AuthenticationInformationBean authenticationInformationBean = (AuthenticationInformationBean) JsonUtil.getInstance().json2Obj(success, AuthenticationInformationBean.class);
+            if (authenticationInformationBean.getData().getCertification() != null) {
+                tv_serviceArea.setText(authenticationInformationBean.getData().getCertification().getService_city_name());
+                city_id = authenticationInformationBean.getData().getCertification().getService_city_id();
+                LocalMedia localMedia = new LocalMedia();
+                localMedia.setHttpPath(authenticationInformationBean.getData().getCertification().getCar_inspection_certificate());
+                localMedia.setPath(authenticationInformationBean.getData().getCertification().getCar_inspection_certificate());
+                localMedia.setPictureType("image/jpeg");
+                selectCarCompanyList.add(localMedia);
+                isImgCarCompany = false;
+                GlideImageLoader.glideOrdinaryLoader(this, selectCarCompanyList.get(0).getPath(), img_carCompany, R.mipmap.placeholderfigure);
+                LocalMedia localMedia1 = new LocalMedia();
+                localMedia1.setHttpPath(authenticationInformationBean.getData().getCertification().getDriver_license());
+                localMedia1.setPath(authenticationInformationBean.getData().getCertification().getDriver_license());
+                localMedia1.setPictureType("image/jpeg");
+                //  localMedia.setMimeType(1);
+                selectDrivingLicenceList.add(localMedia1);
+                isImgDrivingLicence = false;
+                GlideImageLoader.glideOrdinaryLoader(this, selectDrivingLicenceList.get(0).getPath(), img_drivingLicence, R.mipmap.placeholderfigure);
+                LocalMedia localMedia2 = new LocalMedia();
+                localMedia2.setHttpPath(authenticationInformationBean.getData().getCertification().getID_card());
+                localMedia2.setPath(authenticationInformationBean.getData().getCertification().getID_card());
+                localMedia2.setPictureType("image/jpeg");
+                //  localMedia.setMimeType(1);
+                selectHoldCardFaceList.add(localMedia2);
+                isImgHoldCardFace = false;
+                GlideImageLoader.glideOrdinaryLoader(this, selectHoldCardFaceList.get(0).getPath(), img_holdCardFace, R.mipmap.placeholderfigure);
+                if (!StringUtils.isEmpty(authenticationInformationBean.getData().getCertification().getGuide_card())) {
+                    LocalMedia localMedia3 = new LocalMedia();
+                    localMedia3.setHttpPath(authenticationInformationBean.getData().getCertification().getGuide_card());
+                    localMedia3.setPath(authenticationInformationBean.getData().getCertification().getGuide_card());
+                    localMedia3.setPictureType("image/jpeg");
+                    selectLegallyList.add(localMedia3);
+                    isImgLegally = false;
+                    GlideImageLoader.glideOrdinaryLoader(this, selectLegallyList.get(0).getPath(), img_legally, R.mipmap.placeholderfigure);
+                }
+                if (!StringUtils.isEmpty(authenticationInformationBean.getData().getCertification().getYacht_driving_license())) {
+                    LocalMedia localMedia4 = new LocalMedia();
+                    localMedia4.setHttpPath(authenticationInformationBean.getData().getCertification().getYacht_driving_license());
+                    localMedia4.setPath(authenticationInformationBean.getData().getCertification().getYacht_driving_license());
+                    localMedia4.setPictureType("image/jpeg");
+                    selectYachtDrivingLicenseList.add(localMedia);
+                    isImgYachtDrivingLicense = false;
+                    GlideImageLoader.glideOrdinaryLoader(this, selectYachtDrivingLicenseList.get(0).getPath(), img_yachtDrivingLicense, R.mipmap.placeholderfigure);
+                }
+            }
         }
     }
 
@@ -381,6 +436,9 @@ public class AuthenticationInformationActivity extends BaseActivity implements A
             }
         }
     }
+
+
+
 
 
     @Override

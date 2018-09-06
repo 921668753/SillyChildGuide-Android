@@ -10,13 +10,22 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
+import com.bigkoo.pickerview.builder.TimePickerBuilder;
+import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
+import com.bigkoo.pickerview.listener.OnTimeSelectListener;
+import com.bigkoo.pickerview.view.OptionsPickerView;
+import com.bigkoo.pickerview.view.TimePickerView;
 import com.common.cklibrary.common.BaseActivity;
 import com.common.cklibrary.common.BindView;
 import com.common.cklibrary.common.StringConstants;
 import com.common.cklibrary.common.ViewInject;
 import com.common.cklibrary.common.pictureselector.FullyGridLayoutManager;
 import com.common.cklibrary.utils.ActivityTitleUtils;
+import com.common.cklibrary.utils.DataUtil;
+import com.common.cklibrary.utils.JsonUtil;
 import com.kymjs.common.FileUtils;
+import com.kymjs.common.StringUtils;
 import com.luck.picture.lib.PictureSelector;
 import com.luck.picture.lib.config.PictureConfig;
 import com.luck.picture.lib.config.PictureMimeType;
@@ -25,10 +34,16 @@ import com.luck.picture.lib.permissions.RxPermissions;
 import com.luck.picture.lib.tools.PictureFileUtils;
 import com.yinglan.scg.R;
 import com.yinglan.scg.adapter.mine.myvehicle.GridImageAdapter;
+import com.yinglan.scg.entity.mine.myvehicle.PeopleBean;
+import com.yinglan.scg.entity.mine.myvehicle.VehicleDetailsBean;
 import com.yinglan.scg.loginregister.LoginActivity;
 import com.yinglan.scg.mine.myvehicle.model.ModelActivity;
+import com.yinglan.scg.mine.personaldata.authenticationinformation.dialog.SubmitAuditDialog;
+import com.yinglan.scg.utils.SoftKeyboardUtils;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import io.reactivex.Observer;
@@ -89,6 +104,16 @@ public class AddVehicleActivity extends BaseActivity implements AddVehicleContra
     private int maxSelectNum = 9;
 
 
+    private TimePickerView pvCustomTime;
+    private long model_year = 0;
+    private OptionsPickerView peopleOptions = null;
+    private int passenger_number = 0;
+    private OptionsPickerView luggageOptions = null;
+    private int baggage_number = 0;
+    private int is_insurance = 1;
+    private SubmitAuditDialog submitAuditDialog;
+
+
     @Override
     public void setRootView() {
         setContentView(R.layout.activity_addvehicle);
@@ -102,7 +127,87 @@ public class AddVehicleActivity extends BaseActivity implements AddVehicleContra
         selectList = new ArrayList<LocalMedia>();
         themeId = R.style.picture_default_style;
         adapter = new GridImageAdapter(this, onAddPicClickListener);
+        initDialog();
+        initCustomTimePicker();
+        initOptions();
     }
+
+    private void initDialog() {
+        submitAuditDialog = new SubmitAuditDialog(this) {
+            @Override
+            public void submitAuditDo() {
+                dismiss();
+                postEidtCertification1();
+            }
+        };
+    }
+
+    private void postEidtCertification1() {
+        showLoadingDialog(getString(R.string.submissionLoad));
+        ((AddVehicleContract.Presenter) mPresenter).postEidtModel1(model_id, selectList, model_name_id, passenger_number, baggage_number, model_year,
+                et_licensePlateNumber.getText().toString().trim(), is_insurance);
+    }
+
+    private void initCustomTimePicker() {
+        Calendar birthdaycalendar = Calendar.getInstance();//系统当前时间
+        Calendar startDate = Calendar.getInstance();
+        startDate.set(birthdaycalendar.get(Calendar.YEAR) - 15, birthdaycalendar.get(Calendar.MONTH), birthdaycalendar.get(Calendar.DAY_OF_MONTH));
+        Calendar endDate = Calendar.getInstance();
+        endDate.set(birthdaycalendar.get(Calendar.YEAR), birthdaycalendar.get(Calendar.MONTH), birthdaycalendar.get(Calendar.DAY_OF_MONTH));
+        //时间选择器 ，自定义布局
+        pvCustomTime = new TimePickerBuilder(this, new OnTimeSelectListener() {
+            @Override
+            public void onTimeSelect(Date date, View v) {//选中事件回调
+                model_year = date.getTime() / 1000;
+                ((TextView) v).setText(DataUtil.formatData(date.getTime() / 1000, "yyyy"));
+            }
+        })
+                .setRangDate(startDate, endDate)
+                .setContentTextSize(18)
+                .setDate(Calendar.getInstance())
+                .setType(new boolean[]{true, false, false, false, false, false})
+                .setLabel(getString(R.string.year), getString(R.string.month), getString(R.string.day), getString(R.string.hour), getString(R.string.minute), getString(R.string.seconds))
+                .setTextXOffset(0, 0, 0, 40, 0, -40)
+                .isCenterLabel(false) //是否只显示中间选中项的label文字，false则每项item全部都带有label。
+                .setDividerColor(0xFFd5d5d5)
+                .build();
+    }
+
+    private void initOptions() {
+        List<PeopleBean> list = new ArrayList<PeopleBean>();
+        for (int i = 0; i < 8; i++) {
+            PeopleBean peopleBean = new PeopleBean();
+            peopleBean.setNum(i + 1);
+            peopleBean.setName(i + 1 + getString(R.string.people));
+            list.add(peopleBean);
+        }
+        peopleOptions = new OptionsPickerBuilder(aty, new OnOptionsSelectListener() {
+            @Override
+            public void onOptionsSelect(int options1, int option2, int options3, View v) {
+                //返回的分别是三个级别的选中位置
+                passenger_number = list.get(options1).getNum();
+                ((TextView) v).setText(list.get(options1).getPickerViewText());
+            }
+        }).build();
+        peopleOptions.setPicker(list);
+        List<PeopleBean> list1 = new ArrayList<PeopleBean>();
+        for (int i = 0; i < 8; i++) {
+            PeopleBean peopleBean = new PeopleBean();
+            peopleBean.setNum(i + 1);
+            peopleBean.setName(i + 1 + getString(R.string.jian));
+            list1.add(peopleBean);
+        }
+        luggageOptions = new OptionsPickerBuilder(aty, new OnOptionsSelectListener() {
+            @Override
+            public void onOptionsSelect(int options1, int option2, int options3, View v) {
+                //返回的分别是三个级别的选中位置
+                baggage_number = list1.get(options1).getNum();
+                ((TextView) v).setText(list1.get(options1).getPickerViewText());
+            }
+        }).build();
+        luggageOptions.setPicker(list1);
+    }
+
 
     private GridImageAdapter.onAddPicClickListener onAddPicClickListener = new GridImageAdapter.onAddPicClickListener() {
         @Override
@@ -195,25 +300,33 @@ public class AddVehicleActivity extends BaseActivity implements AddVehicleContra
                 startActivityForResult(intent, RESULT_CODE_PRODUCT);
                 break;
             case R.id.ll_canTakeNumber:
-
-
+                SoftKeyboardUtils.packUpKeyboard(this);
+                peopleOptions.show(tv_canTakeNumber);
                 break;
             case R.id.ll_canPutBaggage:
-
-
+                SoftKeyboardUtils.packUpKeyboard(this);
+                luggageOptions.show(tv_canPutBaggage);
                 break;
             case R.id.ll_vehicleYear:
-
-
+                SoftKeyboardUtils.packUpKeyboard(this);
+                pvCustomTime.show(tv_vehicleYear);
                 break;
             case R.id.img_vehiclePassengerInsurance:
-
+                if (is_insurance == 1) {
+                    img_vehiclePassengerInsurance.setImageResource(R.mipmap.img_turn_off);
+                    is_insurance = 0;
+                } else {
+                    img_vehiclePassengerInsurance.setImageResource(R.mipmap.img_turn_on);
+                    is_insurance = 1;
+                }
                 break;
             case R.id.tv_submitAudit:
-                //  ((AddVehicleContract.Presenter)mPresenter).postEidtModel(model_id,model_name_id,);
+                ((AddVehicleContract.Presenter) mPresenter).postEidtModel(model_id, selectList, model_name_id, passenger_number, baggage_number, model_year,
+                        et_licensePlateNumber.getText().toString().trim(), is_insurance);
                 break;
         }
     }
+
 
     @Override
     public void onItemClick(int position, View v) {
@@ -240,10 +353,51 @@ public class AddVehicleActivity extends BaseActivity implements AddVehicleContra
     public void getSuccess(String success, int flag) {
         dismissLoadingDialog();
         if (flag == 0) {
-
-
+            VehicleDetailsBean vehicleDetailsBean = (VehicleDetailsBean) JsonUtil.getInstance().json2Obj(success, VehicleDetailsBean.class);
+            if (vehicleDetailsBean.getData() == null || vehicleDetailsBean.getData().getModel() == null || vehicleDetailsBean.getData().getModel().getId() <= 0) {
+                errorMsg(getString(R.string.serverReturnsDataNullJsonError), 0);
+                return;
+            }
+            model_id = vehicleDetailsBean.getData().getModel().getId();
+            model_name_id = vehicleDetailsBean.getData().getModel().getModel_name_id();
+            tv_model.setText(vehicleDetailsBean.getData().getModel().getModel_name());
+            passenger_number = vehicleDetailsBean.getData().getModel().getPassenger_number();
+            peopleOptions.setSelectOptions(passenger_number - 1);
+            tv_canTakeNumber.setText(passenger_number + getString(R.string.people));
+            baggage_number = vehicleDetailsBean.getData().getModel().getBaggage_number();
+            luggageOptions.setSelectOptions(baggage_number - 1);
+            tv_canPutBaggage.setText(baggage_number + getString(R.string.jian));
+            model_year = StringUtils.toLong(vehicleDetailsBean.getData().getModel().getModel_year());
+            Calendar calendar = Calendar.getInstance();
+            Date date = new Date(model_year * 1000);
+            calendar.setTime(date);
+            pvCustomTime.setDate(calendar);
+            tv_vehicleYear.setText(DataUtil.formatData(model_year, "yyyy"));
+            et_licensePlateNumber.setText(vehicleDetailsBean.getData().getModel().getLicense_plate());
+            if (vehicleDetailsBean.getData().getModel().getIs_insurance() == 1) {
+                is_insurance = 1;
+                img_vehiclePassengerInsurance.setImageResource(R.mipmap.img_turn_on);
+            } else {
+                is_insurance = 0;
+                img_vehiclePassengerInsurance.setImageResource(R.mipmap.img_turn_off);
+            }
+            for (int i = 0; i < vehicleDetailsBean.getData().getModel().getModel_picture().size(); i++) {
+                LocalMedia localMedia1 = new LocalMedia();
+                localMedia1.setHttpPath(vehicleDetailsBean.getData().getModel().getModel_picture().get(i));
+                localMedia1.setPath(vehicleDetailsBean.getData().getModel().getModel_picture().get(i));
+                localMedia1.setPictureType("image/jpeg");
+                selectList.add(localMedia1);
+            }
+            adapter.setList(selectList);
+            adapter.notifyDataSetChanged();
         } else if (flag == 1) {
-            dismissLoadingDialog();
+            if (submitAuditDialog == null) {
+                initDialog();
+            }
+            if (submitAuditDialog != null && !submitAuditDialog.isShowing()) {
+                submitAuditDialog.show();
+            }
+        } else if (flag == 2) {
             ViewInject.toast(getString(R.string.submitSuccess));
             finish();
         }
@@ -280,5 +434,15 @@ public class AddVehicleActivity extends BaseActivity implements AddVehicleContra
         }
     }
 
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (submitAuditDialog != null) {
+            submitAuditDialog.cancel();
+        }
+        submitAuditDialog = null;
+        adapter = null;
+        selectList.clear();
+        selectList = null;
+    }
 }

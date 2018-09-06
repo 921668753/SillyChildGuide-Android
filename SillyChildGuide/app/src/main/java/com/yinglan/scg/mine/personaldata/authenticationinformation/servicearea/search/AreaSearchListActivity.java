@@ -10,9 +10,18 @@ import android.widget.TextView;
 
 import com.common.cklibrary.common.BaseActivity;
 import com.common.cklibrary.common.BindView;
+import com.common.cklibrary.common.KJActivityStack;
+import com.common.cklibrary.common.StringConstants;
+import com.common.cklibrary.utils.JsonUtil;
+import com.common.cklibrary.utils.rx.MsgEvent;
+import com.common.cklibrary.utils.rx.RxBus;
+import com.kymjs.common.PreferenceHelper;
 import com.yinglan.scg.R;
 import com.yinglan.scg.adapter.mine.personaldata.search.ServiceAreaGridViewAdapter;
+import com.yinglan.scg.entity.mine.personaldata.authenticationinformation.ServiceAreaByCountryIdBean;
 import com.yinglan.scg.loginregister.LoginActivity;
+
+import java.util.List;
 
 import static com.yinglan.scg.constant.NumericConstants.REQUEST_CODE;
 
@@ -30,7 +39,6 @@ public class AreaSearchListActivity extends BaseActivity implements AreaSearchLi
 
     @BindView(id = R.id.tv_cancel, click = true)
     private TextView tv_cancel;
-
 
     @BindView(id = R.id.gv_city)
     private GridView gv_city;
@@ -52,7 +60,6 @@ public class AreaSearchListActivity extends BaseActivity implements AreaSearchLi
     @BindView(id = R.id.tv_button, click = true)
     private TextView tv_button;
 
-    private int type = 0;
     private String name = "";
 
     @Override
@@ -67,7 +74,7 @@ public class AreaSearchListActivity extends BaseActivity implements AreaSearchLi
         mAdapter = new ServiceAreaGridViewAdapter(this);
         name = getIntent().getStringExtra("name");
         showLoadingDialog(getString(R.string.dataLoad));
-        ((AreaSearchListContract.Presenter) mPresenter).getProductByAirportId(name, type);
+        ((AreaSearchListContract.Presenter) mPresenter).getCityListByName(name);
     }
 
 
@@ -85,7 +92,6 @@ public class AreaSearchListActivity extends BaseActivity implements AreaSearchLi
         switch (v.getId()) {
             case R.id.ll_search:
                 Intent intent = new Intent(aty, AreaSearchActivity.class);
-                intent.putExtra("type", type);
                 intent.putExtra("tag", 1);
                 startActivityForResult(intent, REQUEST_CODE);
                 break;
@@ -95,7 +101,7 @@ public class AreaSearchListActivity extends BaseActivity implements AreaSearchLi
             case R.id.tv_button:
                 if (tv_button.getText().toString().contains(getString(R.string.retry))) {
                     showLoadingDialog(getString(R.string.dataLoad));
-                    ((AreaSearchListContract.Presenter) mPresenter).getProductByAirportId(name, type);
+                    ((AreaSearchListContract.Presenter) mPresenter).getCityListByName(name);
                     return;
                 }
                 showActivity(aty, LoginActivity.class);
@@ -105,10 +111,15 @@ public class AreaSearchListActivity extends BaseActivity implements AreaSearchLi
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Intent intent = new Intent();
-        intent.putExtra("", "");
-        intent.putExtra("", "");
-        setResult(RESULT_OK, intent);
+      //  KJActivityStack.create().finishActivity(AreaSearchActivity.class);
+//        Intent intent = getIntent();
+//        intent.putExtra("city_id", mAdapter.getItem(position).getCity_id());
+//        intent.putExtra("city_name", mAdapter.getItem(position).getCity_name());
+//        setResult(RESULT_OK, intent);
+        PreferenceHelper.write(aty, StringConstants.FILENAME, "AreaSearchListcity_id", mAdapter.getItem(position).getCity_id());
+        PreferenceHelper.write(aty, StringConstants.FILENAME, "AreaSearchListcity_name",  mAdapter.getItem(position).getCity_name());
+        RxBus.getInstance().post(new MsgEvent<String>("RxBusAreaSearchListEvent"));
+        finish();
     }
 
     @Override
@@ -117,7 +128,7 @@ public class AreaSearchListActivity extends BaseActivity implements AreaSearchLi
         if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {// 如果等于1
             name = data.getStringExtra("name");
             tv_search.setText(name);
-            ((AreaSearchListContract.Presenter) mPresenter).getProductByAirportId(name, type);
+            ((AreaSearchListContract.Presenter) mPresenter).getCityListByName(name);
         }
     }
 
@@ -129,16 +140,16 @@ public class AreaSearchListActivity extends BaseActivity implements AreaSearchLi
 
     @Override
     public void getSuccess(String success, int flag) {
-//        SelectProductAirportTransportationBean selectProductAirportTransportationBean = (SelectProductAirportTransportationBean) JsonUtil.getInstance().json2Obj(success, SelectProductAirportTransportationBean.class);
-//        List<SelectProductAirportTransportationBean.DataBean> selectProductAirportTransportationList = selectProductAirportTransportationBean.getData();
-//        if (selectProductAirportTransportationList == null || selectProductAirportTransportationList.size() <= 0) {
-//            errorMsg(getString(R.string.noProduct), 0);
-//            return;
-//        }
-//        gv_city.setVisibility(View.VISIBLE);
-//        ll_commonError.setVisibility(View.GONE);
-//        mAdapter.clear();
-//        mAdapter.addNewData(selectProductAirportTransportationList);
+        ServiceAreaByCountryIdBean serviceAreaByCountryIdBean = (ServiceAreaByCountryIdBean) JsonUtil.getInstance().json2Obj(success, ServiceAreaByCountryIdBean.class);
+        List<ServiceAreaByCountryIdBean.DataBean> selectProductAirportTransportationList = serviceAreaByCountryIdBean.getData();
+        if (selectProductAirportTransportationList == null || selectProductAirportTransportationList.size() <= 0) {
+            errorMsg(getString(R.string.notOpenedService), 0);
+            return;
+        }
+        gv_city.setVisibility(View.VISIBLE);
+        ll_commonError.setVisibility(View.GONE);
+        mAdapter.clear();
+        mAdapter.addNewData(selectProductAirportTransportationList);
         dismissLoadingDialog();
     }
 
@@ -159,10 +170,10 @@ public class AreaSearchListActivity extends BaseActivity implements AreaSearchLi
             img_err.setImageResource(R.mipmap.no_network);
             tv_hintText.setText(msg);
             tv_button.setText(getString(R.string.retry));
-//        } else if (msg.contains(getString(R.string.noProduct))) {
-//            img_err.setImageResource(R.mipmap.no_data);
-//            tv_hintText.setText(msg);
-//            tv_button.setVisibility(View.GONE);
+        } else if (msg.contains(getString(R.string.notOpenedService))) {
+            img_err.setImageResource(R.mipmap.no_data);
+            tv_hintText.setText(msg);
+            tv_button.setVisibility(View.GONE);
         } else {
             img_err.setImageResource(R.mipmap.no_data);
             tv_hintText.setText(msg);

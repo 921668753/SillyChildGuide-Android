@@ -1,6 +1,7 @@
 package com.yinglan.scg.adapter.mine.myvehicle;
 
 import android.content.Context;
+import android.widget.ImageView;
 
 import com.yinglan.scg.R;
 import com.yinglan.scg.entity.mine.myvehicle.MyVehicleBean.DataBean;
@@ -27,15 +28,27 @@ public class MyVehicleViewAdapter extends BGAAdapterViewAdapter<DataBean> {
 
     @Override
     public void fillData(BGAViewHolderHelper helper, int position, DataBean resultBean) {
+        switch (resultBean.getModel_status()) {
+            case 0:
+                helper.setText(R.id.tv_auditStatus, mContext.getString(R.string.unauthorized));
+                break;
+            case 1:
+                helper.setText(R.id.tv_auditStatus, mContext.getString(R.string.audit2));
+                break;
+            case 2:
+                helper.setText(R.id.tv_auditStatus, mContext.getString(R.string.unapprove));
+                break;
+            case 3:
+                helper.setText(R.id.tv_auditStatus, mContext.getString(R.string.approve));
+                break;
+        }
+        ImageView img_car = helper.getImageView(R.id.img_car);
+        GlideImageLoader.glideLoaderRaudio(mContext, resultBean.getModel_picture() + "?imageView2/0/w/" + img_car.getWidth() + "/h/" + img_car.getHeight(), img_car, 8, R.mipmap.placeholderfigure);
 
-        helper.setText(R.id.tv_auditStatus, "");
+        helper.setText(R.id.tv_carBrand, resultBean.getModel_brand());
 
-        GlideImageLoader.glideOrdinaryLoader(mContext, "", helper.getImageView(R.id.img_car), R.mipmap.placeholderfigure);
+        helper.setText(R.id.tv_carModels, resultBean.getModel_name());
 
-        helper.setText(R.id.tv_carBrand, "");
-
-        helper.setText(R.id.tv_carModels, "");
-
-        helper.setText(R.id.tv_seatNumber, "");
+        helper.setText(R.id.tv_seatNumber, mContext.getString(R.string.canTakeNumber) + resultBean.getPassenger_number() + mContext.getString(R.string.people));
     }
 }

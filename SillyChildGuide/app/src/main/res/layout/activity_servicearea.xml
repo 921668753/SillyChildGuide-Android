@@ -57,7 +57,7 @@
                 style="@style/WrapWrap"
                 android:layout_marginTop="@dimen/dimen45"
                 android:gravity="center"
-                android:text="---"
+                android:text="--"
                 android:textColor="@color/titletextcolors"
                 android:textSize="@dimen/textsize13" />
 

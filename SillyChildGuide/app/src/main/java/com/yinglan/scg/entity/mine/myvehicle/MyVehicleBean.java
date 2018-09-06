@@ -1,163 +1,75 @@
 package com.yinglan.scg.entity.mine.myvehicle;
 
 import com.common.cklibrary.entity.BaseResult;
-import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class MyVehicleBean extends BaseResult<MyVehicleBean.DataBean> {
+public class MyVehicleBean extends BaseResult<List<MyVehicleBean.DataBean>> {
 
 
     public class DataBean {
         /**
-         * pageSize : 20
-         * totalCount : 5
-         * currentPageNo : 1
-         * draw : 0
-         * totalPageCount : 1
-         * result : [{"id":16,"member_id":52,"type":"3","amount":180.99,"create_time":1528437600000,"status":0,"fee_amount":0,"real_amount":0},{"id":19,"member_id":52,"type":"2","amount":0.01,"create_time":1528444800000,"status":0,"fee_amount":0,"real_amount":0.01},{"id":20,"member_id":52,"type":"2","amount":0.01,"create_time":1528444800000,"status":0,"fee_amount":0,"real_amount":0.01},{"id":21,"member_id":52,"type":"2","amount":0.01,"create_time":1528444800000,"status":0,"fee_amount":0,"real_amount":0.01},{"id":22,"member_id":52,"type":"1","amount":100,"create_time":1528444800000,"status":0,"fee_amount":0,"real_amount":0.01}]
+         * id : 1
+         * model_picture : http://img.shahaizhi.com/FmxpfIJCnIfRp572o8Yg288VcP6i?imageMogr2/auto-orient/thumbnail/!20p/blur/1x0
+         * model_brand : 大众
+         * model_name : 途观L
+         * passenger_number : 1
+         * model_status : 1
          */
 
-        private int pageSize;
-        private int totalCount;
-        private int currentPageNo;
-        private int draw;
-        private int totalPageCount;
-        @SerializedName("result")
-        private List<ResultBean> resultX;
+        private int id;
+        private String model_picture;
+        private String model_brand;
+        private String model_name;
+        private int passenger_number;
+        private int model_status;
 
-        public int getPageSize() {
-            return pageSize;
+        public int getId() {
+            return id;
         }
 
-        public void setPageSize(int pageSize) {
-            this.pageSize = pageSize;
+        public void setId(int id) {
+            this.id = id;
         }
 
-        public int getTotalCount() {
-            return totalCount;
+        public String getModel_picture() {
+            return model_picture;
         }
 
-        public void setTotalCount(int totalCount) {
-            this.totalCount = totalCount;
+        public void setModel_picture(String model_picture) {
+            this.model_picture = model_picture;
         }
 
-        public int getCurrentPageNo() {
-            return currentPageNo;
+        public String getModel_brand() {
+            return model_brand;
         }
 
-        public void setCurrentPageNo(int currentPageNo) {
-            this.currentPageNo = currentPageNo;
+        public void setModel_brand(String model_brand) {
+            this.model_brand = model_brand;
         }
 
-        public int getDraw() {
-            return draw;
+        public String getModel_name() {
+            return model_name;
         }
 
-        public void setDraw(int draw) {
-            this.draw = draw;
+        public void setModel_name(String model_name) {
+            this.model_name = model_name;
         }
 
-        public int getTotalPageCount() {
-            return totalPageCount;
+        public int getPassenger_number() {
+            return passenger_number;
         }
 
-        public void setTotalPageCount(int totalPageCount) {
-            this.totalPageCount = totalPageCount;
+        public void setPassenger_number(int passenger_number) {
+            this.passenger_number = passenger_number;
         }
 
-        public List<ResultBean> getResultX() {
-            return resultX;
+        public int getModel_status() {
+            return model_status;
         }
 
-        public void setResultX(List<ResultBean> resultX) {
-            this.resultX = resultX;
-        }
-
-        public class ResultBean {
-            /**
-             * id : 16
-             * member_id : 52
-             * type : 3
-             * amount : 180.99
-             * create_time : 1528437600000
-             * status : 0
-             * fee_amount : 0
-             * real_amount : 0
-             */
-
-            private int id;
-            private int member_id;
-            private int type;
-            private String amount;
-            private String create_time;
-            private int status;
-            private String fee_amount;
-            private String real_amount;
-
-            public int getId() {
-                return id;
-            }
-
-            public void setId(int id) {
-                this.id = id;
-            }
-
-            public int getMember_id() {
-                return member_id;
-            }
-
-            public void setMember_id(int member_id) {
-                this.member_id = member_id;
-            }
-
-            public int getType() {
-                return type;
-            }
-
-            public void setType(int type) {
-                this.type = type;
-            }
-
-            public String getAmount() {
-                return amount;
-            }
-
-            public void setAmount(String amount) {
-                this.amount = amount;
-            }
-
-            public String getCreate_time() {
-                return create_time;
-            }
-
-            public void setCreate_time(String create_time) {
-                this.create_time = create_time;
-            }
-
-            public int getStatus() {
-                return status;
-            }
-
-            public void setStatus(int status) {
-                this.status = status;
-            }
-
-            public String getFee_amount() {
-                return fee_amount;
-            }
-
-            public void setFee_amount(String fee_amount) {
-                this.fee_amount = fee_amount;
-            }
-
-            public String getReal_amount() {
-                return real_amount;
-            }
-
-            public void setReal_amount(String real_amount) {
-                this.real_amount = real_amount;
-            }
+        public void setModel_status(int model_status) {
+            this.model_status = model_status;
         }
     }
 }

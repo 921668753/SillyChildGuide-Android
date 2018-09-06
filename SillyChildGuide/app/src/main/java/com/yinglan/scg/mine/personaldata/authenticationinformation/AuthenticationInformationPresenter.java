@@ -86,6 +86,7 @@ public class AuthenticationInformationPresenter implements AuthenticationInforma
         if (selectLegallyList == null || selectLegallyList.size() <= 0 || StringUtils.isEmpty(selectLegallyList.get(0).getPath())) {
             selectLegallyList.clear();
             LocalMedia localMedia = new LocalMedia();
+            localMedia.setPath("");
             localMedia.setHttpPath("");
             selectLegallyList.add(localMedia);
         }
@@ -94,6 +95,7 @@ public class AuthenticationInformationPresenter implements AuthenticationInforma
             selectYachtDrivingLicenseList.clear();
             LocalMedia localMedia = new LocalMedia();
             localMedia.setHttpPath("");
+            localMedia.setPath("");
             selectYachtDrivingLicenseList.add(localMedia);
         }
         selectList.addAll(selectYachtDrivingLicenseList);
@@ -103,6 +105,10 @@ public class AuthenticationInformationPresenter implements AuthenticationInforma
                 int selectListSize = PreferenceHelper.readInt(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "selectListSize", 0);
                 selectListSize = selectListSize + 1;
                 PreferenceHelper.write(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "selectListSize", selectListSize);
+                if (selectListSize == selectList.size()) {
+                    postEidtCertification2(city_id, selectList);
+                    selectList.clear();
+                }
                 continue;
             }
             String token = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "qiNiuToken");

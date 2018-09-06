@@ -34,7 +34,7 @@
                 style="@style/AutoMatch"
                 android:background="@android:color/transparent"
                 android:gravity="center_vertical"
-                android:hint="@string/cityYouServe"
+                android:hint="@string/modelYourCar"
                 android:imeOptions="actionSearch"
                 android:maxLength="20"
                 android:paddingLeft="@dimen/dimen7"

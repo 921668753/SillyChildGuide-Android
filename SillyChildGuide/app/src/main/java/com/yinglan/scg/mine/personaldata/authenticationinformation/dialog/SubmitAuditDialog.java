@@ -1,6 +1,8 @@
 package com.yinglan.scg.mine.personaldata.authenticationinformation.dialog;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -11,6 +13,8 @@ import android.widget.TextView;
 
 import com.common.cklibrary.common.BaseDialog;
 import com.yinglan.scg.R;
+
+import static android.app.Activity.RESULT_OK;
 
 /**
  * 提交资料弹框
@@ -77,6 +81,9 @@ public abstract class SubmitAuditDialog extends BaseDialog implements View.OnCli
             @Override
             public void run() {
                 dismiss();
+                Intent intent = new Intent();
+                ((Activity) mContext).setResult(RESULT_OK, intent);
+                ((Activity) mContext).finish();
                 handler = null;
             }
         }, 4000);

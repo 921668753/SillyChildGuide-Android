@@ -21,7 +21,12 @@ public interface AddVehicleContract {
         /**
          * 司导上传车辆信息
          */
-        void postEidtModel(int model_id, List<LocalMedia> selectList, String model_name_id, int passenger_number, int baggage_number, String model_year, int license_plate, int is_insurance);
+        void postEidtModel(int model_id, List<LocalMedia> selectList, int model_name_id, int passenger_number, int baggage_number, long model_year, String license_plate, int is_insurance);
+
+        /**
+         * 司导上传车辆信息
+         */
+        void postEidtModel1(int model_id, List<LocalMedia> selectList, int model_name_id, int passenger_number, int baggage_number, long model_year, String license_plate, int is_insurance);
     }
 
     interface View extends BaseView<Presenter, String> {

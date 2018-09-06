@@ -198,6 +198,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
             PreferenceHelper.write(aty, StringConstants.FILENAME, "mobile", et_accountNumber.getText().toString());
             PreferenceHelper.write(aty, StringConstants.FILENAME, "face", bean.getData().getFace());
             PreferenceHelper.write(aty, StringConstants.FILENAME, "username", bean.getData().getUsername());
+            PreferenceHelper.write(aty, StringConstants.FILENAME, "shz", bean.getData().getShz());
             PreferenceHelper.write(aty, StringConstants.FILENAME, "rongYunToken", bean.getData().getRong_cloud());
             ((LoginContract.Presenter) mPresenter).loginRongYun(bean.getData().getRong_cloud(), bean);
         } else if (flag == 1) {

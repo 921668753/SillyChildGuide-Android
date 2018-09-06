@@ -131,7 +131,7 @@
                             android:orientation="vertical">
 
                             <TextView
-                                android:id="@+id/tv_guideTotal"
+                                android:id="@+id/tv_guideLevel"
                                 style="@style/WrapWrap"
                                 android:text="0"
                                 android:textColor="@color/whiteColors"
@@ -139,9 +139,10 @@
 
                             <TextView
                                 style="@style/WrapWrap"
-                                android:text="@string/guideTotal"
+                                android:text="@string/guideLevel"
                                 android:textColor="@color/whiteColors"
-                                android:textSize="@dimen/textsize12" />
+                                android:textSize="@dimen/textsize12"
+                                android:visibility="gone" />
 
                         </LinearLayout>
 

@@ -10,8 +10,14 @@ import android.widget.TextView;
 
 import com.common.cklibrary.common.BaseActivity;
 import com.common.cklibrary.common.BindView;
+import com.common.cklibrary.common.StringConstants;
+import com.common.cklibrary.utils.JsonUtil;
+import com.common.cklibrary.utils.rx.MsgEvent;
+import com.common.cklibrary.utils.rx.RxBus;
+import com.kymjs.common.PreferenceHelper;
 import com.yinglan.scg.R;
 import com.yinglan.scg.adapter.mine.myvehicle.model.search.ModelGridViewAdapter;
+import com.yinglan.scg.entity.mine.myvehicle.model.ModelNameListBean;
 import com.yinglan.scg.loginregister.LoginActivity;
 
 import static com.yinglan.scg.constant.NumericConstants.REQUEST_CODE;
@@ -52,7 +58,6 @@ public class ModelSearchListActivity extends BaseActivity implements ModelSearch
     @BindView(id = R.id.tv_button, click = true)
     private TextView tv_button;
 
-    private int type = 0;
     private String name = "";
 
     @Override
@@ -66,9 +71,8 @@ public class ModelSearchListActivity extends BaseActivity implements ModelSearch
         mPresenter = new ModelSearchListPresenter(this);
         mAdapter = new ModelGridViewAdapter(this);
         name = getIntent().getStringExtra("name");
-        type = getIntent().getIntExtra("type", 0);
         showLoadingDialog(getString(R.string.dataLoad));
-        ((ModelSearchListContract.Presenter) mPresenter).getProductByAirportId(name, type);
+        ((ModelSearchListContract.Presenter) mPresenter).getModelListByName(name);
     }
 
 
@@ -86,7 +90,6 @@ public class ModelSearchListActivity extends BaseActivity implements ModelSearch
         switch (v.getId()) {
             case R.id.ll_search:
                 Intent intent = new Intent(aty, ModelSearchActivity.class);
-                intent.putExtra("type", type);
                 intent.putExtra("tag", 1);
                 startActivityForResult(intent, REQUEST_CODE);
                 break;
@@ -96,7 +99,7 @@ public class ModelSearchListActivity extends BaseActivity implements ModelSearch
             case R.id.tv_button:
                 if (tv_button.getText().toString().contains(getString(R.string.retry))) {
                     showLoadingDialog(getString(R.string.dataLoad));
-                    ((ModelSearchListContract.Presenter) mPresenter).getProductByAirportId(name, type);
+                    ((ModelSearchListContract.Presenter) mPresenter).getModelListByName(name);
                     return;
                 }
                 showActivity(aty, LoginActivity.class);
@@ -106,10 +109,10 @@ public class ModelSearchListActivity extends BaseActivity implements ModelSearch
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//        Intent intent = new Intent(aty, PriceInformationActivity.class);
-//        intent.putExtra("product_id", mAdapter.getItem(position).getId());
-//        intent.putExtra("type", type);
-//        showActivity(aty, intent);
+        PreferenceHelper.write(aty, StringConstants.FILENAME, "ModelSearchListmodel_name_id", mAdapter.getItem(position).getModel_name_id());
+        PreferenceHelper.write(aty, StringConstants.FILENAME, "ModelSearchListmodel_name", mAdapter.getItem(position).getModel_name());
+        RxBus.getInstance().post(new MsgEvent<String>("RxBusModelSearchListEvent"));
+        finish();
     }
 
     @Override
@@ -118,7 +121,7 @@ public class ModelSearchListActivity extends BaseActivity implements ModelSearch
         if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {// 如果等于1
             name = data.getStringExtra("name");
             tv_search.setText(name);
-            ((ModelSearchListContract.Presenter) mPresenter).getProductByAirportId(name, type);
+            ((ModelSearchListContract.Presenter) mPresenter).getModelListByName(name);
         }
     }
 
@@ -130,16 +133,15 @@ public class ModelSearchListActivity extends BaseActivity implements ModelSearch
 
     @Override
     public void getSuccess(String success, int flag) {
-//        SelectProductAirportTransportationBean selectProductAirportTransportationBean = (SelectProductAirportTransportationBean) JsonUtil.getInstance().json2Obj(success, SelectProductAirportTransportationBean.class);
-//        List<SelectProductAirportTransportationBean.DataBean> selectProductAirportTransportationList = selectProductAirportTransportationBean.getData();
-//        if (selectProductAirportTransportationList == null || selectProductAirportTransportationList.size() <= 0) {
-//            errorMsg(getString(R.string.noProduct), 0);
-//            return;
-//        }
-//        gv_city.setVisibility(View.VISIBLE);
-//        ll_commonError.setVisibility(View.GONE);
-//        mAdapter.clear();
-//        mAdapter.addNewData(selectProductAirportTransportationList);
+        ModelNameListBean modelNameListBean = (ModelNameListBean) JsonUtil.getInstance().json2Obj(success, ModelNameListBean.class);
+        if (modelNameListBean.getData() == null || modelNameListBean.getData().size() <= 0) {
+            errorMsg(getString(R.string.noData), 1);
+            return;
+        }
+        ll_commonError.setVisibility(View.GONE);
+        gv_city.setVisibility(View.VISIBLE);
+        mAdapter.clear();
+        mAdapter.addNewData(modelNameListBean.getData());
         dismissLoadingDialog();
     }
 
@@ -160,10 +162,10 @@ public class ModelSearchListActivity extends BaseActivity implements ModelSearch
             img_err.setImageResource(R.mipmap.no_network);
             tv_hintText.setText(msg);
             tv_button.setText(getString(R.string.retry));
-//        } else if (msg.contains(getString(R.string.noProduct))) {
-//            img_err.setImageResource(R.mipmap.no_data);
-//            tv_hintText.setText(msg);
-//            tv_button.setVisibility(View.GONE);
+        } else if (msg.contains(getString(R.string.noData))) {
+            img_err.setImageResource(R.mipmap.no_data);
+            tv_hintText.setText(msg);
+            tv_button.setVisibility(View.GONE);
         } else {
             img_err.setImageResource(R.mipmap.no_data);
             tv_hintText.setText(msg);

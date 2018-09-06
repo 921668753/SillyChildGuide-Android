@@ -90,8 +90,8 @@ public class MineFragment extends BaseFragment implements MineContract.View, Vie
     @BindView(id = R.id.tv_ordersTotal)
     private TextView tv_ordersTotal;
 
-    @BindView(id = R.id.tv_guideTotal)
-    private TextView tv_guideTotal;
+    @BindView(id = R.id.tv_guideLevel)
+    private TextView tv_guideLevel;
 
     @BindView(id = R.id.tv_serviceLevel)
     private TextView tv_serviceLevel;
@@ -198,16 +198,18 @@ public class MineFragment extends BaseFragment implements MineContract.View, Vie
                 tv_nickname.setVisibility(View.VISIBLE);
                 tv_serialNumber.setVisibility(View.VISIBLE);
                 saveUserInfo(userInfoBean);
-                tv_nickname.setText(userInfoBean.getData().getNick_name());
+                tv_nickname.setText(userInfoBean.getData().getNickname());
                 if (StringUtils.isEmpty(userInfoBean.getData().getFace())) {
                     iv_minetouxiang.setImageResource(R.mipmap.avatar);
                 } else {
                     GlideImageLoader.glideLoader(aty, userInfoBean.getData().getFace(), iv_minetouxiang, 0, R.mipmap.avatar);
                 }
-                tv_serialNumber.setText(userInfoBean.getData().getShz());
-                tv_ordersTotal.setText(userInfoBean.getData().getConcern_number());
-                tv_guideTotal.setText(userInfoBean.getData().getFans_number());
-                tv_serviceLevel.setText(userInfoBean.getData().getCollected_number());
+                String shz = PreferenceHelper.readString(aty, StringConstants.FILENAME, "shz", "");
+                tv_serialNumber.setText(shz);
+                tv_serialNumber.setTextColor(Integer.parseInt(userInfoBean.getData().getGuide_level_color(), 16));
+                tv_ordersTotal.setText(userInfoBean.getData().getOrder_number() + "");
+                tv_guideLevel.setText(userInfoBean.getData().getGuide_level_name());
+                tv_serviceLevel.setText(userInfoBean.getData().getService_level());
             }
         } else if (flag == 1) {
             Intent personalDataIntent = new Intent(aty, PersonalDataActivity.class);
@@ -226,26 +228,20 @@ public class MineFragment extends BaseFragment implements MineContract.View, Vie
         dismissLoadingDialog();
     }
 
+
     /**
      * 用户信息本地化
      */
     private void saveUserInfo(UserInfoBean userInfoBean) {
-        PreferenceHelper.write(aty, StringConstants.FILENAME, "username", userInfoBean.getData().getUsername());
-        PreferenceHelper.write(aty, StringConstants.FILENAME, "nick_name", userInfoBean.getData().getNick_name());
-        PreferenceHelper.write(aty, StringConstants.FILENAME, "birthday", userInfoBean.getData().getBirthday());
-        PreferenceHelper.write(aty, StringConstants.FILENAME, "shz", userInfoBean.getData().getShz());
         PreferenceHelper.write(aty, StringConstants.FILENAME, "face", userInfoBean.getData().getFace());
+        PreferenceHelper.write(aty, StringConstants.FILENAME, "approve_status", userInfoBean.getData().getApprove_status());
+        PreferenceHelper.write(aty, StringConstants.FILENAME, "guide_level_name", userInfoBean.getData().getGuide_level_name());
+        PreferenceHelper.write(aty, StringConstants.FILENAME, "guide_level_color", userInfoBean.getData().getGuide_level_color());
+        PreferenceHelper.write(aty, StringConstants.FILENAME, "nickname", userInfoBean.getData().getNickname());
+        PreferenceHelper.write(aty, StringConstants.FILENAME, "order_number", userInfoBean.getData().getOrder_number());
         PreferenceHelper.write(aty, StringConstants.FILENAME, "sex", userInfoBean.getData().getSex());
-        PreferenceHelper.write(aty, StringConstants.FILENAME, "province", userInfoBean.getData().getProvince());
-        PreferenceHelper.write(aty, StringConstants.FILENAME, "province_id", userInfoBean.getData().getProvince_id());
-        PreferenceHelper.write(aty, StringConstants.FILENAME, "city", userInfoBean.getData().getCity());
-        PreferenceHelper.write(aty, StringConstants.FILENAME, "city_id", userInfoBean.getData().getCity_id());
-        PreferenceHelper.write(aty, StringConstants.FILENAME, "region", userInfoBean.getData().getRegion());
-        PreferenceHelper.write(aty, StringConstants.FILENAME, "region_id", userInfoBean.getData().getRegion_id());
-        PreferenceHelper.write(aty, StringConstants.FILENAME, "address", userInfoBean.getData().getAddress());
-        PreferenceHelper.write(aty, StringConstants.FILENAME, "signature", userInfoBean.getData().getSignature());
-        PreferenceHelper.write(aty, StringConstants.FILENAME, "mobile", userInfoBean.getData().getMobile());
-        PreferenceHelper.write(aty, StringConstants.FILENAME, "invite_code", userInfoBean.getData().getInvite_code());
+        PreferenceHelper.write(aty, StringConstants.FILENAME, "remark", userInfoBean.getData().getRemark());
+        PreferenceHelper.write(aty, StringConstants.FILENAME, "service_level", userInfoBean.getData().getService_level());
     }
 
     @Override
@@ -275,7 +271,7 @@ public class MineFragment extends BaseFragment implements MineContract.View, Vie
         tv_serialNumber.setVisibility(View.GONE);
         ll_notLogin.setVisibility(View.VISIBLE);
         tv_ordersTotal.setText("0");
-        tv_guideTotal.setText("0");
+        tv_guideLevel.setText("");
         tv_serviceLevel.setText("0");
     }
 

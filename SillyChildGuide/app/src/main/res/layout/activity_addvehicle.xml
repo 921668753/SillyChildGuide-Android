@@ -133,7 +133,7 @@
                     android:id="@+id/tv_canTakeNumber"
                     style="@style/WrapWrap"
                     android:paddingRight="@dimen/dimen10"
-                    android:text="8"
+                    android:text=""
                     android:textColor="@color/hintColors"
                     android:textSize="@dimen/textsize14" />
 
@@ -164,7 +164,7 @@
                     android:id="@+id/tv_canPutBaggage"
                     style="@style/WrapWrap"
                     android:paddingRight="@dimen/dimen10"
-                    android:text="8"
+                    android:text=""
                     android:textColor="@color/hintColors"
                     android:textSize="@dimen/textsize14" />
 
@@ -196,7 +196,7 @@
                     android:id="@+id/tv_vehicleYear"
                     style="@style/WrapWrap"
                     android:paddingRight="@dimen/dimen10"
-                    android:text="2018"
+                    android:text=""
                     android:textColor="@color/hintColors"
                     android:textSize="@dimen/textsize14" />
 

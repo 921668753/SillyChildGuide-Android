@@ -12,15 +12,16 @@ import android.widget.TextView;
 
 import com.common.cklibrary.common.BaseActivity;
 import com.common.cklibrary.common.BindView;
+import com.common.cklibrary.common.StringConstants;
 import com.common.cklibrary.common.ViewInject;
 import com.common.cklibrary.utils.JsonUtil;
+import com.common.cklibrary.utils.rx.MsgEvent;
+import com.kymjs.common.PreferenceHelper;
 import com.yinglan.scg.R;
 import com.yinglan.scg.adapter.mine.myvehicle.model.ModelClassificationGridViewAdapter;
 import com.yinglan.scg.adapter.mine.myvehicle.model.ModelClassificationListViewAdapter;
 import com.yinglan.scg.entity.mine.myvehicle.model.ModelBrandListBean;
 import com.yinglan.scg.entity.mine.myvehicle.model.ModelNameListBean;
-import com.yinglan.scg.entity.mine.personaldata.authenticationinformation.ServiceAreaByCountryIdBean;
-import com.yinglan.scg.entity.mine.personaldata.authenticationinformation.ServiceAreaCountryListBean;
 import com.yinglan.scg.mine.myvehicle.model.search.ModelSearchActivity;
 
 import java.util.List;
@@ -201,5 +202,24 @@ public class ModelActivity extends BaseActivity implements ModelContract.View, A
         }
         ViewInject.toast(msg);
     }
+
+    /**
+     * 在接收消息的时候，选择性接收消息：
+     */
+    @Override
+    public void callMsgEvent(MsgEvent msgEvent) {
+        super.callMsgEvent(msgEvent);
+        if (((String) msgEvent.getData()).equals("RxBusModelSearchListEvent")) {
+            int model_name_id = PreferenceHelper.readInt(aty, StringConstants.FILENAME, "ModelSearchListmodel_name_id", 0);
+            String model_name = PreferenceHelper.readString(aty, StringConstants.FILENAME, "ModelSearchListmodel_name", "");
+            Intent intent = getIntent();
+            intent.putExtra("model_name_id", model_name_id);
+            intent.putExtra("model_name", model_name);
+            setResult(RESULT_OK, intent);
+            finish();
+        }
+
+    }
+
 
 }

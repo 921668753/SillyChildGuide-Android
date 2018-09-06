@@ -36,6 +36,7 @@ import com.yinglan.scg.mine.personaldata.dialog.PictureSourceDialog;
 import com.yinglan.scg.mine.personaldata.setnickname.SetNickNameActivity;
 import com.yinglan.scg.mine.personaldata.setselfintroduction.SetSelfIntroductionActivity;
 import com.yinglan.scg.mine.personaldata.setsex.SetSexActivity;
+import com.yinglan.scg.startpage.dialog.PermissionsDialog;
 import com.yinglan.scg.utils.GlideImageLoader;
 
 import java.util.ArrayList;
@@ -109,6 +110,7 @@ public class PersonalDataActivity extends BaseActivity implements PersonalDataCo
     private String selfIntroduction = "";
 
     public int type = -1;
+    private PermissionsDialog permissionsDialog;
 
     @Override
     public void setRootView() {
@@ -122,8 +124,18 @@ public class PersonalDataActivity extends BaseActivity implements PersonalDataCo
         selectList = new ArrayList<LocalMedia>();
         themeId = R.style.picture_default_style;
         adapter = new GridImageAdapter(PersonalDataActivity.this, onAddPicClickListener);
+        initDialog();
         showLoadingDialog(getString(R.string.dataLoad));
         ((PersonalDataContract.Presenter) mPresenter).getInfo();
+    }
+
+    private void initDialog() {
+        permissionsDialog = new PermissionsDialog(this) {
+            @Override
+            public void doAction() {
+
+            }
+        };
     }
 
     @Override
@@ -224,9 +236,27 @@ public class PersonalDataActivity extends BaseActivity implements PersonalDataCo
                 startActivityForResult(setSelfIntroductionIntent, RESULT_CODE_BASKET_MINUSALL);
                 break;
             case R.id.ll_authenticationInformation:
-                Intent authenticationInformationIntent = new Intent(this, AuthenticationInformationActivity.class);
-                //  authenticationInformationIntent.putExtra("selfIntroduction", selfIntroduction);
-                startActivityForResult(authenticationInformationIntent, RESULT_CODE_BASKET_MOVE);
+                int approve_status = PreferenceHelper.readInt(aty, StringConstants.FILENAME, "approve_status", 0);
+                if (approve_status == 0 || approve_status == 2) {
+                    Intent authenticationInformationIntent = new Intent(this, AuthenticationInformationActivity.class);
+                    startActivityForResult(authenticationInformationIntent, RESULT_CODE_BASKET_MOVE);
+                } else if (approve_status == 1) {
+                    if (permissionsDialog == null) {
+                        initDialog();
+                    }
+                    if (permissionsDialog != null && !permissionsDialog.isShowing()) {
+                        permissionsDialog.show();
+                        permissionsDialog.setContent(getString(R.string.certificationProcess1));
+                    }
+                } else if (approve_status == 3) {
+                    if (permissionsDialog == null) {
+                        initDialog();
+                    }
+                    if (permissionsDialog != null && !permissionsDialog.isShowing()) {
+                        permissionsDialog.show();
+                        permissionsDialog.setContent(getString(R.string.approve1));
+                    }
+                }
                 break;
         }
     }
@@ -398,7 +428,6 @@ public class PersonalDataActivity extends BaseActivity implements PersonalDataCo
             case 0:
                 showLoadingDialog(getString(R.string.saveLoad));
                 ((PersonalDataContract.Presenter) mPresenter).postMemberEdit(success);
-                isRefresh = true;
                 break;
             case 1:
                 PersonalDataBean personalDataBean = (PersonalDataBean) JsonUtil.getInstance().json2Obj(success, PersonalDataBean.class);
@@ -423,9 +452,25 @@ public class PersonalDataActivity extends BaseActivity implements PersonalDataCo
                     }
                     selfIntroduction = personalDataBean.getData().getRemark();
                     tv_selfIntroduction.setText(personalDataBean.getData().getRemark());
+                    PreferenceHelper.write(aty, StringConstants.FILENAME, "approve_status", personalDataBean.getData().getApprove_status());
+                    switch (personalDataBean.getData().getApprove_status()) {
+                        case 0:
+                            tv_authenticationInformation.setText(getString(R.string.unauthorized));
+                            break;
+                        case 1:
+                            tv_authenticationInformation.setText(getString(R.string.audit2));
+                            break;
+                        case 2:
+                            tv_authenticationInformation.setText(getString(R.string.unapprove));
+                            break;
+                        case 3:
+                            tv_authenticationInformation.setText(getString(R.string.approve));
+                            break;
+                    }
                 }
                 break;
             case 2:
+                isRefresh = true;
                 GlideImageLoader.glideLoader(aty, success, iv_headPortrait, 0, R.mipmap.avatar);
                 break;
         }

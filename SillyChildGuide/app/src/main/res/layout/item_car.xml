@@ -46,7 +46,6 @@
             android:layout_width="@dimen/dimen200"
             android:layout_height="@dimen/dimen138"
             android:layout_marginBottom="@dimen/dimen11"
-            android:scaleType="fitXY"
             android:src="@mipmap/placeholderfigure" />
 
 

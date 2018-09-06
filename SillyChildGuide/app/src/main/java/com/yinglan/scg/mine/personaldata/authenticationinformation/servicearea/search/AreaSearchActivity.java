@@ -30,6 +30,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import static com.yinglan.scg.constant.NumericConstants.RESULT_CODE_PRODUCT;
+
 
 /**
  * 服务地区搜索
@@ -115,7 +117,7 @@ public class AreaSearchActivity extends BaseActivity implements TagFlowLayout.On
                         beautyCareIntent.setClass(aty, AreaSearchListActivity.class);
                         beautyCareIntent.putExtra("name", textView.getText().toString().trim());
                         beautyCareIntent.putExtra("type", 0);
-                        showActivity(aty, beautyCareIntent);
+                        startActivity(beautyCareIntent);
                     }
                     finish();
                     handled = true;
@@ -203,11 +205,24 @@ public class AreaSearchActivity extends BaseActivity implements TagFlowLayout.On
                 beautyCareIntent.setClass(aty, AreaSearchListActivity.class);
                 beautyCareIntent.putExtra("name", recentSearchTagAdapter.getItem(position).getName());
                 beautyCareIntent.putExtra("type", recentSearchTagAdapter.getItem(position).getType());
-                showActivity(aty, beautyCareIntent);
+                startActivity(beautyCareIntent);
             }
             finish();
         }
         return true;
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+//        if (resultCode == RESULT_OK && requestCode == RESULT_CODE_PRODUCT) {
+//            Intent intent = getIntent();
+//            intent.putExtra("city_id", data.getIntExtra("city_id", 0));
+//            intent.putExtra("city_name", data.getStringExtra("city_name"));
+//            setResult(RESULT_OK, intent);
+//            finish();
+//        }
     }
 
 

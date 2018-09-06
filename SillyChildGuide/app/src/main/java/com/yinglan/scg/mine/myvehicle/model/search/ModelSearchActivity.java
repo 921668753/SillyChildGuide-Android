@@ -75,7 +75,6 @@ public class ModelSearchActivity extends BaseActivity implements TagFlowLayout.O
     public void initData() {
         super.initData();
         recentSearchList = new ArrayList<DataBean>();
-        type = getIntent().getIntExtra("type", 0);
         recentSearchTagAdapter = new RecentSearchTagAdapter(this, recentSearchList);
         initClearSearchDialog();
     }
@@ -87,17 +86,7 @@ public class ModelSearchActivity extends BaseActivity implements TagFlowLayout.O
         clearSearchDialog = new ClearSearchDialog(this, getString(R.string.clearSearch)) {
             @Override
             public void deleteCollectionDo(int addressId) {
-                if (type == 1) {
-                    PreferenceHelper.write(aty, StringConstants.FILENAME, "recentSearchAirportPickupHistory", null);
-                } else if (type == 2) {
-                    PreferenceHelper.write(aty, StringConstants.FILENAME, "recentSearchAirportDropOffHistory", null);
-                } else if (type == 3) {
-                    PreferenceHelper.write(aty, StringConstants.FILENAME, "recentSearchByTheDayCharterHistory", null);
-                } else if (type == 4) {
-
-                } else if (type == 5) {
-                    PreferenceHelper.write(aty, StringConstants.FILENAME, "recentSearchBoutiqueLineHistory", null);
-                }
+                PreferenceHelper.write(aty, StringConstants.FILENAME, "recentSearchModelHistory", null);
                 ll_recentSearch.setVisibility(View.GONE);
                 tfl_recentSearch.setVisibility(View.GONE);
             }
@@ -128,7 +117,6 @@ public class ModelSearchActivity extends BaseActivity implements TagFlowLayout.O
                     } else {
                         beautyCareIntent.setClass(aty, ModelSearchListActivity.class);
                         beautyCareIntent.putExtra("name", textView.getText().toString().trim());
-                        beautyCareIntent.putExtra("type", type);
                         showActivity(aty, beautyCareIntent);
                     }
                     finish();
@@ -161,35 +149,14 @@ public class ModelSearchActivity extends BaseActivity implements TagFlowLayout.O
         baseResult.setResult(1);
         Collections.reverse(recentSearchList);
         baseResult.setData(recentSearchList);
-        if (type == 1) {
-            PreferenceHelper.write(aty, StringConstants.FILENAME, "recentSearchAirportPickupHistory", JsonUtil.getInstance().obj2JsonString(baseResult));
-        } else if (type == 2) {
-            PreferenceHelper.write(aty, StringConstants.FILENAME, "recentSearchAirportDropOffHistory", JsonUtil.getInstance().obj2JsonString(baseResult));
-        } else if (type == 3) {
-            PreferenceHelper.write(aty, StringConstants.FILENAME, "recentSearchByTheDayCharterHistory", JsonUtil.getInstance().obj2JsonString(baseResult));
-        } else if (type == 4) {
-
-        } else if (type == 5) {
-            PreferenceHelper.write(aty, StringConstants.FILENAME, "recentSearchBoutiqueLineHistory", JsonUtil.getInstance().obj2JsonString(baseResult));
-        }
+        PreferenceHelper.write(aty, StringConstants.FILENAME, "recentSearchModelHistory", JsonUtil.getInstance().obj2JsonString(baseResult));
     }
 
     /**
      * 读取历史
      */
     private void readRecentSearchHistory(int type) {
-        String recentSearch = "";
-        if (type == 1) {
-            recentSearch = PreferenceHelper.readString(aty, StringConstants.FILENAME, "recentSearchAirportPickupHistory", "");
-        } else if (type == 2) {
-            recentSearch = PreferenceHelper.readString(aty, StringConstants.FILENAME, "recentSearchAirportDropOffHistory", "");
-        } else if (type == 3) {
-            recentSearch = PreferenceHelper.readString(aty, StringConstants.FILENAME, "recentSearchByTheDayCharterHistory", "");
-        } else if (type == 4) {
-
-        } else if (type == 5) {
-            recentSearch = PreferenceHelper.readString(aty, StringConstants.FILENAME, "recentSearchBoutiqueLineHistory", "");
-        }
+        String recentSearch = PreferenceHelper.readString(aty, StringConstants.FILENAME, "recentSearchModelHistory", "");
         if (StringUtils.isEmpty(recentSearch)) {
             ll_recentSearch.setVisibility(View.GONE);
             tfl_recentSearch.setVisibility(View.GONE);
@@ -231,12 +198,10 @@ public class ModelSearchActivity extends BaseActivity implements TagFlowLayout.O
             Intent beautyCareIntent = new Intent();
             if (getIntent().getIntExtra("tag", 0) == 1) {
                 beautyCareIntent.putExtra("name", recentSearchTagAdapter.getItem(position).getName());
-                beautyCareIntent.putExtra("type", recentSearchTagAdapter.getItem(position).getType());
                 setResult(RESULT_OK, beautyCareIntent);
             } else {
                 beautyCareIntent.setClass(aty, ModelSearchListActivity.class);
                 beautyCareIntent.putExtra("name", recentSearchTagAdapter.getItem(position).getName());
-                beautyCareIntent.putExtra("type", recentSearchTagAdapter.getItem(position).getType());
                 showActivity(aty, beautyCareIntent);
             }
             finish();
