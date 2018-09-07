@@ -83,7 +83,7 @@
 
         <!--选择国家或地区-->
         <activity
-            android:name=".loginregister.SelectCountryActivity"
+            android:name=".loginregister.SelectCountryCodeActivity"
             android:screenOrientation="portrait" />
 
         <!--注册-->
@@ -176,6 +176,9 @@
             android:screenOrientation="portrait" />
 
         <!--我的  我的车辆  车辆详情-->
+        <activity
+            android:name=".mine.myvehicle.VehicleDetailActivity"
+            android:screenOrientation="portrait" />
 
         <!--我的  我的车辆   新增车辆-->
         <activity

@@ -16,6 +16,7 @@
 
 
         <TextView
+            android:id="@+id/tv_licensePlateNumber"
             style="@style/MatchAuto"
             android:layout_margin="@dimen/dimen1"
             android:background="@color/whiteColors"
@@ -25,6 +26,7 @@
             android:textSize="@dimen/textsize12" />
 
         <TextView
+            android:id="@+id/tv_models"
             style="@style/MatchAuto"
             android:layout_marginBottom="@dimen/dimen1"
             android:layout_marginLeft="@dimen/dimen1"
@@ -40,6 +42,7 @@
 
 
     <TextView
+        android:id="@+id/tv_quickOrder"
         android:layout_width="@dimen/dimen144"
         android:layout_height="@dimen/dimen38"
         android:layout_marginRight="@dimen/dimen27"
@@ -50,6 +53,7 @@
         android:textSize="@dimen/textsize12" />
 
     <TextView
+        android:id="@+id/tv_endTheOrder"
         android:layout_width="@dimen/dimen144"
         android:layout_height="@dimen/dimen38"
         android:layout_marginRight="@dimen/dimen27"

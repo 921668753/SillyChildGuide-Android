@@ -33,7 +33,7 @@ public class LoginPresenter implements LoginContract.Presenter {
     }
 
     @Override
-    public void postToLogin(String phone, String pwd) {
+    public void postToLogin(String phone, String countryCode, String pwd) {
         if (StringUtils.isEmpty(phone)) {
             mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.hintAccountText), 0);
             return;
@@ -167,7 +167,6 @@ public class LoginPresenter implements LoginContract.Presenter {
         });
 
     }
-
 
 
 }

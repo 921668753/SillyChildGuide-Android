@@ -1,26 +1,24 @@
-package com.yinglan.scg.loginregister;
-
+package com.yinglan.scg.mine.myvehicle;
 
 import com.common.cklibrary.common.BasePresenter;
 import com.common.cklibrary.common.BaseView;
 
 /**
- * Created by ruitu on 2016/9/24.
+ * Created by Administrator on 2017/2/11.
  */
-interface SelectCountryContract {
+
+public interface VehicleDetailContract {
 
     interface Presenter extends BasePresenter {
 
         /**
-         * 获取国家区号
+         * 获取用户车辆详细信息
          */
-        void getCountryNumber();
-
+        void getModelDetail(int model_id);
 
     }
 
     interface View extends BaseView<Presenter, String> {
-
     }
 
 }

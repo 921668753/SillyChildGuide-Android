@@ -97,7 +97,7 @@
     <string name="secret">保密</string>
 
     <!--选择国家或地区-->
-    <string name="selectCountry">选择国家或地区</string>
+    <string name="selectCountryCode">选择国家区号</string>
     <string name="retry">重试</string>
 
     <!--注册-->

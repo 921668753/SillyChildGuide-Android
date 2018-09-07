@@ -34,7 +34,7 @@ public class BindingPhonePresenter implements BindingPhoneContract.Presenter {
     }
 
     @Override
-    public void postCode(String phone, String opt) {
+    public void postCode(String phone, String countryCode, String opt) {
         if (StringUtils.isEmpty(phone)) {
             mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.hintPhoneText), 0);
             return;
@@ -46,6 +46,7 @@ public class BindingPhonePresenter implements BindingPhoneContract.Presenter {
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
         // Map<String, Object> map = new HashMap<String, Object>();
         httpParams.put("phone", phone);
+        httpParams.put("country_code", countryCode);
 //        String codeI = String.valueOf(System.currentTimeMillis());
 //        String codeId = CipherUtils.md5(codeI.substring(2, codeI.length() - 1));
 //        httpParams.put("codeId", codeId);

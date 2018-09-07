@@ -12,36 +12,34 @@ import com.common.cklibrary.utils.JsonUtil;
 import com.common.cklibrary.utils.myview.IndexNewBar;
 import com.mcxtzhang.indexlib.suspension.SuspensionDecoration;
 import com.yinglan.scg.R;
-import com.yinglan.scg.adapter.loginregister.SelectCountryViewAdapter;
-import com.yinglan.scg.entity.loginregister.SelectCountryBean;
-import com.yinglan.scg.entity.loginregister.SelectCountryBean.ResultBean;
+import com.yinglan.scg.adapter.loginregister.SelectCountryCodeViewAdapter;
+import com.yinglan.scg.entity.loginregister.SelectCountryCodeBean;
+import com.yinglan.scg.entity.loginregister.SelectCountryCodeBean.DataBean;
 import com.yinglan.scg.utils.decoration.DividerItemDecoration;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 选择国家或地区
+ * 选择国家区号
  * Created by Admin on 2017/9/6.
  */
 
-public class SelectCountryActivity extends BaseActivity implements SelectCountryContract.View {
+public class SelectCountryCodeActivity extends BaseActivity implements SelectCountryCodeContract.View {
 
     @BindView(id = R.id.rv)
     private RecyclerView mRv;
 
     @BindView(id = R.id.indexBar)
     private IndexNewBar mIndexBar;
-    private SelectCountryViewAdapter mAdapter;
+    private SelectCountryCodeViewAdapter mAdapter;
 
     private LinearLayoutManager mManager;
 
     private SuspensionDecoration mDecoration;
 
-    private List<ResultBean> mDatas = new ArrayList<ResultBean>();
+    private List<DataBean> mDatas = new ArrayList<DataBean>();
 
-
-    private String areaCode = null;
     private DividerItemDecoration dividerItemDecoration;
 
     @Override
@@ -55,12 +53,11 @@ public class SelectCountryActivity extends BaseActivity implements SelectCountry
     @Override
     public void initData() {
         super.initData();
-        mPresenter = new SelectCountryPresenter(this);
-        mAdapter = new SelectCountryViewAdapter(this, mDatas);
+        mPresenter = new SelectCountryCodePresenter(this);
+        mAdapter = new SelectCountryCodeViewAdapter(this, mDatas);
         mDecoration = new SuspensionDecoration(this, mDatas);
-        dividerItemDecoration = new DividerItemDecoration(SelectCountryActivity.this, DividerItemDecoration.VERTICAL_LIST);
-        showLoadingDialog(getString(R.string.dataLoad));
-        ((SelectCountryContract.Presenter) mPresenter).getCountryNumber();
+        mManager = new LinearLayoutManager(this);
+        dividerItemDecoration = new DividerItemDecoration(SelectCountryCodeActivity.this, DividerItemDecoration.VERTICAL_LIST);
     }
 
 
@@ -71,20 +68,18 @@ public class SelectCountryActivity extends BaseActivity implements SelectCountry
     public void initWidget() {
         super.initWidget();
         initTitle();
-        mRv.setLayoutManager(mManager = new LinearLayoutManager(this));
+        mRv.setLayoutManager(mManager);
         mRv.setAdapter(mAdapter);
-        mAdapter.setViewCallBack(new SelectCountryViewAdapter.ViewCallBack() {
+        mAdapter.setViewCallBack(new SelectCountryCodeViewAdapter.ViewCallBack() {
             @Override
             public void onClickListener(String code) {
-                areaCode = code;
-
                 Intent intent = new Intent();
                 // 获取内容
-                intent.putExtra("areaCode", areaCode);
+                intent.putExtra("areaCode", code);
                 // 设置结果 结果码，一个数据
                 setResult(RESULT_OK, intent);
                 // 结束该activity 结束之后，前面的activity才可以处理结果
-                aty.finish();
+               finish();
             }
         });
         mRv.addItemDecoration(mDecoration);
@@ -94,46 +89,49 @@ public class SelectCountryActivity extends BaseActivity implements SelectCountry
         mIndexBar.setmPressedShowTextView(null)//设置HintTextView
                 .setNeedRealIndex(true)//设置需要真实的索引
                 .setmLayoutManager(mManager);//设置RecyclerView的LayoutManager
+        showLoadingDialog(getString(R.string.dataLoad));
+        ((SelectCountryCodeContract.Presenter) mPresenter).getCountryNumber(this);
     }
 
     /**
      * 设置标题
      */
     public void initTitle() {
-        ActivityTitleUtils.initToolbar(aty, getString(R.string.selectCountry), true, R.id.titlebar);
+        ActivityTitleUtils.initToolbar(aty, getString(R.string.selectCountryCode), true, R.id.titlebar);
     }
 
+
+
+
+
+    @Override
+    public void setPresenter(SelectCountryCodeContract.Presenter presenter) {
+        mPresenter = presenter;
+    }
+
+    @Override
+    public void getSuccess(String success, int flag) {
+        SelectCountryCodeBean selectCountryBean = (SelectCountryCodeBean) JsonUtil.getInstance().json2Obj(success, SelectCountryCodeBean.class);
+        if (selectCountryBean != null && selectCountryBean.getData() != null && selectCountryBean.getData().size() > 0) {
+            //模拟线上加载数据
+            mDatas.clear();
+            mDatas.addAll(selectCountryBean.getData());
+            initDatas(mDatas);
+        }
+        dismissLoadingDialog();
+    }
 
     /**
      * 组织数据源
      *
      * @return
      */
-    private void initDatas(List<ResultBean> list) {
+    private void initDatas(List<DataBean> list) {
         mAdapter.setDatas(list);
         mAdapter.notifyDataSetChanged();
         mIndexBar.setmSourceDatas(list)//设置数据
                 .invalidate();
         mDecoration.setmDatas(list);
-    }
-
-
-    @Override
-    public void setPresenter(SelectCountryContract.Presenter presenter) {
-        mPresenter = presenter;
-    }
-
-    @Override
-    public void getSuccess(String success, int flag) {
-        SelectCountryBean selectCountryBean = (SelectCountryBean) JsonUtil.json2Obj(success, SelectCountryBean.class);
-
-//        if (selectCountryBean.getResult() != null && selectCountryBean.getResult().size() > 0) {
-//            //模拟线上加载数据
-//            mDatas.clear();
-//            mDatas.addAll(selectCountryBean.getResult());
-//            initDatas(mDatas);
-//        }
-        dismissLoadingDialog();
     }
 
     @Override
@@ -145,6 +143,7 @@ public class SelectCountryActivity extends BaseActivity implements SelectCountry
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        mAdapter = null;
         mDatas.clear();
         mDatas = null;
     }

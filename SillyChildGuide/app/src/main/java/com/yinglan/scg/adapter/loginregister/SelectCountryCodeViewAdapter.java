@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.yinglan.scg.R;
-import com.yinglan.scg.entity.loginregister.SelectCountryBean.ResultBean;
+import com.yinglan.scg.entity.loginregister.SelectCountryCodeBean.DataBean;
 
 import java.util.List;
 
@@ -18,24 +18,24 @@ import java.util.List;
  * Created by Admin on 2017/8/15.
  */
 
-public class SelectCountryViewAdapter extends RecyclerView.Adapter<SelectCountryViewAdapter.ViewHolder> {
+public class SelectCountryCodeViewAdapter extends RecyclerView.Adapter<SelectCountryCodeViewAdapter.ViewHolder> {
     protected Context mContext;
-    protected List<ResultBean> mDatas;
+    protected List<DataBean> mDatas;
     protected LayoutInflater mInflater;
 
     private ViewCallBack callBack;//回调
 
-    public SelectCountryViewAdapter(Context mContext, List<ResultBean> mDatas) {
+    public SelectCountryCodeViewAdapter(Context mContext, List<DataBean> mDatas) {
         this.mContext = mContext;
         this.mDatas = mDatas;
         mInflater = LayoutInflater.from(mContext);
     }
 
-    public List<ResultBean> getDatas() {
+    public List<DataBean> getDatas() {
         return mDatas;
     }
 
-    public SelectCountryViewAdapter setDatas(List<ResultBean> datas) {
+    public SelectCountryCodeViewAdapter setDatas(List<DataBean> datas) {
         mDatas = datas;
         return this;
     }
@@ -48,13 +48,13 @@ public class SelectCountryViewAdapter extends RecyclerView.Adapter<SelectCountry
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
-        final ResultBean resultBean = mDatas.get(position);
-        holder.tv_country.setText(resultBean.getCountry());
-        holder.tv_areaCode.setText(resultBean.getMobile_prefix());
+        final DataBean resultBean = mDatas.get(position);
+        holder.tv_country.setText(resultBean.getChina_name());
+        holder.tv_areaCode.setText("+" + resultBean.getCountry_code());
         holder.content.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                callBack.onClickListener(resultBean.getMobile_prefix());
+                callBack.onClickListener(resultBean.getCountry_code());
             }
         });
     }

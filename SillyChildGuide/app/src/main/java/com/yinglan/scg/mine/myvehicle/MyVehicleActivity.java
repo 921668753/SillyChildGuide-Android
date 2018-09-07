@@ -103,6 +103,12 @@ public class MyVehicleActivity extends BaseActivity implements MyVehicleContract
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        if (mAdapter.getItem(position).getModel_status() == 1 || mAdapter.getItem(position).getModel_status() == 3) {
+            Intent intent = new Intent(aty, VehicleDetailActivity.class);
+            intent.putExtra("model_id", mAdapter.getItem(position).getId());
+            startActivityForResult(intent, RESULT_CODE_GET);
+            return;
+        }
         Intent intent = new Intent(aty, AddVehicleActivity.class);
         intent.putExtra("model_id", mAdapter.getItem(position).getId());
         startActivityForResult(intent, RESULT_CODE_GET);

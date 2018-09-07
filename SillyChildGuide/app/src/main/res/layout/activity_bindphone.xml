@@ -34,22 +34,40 @@
             android:layout_marginTop="@dimen/dimen23"
             android:orientation="horizontal">
 
+            <TextView
+                android:id="@+id/tv_countryCode"
+                android:layout_width="@dimen/dimen53"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:paddingRight="@dimen/dimen5"
+                android:paddingTop="@dimen/dimen10"
+                android:text="+86"
+                android:textColor="@color/tabColors"
+                android:textSize="@dimen/textsize13" />
+
             <ImageView
-                android:layout_width="@dimen/dimen15"
-                android:layout_height="@dimen/dimen19"
-                android:layout_marginTop="@dimen/dimen10"
-                android:scaleType="fitXY"
-                android:src="@mipmap/shouji" />
+                android:layout_width="@dimen/dimen10"
+                android:layout_height="@dimen/dimen9"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="@dimen/dimen3"
+                android:layout_marginRight="@dimen/dimen5"
+                android:src="@mipmap/xiajiantou" />
+
+            <TextView
+                style="@style/DividerHeight"
+                android:layout_height="@dimen/dimen14"
+                android:layout_marginBottom="@dimen/dimen3"
+                android:layout_marginTop="@dimen/dimen3" />
 
             <EditText
                 android:id="@+id/et_phone"
                 style="@style/AutoMatch"
-                android:layout_marginLeft="@dimen/dimen25"
                 android:background="@color/whiteColors"
                 android:digits="@string/number0"
                 android:hint="@string/hintAccountText"
                 android:inputType="phone"
                 android:maxLength="11"
+                android:paddingLeft="@dimen/dimen5"
                 android:paddingTop="@dimen/dimen10"
                 android:singleLine="true"
                 android:textColor="@color/textColor"
@@ -92,6 +110,7 @@
                     android:hint="@string/errorCode"
                     android:inputType="number"
                     android:maxLength="8"
+                    android:paddingLeft="@dimen/dimen57"
                     android:textColorHint="@color/hintColors"
                     android:textCursorDrawable="@drawable/shape_cursor"
                     android:textSize="@dimen/textsize13" />

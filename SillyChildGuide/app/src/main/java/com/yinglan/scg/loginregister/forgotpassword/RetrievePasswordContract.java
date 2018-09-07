@@ -14,7 +14,7 @@ interface RetrievePasswordContract {
          *
          * @param phone
          */
-        void postCode(String phone, String postCode);
+        void postCode(String phone, String countryCode, String postCode);
 
         /**
          * 重置密码请求

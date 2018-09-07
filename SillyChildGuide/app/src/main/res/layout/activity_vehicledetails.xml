@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/MatchMatch"
+    android:background="@color/background"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_title" />
+
+    <ScrollView
+        style="@style/MatchMatch"
+        android:scrollbars="none">
+
+        <RelativeLayout style="@style/MatchMatch">
+
+            <TextView
+                android:id="@+id/tv_vehicleImages"
+                style="@style/MatchWrap"
+                android:paddingBottom="@dimen/dimen13"
+                android:paddingLeft="@dimen/dimen20"
+                android:paddingTop="@dimen/dimen13"
+                android:text="@string/vehicleImages"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/textsize14" />
+
+            <com.common.cklibrary.utils.myview.NoScrollGridView
+                android:id="@+id/ngv_vehicleImages"
+                style="@style/MatchWrap"
+                android:layout_below="@id/tv_vehicleImages"
+                android:layout_marginBottom="@dimen/dimen10"
+                android:background="@color/whiteColors"
+                android:choiceMode="singleChoice"
+                android:divider="@null"
+                android:horizontalSpacing="@dimen/dimen21"
+                android:listSelector="@android:color/transparent"
+                android:numColumns="3"
+                android:overScrollMode="never"
+                android:paddingBottom="@dimen/dimen10"
+                android:paddingLeft="@dimen/dimen20"
+                android:paddingRight="@dimen/dimen20"
+                android:paddingTop="@dimen/dimen10"
+                android:scrollbars="none"
+                android:verticalSpacing="@dimen/dimen16"
+                tools:listitem="@layout/item_chooseimage" />
+
+            <LinearLayout
+                android:id="@+id/ll_model"
+                style="@style/Match45"
+                android:layout_below="@id/ngv_vehicleImages"
+                android:layout_marginTop="@dimen/dimen6"
+                android:background="@color/whiteColors"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/dimen20"
+                android:paddingRight="@dimen/dimen20">
+
+                <TextView
+                    style="@style/AutoWrap"
+                    android:text="@string/model"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize14" />
+
+
+                <TextView
+                    android:id="@+id/tv_model"
+                    style="@style/WrapWrap"
+                    android:text="@string/pleaseSelect"
+                    android:textColor="@color/hintColors"
+                    android:textSize="@dimen/textsize14" />
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/ll_canTakeNumber"
+                style="@style/Match45"
+                android:layout_below="@id/ll_model"
+                android:layout_marginTop="@dimen/dimen1"
+                android:background="@color/whiteColors"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/dimen20"
+                android:paddingRight="@dimen/dimen20">
+
+                <TextView
+                    style="@style/AutoWrap"
+                    android:text="@string/canTakeNumber"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize14" />
+
+
+                <TextView
+                    android:id="@+id/tv_canTakeNumber"
+                    style="@style/WrapWrap"
+                    android:text=""
+                    android:textColor="@color/hintColors"
+                    android:textSize="@dimen/textsize14" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_canPutBaggage"
+                style="@style/Match45"
+                android:layout_below="@id/ll_canTakeNumber"
+                android:layout_marginTop="@dimen/dimen1"
+                android:background="@color/whiteColors"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/dimen20"
+                android:paddingRight="@dimen/dimen20">
+
+                <TextView
+                    style="@style/AutoWrap"
+                    android:text="@string/canPutBaggage"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize14" />
+
+
+                <TextView
+                    android:id="@+id/tv_canPutBaggage"
+                    style="@style/WrapWrap"
+                    android:text=""
+                    android:textColor="@color/hintColors"
+                    android:textSize="@dimen/textsize14" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_vehicleYear"
+                style="@style/Match45"
+                android:layout_below="@id/ll_canPutBaggage"
+                android:layout_marginTop="@dimen/dimen1"
+                android:background="@color/whiteColors"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/dimen20"
+                android:paddingRight="@dimen/dimen20">
+
+                <TextView
+                    style="@style/AutoWrap"
+                    android:text="@string/vehicleYear"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize14" />
+
+
+                <TextView
+                    android:id="@+id/tv_vehicleYear"
+                    style="@style/WrapWrap"
+                    android:text=""
+                    android:textColor="@color/hintColors"
+                    android:textSize="@dimen/textsize14" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/ll_licensePlateNumber"
+                style="@style/Match45"
+                android:layout_below="@id/ll_vehicleYear"
+                android:layout_marginTop="@dimen/dimen1"
+                android:background="@color/whiteColors"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/dimen20"
+                android:paddingRight="@dimen/dimen20">
+
+                <TextView
+                    style="@style/WrapWrap"
+                    android:text="@string/licensePlateNumber"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize14" />
+
+
+                <TextView
+                    android:id="@+id/tv_licensePlateNumber"
+                    style="@style/MatchMatch"
+                    android:gravity="right|center_vertical"
+                    android:singleLine="true"
+                    android:textColor="@color/hintColors"
+                    android:textSize="@dimen/textsize14" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/ll_vehiclePassengerInsurance"
+                style="@style/Match45"
+                android:layout_below="@id/ll_licensePlateNumber"
+                android:layout_marginTop="@dimen/dimen6"
+                android:background="@color/whiteColors"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/dimen20"
+                android:paddingRight="@dimen/dimen20">
+
+                <TextView
+                    style="@style/AutoWrap"
+                    android:text="@string/vehiclePassengerInsurance"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize14" />
+
+
+                <ImageView
+                    android:id="@+id/img_vehiclePassengerInsurance"
+                    android:layout_width="@dimen/dimen59"
+                    android:layout_height="match_parent"
+                    android:paddingBottom="@dimen/dimen5"
+                    android:paddingTop="@dimen/dimen5"
+                    android:src="@mipmap/img_turn_on" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+</LinearLayout>

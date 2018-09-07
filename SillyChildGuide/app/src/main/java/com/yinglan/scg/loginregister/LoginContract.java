@@ -14,7 +14,7 @@ public interface LoginContract {
         /**
          * 账号登录
          */
-        void postToLogin(String phone, String pwd);
+        void postToLogin(String phone, String countryCode, String pwd);
 
 //        /**
 //         * 获取用户信息

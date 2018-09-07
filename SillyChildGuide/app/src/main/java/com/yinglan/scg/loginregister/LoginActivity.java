@@ -40,6 +40,7 @@ import java.util.Map;
 import static android.text.InputType.TYPE_CLASS_TEXT;
 import static android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD;
 import static android.text.InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD;
+import static com.yinglan.scg.constant.NumericConstants.REQUEST_CODE;
 
 /**
  * 登录
@@ -57,6 +58,9 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
     /**
      * 账号
      */
+    @BindView(id = R.id.tv_countryCode, click = true)
+    private TextView tv_countryCode;
+
     @BindView(id = R.id.et_accountNumber)
     private EditText et_accountNumber;
 
@@ -152,12 +156,16 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
             case R.id.img_back:
                 finish();
                 break;
+            case R.id.tv_countryCode:
+                Intent intent = new Intent(aty, SelectCountryCodeActivity.class);
+                startActivityForResult(intent, REQUEST_CODE);
+                break;
             case R.id.tv_forgotPassword:
                 showActivity(aty, RetrievePasswordActivity.class);
                 break;
             case R.id.tv_login:
                 showLoadingDialog(getString(R.string.loggingLoad));
-                ((LoginContract.Presenter) mPresenter).postToLogin(et_accountNumber.getText().toString(), et_pwd.getText().toString());
+                ((LoginContract.Presenter) mPresenter).postToLogin(et_accountNumber.getText().toString(), tv_countryCode.getText().toString().trim().substring(1), et_pwd.getText().toString());
                 break;
             case R.id.img_quxiao:
                 et_accountNumber.setText("");
@@ -386,6 +394,11 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_CODE && resultCode == RESULT_OK && data != null) {
+            String areaCode = data.getStringExtra("areaCode");
+            tv_countryCode.setText("+" + areaCode);
+            return;
+        }
         UMShareAPI.get(this).onActivityResult(requestCode, resultCode, data);
     }
 

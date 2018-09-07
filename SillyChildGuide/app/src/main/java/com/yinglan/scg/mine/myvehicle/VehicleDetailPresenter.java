@@ -1,28 +1,25 @@
-package com.yinglan.scg.loginregister;
+package com.yinglan.scg.mine.myvehicle;
 
+import com.common.cklibrary.common.KJActivityStack;
 import com.common.cklibrary.utils.httputil.HttpUtilParams;
 import com.common.cklibrary.utils.httputil.ResponseListener;
 import com.kymjs.rxvolley.client.HttpParams;
 import com.yinglan.scg.retrofit.RequestClient;
 
-/**
- * Created by ruitu on 2017/8/24.
- */
+public class VehicleDetailPresenter implements VehicleDetailContract.Presenter {
 
-public class SelectCountryPresenter implements SelectCountryContract.Presenter {
+    private VehicleDetailContract.View mView;
 
-    private SelectCountryContract.View mView;
-
-    public SelectCountryPresenter(SelectCountryContract.View view) {
+    public VehicleDetailPresenter(VehicleDetailContract.View view) {
         mView = view;
         mView.setPresenter(this);
     }
 
-
     @Override
-    public void getCountryNumber() {
+    public void getModelDetail(int model_id) {
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
-        RequestClient.getCountryNumber(httpParams, new ResponseListener<String>() {
+        httpParams.put("model_id", model_id);
+        RequestClient.getModelDetail(KJActivityStack.create().topActivity(), httpParams, new ResponseListener<String>() {
             @Override
             public void onSuccess(String response) {
                 mView.getSuccess(response, 0);
@@ -33,7 +30,5 @@ public class SelectCountryPresenter implements SelectCountryContract.Presenter {
                 mView.errorMsg(msg, 0);
             }
         });
-
-
     }
 }
