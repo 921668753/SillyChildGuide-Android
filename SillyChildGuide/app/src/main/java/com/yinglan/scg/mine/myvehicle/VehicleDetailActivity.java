@@ -119,7 +119,7 @@ public class VehicleDetailActivity extends BaseActivity implements VehicleDetail
     public void getSuccess(String success, int flag) {
         dismissLoadingDialog();
         VehicleDetailsBean vehicleDetailsBean = (VehicleDetailsBean) JsonUtil.getInstance().json2Obj(success, VehicleDetailsBean.class);
-        if (vehicleDetailsBean.getData() == null || vehicleDetailsBean.getData().getModel() == null || vehicleDetailsBean.getData().getModel().getId() <= 0) {
+        if (vehicleDetailsBean == null || vehicleDetailsBean.getData() == null || vehicleDetailsBean.getData().getModel() == null || vehicleDetailsBean.getData().getModel().getId() <= 0) {
             errorMsg(getString(R.string.serverReturnsDataNullJsonError), 0);
             return;
         }
@@ -135,10 +135,10 @@ public class VehicleDetailActivity extends BaseActivity implements VehicleDetail
         } else {
             img_vehiclePassengerInsurance.setImageResource(R.mipmap.img_turn_off);
         }
-        for (int i = 0; i < vehicleDetailsBean.getData().getModel().getModel_picture().size(); i++) {
+        for (int i = 0; i < vehicleDetailsBean.getData().getModel().getModel_pictures().size(); i++) {
             LocalMedia localMedia1 = new LocalMedia();
-            localMedia1.setHttpPath(vehicleDetailsBean.getData().getModel().getModel_picture().get(i));
-            localMedia1.setPath(vehicleDetailsBean.getData().getModel().getModel_picture().get(i));
+            localMedia1.setHttpPath(vehicleDetailsBean.getData().getModel().getModel_pictures().get(i));
+            localMedia1.setPath(vehicleDetailsBean.getData().getModel().getModel_pictures().get(i));
             localMedia1.setPictureType("image/jpeg");
             selectList.add(localMedia1);
         }

@@ -354,7 +354,7 @@ public class AddVehicleActivity extends BaseActivity implements AddVehicleContra
         dismissLoadingDialog();
         if (flag == 0) {
             VehicleDetailsBean vehicleDetailsBean = (VehicleDetailsBean) JsonUtil.getInstance().json2Obj(success, VehicleDetailsBean.class);
-            if (vehicleDetailsBean.getData() == null || vehicleDetailsBean.getData().getModel() == null || vehicleDetailsBean.getData().getModel().getId() <= 0) {
+            if (vehicleDetailsBean == null || vehicleDetailsBean.getData() == null || vehicleDetailsBean.getData().getModel() == null || vehicleDetailsBean.getData().getModel().getId() <= 0) {
                 errorMsg(getString(R.string.serverReturnsDataNullJsonError), 0);
                 return;
             }
@@ -381,10 +381,10 @@ public class AddVehicleActivity extends BaseActivity implements AddVehicleContra
                 is_insurance = 0;
                 img_vehiclePassengerInsurance.setImageResource(R.mipmap.img_turn_off);
             }
-            for (int i = 0; i < vehicleDetailsBean.getData().getModel().getModel_picture().size(); i++) {
+            for (int i = 0; i < vehicleDetailsBean.getData().getModel().getModel_pictures().size(); i++) {
                 LocalMedia localMedia1 = new LocalMedia();
-                localMedia1.setHttpPath(vehicleDetailsBean.getData().getModel().getModel_picture().get(i));
-                localMedia1.setPath(vehicleDetailsBean.getData().getModel().getModel_picture().get(i));
+                localMedia1.setHttpPath(vehicleDetailsBean.getData().getModel().getModel_pictures().get(i));
+                localMedia1.setPath(vehicleDetailsBean.getData().getModel().getModel_pictures().get(i));
                 localMedia1.setPictureType("image/jpeg");
                 selectList.add(localMedia1);
             }
@@ -399,6 +399,8 @@ public class AddVehicleActivity extends BaseActivity implements AddVehicleContra
             }
         } else if (flag == 2) {
             ViewInject.toast(getString(R.string.submitSuccess));
+            Intent intent = new Intent();
+            setResult(RESULT_OK, intent);
             finish();
         }
     }
@@ -408,6 +410,9 @@ public class AddVehicleActivity extends BaseActivity implements AddVehicleContra
         dismissLoadingDialog();
         if (isLogin(msg)) {
             showActivity(aty, LoginActivity.class);
+            if (flag == 0) {
+                finish();
+            }
             return;
         }
         ViewInject.toast(msg);

@@ -149,7 +149,9 @@ public class MyVehicleActivity extends BaseActivity implements MyVehicleContract
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        ((MyVehicleContract.Presenter) mPresenter).getMyVehicleList();
+        if (requestCode == RESULT_CODE_GET && resultCode == RESULT_OK) {
+            ((MyVehicleContract.Presenter) mPresenter).getMyVehicleList();
+        }
     }
 
     @Override

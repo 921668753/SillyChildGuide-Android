@@ -63,7 +63,7 @@ public class VehicleDetailsBean extends BaseResult<VehicleDetailsBean.DataBean> 
             private int is_insurance;
             private int submit_time;
             private int approve_status;
-            private List<String> model_picture;
+            private List<String> model_pictures;
 
             public int getId() {
                 return id;
@@ -169,12 +169,12 @@ public class VehicleDetailsBean extends BaseResult<VehicleDetailsBean.DataBean> 
                 this.approve_status = approve_status;
             }
 
-            public List<String> getModel_picture() {
-                return model_picture;
+            public List<String> getModel_pictures() {
+                return model_pictures;
             }
 
-            public void setModel_picture(List<String> model_picture) {
-                this.model_picture = model_picture;
+            public void setModel_pictures(List<String> model_pictures) {
+                this.model_pictures = model_pictures;
             }
         }
 
