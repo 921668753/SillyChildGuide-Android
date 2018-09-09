@@ -117,6 +117,31 @@
         <!--主界面的后台-->
         <service android:name=".main.service.MainService" />
 
+        <!--接单  包车订单详情-->
+        <activity
+            android:name=".orderreceiving.CharterDetailsActivity"
+            android:screenOrientation="portrait" />
+
+        <!--接单  线路订单详情-->
+        <activity
+            android:name=".orderreceiving.LineDetailsActivity"
+            android:screenOrientation="portrait" />
+
+        <!--接单  私人定制订单详情-->
+        <activity
+            android:name=".orderreceiving.PrivateCustomDetailsActivity"
+            android:screenOrientation="portrait" />
+
+        <!--接单  错过的订单-->
+        <activity
+            android:name=".orderreceiving.MissedOrdersActivity"
+            android:screenOrientation="portrait" />
+
+        <!--服务  行程日历-->
+        <activity
+            android:name=".service.TravelCalendarActivity"
+            android:screenOrientation="portrait" />
+
 
         <!--消息  系统消息列表-->
         <activity

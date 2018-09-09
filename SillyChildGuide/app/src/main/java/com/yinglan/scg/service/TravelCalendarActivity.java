@@ -24,9 +24,9 @@ import java.util.Calendar;
 import io.rong.eventbus.EventBus;
 
 /**
- * 选择日期
+ * 行程日历
  */
-public class SelectDateActivity extends BaseActivity {
+public class TravelCalendarActivity extends BaseActivity {
 
     @BindView(id = R.id.tv_chooseTimeNeedServe)
     private TextView tv_chooseTimeNeedServe;
