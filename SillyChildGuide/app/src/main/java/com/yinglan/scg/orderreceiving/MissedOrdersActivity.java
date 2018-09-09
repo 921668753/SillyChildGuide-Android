@@ -29,7 +29,7 @@ import static com.yinglan.scg.constant.NumericConstants.RESULT_CODE_GET;
 /**
  * 错过的订单
  */
-public class MissedOrdersActivity extends BaseActivity implements OrderReceivingContract.View, BGARefreshLayout.BGARefreshLayoutDelegate, BGAOnRVItemClickListener {
+public class MissedOrdersActivity extends BaseActivity implements MissedOrdersContract.View, BGARefreshLayout.BGARefreshLayoutDelegate, BGAOnRVItemClickListener {
 
     @BindView(id = R.id.mRefreshLayout, click = true)
     private BGARefreshLayout mRefreshLayout;
@@ -79,7 +79,7 @@ public class MissedOrdersActivity extends BaseActivity implements OrderReceiving
     public void initData() {
         super.initData();
         mAdapter = new OrderReceivingRvViewAdapter(rv_order);
-        mPresenter = new OrderReceivingPresenter(this);
+        mPresenter = new MissedOrdersPresenter(this);
     }
 
     @Override
@@ -102,7 +102,7 @@ public class MissedOrdersActivity extends BaseActivity implements OrderReceiving
         super.widgetClick(v);
         switch (v.getId()) {
             case R.id.tv_missedOrders:
-                ((OrderReceivingContract.Presenter) mPresenter).getIsLogin(aty, 1);
+                ((MissedOrdersContract.Presenter) mPresenter).getIsLogin(aty, 1);
                 break;
             case R.id.tv_button:
                 if (tv_button.getText().toString().contains(getString(R.string.retry))) {
@@ -117,7 +117,7 @@ public class MissedOrdersActivity extends BaseActivity implements OrderReceiving
     @Override
     public void onRVItemClick(ViewGroup parent, View itemView, int position) {
         selectedPosition = position;
-        ((OrderReceivingContract.Presenter) mPresenter).getIsLogin(aty, 2);
+        ((MissedOrdersContract.Presenter) mPresenter).getIsLogin(aty, 2);
     }
 
     @Override
@@ -125,7 +125,7 @@ public class MissedOrdersActivity extends BaseActivity implements OrderReceiving
         mRefreshLayout.endRefreshing();
         mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
         showLoadingDialog(getString(R.string.dataLoad));
-        // ((OrderReceivingContract.Presenter) mPresenter).get(aty, status, mMorePageNumber);
+        // ((MissedOrdersContract.Presenter) mPresenter).get(aty, status, mMorePageNumber);
     }
 
     @Override
@@ -145,7 +145,7 @@ public class MissedOrdersActivity extends BaseActivity implements OrderReceiving
     }
 
     @Override
-    public void setPresenter(OrderReceivingContract.Presenter presenter) {
+    public void setPresenter(MissedOrdersContract.Presenter presenter) {
         mPresenter = presenter;
     }
 
