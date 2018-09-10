@@ -116,7 +116,7 @@
                         android:id="@+id/et_pwd"
                         style="@style/AutoMatch"
                         android:background="@color/whiteColors"
-                        android:hint="@string/hintPasswordText"
+                        android:hint="@string/hintPasswordText5"
                         android:inputType="textPassword"
                         android:maxLength="20"
                         android:paddingLeft="@dimen/dimen10"

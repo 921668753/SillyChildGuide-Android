@@ -19,8 +19,9 @@ import com.yinglan.scg.R;
 import com.yinglan.scg.adapter.main.ServiceRvViewAdapter;
 import com.yinglan.scg.constant.NumericConstants;
 import com.yinglan.scg.loginregister.LoginActivity;
+import com.yinglan.scg.mine.myorder.MyOrderActivity;
 import com.yinglan.scg.orderreceiving.CharterDetailsActivity;
-import com.yinglan.scg.orderreceiving.MissedOrdersActivity;
+import com.yinglan.scg.service.TravelCalendarActivity;
 
 import cn.bingoogolapple.baseadapter.BGAOnRVItemClickListener;
 import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
@@ -35,8 +36,14 @@ public class ServiceFragment extends BaseFragment implements ServiceContract.Vie
 
     private MainActivity aty;
 
-    @BindView(id = R.id.tv_missedOrders, click = true)
-    private TextView tv_missedOrders;
+    @BindView(id = R.id.tv_order, click = true)
+    private TextView tv_order;
+
+    @BindView(id = R.id.tv_time)
+    private TextView tv_time;
+
+    @BindView(id = R.id.ll_travelCalendar, click = true)
+    private LinearLayout ll_travelCalendar;
 
     @BindView(id = R.id.mRefreshLayout, click = true)
     private BGARefreshLayout mRefreshLayout;
@@ -105,8 +112,11 @@ public class ServiceFragment extends BaseFragment implements ServiceContract.Vie
     protected void widgetClick(View v) {
         super.widgetClick(v);
         switch (v.getId()) {
-            case R.id.tv_missedOrders:
-                ((OrderReceivingContract.Presenter) mPresenter).getIsLogin(aty, 1);
+            case R.id.tv_order:
+                ((ServiceContract.Presenter) mPresenter).getIsLogin(aty, 1);
+                break;
+            case R.id.ll_travelCalendar:
+                ((ServiceContract.Presenter) mPresenter).getIsLogin(aty, 2);
                 break;
             case R.id.tv_button:
                 if (tv_button.getText().toString().contains(getString(R.string.retry))) {
@@ -121,7 +131,7 @@ public class ServiceFragment extends BaseFragment implements ServiceContract.Vie
     @Override
     public void onRVItemClick(ViewGroup parent, View itemView, int position) {
         selectedPosition = position;
-        ((OrderReceivingContract.Presenter) mPresenter).getIsLogin(aty, 2);
+        ((ServiceContract.Presenter) mPresenter).getIsLogin(aty, 3);
     }
 
     @Override
@@ -187,8 +197,10 @@ public class ServiceFragment extends BaseFragment implements ServiceContract.Vie
 //            }
             dismissLoadingDialog();
         } else if (flag == 1) {
-            aty.showActivity(aty, MissedOrdersActivity.class);
+            aty.showActivity(aty, MyOrderActivity.class);
         } else if (flag == 2) {
+            aty.showActivity(aty, TravelCalendarActivity.class);
+        } else if (flag == 3) {
             Intent intent = new Intent(aty, CharterDetailsActivity.class);
             intent.putExtra("id", mAdapter.getItem(selectedPosition).getOrder_id());
 //            if () {
@@ -239,7 +251,7 @@ public class ServiceFragment extends BaseFragment implements ServiceContract.Vie
                 tv_hintText.setText(msg);
                 tv_button.setText(getString(R.string.retry));
             }
-        } else if (flag == 1 || flag == 2) {
+        } else if (flag == 1 || flag == 2 || flag == 3) {
             dismissLoadingDialog();
             if (isLogin(msg)) {
                 aty.showActivity(aty, LoginActivity.class);

@@ -1,5 +1,7 @@
 package com.yinglan.scg.main;
 
+import android.content.Context;
+
 import com.common.cklibrary.common.BasePresenter;
 import com.common.cklibrary.common.BaseView;
 
@@ -16,6 +18,11 @@ public interface ServiceContract {
          */
         void getAdvCat();
 
+
+        /**
+         * 获取会员登录状态
+         */
+        void getIsLogin(Context context, int flag);
     }
 
     interface View extends BaseView<Presenter, String> {

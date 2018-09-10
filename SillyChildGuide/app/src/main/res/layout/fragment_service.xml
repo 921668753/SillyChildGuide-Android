@@ -6,6 +6,7 @@
     android:orientation="vertical">
 
     <TextView
+        android:id="@+id/tv_order"
         android:layout_width="@dimen/dimen77"
         android:layout_height="@dimen/dimen27"
         android:layout_gravity="right"
@@ -42,6 +43,7 @@
         android:orientation="horizontal">
 
         <TextView
+            android:id="@+id/tv_time"
             style="@style/AutoWrap"
             android:paddingLeft="@dimen/dimen27"
             android:text="2018年8月"
@@ -50,6 +52,7 @@
             android:textStyle="bold" />
 
         <LinearLayout
+            android:id="@+id/ll_travelCalendar"
             style="@style/WrapMatch"
             android:gravity="center_vertical"
             android:orientation="horizontal"
