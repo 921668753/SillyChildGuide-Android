@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">傻孩志司导端</string>
+    <string name="app_name">傻孩子司导端</string>
     <string name="applicationId">com.yinglan.scg</string>
 
     <!--网络请求-->
@@ -119,8 +119,8 @@
     <string name="revalidation">重新验证</string>
     <string name="clickFinish">点击完成代表您同意</string>
     <string name="myagreement">点击注册即表示您同意</string>
-    <string name="agreement">《傻孩志注册协议》</string>
-    <string name="agreement1">傻孩志注册协议</string>
+    <string name="agreement">《傻孩子注册协议》</string>
+    <string name="agreement1">傻孩子注册协议</string>
     <string name="determine">确定</string>
 
 
@@ -402,8 +402,8 @@
     <string name="openingBank1">请选择开户行</string>
 
     <!--  个人中心  分享有礼-->
-    <string name="welcomSilly">你的朋友邀请你使用傻孩志并给你发了一个大红包  </string>
-    <string name="sillyChildMyHands">傻孩志在手天下我有</string>
+    <string name="welcomSilly">你的朋友邀请你使用傻孩子并给你发了一个大红包  </string>
+    <string name="sillyChildMyHands">傻孩子在手天下我有</string>
     <string name="notInstalled">没有安装应用</string>
     <string name="notInstalled1">您还没有安装应用，请安装应用</string>
 
@@ -443,7 +443,7 @@
     <string name="experienceProblem">体验问题</string>
     <string name="newFeatureRecommendations">新功能建议</string>
     <string name="other">其他</string>
-    <string name="hintCommentsSuggestions">傻孩志APP的每一次进步，都离不开您的意见和建议.</string>
+    <string name="hintCommentsSuggestions">傻孩子APP的每一次进步，都离不开您的意见和建议.</string>
     <string name="wordLimit">500</string>
     <string name="submit">提交</string>
     <string name="noHaveFeedBackType">没有反馈问题类型可选，无法进行反馈操作！将关闭此页面，请移步至客服。</string>

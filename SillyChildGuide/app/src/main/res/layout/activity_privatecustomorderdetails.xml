@@ -25,6 +25,7 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/tv_title"
                     style="@style/AutoWrap"
                     android:paddingLeft="@dimen/dimen27"
                     android:paddingRight="@dimen/dimen10"
@@ -35,6 +36,7 @@
 
 
                 <TextView
+                    android:id="@+id/tv_orderPrice"
                     style="@style/WrapWrap"
                     android:maxWidth="@dimen/dimen140"
                     android:paddingRight="@dimen/dimen27"
@@ -46,6 +48,7 @@
 
 
             <TextView
+                android:id="@+id/tv_demand"
                 style="@style/MatchWrap"
                 android:background="@color/whiteColors"
                 android:paddingLeft="@dimen/dimen27"
@@ -58,6 +61,7 @@
 
 
             <TextView
+                android:id="@+id/tv_time"
                 style="@style/MatchWrap"
                 android:background="@color/whiteColors"
                 android:paddingBottom="@dimen/dimen19"
@@ -87,6 +91,7 @@
 
 
                 <TextView
+                    android:id="@+id/tv_serviceTime"
                     style="@style/WrapWrap"
                     android:paddingTop="@dimen/dimen23"
                     android:text="2018-08-27   周一  09:00"
@@ -113,6 +118,7 @@
 
 
                 <TextView
+                    android:id="@+id/tv_placeDeparture"
                     style="@style/WrapWrap"
                     android:paddingTop="@dimen/dimen1"
                     android:text="希尔顿国际大酒店"
@@ -138,6 +144,7 @@
 
 
                 <TextView
+                    android:id="@+id/tv_deliveredAirport"
                     style="@style/WrapWrap"
                     android:paddingTop="@dimen/dimen1"
                     android:text="成田国际机场"
@@ -163,6 +170,7 @@
 
 
                 <TextView
+                    android:id="@+id/tv_reserveRequirements"
                     style="@style/WrapWrap"
                     android:paddingTop="@dimen/dimen1"
                     android:text="2成人3行李"
@@ -188,6 +196,7 @@
 
 
                 <TextView
+                    android:id="@+id/tv_orderNumber"
                     style="@style/WrapWrap"
                     android:paddingTop="@dimen/dimen1"
                     android:text="201808271006"
@@ -240,6 +249,7 @@
 
 
                 <TextView
+                    android:id="@+id/tv_travelPreferences"
                     style="@style/AutoWrap"
                     android:gravity="right"
                     android:paddingRight="@dimen/dimen27"
@@ -268,6 +278,7 @@
 
 
                 <TextView
+                    android:id="@+id/tv_foodPreferences"
                     style="@style/AutoWrap"
                     android:gravity="right"
                     android:paddingRight="@dimen/dimen27"
@@ -296,6 +307,7 @@
 
 
                 <TextView
+                    android:id="@+id/tv_accommodationPreferences"
                     style="@style/AutoWrap"
                     android:gravity="right"
                     android:paddingRight="@dimen/dimen27"
@@ -384,6 +396,7 @@
 
 
                 <TextView
+                    android:id="@+id/tv_aggregate"
                     style="@style/WrapWrap"
                     android:text="RMB  2100.00"
                     android:textColor="@color/fF5656Colors"
@@ -410,7 +423,6 @@
                 android:textSize="@dimen/textsize15" />
 
             <LinearLayout
-                android:id="@+id/ll_userevaluation1"
                 style="@style/MatchWrap"
                 android:layout_marginTop="@dimen/dimen1"
                 android:background="@color/whiteColors"
@@ -474,7 +486,7 @@
                     tools:listitem="@layout/item_imgcomment" />
 
                 <TextView
-                    android:id="@+id/tv_time"
+                    android:id="@+id/tv_time1"
                     style="@style/MatchWrap"
                     android:paddingBottom="@dimen/dimen12"
                     android:paddingLeft="@dimen/dimen35"
