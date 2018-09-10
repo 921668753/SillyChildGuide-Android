@@ -6,12 +6,14 @@ import android.support.annotation.NonNull;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.common.cklibrary.common.BaseDialog;
 import com.yinglan.scg.R;
 
-public class SelectVehicleDialog extends BaseDialog {
+public class SelectVehicleDialog extends BaseDialog implements AdapterView.OnItemClickListener {
 
 
     public SelectVehicleDialog(@NonNull Context context) {
@@ -30,12 +32,8 @@ public class SelectVehicleDialog extends BaseDialog {
     }
 
     private void initView() {
-//        ImageView img_cross = (ImageView) findViewById(R.id.img_cross);
-//        img_cross.setOnClickListener(this);
-//        TextView tv_context = (TextView) findViewById(R.id.tv_context);
-//        tv_context.setText(mContext.getString(R.string.determineOrder));
-//        TextView tv_cancel = (TextView) findViewById(R.id.tv_cancel);
-//        tv_cancel.setOnClickListener(this);
+        ListView lv_myVehicle = (ListView) findViewById(R.id.lv_myVehicle);
+        lv_myVehicle.setOnItemClickListener(this);
         TextView tv_determine = (TextView) findViewById(R.id.tv_determine);
         tv_determine.setOnClickListener(this);
     }
@@ -55,6 +53,13 @@ public class SelectVehicleDialog extends BaseDialog {
                 break;
         }
     }
+
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+    }
+
 
 
 }
