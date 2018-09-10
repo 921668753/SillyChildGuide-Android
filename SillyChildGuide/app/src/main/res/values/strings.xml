@@ -136,6 +136,7 @@
     <!--接单-->
     <string name="missedOrders">错过的订单</string>
     <string name="waitingResponseOrders">以下是等待响应的订单</string>
+    <string name="rmb">RMB</string>
 
     <!--接单详情-->
     <string name="serviceTime">服务时间</string>

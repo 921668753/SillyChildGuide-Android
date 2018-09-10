@@ -15,8 +15,7 @@ public interface OrderReceivingContract {
         /**
          * 获取首页信息
          */
-        void getHomePage(Context context);
-
+        void getGuideOrderPage(Context context, int page);
 
         /**
          * 获取会员登录状态

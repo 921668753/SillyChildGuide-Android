@@ -29,6 +29,7 @@
     <include layout="@layout/item_airporttransportationorder" />
 
     <TextView
+        android:id="@+id/tv_divider"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimen1" />
 

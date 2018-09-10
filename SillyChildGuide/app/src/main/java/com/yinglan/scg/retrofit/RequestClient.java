@@ -391,6 +391,12 @@ public class RequestClient {
         HttpRequest.requestPostFORMHttp(context, URLConstants.USERRESTPWD, httpParams, listener);
     }
 
+    /**
+     * 获取接单信息列表
+     */
+    public static void getGuideOrderPage(Context context, HttpParams httpParams, ResponseListener<String> listener) {
+        HttpRequest.requestGetHttp(context, URLConstants.GETGUIDEORDERPAGE, httpParams, listener);
+    }
 
     /**
      * 获取系统消息首页

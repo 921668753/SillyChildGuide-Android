@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_charter"
     style="@style/MatchWrap"
     android:background="@color/background"
     android:orientation="vertical">
 
     <TextView
+        android:id="@+id/tv_name1"
         style="@style/MatchWrap"
         android:background="@color/whiteColors"
         android:paddingLeft="@dimen/dimen28"
@@ -15,6 +17,7 @@
         android:textStyle="bold" />
 
     <TextView
+        android:id="@+id/tv_title"
         style="@style/MatchWrap"
         android:background="@color/whiteColors"
         android:paddingBottom="@dimen/dimen20"
@@ -26,6 +29,7 @@
         android:textSize="@dimen/textsize15" />
 
     <TextView
+        android:id="@+id/tv_serviceTime1"
         style="@style/MatchWrap"
         android:background="@color/whiteColors"
         android:paddingBottom="@dimen/dimen18"
@@ -50,6 +54,7 @@
 
 
         <TextView
+            android:id="@+id/tv_orderAmount1"
             style="@style/AutoWrap"
             android:gravity="right"
             android:paddingRight="@dimen/dimen28"

@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_air"
     style="@style/MatchWrap"
     android:background="@color/background"
     android:orientation="vertical">
 
     <TextView
+        android:id="@+id/tv_name"
         style="@style/MatchWrap"
         android:background="@color/whiteColors"
         android:paddingLeft="@dimen/dimen28"
@@ -32,6 +34,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/tv_startLocation"
                 style="@style/MatchAuto"
                 android:paddingLeft="@dimen/dimen15"
                 android:paddingRight="@dimen/dimen15"
@@ -41,6 +44,7 @@
                 android:textSize="@dimen/textsize15" />
 
             <TextView
+                android:id="@+id/tv_endLocation"
                 style="@style/MatchWrap"
                 android:paddingLeft="@dimen/dimen15"
                 android:paddingRight="@dimen/dimen15"
@@ -56,6 +60,7 @@
 
 
     <TextView
+        android:id="@+id/tv_serviceTime"
         style="@style/MatchWrap"
         android:background="@color/whiteColors"
         android:paddingBottom="@dimen/dimen16"
@@ -81,6 +86,7 @@
 
 
         <TextView
+            android:id="@+id/tv_orderAmount"
             style="@style/AutoWrap"
             android:gravity="right"
             android:paddingRight="@dimen/dimen28"

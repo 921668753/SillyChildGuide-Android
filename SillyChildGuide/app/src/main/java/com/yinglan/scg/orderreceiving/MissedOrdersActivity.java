@@ -15,11 +15,9 @@ import com.common.cklibrary.utils.ActivityTitleUtils;
 import com.common.cklibrary.utils.RefreshLayoutUtil;
 import com.common.cklibrary.utils.rx.MsgEvent;
 import com.yinglan.scg.R;
-import com.yinglan.scg.adapter.main.OrderReceivingRvViewAdapter;
+import com.yinglan.scg.adapter.main.OrderReceivingViewAdapter;
 import com.yinglan.scg.constant.NumericConstants;
 import com.yinglan.scg.loginregister.LoginActivity;
-import com.yinglan.scg.main.OrderReceivingContract;
-import com.yinglan.scg.main.OrderReceivingPresenter;
 
 import cn.bingoogolapple.baseadapter.BGAOnRVItemClickListener;
 import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
@@ -37,7 +35,7 @@ public class MissedOrdersActivity extends BaseActivity implements MissedOrdersCo
     @BindView(id = R.id.rv_order)
     private RecyclerView rv_order;
 
-    private OrderReceivingRvViewAdapter mAdapter;
+    private OrderReceivingViewAdapter mAdapter;
 
     /**
      * 错误提示页
@@ -78,7 +76,7 @@ public class MissedOrdersActivity extends BaseActivity implements MissedOrdersCo
     @Override
     public void initData() {
         super.initData();
-        mAdapter = new OrderReceivingRvViewAdapter(rv_order);
+   //     mAdapter = new OrderReceivingViewAdapter(rv_order);
         mPresenter = new MissedOrdersPresenter(this);
     }
 
@@ -87,8 +85,8 @@ public class MissedOrdersActivity extends BaseActivity implements MissedOrdersCo
         super.initWidget();
         ActivityTitleUtils.initToolbar(aty, getString(R.string.missedOrders), true, R.id.titlebar);
         RefreshLayoutUtil.initRefreshLayout(mRefreshLayout, this, aty, true);
-        rv_order.setAdapter(mAdapter);
-        mAdapter.setOnRVItemClickListener(this);
+      //  rv_order.setAdapter(mAdapter);
+       // mAdapter.setOnRVItemClickListener(this);
         //    mAdapter.setOnItemChildClickListener(this);
         mRefreshLayout.beginRefreshing();
     }
@@ -186,7 +184,7 @@ public class MissedOrdersActivity extends BaseActivity implements MissedOrdersCo
             showActivity(aty, MissedOrdersActivity.class);
         } else if (flag == 2) {
             Intent intent = new Intent(aty, CharterDetailsActivity.class);
-            intent.putExtra("id", mAdapter.getItem(selectedPosition).getOrder_id());
+            intent.putExtra("order_number", mAdapter.getItem(selectedPosition).getOrder_number());
 //            if () {
 //                intent.setClass(aty, CharterDetailsActivity.class);
 //            } else if (mAdapter.getItem(position)) {

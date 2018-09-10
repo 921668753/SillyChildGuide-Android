@@ -92,6 +92,11 @@ public class URLConstants {
     public static String USERRESTPWD = APIURL + "member/edit.do";
 
     /**
+     * 获取接单信息列表
+     */
+    public static String GETGUIDEORDERPAGE = APIURL + "order/get_guide_order_page.do";
+
+    /**
      * 获取系统消息首页
      */
     public static String NEWLISTBUYTITLE = APIURL + "news/listByTitle.do";

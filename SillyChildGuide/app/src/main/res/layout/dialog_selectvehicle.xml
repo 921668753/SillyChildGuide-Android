@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchMatch"
+    android:background="@color/black20">
+
+    <LinearLayout
+        android:id="@+id/ll_content"
+        style="@style/MatchWrap"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/dimen38"
+        android:layout_marginRight="@dimen/dimen38"
+        android:background="@drawable/shape_clearcache"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_context"
+            style="@style/WrapWrap"
+            android:paddingBottom="@dimen/dimen24"
+            android:paddingTop="@dimen/dimen24"
+            android:text="@string/finalizeOrder"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize19"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen1"
+            android:background="@color/background" />
+
+        <TextView
+            android:id="@+id/tv_cancel"
+            style="@style/MatchWrap"
+            android:layout_marginLeft="@dimen/dimen10"
+            android:layout_marginRight="@dimen/dimen10"
+            android:gravity="center"
+            android:paddingBottom="@dimen/dimen25"
+            android:paddingTop="@dimen/dimen25"
+            android:text="@string/cancel"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize18" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen1"
+            android:background="@color/background" />
+
+        <TextView
+            android:id="@+id/tv_determine"
+            style="@style/MatchWrap"
+            android:layout_marginLeft="@dimen/dimen10"
+            android:layout_marginRight="@dimen/dimen10"
+            android:gravity="center"
+            android:paddingBottom="@dimen/dimen25"
+            android:paddingTop="@dimen/dimen25"
+            android:text="@string/determine"
+            android:textColor="@color/textColor"
+            android:textSize="@dimen/textsize18" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/img_cross"
+        android:layout_width="@dimen/dimen40"
+        android:layout_height="@dimen/dimen41"
+        android:layout_below="@id/ll_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/dimen8"
+        android:padding="@dimen/dimen10"
+        android:visibility="visible"
+        android:src="@mipmap/img_cross" />
+
+
+</RelativeLayout>
