@@ -41,7 +41,7 @@ public class TravelCalendarActivity extends BaseActivity {
 
     @Override
     public void setRootView() {
-        setContentView(R.layout.activity_selectdate);
+        setContentView(R.layout.activity_travelcalendar);
     }
 
     @Override
@@ -73,7 +73,7 @@ public class TravelCalendarActivity extends BaseActivity {
     @Override
     public void initWidget() {
         super.initWidget();
-        ActivityTitleUtils.initToolbar(aty, getString(R.string.selectDate), true, R.id.titlebar);
+        ActivityTitleUtils.initToolbar(aty, getString(R.string.travelCalendar), true, R.id.titlebar);
         LinearLayoutManager layoutManager =
                 new LinearLayoutManager(this,   // 上下文
                         LinearLayout.VERTICAL,  //垂直布局,

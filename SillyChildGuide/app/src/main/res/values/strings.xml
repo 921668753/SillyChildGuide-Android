@@ -181,8 +181,7 @@
     <string name="noMessage">亲，您还没有消息哟~</string>
 
     <!--选择日期-->
-    <string name="selectDate">选择日期</string>
-    <string name="chooseTimeNeedServe">选择您需要服务的时间</string>
+    <string name="chooseTimeNeedServe">被圈中的日期说明您有待执行的行程哦</string>
     <string name="startTime">开始时间：</string>
     <string name="endTime">结束时间：</string>
     <string name="today">今天</string>
