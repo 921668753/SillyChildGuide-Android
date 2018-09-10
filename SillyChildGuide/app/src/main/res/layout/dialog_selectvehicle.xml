@@ -16,14 +16,30 @@
         android:gravity="center"
         android:orientation="vertical">
 
-        <TextView
-            style="@style/WrapWrap"
-            android:paddingBottom="@dimen/dimen24"
-            android:paddingTop="@dimen/dimen24"
-            android:text="@string/myVehicle"
-            android:textColor="@color/textColor"
-            android:textSize="@dimen/textsize19"
-            android:textStyle="bold" />
+        <RelativeLayout style="@style/MatchWrap">
+
+            <TextView
+                style="@style/WrapWrap"
+                android:layout_centerHorizontal="true"
+                android:paddingBottom="@dimen/dimen24"
+                android:paddingTop="@dimen/dimen24"
+                android:text="@string/myVehicle"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/textsize19"
+                android:textStyle="bold" />
+
+
+            <ImageView
+                android:id="@+id/img_cancel"
+                android:layout_width="@dimen/dimen40"
+                android:layout_height="@dimen/dimen40"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/dimen5"
+                android:padding="@dimen/dimen10"
+                android:src="@mipmap/logincancel" />
+
+        </RelativeLayout>
+
 
         <TextView
             android:layout_width="match_parent"

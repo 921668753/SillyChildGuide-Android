@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -32,6 +33,8 @@ public class SelectVehicleDialog extends BaseDialog implements AdapterView.OnIte
     }
 
     private void initView() {
+        ImageView img_cancel = (ImageView) findViewById(R.id.img_cancel);
+        img_cancel.setOnClickListener(this);
         ListView lv_myVehicle = (ListView) findViewById(R.id.lv_myVehicle);
         lv_myVehicle.setOnItemClickListener(this);
         TextView tv_determine = (TextView) findViewById(R.id.tv_determine);
@@ -42,13 +45,10 @@ public class SelectVehicleDialog extends BaseDialog implements AdapterView.OnIte
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.tv_cancel:
+            case R.id.img_cancel:
                 dismiss();
                 break;
             case R.id.tv_determine:
-                dismiss();
-                break;
-            case R.id.img_cross:
                 dismiss();
                 break;
         }
@@ -59,7 +59,6 @@ public class SelectVehicleDialog extends BaseDialog implements AdapterView.OnIte
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
     }
-
 
 
 }
