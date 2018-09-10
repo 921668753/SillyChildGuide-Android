@@ -8,9 +8,11 @@ import com.common.cklibrary.common.BaseActivity;
 import com.common.cklibrary.common.BindView;
 import com.common.cklibrary.common.ViewInject;
 import com.common.cklibrary.utils.ActivityTitleUtils;
+import com.common.cklibrary.utils.JsonUtil;
 import com.common.cklibrary.utils.myview.ChildListView;
 import com.common.cklibrary.utils.myview.WebViewLayout;
 import com.yinglan.scg.R;
+import com.yinglan.scg.entity.orderreceiving.CharterDetailsBean;
 import com.yinglan.scg.loginregister.LoginActivity;
 
 /**
@@ -101,6 +103,10 @@ public class CharterDetailsActivity extends BaseActivity implements CharterDetai
     @Override
     public void getSuccess(String success, int flag) {
         dismissLoadingDialog();
+        CharterDetailsBean charterDetailsBean = (CharterDetailsBean) JsonUtil.getInstance().json2Obj(success, CharterDetailsBean.class);
+
+
+
 
 
     }

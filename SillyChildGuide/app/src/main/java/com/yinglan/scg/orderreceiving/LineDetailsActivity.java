@@ -8,9 +8,11 @@ import com.common.cklibrary.common.BaseActivity;
 import com.common.cklibrary.common.BindView;
 import com.common.cklibrary.common.ViewInject;
 import com.common.cklibrary.utils.ActivityTitleUtils;
+import com.common.cklibrary.utils.JsonUtil;
 import com.common.cklibrary.utils.myview.ChildListView;
 import com.common.cklibrary.utils.myview.WebViewLayout;
 import com.yinglan.scg.R;
+import com.yinglan.scg.entity.orderreceiving.LineDetailsBean;
 import com.yinglan.scg.loginregister.LoginActivity;
 
 /**
@@ -102,6 +104,11 @@ public class LineDetailsActivity extends BaseActivity implements LineDetailsCont
     @Override
     public void getSuccess(String success, int flag) {
         dismissLoadingDialog();
+        LineDetailsBean lineDetailsBean = (LineDetailsBean) JsonUtil.getInstance().json2Obj(success, LineDetailsBean.class);
+
+
+
+
     }
 
     @Override

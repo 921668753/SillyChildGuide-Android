@@ -119,7 +119,7 @@
                         android:hint="@string/hintPasswordText"
                         android:inputType="textPassword"
                         android:maxLength="20"
-                        android:paddingLeft="@dimen/dimen57"
+                        android:paddingLeft="@dimen/dimen10"
                         android:paddingTop="@dimen/dimen10"
                         android:singleLine="true"
                         android:textColorHint="@color/hintColors"
