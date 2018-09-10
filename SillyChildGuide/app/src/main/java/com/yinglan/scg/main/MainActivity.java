@@ -235,7 +235,7 @@ public class MainActivity extends BaseActivity implements MainContract.View, Mai
                 break;
             case 1:
                 img_service.setImageResource(R.mipmap.tab_service_selected);
-                tv_service.setTextColor(getResources().getColor(R.color.greenColors));
+                tv_service.setTextColor(getResources().getColor(R.color.d0a4fcColors));
                 changeFragment(contentFragment1);
                 break;
             case 2:
@@ -250,7 +250,7 @@ public class MainActivity extends BaseActivity implements MainContract.View, Mai
                 break;
             default:
                 img_orderReceiving.setImageResource(R.mipmap.tab_orderreceiving_selected);
-                tv_orderReceiving.setTextColor(getResources().getColor(R.color.greenColors));
+                tv_orderReceiving.setTextColor(getResources().getColor(R.color.f3516dColors));
                 changeFragment(contentFragment);
                 break;
         }
