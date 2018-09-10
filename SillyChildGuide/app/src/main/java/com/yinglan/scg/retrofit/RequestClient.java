@@ -588,6 +588,25 @@ public class RequestClient {
     }
 
     /**
+     * 获取用户车辆列表
+     */
+    public static void postSetModelDefault(Context context, HttpParams httpParams, ResponseListener<String> listener) {
+        Log.d("tag", "postSetModelDefault");
+        doServer(context, new TokenCallback() {
+            @Override
+            public void execute() {
+                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+                if (StringUtils.isEmpty(cookies)) {
+                    listener.onFailure(NumericConstants.TOLINGIN + "");
+                    return;
+                }
+                httpParams.putHeaders("Cookie", cookies);
+                HttpRequest.requestPostFORMHttp(context, URLConstants.SETMODELDEFAULT, httpParams, listener);
+            }
+        }, listener);
+    }
+
+    /**
      * 获取用户车辆详细信息
      */
     public static void getModelDetail(Context context, HttpParams httpParams, ResponseListener<String> listener) {

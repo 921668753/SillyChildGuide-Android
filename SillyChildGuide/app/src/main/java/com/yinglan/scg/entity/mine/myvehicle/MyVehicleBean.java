@@ -18,6 +18,7 @@ public class MyVehicleBean extends BaseResult<List<MyVehicleBean.DataBean>> {
          */
 
         private int id;
+        private int is_default;
         private String model_picture;
         private String model_brand;
         private String model_name;
@@ -30,6 +31,14 @@ public class MyVehicleBean extends BaseResult<List<MyVehicleBean.DataBean>> {
 
         public void setId(int id) {
             this.id = id;
+        }
+
+        public int getIs_default() {
+            return is_default;
+        }
+
+        public void setIs_default(int is_default) {
+            this.is_default = is_default;
         }
 
         public String getModel_picture() {

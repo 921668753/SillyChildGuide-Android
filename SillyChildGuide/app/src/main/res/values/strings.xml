@@ -271,6 +271,9 @@
 
     <!--我的   我的车辆-->
     <string name="delete">删除</string>
+    <string name="defaultVehicle">默认车辆</string>
+    <string name="setDefault">设为默认</string>
+    <string name="vehicleAlreadyDefaultVehicle">该车辆已经是默认车辆</string>
     <string name="myVehicle">我的车辆</string>
     <string name="modelYourCar">请输入您爱车的型号</string>
     <string name="confirmDeletionVehicleInformation">确认删除该车辆信息</string>
@@ -296,7 +299,6 @@
     <string name="submittedReview">您的认证资料已提交审核，请耐心等待</string>
     <string name="people">人</string>
     <string name="jian">件</string>
-
 
 
     <!--我的   我的车辆    车辆详情-->

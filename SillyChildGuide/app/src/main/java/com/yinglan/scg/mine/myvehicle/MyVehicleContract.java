@@ -14,6 +14,11 @@ public interface MyVehicleContract {
          * 获取我的车辆列表
          */
         void getMyVehicleList();
+
+        /**
+         * 设置默认车辆
+         */
+        void setModelDefault(int model_id);
     }
 
     interface View extends BaseView<Presenter, String> {

@@ -91,13 +91,19 @@ public class MyVehicleActivity extends BaseActivity implements MyVehicleContract
     @Override
     public void onItemChildClick(ViewGroup parent, View childView, int position) {
         if (childView.getId() == R.id.tv_delete) {
-            if (submitDeleteDialog == null) {
-                initDialog();
+//            if (submitDeleteDialog == null) {
+//                initDialog();
+//            }
+//            if (submitDeleteDialog != null && !submitDeleteDialog.isShowing()) {
+//                submitDeleteDialog.show();
+//                submitDeleteDialog.setId(mAdapter.getItem(position).getId());
+//            }
+            if (mAdapter.getItem(position).getIs_default() == 1) {
+                ViewInject.toast(getString(R.string.vehicleAlreadyDefaultVehicle));
+                return;
             }
-            if (submitDeleteDialog != null && !submitDeleteDialog.isShowing()) {
-                submitDeleteDialog.show();
-                submitDeleteDialog.setId(mAdapter.getItem(position).getId());
-            }
+            showLoadingDialog(getString(R.string.dataLoad));
+            ((MyVehicleContract.Presenter) mPresenter).setModelDefault(mAdapter.getItem(position).getId());
         }
     }
 
@@ -121,7 +127,7 @@ public class MyVehicleActivity extends BaseActivity implements MyVehicleContract
 
     @Override
     public void getSuccess(String success, int flag) {
-        dismissLoadingDialog();
+
         if (flag == 0) {
             MyVehicleBean myVehicleBean = (MyVehicleBean) JsonUtil.getInstance().json2Obj(success, MyVehicleBean.class);
             if (myVehicleBean == null || myVehicleBean.getData() == null || myVehicleBean.getData().size() <= 0) {
@@ -129,11 +135,10 @@ public class MyVehicleActivity extends BaseActivity implements MyVehicleContract
             }
             mAdapter.clear();
             mAdapter.addNewData(myVehicleBean.getData());
+            dismissLoadingDialog();
         } else if (flag == 1) {
-
-
+            ((MyVehicleContract.Presenter) mPresenter).getMyVehicleList();
         }
-
     }
 
     @Override
@@ -141,6 +146,9 @@ public class MyVehicleActivity extends BaseActivity implements MyVehicleContract
         dismissLoadingDialog();
         if (isLogin(msg)) {
             showActivity(aty, LoginActivity.class);
+            if (flag == 0) {
+                finish();
+            }
             return;
         }
         ViewInject.toast(msg);

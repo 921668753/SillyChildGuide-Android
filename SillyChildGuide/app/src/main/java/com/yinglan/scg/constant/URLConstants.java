@@ -147,6 +147,11 @@ public class URLConstants {
     public static String GETMODELLIST = APIURL + "material/get_model_list.do";
 
     /**
+     * 设置默认车辆
+     */
+    public static String SETMODELDEFAULT = APIURL + "material/set_model_default.do";
+
+    /**
      * 获取用户车辆详细信息
      */
     public static String GETMODELDETAIL = APIURL + "material/get_model_detail.do";

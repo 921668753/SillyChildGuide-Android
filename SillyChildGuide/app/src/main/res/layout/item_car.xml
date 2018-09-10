@@ -27,8 +27,7 @@
             android:layout_marginRight="@dimen/dimen30"
             android:background="@drawable/shape_delete"
             android:gravity="center"
-            android:text="@string/delete"
-            android:visibility="gone"
+            android:text="@string/defaultVehicle"
             android:textColor="@color/whiteColors"
             android:textSize="@dimen/textsize13" />
 

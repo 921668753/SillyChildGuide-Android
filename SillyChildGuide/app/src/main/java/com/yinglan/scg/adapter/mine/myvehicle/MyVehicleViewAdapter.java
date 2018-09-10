@@ -45,6 +45,16 @@ public class MyVehicleViewAdapter extends BGAAdapterViewAdapter<DataBean> {
         ImageView img_car = helper.getImageView(R.id.img_car);
         GlideImageLoader.glideLoaderRaudio(mContext, resultBean.getModel_picture() + "?imageView2/0/w/" + img_car.getWidth() + "/h/" + img_car.getHeight(), img_car, 8, R.mipmap.placeholderfigure);
 
+        if (resultBean.getIs_default() == 1) {
+            helper.setText(R.id.tv_delete, mContext.getString(R.string.defaultVehicle));
+            helper.setBackgroundRes(R.id.tv_delete, R.drawable.shape_delete);
+            helper.setTextColorRes(R.id.tv_delete, R.color.whiteColors);
+        } else {
+            helper.setText(R.id.tv_delete, mContext.getString(R.string.setDefault));
+            helper.setBackgroundRes(R.id.tv_delete, R.drawable.shape_delete1);
+            helper.setTextColorRes(R.id.tv_delete, R.color.fF5656Colors);
+        }
+
         helper.setText(R.id.tv_carBrand, resultBean.getModel_brand());
 
         helper.setText(R.id.tv_carModels, resultBean.getModel_name());
