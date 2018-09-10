@@ -39,8 +39,8 @@ public class RegisterPresenter implements RegisterContract.Presenter {
             mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.hintPhoneText), 0);
             return;
         }
-        if (phone.length() != 11) {
-            mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.hintPhoneText1), 0);
+        if (phone.startsWith("0")) {
+            mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.hintPhoneText2), 0);
             return;
         }
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
@@ -65,12 +65,12 @@ public class RegisterPresenter implements RegisterContract.Presenter {
             mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.hintPhoneText), 0);
             return;
         }
-        if (phone.length() != 11) {
-            mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.hintPhoneText1), 0);
+        if (phone.startsWith("0")) {
+            mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.hintPhoneText2), 0);
             return;
         }
         if (StringUtils.isEmpty(pwd)) {
-            mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.hintPasswordText), 0);
+            mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.hintPasswordText5), 0);
             return;
         }
         if (pwd.length() < 6 || pwd.length() > 20) {

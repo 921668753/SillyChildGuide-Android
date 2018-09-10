@@ -65,14 +65,15 @@
     <string name="number0">0123456789</string>
     <string name="alphanumeric">ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789</string>
     <string name="accountNumber">帐号</string>
-    <string name="hintAccountText">请输入号码</string>
+    <string name="hintAccountText">请输入手机号码</string>
     <string name="inputPhone">请输入正确的帐号</string>
     <string name="password">密码</string>
-    <string name="hintPasswordText">请输入密码</string>
+    <string name="hintPasswordText">请输入数字、字母或字符</string>
+    <string name="hintPasswordText5">请输入密码</string>
     <string name="hintPasswordText3">请输入确认密码</string>
     <string name="hintPasswordText4">请再次输入密码</string>
     <string name="hintPasswordText2">账号或密码错误</string>
-    <string name="hintPasswordText1">密码为6～20位内的字母或数字,请正确填写</string>
+    <string name="hintPasswordText1">密码为6～20位内的数字、字母或字符组合,请正确填写</string>
     <string name="forgotPassword">忘记密码?</string>
     <string name="bindingPhone">绑定手机号</string>
     <string name="binding">绑定</string>
@@ -102,6 +103,7 @@
 
     <!--注册-->
     <string name="registerPhone">手机号注册</string>
+    <string name="hintPhoneText2">国际号码前无需加0</string>
     <string name="hintPhoneText">请输入手机号</string>
     <string name="hintPhoneText1">请输入正确的手机号</string>
     <string name="hintInvitationCode">请输入邀请码</string>

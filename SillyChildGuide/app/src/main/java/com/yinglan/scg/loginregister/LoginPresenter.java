@@ -38,12 +38,12 @@ public class LoginPresenter implements LoginContract.Presenter {
             mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.hintAccountText), 0);
             return;
         }
-        if (phone.length() != 11) {
-            mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.inputPhone), 0);
+        if (!countryCode.equals("86") && phone.startsWith("0")) {
+            mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.hintPhoneText2), 0);
             return;
         }
         if (StringUtils.isEmpty(pwd)) {
-            mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.hintPasswordText), 0);
+            mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.hintPasswordText5), 0);
             return;
         }
         if (pwd.length() < 6 || pwd.length() > 20) {

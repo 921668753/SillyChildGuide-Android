@@ -97,8 +97,8 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
     /**
      * 注册
      */
-    @BindView(id = R.id.ll_register, click = true)
-    private LinearLayout ll_register;
+    @BindView(id = R.id.tv_register, click = true)
+    private TextView tv_register;
 
     /**
      * 微信
@@ -184,7 +184,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
                 et_pwd.setSelection(et_pwd.getText().toString().trim().length());
                 et_pwd.requestFocus();
                 break;
-            case R.id.ll_register:
+            case R.id.tv_register:
                 showActivity(aty, RegisterActivity.class);
                 break;
             case R.id.img_loginweixin:
