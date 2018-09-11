@@ -139,7 +139,7 @@ public class PrivateCustomDetailsActivity extends BaseActivity implements Charte
 
     private void quickOrder() {
         showLoadingDialog(getString(R.string.submissionLoad));
-        ((CharterDetailsContract.Presenter) mPresenter).getTravelOrderDetails(order_number);
+        ((CharterDetailsContract.Presenter) mPresenter).postGuideSubmitOrder(model_id, order_number);
     }
 
     @Override

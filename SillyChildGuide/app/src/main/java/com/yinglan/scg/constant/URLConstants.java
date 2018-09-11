@@ -102,6 +102,11 @@ public class URLConstants {
     public static String GETTRAVELORDERDETAILS = APIURL + "order/get_travel_order_details.do";
 
     /**
+     * 快速接单
+     */
+    public static String GUIDESUBMITORDER = APIURL + "order/guide_submit_order.do";
+
+    /**
      * 获取系统消息首页
      */
     public static String NEWLISTBUYTITLE = APIURL + "news/listByTitle.do";

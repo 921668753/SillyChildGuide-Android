@@ -48,4 +48,22 @@ public class CharterDetailsPresenter implements CharterDetailsContract.Presenter
         });
     }
 
+    @Override
+    public void postGuideSubmitOrder(int model_id, String order_number) {
+        HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
+        httpParams.put("model_id", model_id);
+        httpParams.put("order_number", order_number);
+        RequestClient.postGuideSubmitOrder(KJActivityStack.create().topActivity(), httpParams, new ResponseListener<String>() {
+            @Override
+            public void onSuccess(String response) {
+                mView.getSuccess(response, 1);
+            }
+
+            @Override
+            public void onFailure(String msg) {
+                mView.errorMsg(msg, 1);
+            }
+        });
+    }
+
 }

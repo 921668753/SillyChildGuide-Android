@@ -19,11 +19,10 @@ public interface CharterDetailsContract {
          */
         void getTravelOrderDetails(String order_number);
 
-
         /**
-         *
+         * 快速接单
          */
-     //   void getTravelOrderDetails(String order_number);
+        void postGuideSubmitOrder(int model_id, String order_number);
 
     }
 

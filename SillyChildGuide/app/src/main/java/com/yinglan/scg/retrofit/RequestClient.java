@@ -427,6 +427,23 @@ public class RequestClient {
         }, listener);
     }
 
+    /**
+     * 快速接单
+     */
+    public static void postGuideSubmitOrder(Context context, HttpParams httpParams, ResponseListener<String> listener) {
+        doServer(context, new TokenCallback() {
+            @Override
+            public void execute() {
+                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+                if (StringUtils.isEmpty(cookies)) {
+                    listener.onFailure(NumericConstants.TOLINGIN + "");
+                    return;
+                }
+                httpParams.putHeaders("Cookie", cookies);
+                HttpRequest.requestPostFORMHttp(context, URLConstants.GUIDESUBMITORDER, httpParams, listener);
+            }
+        }, listener);
+    }
 
     /**
      * 获取系统消息首页
