@@ -18,7 +18,7 @@ import com.yinglan.scg.loginregister.LoginActivity;
 /**
  * 线路订单详情
  */
-public class LineDetailsActivity extends BaseActivity implements LineDetailsContract.View {
+public class LineDetailsActivity extends BaseActivity implements CharterDetailsContract.View {
 
     @BindView(id = R.id.tv_title)
     private TextView tv_title;
@@ -73,6 +73,7 @@ public class LineDetailsActivity extends BaseActivity implements LineDetailsCont
 
     @BindView(id = R.id.tv_endTheOrder)
     private TextView tv_endTheOrder;
+    private String order_number;
 
     @Override
     public void setRootView() {
@@ -82,7 +83,10 @@ public class LineDetailsActivity extends BaseActivity implements LineDetailsCont
     @Override
     public void initData() {
         super.initData();
-        mPresenter = new LineDetailsPresenter(this);
+        mPresenter = new CharterDetailsPresenter(this);
+        order_number = getIntent().getStringExtra("order_number");
+        showLoadingDialog(getString(R.string.dataLoad));
+        ((CharterDetailsContract.Presenter) mPresenter).getTravelOrderDetails(order_number);
     }
 
     @Override
@@ -97,7 +101,7 @@ public class LineDetailsActivity extends BaseActivity implements LineDetailsCont
     }
 
     @Override
-    public void setPresenter(LineDetailsContract.Presenter presenter) {
+    public void setPresenter(CharterDetailsContract.Presenter presenter) {
         mPresenter = presenter;
     }
 

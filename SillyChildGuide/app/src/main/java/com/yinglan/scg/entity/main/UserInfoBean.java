@@ -25,6 +25,7 @@ public class UserInfoBean extends BaseResult<UserInfoBean.DataBean> implements S
         private String face;
         private int sex;
         private int order_number;
+        private boolean model_status;
         private String guide_level_color;
         private String service_level;
         private String nickname;
@@ -32,6 +33,14 @@ public class UserInfoBean extends BaseResult<UserInfoBean.DataBean> implements S
         private String guide_level_name;
         private String approve_status;
         private String invite_code;
+
+        public boolean isModel_status() {
+            return model_status;
+        }
+
+        public void setModel_status(boolean model_status) {
+            this.model_status = model_status;
+        }
 
         public String getGuide_level_color() {
             return guide_level_color;

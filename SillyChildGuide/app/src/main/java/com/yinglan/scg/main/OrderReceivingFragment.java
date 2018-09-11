@@ -13,10 +13,12 @@ import android.widget.TextView;
 
 import com.common.cklibrary.common.BaseFragment;
 import com.common.cklibrary.common.BindView;
+import com.common.cklibrary.common.StringConstants;
 import com.common.cklibrary.common.ViewInject;
 import com.common.cklibrary.utils.JsonUtil;
 import com.common.cklibrary.utils.RefreshLayoutUtil;
 import com.common.cklibrary.utils.rx.MsgEvent;
+import com.kymjs.common.PreferenceHelper;
 import com.yinglan.scg.R;
 import com.yinglan.scg.adapter.main.OrderReceivingViewAdapter;
 import com.yinglan.scg.constant.NumericConstants;
@@ -193,6 +195,11 @@ public class OrderReceivingFragment extends BaseFragment implements OrderReceivi
         } else if (flag == 1) {
             aty.showActivity(aty, MissedOrdersActivity.class);
         } else if (flag == 2) {
+            boolean model_status = PreferenceHelper.readBoolean(aty, StringConstants.FILENAME, "model_status", false);
+            if (!model_status) {
+                errorMsg(getString(R.string.finishVehicleAuditFirst), 1);
+                return;
+            }
             Intent intent = new Intent(aty, CharterDetailsActivity.class);
             intent.putExtra("order_number", mAdapter.getItem(selectedPosition).getOrder_number());
 //            if () {

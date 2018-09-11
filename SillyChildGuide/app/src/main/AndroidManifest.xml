@@ -117,6 +117,12 @@
         <!--主界面的后台-->
         <service android:name=".main.service.MainService" />
 
+
+        <!--接单  接送机详情-->
+        <activity
+            android:name=".orderreceiving.TransferDetailsActivity"
+            android:screenOrientation="portrait" />
+
         <!--接单  包车订单详情-->
         <activity
             android:name=".orderreceiving.CharterDetailsActivity"

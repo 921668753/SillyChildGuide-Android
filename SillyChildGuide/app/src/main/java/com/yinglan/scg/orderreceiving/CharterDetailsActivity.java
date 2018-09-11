@@ -71,6 +71,7 @@ public class CharterDetailsActivity extends BaseActivity implements CharterDetai
 
     @BindView(id = R.id.tv_endTheOrder)
     private TextView tv_endTheOrder;
+    private String order_number;
 
     @Override
     public void setRootView() {
@@ -80,6 +81,10 @@ public class CharterDetailsActivity extends BaseActivity implements CharterDetai
     @Override
     public void initData() {
         super.initData();
+        mPresenter = new CharterDetailsPresenter(this);
+        order_number = getIntent().getStringExtra("order_number");
+        showLoadingDialog(getString(R.string.dataLoad));
+        ((CharterDetailsContract.Presenter) mPresenter).getTravelOrderDetails(order_number);
     }
 
     @Override
@@ -104,9 +109,6 @@ public class CharterDetailsActivity extends BaseActivity implements CharterDetai
     public void getSuccess(String success, int flag) {
         dismissLoadingDialog();
         CharterDetailsBean charterDetailsBean = (CharterDetailsBean) JsonUtil.getInstance().json2Obj(success, CharterDetailsBean.class);
-
-
-
 
 
     }

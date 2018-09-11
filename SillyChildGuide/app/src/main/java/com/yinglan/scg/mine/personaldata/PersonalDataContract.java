@@ -6,7 +6,6 @@ import com.common.cklibrary.common.BaseView;
 /**
  * Created by Administrator on 2017/2/11.
  */
-
 public interface PersonalDataContract {
 
     interface Presenter extends BasePresenter {

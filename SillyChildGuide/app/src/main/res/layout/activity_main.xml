@@ -2,13 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/MatchMatch"
+    android:background="@color/background"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
     tools:context="com.yinglan.scg.main.MainActivity">
 
     <FrameLayout
         android:id="@+id/main_content"
-        style="@style/MatchAuto" />
+        style="@style/MatchAuto"
+        android:layout_marginBottom="@dimen/dimen1" />
 
     <include layout="@layout/main_bottombar" />
 

@@ -51,14 +51,21 @@ public class OrderReceivingViewAdapter extends BGAAdapterViewAdapter<ResultBean>
                 viewHolderHelper.setText(R.id.tv_orderAmount, mContext.getString(R.string.rmb) + "  " + model.getOrder_price());
                 break;
             case 3://包车
+                viewHolderHelper.setVisibility(R.id.ll_air, View.GONE);
+                viewHolderHelper.setVisibility(R.id.ll_charter, View.VISIBLE);
+                viewHolderHelper.setText(R.id.tv_name1, model.getProduct_set_name());
+                viewHolderHelper.setText(R.id.tv_title, model.getProduct_name());
+                viewHolderHelper.setText(R.id.tv_orderAmount1, mContext.getString(R.string.rmb) + "  " + model.getOrder_price());
+                viewHolderHelper.setText(R.id.tv_serviceTime1, DataUtil.formatData(StringUtils.toLong(model.getStart_time()), "yyyy-MM-dd E"));
+                break;
             case 4://私人定制
             case 5://线路
                 viewHolderHelper.setVisibility(R.id.ll_air, View.GONE);
                 viewHolderHelper.setVisibility(R.id.ll_charter, View.VISIBLE);
                 viewHolderHelper.setText(R.id.tv_name1, model.getProduct_set_name());
                 viewHolderHelper.setText(R.id.tv_title, model.getProduct_name());
-                viewHolderHelper.setText(R.id.tv_serviceTime1, DataUtil.formatData(StringUtils.toLong(model.getStart_time()), "yyyy-MM-dd E HH:mm"));
                 viewHolderHelper.setText(R.id.tv_orderAmount1, mContext.getString(R.string.rmb) + "  " + model.getOrder_price());
+                viewHolderHelper.setText(R.id.tv_serviceTime1, DataUtil.formatData(StringUtils.toLong(model.getStart_time()), "yyyy-MM-dd") + "—" + DataUtil.formatData(StringUtils.toLong(model.getEnd_time()), "yyyy-MM-dd"));
                 break;
             default:
                 break;

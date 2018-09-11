@@ -16,7 +16,7 @@ import com.yinglan.scg.loginregister.LoginActivity;
 /**
  * 私人定制订单详情
  */
-public class PrivateCustomDetailsActivity extends BaseActivity implements PrivateCustomDetailsContract.View {
+public class PrivateCustomDetailsActivity extends BaseActivity implements CharterDetailsContract.View {
 
     @BindView(id = R.id.tv_title)
     private TextView tv_title;
@@ -91,7 +91,10 @@ public class PrivateCustomDetailsActivity extends BaseActivity implements Privat
     @Override
     public void initData() {
         super.initData();
-        mPresenter = new PrivateCustomDetailsPresenter(this);
+        mPresenter = new CharterDetailsPresenter(this);
+        String order_number = getIntent().getStringExtra("order_number");
+        showLoadingDialog(getString(R.string.dataLoad));
+        ((CharterDetailsContract.Presenter) mPresenter).getTravelOrderDetails(order_number);
     }
 
     @Override
@@ -102,7 +105,7 @@ public class PrivateCustomDetailsActivity extends BaseActivity implements Privat
 
 
     @Override
-    public void setPresenter(PrivateCustomDetailsContract.Presenter presenter) {
+    public void setPresenter(CharterDetailsContract.Presenter presenter) {
         mPresenter = presenter;
     }
 
@@ -110,9 +113,6 @@ public class PrivateCustomDetailsActivity extends BaseActivity implements Privat
     public void getSuccess(String success, int flag) {
         dismissLoadingDialog();
         PrivateCustomDetailsBean privateCustomDetailsBean = (PrivateCustomDetailsBean) JsonUtil.getInstance().json2Obj(success, PrivateCustomDetailsBean.class);
-
-
-
 
 
     }

@@ -233,6 +233,7 @@ public class MineFragment extends BaseFragment implements MineContract.View, Vie
      * 用户信息本地化
      */
     private void saveUserInfo(UserInfoBean userInfoBean) {
+        PreferenceHelper.write(aty, StringConstants.FILENAME, "model_status", userInfoBean.getData().isModel_status());
         PreferenceHelper.write(aty, StringConstants.FILENAME, "face", userInfoBean.getData().getFace());
         PreferenceHelper.write(aty, StringConstants.FILENAME, "approve_status", userInfoBean.getData().getApprove_status());
         PreferenceHelper.write(aty, StringConstants.FILENAME, "guide_level_name", userInfoBean.getData().getGuide_level_name());

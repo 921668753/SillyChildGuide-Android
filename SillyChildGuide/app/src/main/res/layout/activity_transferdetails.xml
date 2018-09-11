@@ -202,94 +202,10 @@
 
             </LinearLayout>
 
-
-            <TextView
-                style="@style/MatchWrap"
-                android:layout_marginTop="@dimen/dimen6"
-                android:background="@color/whiteColors"
-                android:paddingBottom="@dimen/dimen12"
-                android:paddingLeft="@dimen/dimen27"
-                android:paddingRight="@dimen/dimen27"
-                android:paddingTop="@dimen/dimen13"
-                android:text="@string/dueThat"
-                android:textColor="@color/textColor"
-                android:textSize="@dimen/textsize15" />
-
-
             <com.common.cklibrary.utils.myview.WebViewLayout
-                android:id="@+id/web_dueThat"
-                style="@style/MatchWrap" />
-
-
-            <TextView
+                android:id="@+id/web_descriptionThatIncome"
                 style="@style/MatchWrap"
-                android:layout_marginTop="@dimen/dimen6"
-                android:background="@color/whiteColors"
-                android:paddingBottom="@dimen/dimen17"
-                android:paddingLeft="@dimen/dimen27"
-                android:paddingRight="@dimen/dimen27"
-                android:paddingTop="@dimen/dimen17"
-                android:text="@string/descriptionThat"
-                android:textColor="@color/textColor"
-                android:textSize="@dimen/textsize16" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dimen48"
-                android:background="@color/whiteColors"
-                android:orientation="horizontal"
-                android:paddingBottom="@dimen/dimen5">
-
-
-                <TextView
-                    style="@style/MatchMatch"
-                    android:layout_marginLeft="@dimen/dimen27"
-                    android:layout_marginRight="@dimen/dimen27"
-                    android:background="@color/background"
-                    android:gravity="center_vertical"
-                    android:paddingLeft="@dimen/dimen12"
-                    android:text="@string/actualRevenueComposition"
-                    android:textColor="@color/hintColors"
-                    android:textSize="@dimen/textsize14" />
-
-            </LinearLayout>
-
-
-            <com.common.cklibrary.utils.myview.ChildListView
-                android:id="@+id/clv_income"
-                style="@style/MatchWrap"
-                android:divider="@color/whiteColors"
-                android:dividerHeight="@dimen/dimen1"
-                tools:listitem="@layout/item_income" />
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dimen54"
-                android:layout_marginTop="@dimen/dimen1"
-                android:background="@color/whiteColors"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:paddingLeft="@dimen/dimen27"
-                android:paddingRight="@dimen/dimen27">
-
-                <TextView
-                    style="@style/AutoWrap"
-                    android:text="@string/aggregate"
-                    android:textColor="@color/textColor"
-                    android:textSize="@dimen/textsize16" />
-
-
-                <TextView
-                    android:id="@+id/tv_aggregate"
-                    style="@style/WrapWrap"
-                    android:text="RMB  2100.00"
-                    android:textColor="@color/fF5656Colors"
-                    android:textSize="@dimen/textsize15" />
-
-
-            </LinearLayout>
-
+                android:layout_marginTop="@dimen/dimen6" />
 
             <com.common.cklibrary.utils.myview.WebViewLayout
                 android:id="@+id/web_descriptionThat"

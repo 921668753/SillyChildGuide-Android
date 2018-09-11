@@ -134,6 +134,7 @@
     <string name="clickAgainExitProgram">再按一次退出程序</string>
 
     <!--接单-->
+    <string name="finishVehicleAuditFirst">请先完成车辆审核，车辆审核通过后，才能接单！</string>
     <string name="missedOrders">错过的订单</string>
     <string name="waitingResponseOrders">以下是等待响应的订单</string>
     <string name="rmb">RMB</string>

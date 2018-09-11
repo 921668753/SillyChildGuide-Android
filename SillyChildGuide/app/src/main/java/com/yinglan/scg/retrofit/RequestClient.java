@@ -395,8 +395,38 @@ public class RequestClient {
      * 获取接单信息列表
      */
     public static void getGuideOrderPage(Context context, HttpParams httpParams, ResponseListener<String> listener) {
-        HttpRequest.requestGetHttp(context, URLConstants.GETGUIDEORDERPAGE, httpParams, listener);
+        doServer(context, new TokenCallback() {
+            @Override
+            public void execute() {
+                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+                if (StringUtils.isEmpty(cookies)) {
+                    listener.onFailure(NumericConstants.TOLINGIN + "");
+                    return;
+                }
+                httpParams.putHeaders("Cookie", cookies);
+                HttpRequest.requestGetHttp(context, URLConstants.GETGUIDEORDERPAGE, httpParams, listener);
+            }
+        }, listener);
     }
+
+    /**
+     * 获取订单的详细信息
+     */
+    public static void getTravelOrderDetails(Context context, HttpParams httpParams, ResponseListener<String> listener) {
+        doServer(context, new TokenCallback() {
+            @Override
+            public void execute() {
+                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+                if (StringUtils.isEmpty(cookies)) {
+                    listener.onFailure(NumericConstants.TOLINGIN + "");
+                    return;
+                }
+                httpParams.putHeaders("Cookie", cookies);
+                HttpRequest.requestGetHttp(context, URLConstants.GETTRAVELORDERDETAILS, httpParams, listener);
+            }
+        }, listener);
+    }
+
 
     /**
      * 获取系统消息首页
