@@ -7,11 +7,11 @@
 
     <LinearLayout
         android:id="@+id/ll_content"
-        style="@style/MatchMatch"
-        android:layout_marginBottom="@dimen/dimen220"
+        style="@style/MatchWrap"
+        android:layout_height="@dimen/dimen275"
         android:layout_marginLeft="@dimen/dimen38"
-        android:layout_marginRight="@dimen/dimen38"
         android:layout_marginTop="@dimen/dimen130"
+        android:layout_marginRight="@dimen/dimen38"
         android:background="@drawable/shape_clearcache"
         android:gravity="center"
         android:orientation="vertical">
@@ -27,7 +27,6 @@
                 android:textColor="@color/textColor"
                 android:textSize="@dimen/textsize19"
                 android:textStyle="bold" />
-
 
             <ImageView
                 android:id="@+id/img_cancel"
@@ -60,13 +59,14 @@
     <TextView
         android:id="@+id/tv_determine"
         android:layout_width="@dimen/dimen195"
-        android:layout_height="@dimen/dimen52"
-        android:layout_alignParentBottom="true"
+        android:layout_height="@dimen/dimen45"
+        android:layout_below="@id/ll_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="@dimen/dimen130"
-        android:background="@drawable/shape_country"
+        android:layout_marginTop="@dimen/dimen40"
+        android:background="@drawable/shape_login1"
         android:gravity="center"
         android:text="@string/determine"
-        android:textColor="@color/whiteColors" />
+        android:textColor="@color/whiteColors"
+        android:textSize="@dimen/textsize19" />
 
 </RelativeLayout>

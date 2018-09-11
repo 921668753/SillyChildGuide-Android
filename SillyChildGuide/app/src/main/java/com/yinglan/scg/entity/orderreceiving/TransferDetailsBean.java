@@ -1,37 +1,32 @@
 package com.yinglan.scg.entity.orderreceiving;
 
 import com.common.cklibrary.entity.BaseResult;
-import com.yinglan.scg.entity.orderreceiving.TransferDetailsBean.DataBean.ModelListBean;
 
 import java.util.List;
 
-public class CharterDetailsBean extends BaseResult<CharterDetailsBean.DataBean> {
+public class TransferDetailsBean extends BaseResult<TransferDetailsBean.DataBean> {
 
 
     public class DataBean {
         /**
          * model_list : [{"id":2,"license_plate":"豫G77777","model_name":"迈腾","is_default":0},{"id":4,"license_plate":"京A777777","model_name":"帕萨特","is_default":1}]
-         * start_time : 1535904000
-         * booking_request : 3成人1行李
-         * order_number : SHZ2018082413483587020918
-         * subtitle : 3人1行李
-         * end_time : 1536163200
-         * destination_name : 鄂尔多斯
-         * order_price : 0.04
-         * book_comment : <p><strong><span style="font-size: 18px;">费用包含</span></strong></p><ul class=" list-paddingleft-2" style="list-style-type: disc;"><li><p><span style="font-size: 14px;">基础服务费：基础服务费、基础服务费、基础服务费、基础服务费、基础服务费。</span></p></li><li><p><span style="font-size: 14px;">附加费用：附加费用、<span style="font-size: 18px;">附加费用、附加费用、附加费用、附加费用。</span></span></p><p><span style="font-size: 18px;"></span></p></li></ul><p><span style="font-size: 18px;"><span style="font-size: 18px;"></span><strong>费用不包含</strong></span></p><ul class=" list-paddingleft-2" style="list-style-type: disc;"><li><p><span style="font-size: 14px;">未提及费用</span><span style="font-size: 18px;"><br/></span></p></li></ul>
-         * title : 日本日本市内包车
-         * origin_name : 上海
-         * price_comment : <p><strong><span style="font-size: 18px;">费用包含</span></strong></p><ul class=" list-paddingleft-2" style="list-style-type: disc;"><li><p><span style="font-size: 14px;">基础服务费：基础服务费、基础服务费、基础服务费、基础服务费、基础服务费。</span></p></li><li><p><span style="font-size: 14px;">附加费用：附加费用、<span style="font-size: 18px;">附加费用、附加费用、附加费用、附加费用。</span></span></p><p><span style="font-size: 18px;"></span></p></li></ul><p><span style="font-size: 18px;"><span style="font-size: 18px;"></span><strong>费用不包含</strong></span></p><ul class=" list-paddingleft-2" style="list-style-type: disc;"><li><p><span style="font-size: 14px;">未提及费用</span><span style="font-size: 18px;"><br/></span></p></li></ul>
+         * start_time : 1536134000
+         * booking_request : 2成人1行李
+         * order_number : SHZ20180903155402787087264
+         * subtitle : 2人1行李
+         * destination_name : gg
+         * order_price : 0.01
+         * title : 接机
+         * origin_name : 成田机场
+         * price_comment : {"title":"不支持退订","content":"<p style=\"font-size:14px;color:green;\">&nbsp;&nbsp;&nbsp;&nbsp;这个是简短的退订政策，该订单不支持退订，请与服务人员了解详情<\/p>"}
          */
 
         private String start_time;
         private String booking_request;
         private String order_number;
         private String subtitle;
-        private String end_time;
         private String destination_name;
         private String order_price;
-        private String book_comment;
         private String title;
         private String origin_name;
         private String price_comment;
@@ -69,14 +64,6 @@ public class CharterDetailsBean extends BaseResult<CharterDetailsBean.DataBean> 
             this.subtitle = subtitle;
         }
 
-        public String getEnd_time() {
-            return end_time;
-        }
-
-        public void setEnd_time(String end_time) {
-            this.end_time = end_time;
-        }
-
         public String getDestination_name() {
             return destination_name;
         }
@@ -91,14 +78,6 @@ public class CharterDetailsBean extends BaseResult<CharterDetailsBean.DataBean> 
 
         public void setOrder_price(String order_price) {
             this.order_price = order_price;
-        }
-
-        public String getBook_comment() {
-            return book_comment;
-        }
-
-        public void setBook_comment(String book_comment) {
-            this.book_comment = book_comment;
         }
 
         public String getTitle() {
@@ -133,5 +112,51 @@ public class CharterDetailsBean extends BaseResult<CharterDetailsBean.DataBean> 
             this.model_list = model_list;
         }
 
+
+        public class ModelListBean {
+            /**
+             * id : 2
+             * license_plate : 豫G77777
+             * model_name : 迈腾
+             * is_default : 0
+             */
+
+            private int id;
+            private String license_plate;
+            private String model_name;
+            private int is_default;
+
+            public int getId() {
+                return id;
+            }
+
+            public void setId(int id) {
+                this.id = id;
+            }
+
+            public String getLicense_plate() {
+                return license_plate;
+            }
+
+            public void setLicense_plate(String license_plate) {
+                this.license_plate = license_plate;
+            }
+
+            public String getModel_name() {
+                return model_name;
+            }
+
+            public void setModel_name(String model_name) {
+                this.model_name = model_name;
+            }
+
+            public int getIs_default() {
+                return is_default;
+            }
+
+            public void setIs_default(int is_default) {
+                this.is_default = is_default;
+            }
+        }
     }
 }

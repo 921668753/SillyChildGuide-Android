@@ -8,9 +8,9 @@
     android:orientation="horizontal">
 
     <LinearLayout
-        android:layout_width="@dimen/dimen100"
+        android:layout_width="@dimen/dimen69"
         android:layout_height="@dimen/dimen55"
-        android:layout_marginLeft="@dimen/dimen27"
+        android:layout_marginLeft="@dimen/dimen25"
         android:background="@color/greenColors"
         android:orientation="vertical">
 
@@ -38,30 +38,43 @@
             android:textSize="@dimen/textsize12" />
     </LinearLayout>
 
+
+    <TextView
+        android:id="@+id/tv_selectVehicle"
+        android:layout_width="@dimen/dimen110"
+        android:layout_height="@dimen/dimen38"
+        android:layout_marginLeft="@dimen/dimen15"
+        android:background="@drawable/shape_quickorder"
+        android:gravity="center"
+        android:text="@string/selectVehicle"
+        android:textColor="@color/whiteColors"
+        android:textSize="@dimen/textsize15" />
+
+
     <TextView style="@style/AutoWrap" />
 
 
     <TextView
         android:id="@+id/tv_quickOrder"
-        android:layout_width="@dimen/dimen144"
+        android:layout_width="@dimen/dimen110"
         android:layout_height="@dimen/dimen38"
-        android:layout_marginRight="@dimen/dimen27"
-        android:background="@drawable/shape_quickorder"
+        android:layout_marginRight="@dimen/dimen20"
+        android:background="@drawable/shape_logout"
         android:gravity="center"
         android:text="@string/quickOrder"
         android:textColor="@color/whiteColors"
-        android:textSize="@dimen/textsize12" />
+        android:textSize="@dimen/textsize15" />
 
     <TextView
         android:id="@+id/tv_endTheOrder"
-        android:layout_width="@dimen/dimen144"
+        android:layout_width="@dimen/dimen110"
         android:layout_height="@dimen/dimen38"
-        android:layout_marginRight="@dimen/dimen27"
+        android:layout_marginRight="@dimen/dimen20"
         android:background="@drawable/shape_quickorder"
         android:gravity="center"
         android:text="@string/endTheOrder"
         android:textColor="@color/whiteColors"
-        android:textSize="@dimen/textsize12"
+        android:textSize="@dimen/textsize15"
         android:visibility="gone" />
 
 

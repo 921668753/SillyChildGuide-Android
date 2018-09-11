@@ -150,6 +150,7 @@
     <string name="actualRevenueComposition">实际收入构成</string>
     <string name="aggregate">总计</string>
     <string name="quickOrder">快速接单</string>
+    <string name="selectVehicle">选择车辆</string>
     <string name="detailedItinerary">详细行程</string>
     <string name="customPreferences">定制偏好</string>
     <string name="travelPreferences">出行偏好</string>

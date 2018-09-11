@@ -16,6 +16,7 @@
         android:textSize="@dimen/textsize12" />
 
     <TextView
+        android:id="@+id/tv_orderIncome"
         style="@style/WrapWrap"
         android:layout_marginRight="@dimen/dimen39"
         android:text="RMB  2100.00"

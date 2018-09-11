@@ -9,7 +9,7 @@
         android:layout_width="@dimen/dimen24"
         android:layout_height="@dimen/dimen24"
         android:layout_marginLeft="@dimen/dimen51"
-        android:src="@mipmap/back" />
+        android:src="@mipmap/img_button" />
 
     <TextView
         android:id="@+id/tv_carBrand"

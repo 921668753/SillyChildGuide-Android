@@ -11,7 +11,7 @@
         android:layout_height="@dimen/dimen27"
         android:layout_gravity="right"
         android:layout_marginRight="@dimen/dimen27"
-        android:layout_marginTop="@dimen/dimen15"
+        android:layout_marginTop="@dimen/dimen14"
         android:background="@drawable/shape_missedorders"
         android:gravity="center"
         android:text="@string/order"
@@ -21,7 +21,7 @@
     <TextView
         style="@style/MatchWrap"
         android:paddingLeft="@dimen/dimen27"
-        android:paddingTop="@dimen/dimen15"
+        android:paddingTop="@dimen/dimen13"
         android:text="@string/service"
         android:textColor="@color/greenColors"
         android:textSize="@dimen/textsize30"
@@ -29,12 +29,18 @@
 
     <TextView
         style="@style/MatchWrap"
-        android:paddingBottom="@dimen/dimen17"
+        android:paddingBottom="@dimen/dimen15"
         android:paddingLeft="@dimen/dimen27"
         android:paddingTop="@dimen/dimen13"
         android:text="@string/waitingResponseService"
         android:textColor="@color/hintColors"
         android:textSize="@dimen/textsize13" />
+
+    <TextView
+        style="@style/MatchWrap"
+        android:layout_height="@dimen/dimen6"
+        android:background="@color/background"
+        android:paddingBottom="@dimen/dimen15" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -62,7 +68,6 @@
                 android:layout_width="@dimen/dimen18"
                 android:layout_height="@dimen/dimen20"
                 android:src="@mipmap/img_travelcalendar" />
-
 
             <TextView
                 style="@style/WrapWrap"

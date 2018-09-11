@@ -25,7 +25,10 @@ import com.yinglan.scg.constant.NumericConstants;
 import com.yinglan.scg.entity.main.OrderReceivingBean;
 import com.yinglan.scg.loginregister.LoginActivity;
 import com.yinglan.scg.orderreceiving.CharterDetailsActivity;
+import com.yinglan.scg.orderreceiving.LineDetailsActivity;
 import com.yinglan.scg.orderreceiving.MissedOrdersActivity;
+import com.yinglan.scg.orderreceiving.PrivateCustomDetailsActivity;
+import com.yinglan.scg.orderreceiving.TransferDetailsActivity;
 
 import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
 
@@ -200,15 +203,17 @@ public class OrderReceivingFragment extends BaseFragment implements OrderReceivi
                 errorMsg(getString(R.string.finishVehicleAuditFirst), 1);
                 return;
             }
-            Intent intent = new Intent(aty, CharterDetailsActivity.class);
+            Intent intent = new Intent();
+            if (mAdapter.getItem(selectedPosition).getProduct_set_cd() == 1 || mAdapter.getItem(selectedPosition).getProduct_set_cd() == 2) {
+                intent.setClass(aty, TransferDetailsActivity.class);
+            } else if (mAdapter.getItem(selectedPosition).getProduct_set_cd() == 3) {
+                intent.setClass(aty, CharterDetailsActivity.class);
+            } else if (mAdapter.getItem(selectedPosition).getProduct_set_cd() == 4) {
+                intent.setClass(aty, PrivateCustomDetailsActivity.class);
+            } else if (mAdapter.getItem(selectedPosition).getProduct_set_cd() == 5) {
+                intent.setClass(aty, LineDetailsActivity.class);
+            }
             intent.putExtra("order_number", mAdapter.getItem(selectedPosition).getOrder_number());
-//            if () {
-//                intent.setClass(aty, CharterDetailsActivity.class);
-//            } else if (mAdapter.getItem(position)) {
-//                intent.setClass(aty, PrivateCustomDetailsActivity.class);
-//            } else if (mAdapter.getItem(position)) {
-//                intent.setClass(aty, LineDetailsActivity.class);
-//            }
             startActivityForResult(intent, RESULT_CODE_GET);
         }
         dismissLoadingDialog();
