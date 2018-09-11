@@ -3,21 +3,26 @@ package com.yinglan.scg.mine.myorder.orderdetails;
 import android.support.v7.widget.RecyclerView;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.common.cklibrary.common.BaseActivity;
 import com.common.cklibrary.common.BindView;
 import com.common.cklibrary.common.ViewInject;
-import com.common.cklibrary.utils.myview.ChildListView;
+import com.common.cklibrary.utils.ActivityTitleUtils;
+import com.common.cklibrary.utils.DataUtil;
+import com.common.cklibrary.utils.JsonUtil;
 import com.common.cklibrary.utils.myview.NoScrollGridView;
 import com.common.cklibrary.utils.myview.WebViewLayout;
+import com.kymjs.common.StringUtils;
 import com.yinglan.scg.R;
+import com.yinglan.scg.entity.orderreceiving.PrivateCustomDetailsBean;
 import com.yinglan.scg.loginregister.LoginActivity;
 
 /**
  * 私人定制订单详情
  */
-public class PrivateCustomOrderDetailsActivity extends BaseActivity implements PrivateCustomOrderDetailsContract.View {
+public class PrivateCustomOrderDetailsActivity extends BaseActivity implements CharterOrderDetailsContract.View {
 
     @BindView(id = R.id.tv_title)
     private TextView tv_title;
@@ -63,8 +68,8 @@ public class PrivateCustomOrderDetailsActivity extends BaseActivity implements P
     @BindView(id = R.id.web_dueThat)
     private WebViewLayout web_dueThat;
 
-    @BindView(id = R.id.clv_income)
-    private ChildListView clv_income;
+    @BindView(id = R.id.tv_orderIncome)
+    private TextView tv_orderIncome;
 
     @BindView(id = R.id.tv_aggregate)
     private TextView tv_aggregate;
@@ -99,20 +104,75 @@ public class PrivateCustomOrderDetailsActivity extends BaseActivity implements P
     @BindView(id = R.id.tv_submitAudit, click = true)
     private TextView tv_submitAudit;
 
+    private String order_number;
+
     @Override
     public void setRootView() {
         setContentView(R.layout.activity_privatecustomorderdetails);
     }
 
+    @Override
+    public void initData() {
+        super.initData();
+        mPresenter = new CharterOrderDetailsPresenter(this);
+        order_number = getIntent().getStringExtra("order_number");
+        showLoadingDialog(getString(R.string.dataLoad));
+        ((CharterOrderDetailsContract.Presenter) mPresenter).getTravelOrderDetails(order_number);
+    }
 
     @Override
-    public void setPresenter(PrivateCustomOrderDetailsContract.Presenter presenter) {
+    public void initWidget() {
+        super.initWidget();
+        ActivityTitleUtils.initToolbar(aty, "", true, R.id.titlebar);
+        web_detailedItinerary.setTitleVisibility(false);
+        web_detailedItinerary.getWebView().setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+        web_dueThat.setTitleVisibility(false);
+        web_dueThat.getWebView().setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+        web_descriptionThat.setTitleVisibility(false);
+        web_descriptionThat.getWebView().setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+    }
+
+    @Override
+    public void setPresenter(CharterOrderDetailsContract.Presenter presenter) {
         mPresenter = presenter;
     }
 
     @Override
     public void getSuccess(String success, int flag) {
         dismissLoadingDialog();
+        PrivateCustomDetailsBean privateCustomDetailsBean = (PrivateCustomDetailsBean) JsonUtil.getInstance().json2Obj(success, PrivateCustomDetailsBean.class);
+        if (privateCustomDetailsBean == null || privateCustomDetailsBean.getData() == null) {
+            errorMsg(getString(R.string.serverError), 0);
+            return;
+        }
+        tv_title.setText(privateCustomDetailsBean.getData().getTitle());
+        tv_orderPrice.setText(getString(R.string.renminbi) + privateCustomDetailsBean.getData().getOrder_price());
+        tv_demand.setText(privateCustomDetailsBean.getData().getSubtitle());
+        tv_time.setText(DataUtil.formatData(StringUtils.toLong(privateCustomDetailsBean.getData().getStart_time()), "yyyy-MM-dd") + "—"
+                + DataUtil.formatData(StringUtils.toLong(privateCustomDetailsBean.getData().getEnd_time()), "yyyy-MM-dd"));
+        tv_serviceTime.setText(DataUtil.formatData(StringUtils.toLong(privateCustomDetailsBean.getData().getStart_time()), "yyyy-MM-dd") + "—"
+                + DataUtil.formatData(StringUtils.toLong(privateCustomDetailsBean.getData().getEnd_time()), "yyyy-MM-dd"));
+
+        tv_travelPreferences.setText(privateCustomDetailsBean.getData().getTravel_preference());
+        tv_foodPreferences.setText(privateCustomDetailsBean.getData().getRepast_preference());
+        tv_accommodationPreferences.setText(privateCustomDetailsBean.getData().getStay_preference());
+
+        tv_placeDeparture.setText(privateCustomDetailsBean.getData().getOrigin_name());
+        tv_deliveredAirport.setText(privateCustomDetailsBean.getData().getDestination_name());
+        tv_reserveRequirements.setText(privateCustomDetailsBean.getData().getBooking_request());
+        tv_orderNumber.setText(privateCustomDetailsBean.getData().getOrder_number());
+        tv_orderIncome.setText(getString(R.string.rmb) + "  " + privateCustomDetailsBean.getData().getOrder_price());
+        tv_aggregate.setText(getString(R.string.rmb) + "  " + privateCustomDetailsBean.getData().getOrder_price());
+
+        String schedule = "<!DOCTYPE html><html lang=\"zh\"><head>\t<meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no\" /><title></title></head><body>" +
+                privateCustomDetailsBean.getData().getSchedule() + "</body></html>";
+        web_detailedItinerary.loadDataWithBaseURL("baseurl", schedule, "text/html", "utf-8", null);
+        String book_comment = "<!DOCTYPE html><html lang=\"zh\"><head>\t<meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no\" /><title></title></head><body>" +
+                privateCustomDetailsBean.getData().getBook_comment() + "</body></html>";
+        web_dueThat.loadDataWithBaseURL("baseurl", book_comment, "text/html", "utf-8", null);
+        String price_description = "<!DOCTYPE html><html lang=\"zh\"><head>\t<meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no\" /><title></title></head><body>" +
+                privateCustomDetailsBean.getData().getPrice_comment() + "</body></html>";
+        web_descriptionThat.loadDataWithBaseURL("baseurl", price_description, "text/html", "utf-8", null);
     }
 
     @Override

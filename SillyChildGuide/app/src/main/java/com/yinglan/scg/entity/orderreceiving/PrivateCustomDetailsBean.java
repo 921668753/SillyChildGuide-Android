@@ -31,6 +31,9 @@ public class PrivateCustomDetailsBean extends BaseResult<PrivateCustomDetailsBea
         private String destination_name;
         private String order_price;
         private String title;
+        private String travel_preference;
+        private String repast_preference;
+        private String stay_preference;
         private String start_time;
         private String schedule;
         private String booking_request;
@@ -39,6 +42,30 @@ public class PrivateCustomDetailsBean extends BaseResult<PrivateCustomDetailsBea
         private String origin_name;
         private String price_comment;
         private List<ModelListBean> model_list;
+
+        public String getTravel_preference() {
+            return travel_preference;
+        }
+
+        public void setTravel_preference(String travel_preference) {
+            this.travel_preference = travel_preference;
+        }
+
+        public String getRepast_preference() {
+            return repast_preference;
+        }
+
+        public void setRepast_preference(String repast_preference) {
+            this.repast_preference = repast_preference;
+        }
+
+        public String getStay_preference() {
+            return stay_preference;
+        }
+
+        public void setStay_preference(String stay_preference) {
+            this.stay_preference = stay_preference;
+        }
 
         public String getOrder_number() {
             return order_number;

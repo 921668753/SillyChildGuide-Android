@@ -17,7 +17,6 @@
             style="@style/MatchMatch"
             android:orientation="vertical">
 
-
             <LinearLayout
                 style="@style/MatchWrap"
                 android:background="@color/whiteColors"
@@ -257,13 +256,14 @@
 
             </LinearLayout>
 
+            <include layout="@layout/item_income"/>
 
-            <com.common.cklibrary.utils.myview.ChildListView
-                android:id="@+id/clv_income"
-                style="@style/MatchWrap"
-                android:divider="@color/whiteColors"
-                android:dividerHeight="@dimen/dimen1"
-                tools:listitem="@layout/item_income" />
+            <!--<com.common.cklibrary.utils.myview.ChildListView-->
+                <!--android:id="@+id/clv_income"-->
+                <!--style="@style/MatchWrap"-->
+                <!--android:divider="@color/whiteColors"-->
+                <!--android:dividerHeight="@dimen/dimen1"-->
+                <!--tools:listitem="@layout/item_income" />-->
 
 
             <LinearLayout

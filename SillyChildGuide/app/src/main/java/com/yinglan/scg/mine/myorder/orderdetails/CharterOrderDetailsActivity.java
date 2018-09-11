@@ -1,21 +1,28 @@
 package com.yinglan.scg.mine.myorder.orderdetails;
 
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.common.cklibrary.common.BaseActivity;
 import com.common.cklibrary.common.BindView;
 import com.common.cklibrary.common.ViewInject;
+import com.common.cklibrary.utils.ActivityTitleUtils;
+import com.common.cklibrary.utils.DataUtil;
+import com.common.cklibrary.utils.JsonUtil;
 import com.common.cklibrary.utils.myview.ChildListView;
 import com.common.cklibrary.utils.myview.NoScrollGridView;
 import com.common.cklibrary.utils.myview.WebViewLayout;
+import com.kymjs.common.StringUtils;
 import com.yinglan.scg.R;
+import com.yinglan.scg.entity.orderreceiving.CharterDetailsBean;
 import com.yinglan.scg.loginregister.LoginActivity;
 
 /**
- * 线路订单详情
+ * 包车订单详情
  */
 public class CharterOrderDetailsActivity extends BaseActivity implements CharterOrderDetailsContract.View {
 
@@ -50,8 +57,8 @@ public class CharterOrderDetailsActivity extends BaseActivity implements Charter
     @BindView(id = R.id.web_dueThat)
     private WebViewLayout web_dueThat;
 
-    @BindView(id = R.id.clv_income)
-    private ChildListView clv_income;
+    @BindView(id = R.id.tv_orderIncome)
+    private TextView tv_orderIncome;
 
     @BindView(id = R.id.tv_aggregate)
     private TextView tv_aggregate;
@@ -86,10 +93,32 @@ public class CharterOrderDetailsActivity extends BaseActivity implements Charter
     @BindView(id = R.id.tv_submitAudit, click = true)
     private TextView tv_submitAudit;
 
+    private String order_number;
 
     @Override
     public void setRootView() {
         setContentView(R.layout.activity_charterorderdetails);
+    }
+
+    @Override
+    public void initData() {
+        super.initData();
+        mPresenter = new CharterOrderDetailsPresenter(this);
+        order_number = getIntent().getStringExtra("order_number");
+        showLoadingDialog(getString(R.string.dataLoad));
+        ((CharterOrderDetailsContract.Presenter) mPresenter).getTravelOrderDetails(order_number);
+    }
+
+    @Override
+    public void initWidget() {
+        super.initWidget();
+        ActivityTitleUtils.initToolbar(aty, "", true, R.id.titlebar);
+        web_dueThat.setTitleVisibility(false);
+        web_dueThat.getWebView().setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+        web_descriptionThat.setTitleVisibility(false);
+        web_descriptionThat.getWebView().setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+//        tv_quickOrder.setVisibility(View.VISIBLE);
+//        tv_endTheOrder.setVisibility(View.GONE);
     }
 
     @Override
@@ -100,6 +129,28 @@ public class CharterOrderDetailsActivity extends BaseActivity implements Charter
     @Override
     public void getSuccess(String success, int flag) {
         dismissLoadingDialog();
+        CharterDetailsBean charterDetailsBean = (CharterDetailsBean) JsonUtil.getInstance().json2Obj(success, CharterDetailsBean.class);
+        if (charterDetailsBean == null || charterDetailsBean.getData() == null) {
+            errorMsg(getString(R.string.serverError), 0);
+            return;
+        }
+        tv_title.setText(charterDetailsBean.getData().getTitle());
+        tv_orderPrice.setText(getString(R.string.renminbi) + charterDetailsBean.getData().getOrder_price());
+        tv_demand.setText(charterDetailsBean.getData().getSubtitle());
+        tv_time.setText(DataUtil.formatData(StringUtils.toLong(charterDetailsBean.getData().getStart_time()), "yyyy-MM-dd E"));
+        tv_serviceTime.setText(DataUtil.formatData(StringUtils.toLong(charterDetailsBean.getData().getStart_time()), "yyyy-MM-dd E"));
+        tv_placeDeparture.setText(charterDetailsBean.getData().getOrigin_name());
+        tv_deliveredAirport.setText(charterDetailsBean.getData().getDestination_name());
+        tv_reserveRequirements.setText(charterDetailsBean.getData().getBooking_request());
+        tv_orderNumber.setText(charterDetailsBean.getData().getOrder_number());
+        tv_orderIncome.setText(getString(R.string.rmb) + "  " + charterDetailsBean.getData().getOrder_price());
+        tv_aggregate.setText(getString(R.string.rmb) + "  " + charterDetailsBean.getData().getOrder_price());
+        String book_comment = "<!DOCTYPE html><html lang=\"zh\"><head>\t<meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no\" /><title></title></head><body>" +
+                charterDetailsBean.getData().getBook_comment() + "</body></html>";
+        web_dueThat.loadDataWithBaseURL("baseurl", book_comment, "text/html", "utf-8", null);
+        String price_description = "<!DOCTYPE html><html lang=\"zh\"><head>\t<meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no\" /><title></title></head><body>" +
+                charterDetailsBean.getData().getPrice_comment() + "</body></html>";
+        web_descriptionThat.loadDataWithBaseURL("baseurl", price_description, "text/html", "utf-8", null);
     }
 
     @Override

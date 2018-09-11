@@ -1,5 +1,6 @@
 package com.yinglan.scg.orderreceiving.dialog;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -16,14 +17,13 @@ import com.yinglan.scg.R;
 /**
  * 不愿意接单弹框
  */
-public class UnwillingnessTakeOrdersDialog extends BaseDialog implements View.OnClickListener ,AdapterView.OnItemClickListener{
+public class UnwillingnessTakeOrdersDialog extends BaseDialog implements View.OnClickListener, AdapterView.OnItemClickListener {
 
     private ListView lv_reason;
 
     public UnwillingnessTakeOrdersDialog(@NonNull Context context) {
         super(context, R.style.MyDialog);
     }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +33,7 @@ public class UnwillingnessTakeOrdersDialog extends BaseDialog implements View.On
         Window dialogWindow = getWindow();
         WindowManager.LayoutParams lp = dialogWindow.getAttributes();
         lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+        lp.height = WindowManager.LayoutParams.MATCH_PARENT;
         dialogWindow.setAttributes(lp);
     }
 
@@ -40,7 +41,7 @@ public class UnwillingnessTakeOrdersDialog extends BaseDialog implements View.On
         ImageView img_cross = (ImageView) findViewById(R.id.img_cross);
         img_cross.setOnClickListener(this);
         lv_reason = (ListView) findViewById(R.id.lv_reason);
-        lv_reason.setOnItemClickListener( this);
+        lv_reason.setOnItemClickListener(this);
 
     }
 
@@ -50,6 +51,7 @@ public class UnwillingnessTakeOrdersDialog extends BaseDialog implements View.On
         switch (v.getId()) {
             case R.id.img_cross:
                 dismiss();
+                ((Activity) mContext).finish();
                 break;
         }
     }
@@ -63,6 +65,7 @@ public class UnwillingnessTakeOrdersDialog extends BaseDialog implements View.On
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
 
     }
 }

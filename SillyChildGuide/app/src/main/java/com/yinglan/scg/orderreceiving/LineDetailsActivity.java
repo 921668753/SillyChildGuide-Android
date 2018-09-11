@@ -16,9 +16,13 @@ import com.yinglan.scg.R;
 import com.yinglan.scg.entity.orderreceiving.LineDetailsBean;
 import com.yinglan.scg.entity.orderreceiving.TransferDetailsBean.DataBean.ModelListBean;
 import com.yinglan.scg.loginregister.LoginActivity;
+import com.yinglan.scg.orderreceiving.dialog.OrderReceivingDialog;
 import com.yinglan.scg.orderreceiving.dialog.SelectVehicleDialog;
+import com.yinglan.scg.orderreceiving.dialog.UnwillingnessTakeOrdersDialog;
 
 import java.util.List;
+
+import cn.bingoogolapple.titlebar.BGATitleBar;
 
 /**
  * 线路订单详情
@@ -82,10 +86,14 @@ public class LineDetailsActivity extends BaseActivity implements CharterDetailsC
     @BindView(id = R.id.tv_endTheOrder)
     private TextView tv_endTheOrder;
 
+    @BindView(id = R.id.ll_bottom)
+    private LinearLayout ll_bottom;
 
     private String order_number;
     private int model_id = 0;
     private SelectVehicleDialog selectVehicleDialog = null;
+    private UnwillingnessTakeOrdersDialog unwillingnessTakeOrdersDialog = null;
+    private OrderReceivingDialog orderReceivingDialog = null;
 
     @Override
     public void setRootView() {
@@ -99,12 +107,45 @@ public class LineDetailsActivity extends BaseActivity implements CharterDetailsC
         order_number = getIntent().getStringExtra("order_number");
         showLoadingDialog(getString(R.string.dataLoad));
         ((CharterDetailsContract.Presenter) mPresenter).getTravelOrderDetails(order_number);
+        initDialog();
+        initDialog1();
+    }
+
+    private void initDialog() {
+        unwillingnessTakeOrdersDialog = new UnwillingnessTakeOrdersDialog(this);
+    }
+
+
+    private void initDialog1() {
+        orderReceivingDialog = new OrderReceivingDialog(this) {
+            @Override
+            public void toDetermine() {
+                quickOrder();
+            }
+        };
+    }
+
+    private void quickOrder() {
+        showLoadingDialog(getString(R.string.submissionLoad));
+        ((CharterDetailsContract.Presenter) mPresenter).getTravelOrderDetails(order_number);
     }
 
     @Override
     public void initWidget() {
         super.initWidget();
-        ActivityTitleUtils.initToolbar(aty, "", true, R.id.titlebar);
+        BGATitleBar.SimpleDelegate simpleDelegate = new BGATitleBar.SimpleDelegate() {
+            @Override
+            public void onClickLeftCtv() {
+                super.onClickLeftCtv();
+                if (unwillingnessTakeOrdersDialog == null) {
+                    initDialog();
+                }
+                if (unwillingnessTakeOrdersDialog != null && !unwillingnessTakeOrdersDialog.isShowing()) {
+                    unwillingnessTakeOrdersDialog.show();
+                }
+            }
+        };
+        ActivityTitleUtils.initToolbar(aty, "", "", R.id.titlebar, simpleDelegate);
         web_lineDetails.setTitleVisibility(false);
         web_lineDetails.getWebView().setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
         web_dueThat.setTitleVisibility(false);
@@ -113,6 +154,9 @@ public class LineDetailsActivity extends BaseActivity implements CharterDetailsC
         web_descriptionThat.getWebView().setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
         tv_quickOrder.setVisibility(View.VISIBLE);
         tv_endTheOrder.setVisibility(View.GONE);
+        if (getIntent().getIntExtra("type", 0) == 1) {
+            ll_bottom.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -123,7 +167,12 @@ public class LineDetailsActivity extends BaseActivity implements CharterDetailsC
                 selectVehicleDialog.show();
                 break;
             case R.id.tv_quickOrder:
-
+                if (orderReceivingDialog == null) {
+                    initDialog();
+                }
+                if (orderReceivingDialog != null && !orderReceivingDialog.isShowing()) {
+                    orderReceivingDialog.show();
+                }
                 break;
         }
     }
@@ -218,6 +267,14 @@ public class LineDetailsActivity extends BaseActivity implements CharterDetailsC
             selectVehicleDialog.cancel();
         }
         selectVehicleDialog = null;
+        if (unwillingnessTakeOrdersDialog != null) {
+            unwillingnessTakeOrdersDialog.cancel();
+        }
+        unwillingnessTakeOrdersDialog = null;
+        if (orderReceivingDialog != null) {
+            orderReceivingDialog.cancel();
+        }
+        orderReceivingDialog = null;
     }
 
 }

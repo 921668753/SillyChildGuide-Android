@@ -10,16 +10,19 @@ import com.common.cklibrary.common.ViewInject;
 import com.common.cklibrary.utils.ActivityTitleUtils;
 import com.common.cklibrary.utils.DataUtil;
 import com.common.cklibrary.utils.JsonUtil;
-import com.common.cklibrary.utils.myview.ChildListView;
 import com.common.cklibrary.utils.myview.WebViewLayout;
 import com.kymjs.common.StringUtils;
 import com.yinglan.scg.R;
 import com.yinglan.scg.entity.orderreceiving.PrivateCustomDetailsBean;
 import com.yinglan.scg.entity.orderreceiving.TransferDetailsBean.DataBean.ModelListBean;
 import com.yinglan.scg.loginregister.LoginActivity;
+import com.yinglan.scg.orderreceiving.dialog.OrderReceivingDialog;
 import com.yinglan.scg.orderreceiving.dialog.SelectVehicleDialog;
+import com.yinglan.scg.orderreceiving.dialog.UnwillingnessTakeOrdersDialog;
 
 import java.util.List;
+
+import cn.bingoogolapple.titlebar.BGATitleBar;
 
 /**
  * 私人定制订单详情
@@ -94,9 +97,14 @@ public class PrivateCustomDetailsActivity extends BaseActivity implements Charte
     @BindView(id = R.id.tv_endTheOrder)
     private TextView tv_endTheOrder;
 
+    @BindView(id = R.id.ll_bottom)
+    private LinearLayout ll_bottom;
+
     private String order_number;
     private int model_id = 0;
     private SelectVehicleDialog selectVehicleDialog = null;
+    private UnwillingnessTakeOrdersDialog unwillingnessTakeOrdersDialog = null;
+    private OrderReceivingDialog orderReceivingDialog=null;
 
 
     @Override
@@ -111,12 +119,44 @@ public class PrivateCustomDetailsActivity extends BaseActivity implements Charte
         order_number = getIntent().getStringExtra("order_number");
         showLoadingDialog(getString(R.string.dataLoad));
         ((CharterDetailsContract.Presenter) mPresenter).getTravelOrderDetails(order_number);
+        initDialog();
+        initDialog1();
+    }
+
+    private void initDialog() {
+        unwillingnessTakeOrdersDialog = new UnwillingnessTakeOrdersDialog(this);
+    }
+
+    private void initDialog1() {
+        orderReceivingDialog = new OrderReceivingDialog(this) {
+            @Override
+            public void toDetermine() {
+                quickOrder();
+            }
+        };
+    }
+
+    private void quickOrder() {
+        showLoadingDialog(getString(R.string.submissionLoad));
+        ((CharterDetailsContract.Presenter) mPresenter).getTravelOrderDetails(order_number);
     }
 
     @Override
     public void initWidget() {
         super.initWidget();
-        ActivityTitleUtils.initToolbar(aty, "", true, R.id.titlebar);
+        BGATitleBar.SimpleDelegate simpleDelegate = new BGATitleBar.SimpleDelegate() {
+            @Override
+            public void onClickLeftCtv() {
+                super.onClickLeftCtv();
+                if (unwillingnessTakeOrdersDialog == null) {
+                    initDialog();
+                }
+                if (unwillingnessTakeOrdersDialog != null && !unwillingnessTakeOrdersDialog.isShowing()) {
+                    unwillingnessTakeOrdersDialog.show();
+                }
+            }
+        };
+        ActivityTitleUtils.initToolbar(aty, "", "", R.id.titlebar, simpleDelegate);
         web_detailedItinerary.setTitleVisibility(false);
         web_detailedItinerary.getWebView().setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
         web_dueThat.setTitleVisibility(false);
@@ -125,8 +165,28 @@ public class PrivateCustomDetailsActivity extends BaseActivity implements Charte
         web_descriptionThat.getWebView().setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
         tv_quickOrder.setVisibility(View.VISIBLE);
         tv_endTheOrder.setVisibility(View.GONE);
+        if (getIntent().getIntExtra("type", 0) == 1) {
+            ll_bottom.setVisibility(View.GONE);
+        }
     }
 
+    @Override
+    public void widgetClick(View v) {
+        super.widgetClick(v);
+        switch (v.getId()) {
+            case R.id.tv_selectVehicle:
+                selectVehicleDialog.show();
+                break;
+            case R.id.tv_quickOrder:
+                if (orderReceivingDialog == null) {
+                    initDialog();
+                }
+                if (orderReceivingDialog != null && !orderReceivingDialog.isShowing()) {
+                    orderReceivingDialog.show();
+                }
+                break;
+        }
+    }
 
     @Override
     public void setPresenter(CharterDetailsContract.Presenter presenter) {
@@ -149,9 +209,9 @@ public class PrivateCustomDetailsActivity extends BaseActivity implements Charte
         tv_serviceTime.setText(DataUtil.formatData(StringUtils.toLong(privateCustomDetailsBean.getData().getStart_time()), "yyyy-MM-dd") + "—"
                 + DataUtil.formatData(StringUtils.toLong(privateCustomDetailsBean.getData().getEnd_time()), "yyyy-MM-dd"));
 
-//        tv_travelPreferences.setText(privateCustomDetailsBean.getData().getOrigin_name());
-//        tv_foodPreferences.setText(privateCustomDetailsBean.getData().getOrigin_name());
-//        tv_accommodationPreferences.setText(privateCustomDetailsBean.getData().getOrigin_name());
+        tv_travelPreferences.setText(privateCustomDetailsBean.getData().getTravel_preference());
+        tv_foodPreferences.setText(privateCustomDetailsBean.getData().getRepast_preference());
+        tv_accommodationPreferences.setText(privateCustomDetailsBean.getData().getStay_preference());
 
         tv_placeDeparture.setText(privateCustomDetailsBean.getData().getOrigin_name());
         tv_deliveredAirport.setText(privateCustomDetailsBean.getData().getDestination_name());
@@ -223,6 +283,14 @@ public class PrivateCustomDetailsActivity extends BaseActivity implements Charte
             selectVehicleDialog.cancel();
         }
         selectVehicleDialog = null;
+        if (unwillingnessTakeOrdersDialog != null) {
+            unwillingnessTakeOrdersDialog.cancel();
+        }
+        unwillingnessTakeOrdersDialog = null;
+        if (orderReceivingDialog != null) {
+            orderReceivingDialog.cancel();
+        }
+        orderReceivingDialog = null;
     }
 
 }

@@ -7,19 +7,19 @@
     <LinearLayout
         android:id="@+id/ll_content"
         style="@style/MatchWrap"
+        android:layout_height="@dimen/dimen275"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
         android:layout_marginLeft="@dimen/dimen38"
         android:layout_marginRight="@dimen/dimen38"
-        android:layout_marginTop="@dimen/dimen196"
+        android:layout_marginTop="@dimen/dimen130"
         android:background="@drawable/shape_clearcache"
-        android:gravity="center"
         android:orientation="vertical">
 
         <TextView
-            style="@style/WrapWrap"
-            android:paddingBottom="@dimen/dimen24"
-            android:paddingTop="@dimen/dimen24"
+            style="@style/MatchWrap"
+            android:gravity="center"
+            android:paddingBottom="@dimen/dimen22"
+            android:paddingTop="@dimen/dimen22"
             android:text="@string/unwillingnessTakeOrders"
             android:textColor="@color/textColor"
             android:textSize="@dimen/textsize19"
@@ -30,12 +30,9 @@
             android:layout_height="@dimen/dimen1"
             android:background="@color/background" />
 
-
         <ListView
             android:id="@+id/lv_reason"
             style="@style/MatchWrap"
-            android:layout_marginLeft="@dimen/dimen10"
-            android:layout_marginRight="@dimen/dimen10"
             android:divider="@color/background"
             android:dividerHeight="@dimen/dimen1"
             android:scrollbars="none"

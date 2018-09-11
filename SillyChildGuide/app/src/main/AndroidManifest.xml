@@ -236,7 +236,12 @@
             android:name=".mine.myorder.MyOrderActivity"
             android:screenOrientation="portrait" />
 
-        <!--我的 我的订单 线路订单详情 -->
+        <!--我的 我的订单 接送机详情 -->
+        <activity
+            android:name=".mine.myorder.orderdetails.TransferOrderDetailsActivity"
+            android:screenOrientation="portrait" />
+
+        <!--我的 我的订单 包车订单详情 -->
         <activity
             android:name=".mine.myorder.orderdetails.CharterOrderDetailsActivity"
             android:screenOrientation="portrait" />

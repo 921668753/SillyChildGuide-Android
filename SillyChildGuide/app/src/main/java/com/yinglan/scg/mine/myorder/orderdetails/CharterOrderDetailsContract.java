@@ -12,10 +12,9 @@ import com.common.cklibrary.common.BaseView;
 public interface CharterOrderDetailsContract {
     interface Presenter extends BasePresenter {
         /**
-         * 获取订单信息
+         * 获取订单的详细信息
          */
-        void getChartOrder(Context context, String status, int page);
-
+        void getTravelOrderDetails(String order_number);
 
         /**
          * 获取会员登录状态

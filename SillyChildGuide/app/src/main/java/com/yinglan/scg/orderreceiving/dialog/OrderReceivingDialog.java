@@ -15,8 +15,7 @@ import com.yinglan.scg.R;
 /**
  * 接单弹框
  */
-public class OrderReceivingDialog extends BaseDialog implements View.OnClickListener {
-
+public abstract class OrderReceivingDialog extends BaseDialog implements View.OnClickListener {
 
     public OrderReceivingDialog(@NonNull Context context) {
         super(context, R.style.MyDialog);
@@ -31,6 +30,7 @@ public class OrderReceivingDialog extends BaseDialog implements View.OnClickList
         Window dialogWindow = getWindow();
         WindowManager.LayoutParams lp = dialogWindow.getAttributes();
         lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+        lp.height = WindowManager.LayoutParams.MATCH_PARENT;
         dialogWindow.setAttributes(lp);
     }
 
@@ -54,6 +54,7 @@ public class OrderReceivingDialog extends BaseDialog implements View.OnClickList
                 break;
             case R.id.tv_determine:
                 dismiss();
+                toDetermine();
                 break;
             case R.id.img_cross:
                 dismiss();
@@ -61,5 +62,6 @@ public class OrderReceivingDialog extends BaseDialog implements View.OnClickList
         }
     }
 
+    public abstract void toDetermine();
 
 }

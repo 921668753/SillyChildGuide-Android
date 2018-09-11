@@ -5,10 +5,10 @@
 
     <TextView
         style="@style/MatchWrap"
-        android:paddingBottom="@dimen/dimen26"
+        android:paddingBottom="@dimen/dimen23"
         android:paddingLeft="@dimen/dimen36"
         android:paddingRight="@dimen/dimen36"
-        android:paddingTop="@dimen/dimen26"
+        android:paddingTop="@dimen/dimen23"
         android:text="时间不合适，不能服务此订单"
         android:textColor="@color/textColor"
         android:textSize="@dimen/textsize16" />
