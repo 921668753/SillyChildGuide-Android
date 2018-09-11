@@ -19,6 +19,12 @@ public interface CharterDetailsContract {
          */
         void getTravelOrderDetails(String order_number);
 
+
+        /**
+         *
+         */
+     //   void getTravelOrderDetails(String order_number);
+
     }
 
     interface View extends BaseView<Presenter, String> {

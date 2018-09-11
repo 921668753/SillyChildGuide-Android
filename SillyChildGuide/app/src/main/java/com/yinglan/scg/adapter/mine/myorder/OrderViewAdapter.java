@@ -16,13 +16,13 @@ import cn.bingoogolapple.baseadapter.BGAViewHolderHelper;
 
 
 /**
- * 我的订单---   适配器
+ * 我的订单---适配器
  * Created by Admin on 2017/8/15.
  */
 
-public class OrderRVViewAdapter extends BGARecyclerViewAdapter<ResultBean> {
+public class OrderViewAdapter extends BGARecyclerViewAdapter<ResultBean> {
 
-    public OrderRVViewAdapter(RecyclerView recyclerView) {
+    public OrderViewAdapter(RecyclerView recyclerView) {
         super(recyclerView, R.layout.item_order);
     }
 

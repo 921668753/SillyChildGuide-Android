@@ -150,7 +150,7 @@ public class LineDetailsActivity extends BaseActivity implements CharterDetailsC
                 + DataUtil.formatData(StringUtils.toLong(lineDetailsBean.getData().getEnd_time()), "yyyy-MM-dd"));
         tv_placeDeparture.setText(lineDetailsBean.getData().getOrigin_name());
         tv_deliveredAirport.setText(lineDetailsBean.getData().getDestination_name());
-        tv_reserveRequirements.setText(lineDetailsBean.getData().getSubtitle());
+        tv_reserveRequirements.setText(lineDetailsBean.getData().getBooking_request());
         tv_orderNumber.setText(lineDetailsBean.getData().getOrder_number());
         tv_orderIncome.setText(getString(R.string.rmb) + "  " + lineDetailsBean.getData().getOrder_price());
         tv_aggregate.setText(getString(R.string.rmb) + "  " + lineDetailsBean.getData().getOrder_price());

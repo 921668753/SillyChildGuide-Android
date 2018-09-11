@@ -140,7 +140,7 @@ public class TransferDetailsActivity extends BaseActivity implements CharterDeta
         tv_serviceTime.setText(DataUtil.formatData(StringUtils.toLong(transferDetailsBean.getData().getStart_time()), "yyyy-MM-dd E HH:mm"));
         tv_placeDeparture.setText(transferDetailsBean.getData().getOrigin_name());
         tv_deliveredAirport.setText(transferDetailsBean.getData().getDestination_name());
-        tv_reserveRequirements.setText(transferDetailsBean.getData().getSubtitle());
+        tv_reserveRequirements.setText(transferDetailsBean.getData().getBooking_request());
         tv_orderNumber.setText(transferDetailsBean.getData().getOrder_number());
         tv_orderIncome.setText(getString(R.string.rmb) + "  " + transferDetailsBean.getData().getOrder_price());
         tv_aggregate.setText(getString(R.string.rmb) + "  " + transferDetailsBean.getData().getOrder_price());

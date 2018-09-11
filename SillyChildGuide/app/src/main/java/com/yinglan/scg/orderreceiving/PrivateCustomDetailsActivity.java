@@ -148,9 +148,14 @@ public class PrivateCustomDetailsActivity extends BaseActivity implements Charte
                 + DataUtil.formatData(StringUtils.toLong(privateCustomDetailsBean.getData().getEnd_time()), "yyyy-MM-dd"));
         tv_serviceTime.setText(DataUtil.formatData(StringUtils.toLong(privateCustomDetailsBean.getData().getStart_time()), "yyyy-MM-dd") + "—"
                 + DataUtil.formatData(StringUtils.toLong(privateCustomDetailsBean.getData().getEnd_time()), "yyyy-MM-dd"));
+
+//        tv_travelPreferences.setText(privateCustomDetailsBean.getData().getOrigin_name());
+//        tv_foodPreferences.setText(privateCustomDetailsBean.getData().getOrigin_name());
+//        tv_accommodationPreferences.setText(privateCustomDetailsBean.getData().getOrigin_name());
+
         tv_placeDeparture.setText(privateCustomDetailsBean.getData().getOrigin_name());
         tv_deliveredAirport.setText(privateCustomDetailsBean.getData().getDestination_name());
-        tv_reserveRequirements.setText(privateCustomDetailsBean.getData().getSubtitle());
+        tv_reserveRequirements.setText(privateCustomDetailsBean.getData().getBooking_request());
         tv_orderNumber.setText(privateCustomDetailsBean.getData().getOrder_number());
         tv_orderIncome.setText(getString(R.string.rmb) + "  " + privateCustomDetailsBean.getData().getOrder_price());
         tv_aggregate.setText(getString(R.string.rmb) + "  " + privateCustomDetailsBean.getData().getOrder_price());

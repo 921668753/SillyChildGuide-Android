@@ -11,18 +11,16 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.common.cklibrary.common.BaseFragment;
 import com.common.cklibrary.common.BindView;
 import com.common.cklibrary.common.ViewInject;
-import com.common.cklibrary.utils.JsonUtil;
 import com.common.cklibrary.utils.RefreshLayoutUtil;
 import com.common.cklibrary.utils.rx.MsgEvent;
 import com.kymjs.common.Log;
 import com.yinglan.scg.R;
-import com.yinglan.scg.adapter.mine.myorder.OrderRVViewAdapter;
+import com.yinglan.scg.adapter.mine.myorder.OrderViewAdapter;
 import com.yinglan.scg.constant.NumericConstants;
 import com.yinglan.scg.loginregister.LoginActivity;
 
@@ -30,8 +28,6 @@ import java.util.List;
 
 import cn.bingoogolapple.baseadapter.BGAOnItemChildClickListener;
 import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
-import io.rong.imkit.RongIM;
-import io.rong.imlib.model.Conversation;
 import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.EasyPermissions;
 
@@ -43,7 +39,7 @@ public class ForServiceFragment extends BaseFragment implements AdapterView.OnIt
 
     private MyOrderActivity aty;
 
-    private OrderRVViewAdapter mAdapter;
+    private OrderViewAdapter mAdapter;
 
     @BindView(id = R.id.mRefreshLayout)
     private BGARefreshLayout mRefreshLayout;

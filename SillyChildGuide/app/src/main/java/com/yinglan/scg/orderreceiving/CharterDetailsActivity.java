@@ -147,7 +147,7 @@ public class CharterDetailsActivity extends BaseActivity implements CharterDetai
         tv_serviceTime.setText(DataUtil.formatData(StringUtils.toLong(charterDetailsBean.getData().getStart_time()), "yyyy-MM-dd E"));
         tv_placeDeparture.setText(charterDetailsBean.getData().getOrigin_name());
         tv_deliveredAirport.setText(charterDetailsBean.getData().getDestination_name());
-        tv_reserveRequirements.setText(charterDetailsBean.getData().getSubtitle());
+        tv_reserveRequirements.setText(charterDetailsBean.getData().getBooking_request());
         tv_orderNumber.setText(charterDetailsBean.getData().getOrder_number());
         tv_orderIncome.setText(getString(R.string.rmb) + "  " + charterDetailsBean.getData().getOrder_price());
         tv_aggregate.setText(getString(R.string.rmb) + "  " + charterDetailsBean.getData().getOrder_price());

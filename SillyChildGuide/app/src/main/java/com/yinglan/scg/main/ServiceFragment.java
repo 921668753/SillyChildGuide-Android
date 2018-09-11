@@ -236,7 +236,6 @@ public class ServiceFragment extends BaseFragment implements ServiceContract.Vie
                 tv_hintText.setVisibility(View.GONE);
                 tv_button.setText(getString(R.string.login));
                 // ViewInject.toast(getString(R.string.reloginPrompting));
-                aty.showActivity(aty, LoginActivity.class);
                 return;
             } else if (msg.contains(getString(R.string.checkNetwork))) {
                 img_err.setImageResource(R.mipmap.no_network);
