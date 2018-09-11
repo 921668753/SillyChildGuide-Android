@@ -36,8 +36,7 @@ public class TravelCalendarActivity extends BaseActivity {
 
     private MonthTimeAdapter adapter;
     private ArrayList<MonthTimeEntity> datas;
-    public static DayTimeEntity startDay;
-    public static DayTimeEntity stopDay;
+    public static DayTimeEntity selectDay;
 
     @Override
     public void setRootView() {
@@ -47,12 +46,12 @@ public class TravelCalendarActivity extends BaseActivity {
     @Override
     public void initData() {
         super.initData();
-        startDay = (DayTimeEntity) getIntent().getSerializableExtra("startDayBean");
-        stopDay = (DayTimeEntity) getIntent().getSerializableExtra("stopDayBean");
-        if (startDay == null || stopDay == null) {
-            startDay = new DayTimeEntity(0, 0, 0, 0);
-            stopDay = new DayTimeEntity(-1, -1, -1, -1);
-        }
+        selectDay = (DayTimeEntity) getIntent().getSerializableExtra("startDayBean");
+//        stopDay = (DayTimeEntity) getIntent().getSerializableExtra("stopDayBean");
+//        if (startDay == null || stopDay == null) {
+//            startDay = new DayTimeEntity(0, 0, 0, 0);
+//            stopDay = new DayTimeEntity(-1, -1, -1, -1);
+//        }
         datas = new ArrayList<>();
         Calendar c = Calendar.getInstance();
         c.add(Calendar.MONTH, 1);
@@ -80,28 +79,28 @@ public class TravelCalendarActivity extends BaseActivity {
                         false);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
-        recyclerView.scrollToPosition(startDay.getMonthPosition());
+        recyclerView.scrollToPosition(selectDay.getMonthPosition());
     }
 
     @SuppressLint("SetTextI18n")
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEventMainThread(UpdataCalendar event) {
         adapter.notifyDataSetChanged();
-        tv_chooseTimeNeedServe.setText(getString(R.string.startTime) + startDay.getYear() + getString(R.string.year) + startDay.getMonth() + getString(R.string.month) +
-                startDay.getDay() + getString(R.string.day));
-        if (stopDay.getDay() != -1) {
-            tv_chooseTimeNeedServe.setText(tv_chooseTimeNeedServe.getText().toString() + "   " +
-                    getString(R.string.endTime) + stopDay.getYear() + getString(R.string.year) + stopDay.getMonth() + getString(R.string.month) + stopDay.getDay() + getString(R.string.day));
-            Intent intent = new Intent();
-            // 获取内容
-            intent.putExtra("startDay", startDay.getYear() + getString(R.string.year) + startDay.getMonth() + getString(R.string.month) + startDay.getDay() + getString(R.string.day));
-            intent.putExtra("stopDay", stopDay.getYear() + getString(R.string.year) + stopDay.getMonth() + getString(R.string.month) + stopDay.getDay() + getString(R.string.day));
-            intent.putExtra("startDayBean", startDay);
-            intent.putExtra("stopDayBean", stopDay);
-            // 设置结果 结果码，一个数据
-            setResult(RESULT_OK, intent);
-            finish();
-        }
+        tv_chooseTimeNeedServe.setText(getString(R.string.startTime) + selectDay.getYear() + getString(R.string.year) + selectDay.getMonth() + getString(R.string.month) +
+                selectDay.getDay() + getString(R.string.day));
+//        if (stopDay.getDay() != -1) {
+//            tv_chooseTimeNeedServe.setText(tv_chooseTimeNeedServe.getText().toString() + "   " +
+//                    getString(R.string.endTime) + stopDay.getYear() + getString(R.string.year) + stopDay.getMonth() + getString(R.string.month) + stopDay.getDay() + getString(R.string.day));
+//            Intent intent = new Intent();
+//            // 获取内容
+//            intent.putExtra("startDay", startDay.getYear() + getString(R.string.year) + startDay.getMonth() + getString(R.string.month) + startDay.getDay() + getString(R.string.day));
+//            intent.putExtra("stopDay", stopDay.getYear() + getString(R.string.year) + stopDay.getMonth() + getString(R.string.month) + stopDay.getDay() + getString(R.string.day));
+//            intent.putExtra("startDayBean", startDay);
+//            intent.putExtra("stopDayBean", stopDay);
+//            // 设置结果 结果码，一个数据
+//            setResult(RESULT_OK, intent);
+//            finish();
+//        }
     }
 
     @Override

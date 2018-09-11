@@ -1,5 +1,6 @@
 package com.yinglan.scg.orderreceiving;
 
+import android.content.Intent;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -188,37 +189,45 @@ public class CharterDetailsActivity extends BaseActivity implements CharterDetai
     @Override
     public void getSuccess(String success, int flag) {
         dismissLoadingDialog();
-        CharterDetailsBean charterDetailsBean = (CharterDetailsBean) JsonUtil.getInstance().json2Obj(success, CharterDetailsBean.class);
-        if (charterDetailsBean == null || charterDetailsBean.getData() == null) {
-            errorMsg(getString(R.string.serverError), 0);
-            return;
-        }
-        tv_title.setText(charterDetailsBean.getData().getTitle());
-        tv_orderPrice.setText(getString(R.string.renminbi) + charterDetailsBean.getData().getOrder_price());
-        tv_demand.setText(charterDetailsBean.getData().getSubtitle());
-        tv_time.setText(DataUtil.formatData(StringUtils.toLong(charterDetailsBean.getData().getStart_time()), "yyyy-MM-dd E"));
-        tv_serviceTime.setText(DataUtil.formatData(StringUtils.toLong(charterDetailsBean.getData().getStart_time()), "yyyy-MM-dd E"));
-        tv_placeDeparture.setText(charterDetailsBean.getData().getOrigin_name());
-        tv_deliveredAirport.setText(charterDetailsBean.getData().getDestination_name());
-        tv_reserveRequirements.setText(charterDetailsBean.getData().getBooking_request());
-        tv_orderNumber.setText(charterDetailsBean.getData().getOrder_number());
-        tv_orderIncome.setText(getString(R.string.rmb) + "  " + charterDetailsBean.getData().getOrder_price());
-        tv_aggregate.setText(getString(R.string.rmb) + "  " + charterDetailsBean.getData().getOrder_price());
-        String book_comment = "<!DOCTYPE html><html lang=\"zh\"><head>\t<meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no\" /><title></title></head><body>" +
-                charterDetailsBean.getData().getBook_comment() + "</body></html>";
-        web_dueThat.loadDataWithBaseURL("baseurl", book_comment, "text/html", "utf-8", null);
-        String price_description = "<!DOCTYPE html><html lang=\"zh\"><head>\t<meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no\" /><title></title></head><body>" +
-                charterDetailsBean.getData().getPrice_comment() + "</body></html>";
-        web_descriptionThat.loadDataWithBaseURL("baseurl", price_description, "text/html", "utf-8", null);
-        if (charterDetailsBean.getData() != null && charterDetailsBean.getData().getModel_list() != null && charterDetailsBean.getData().getModel_list().size() == 1) {
-            tv_licensePlateNumber.setText(charterDetailsBean.getData().getModel_list().get(0).getLicense_plate());
-            tv_models.setText(charterDetailsBean.getData().getModel_list().get(0).getModel_name());
-            model_id = charterDetailsBean.getData().getModel_list().get(0).getId();
-            tv_selectVehicle.setVisibility(View.GONE);
-        }
-        if (charterDetailsBean.getData() != null && charterDetailsBean.getData().getModel_list() != null && charterDetailsBean.getData().getModel_list().size() > 1) {
-            tv_selectVehicle.setVisibility(View.VISIBLE);
-            setDialog(charterDetailsBean.getData().getModel_list());
+        if (flag == 0) {
+
+            CharterDetailsBean charterDetailsBean = (CharterDetailsBean) JsonUtil.getInstance().json2Obj(success, CharterDetailsBean.class);
+            if (charterDetailsBean == null || charterDetailsBean.getData() == null) {
+                errorMsg(getString(R.string.serverError), 0);
+                return;
+            }
+            tv_title.setText(charterDetailsBean.getData().getTitle());
+            tv_orderPrice.setText(getString(R.string.renminbi) + charterDetailsBean.getData().getOrder_price());
+            tv_demand.setText(charterDetailsBean.getData().getSubtitle());
+            tv_time.setText(DataUtil.formatData(StringUtils.toLong(charterDetailsBean.getData().getStart_time()), "yyyy-MM-dd E"));
+            tv_serviceTime.setText(DataUtil.formatData(StringUtils.toLong(charterDetailsBean.getData().getStart_time()), "yyyy-MM-dd E"));
+            tv_placeDeparture.setText(charterDetailsBean.getData().getOrigin_name());
+            tv_deliveredAirport.setText(charterDetailsBean.getData().getDestination_name());
+            tv_reserveRequirements.setText(charterDetailsBean.getData().getBooking_request());
+            tv_orderNumber.setText(charterDetailsBean.getData().getOrder_number());
+            tv_orderIncome.setText(getString(R.string.rmb) + "  " + charterDetailsBean.getData().getOrder_price());
+            tv_aggregate.setText(getString(R.string.rmb) + "  " + charterDetailsBean.getData().getOrder_price());
+            String book_comment = "<!DOCTYPE html><html lang=\"zh\"><head>\t<meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no\" /><title></title></head><body>" +
+                    charterDetailsBean.getData().getBook_comment() + "</body></html>";
+            web_dueThat.loadDataWithBaseURL("baseurl", book_comment, "text/html", "utf-8", null);
+            String price_description = "<!DOCTYPE html><html lang=\"zh\"><head>\t<meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no\" /><title></title></head><body>" +
+                    charterDetailsBean.getData().getPrice_comment() + "</body></html>";
+            web_descriptionThat.loadDataWithBaseURL("baseurl", price_description, "text/html", "utf-8", null);
+            if (charterDetailsBean.getData() != null && charterDetailsBean.getData().getModel_list() != null && charterDetailsBean.getData().getModel_list().size() == 1) {
+                tv_licensePlateNumber.setText(charterDetailsBean.getData().getModel_list().get(0).getLicense_plate());
+                tv_models.setText(charterDetailsBean.getData().getModel_list().get(0).getModel_name());
+                model_id = charterDetailsBean.getData().getModel_list().get(0).getId();
+                tv_selectVehicle.setVisibility(View.GONE);
+            }
+            if (charterDetailsBean.getData() != null && charterDetailsBean.getData().getModel_list() != null && charterDetailsBean.getData().getModel_list().size() > 1) {
+                tv_selectVehicle.setVisibility(View.VISIBLE);
+                setDialog(charterDetailsBean.getData().getModel_list());
+            }
+        } else if (flag == 1) {
+            Intent intent = new Intent();
+            // 获取内容
+            setResult(RESULT_OK, intent);
+            finish();
         }
     }
 

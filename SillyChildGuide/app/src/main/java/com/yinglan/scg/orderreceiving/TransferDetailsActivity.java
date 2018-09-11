@@ -1,5 +1,6 @@
 package com.yinglan.scg.orderreceiving;
 
+import android.content.Intent;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -181,34 +182,41 @@ public class TransferDetailsActivity extends BaseActivity implements CharterDeta
     @Override
     public void getSuccess(String success, int flag) {
         dismissLoadingDialog();
-        TransferDetailsBean transferDetailsBean = (TransferDetailsBean) JsonUtil.getInstance().json2Obj(success, TransferDetailsBean.class);
-        if (transferDetailsBean == null || transferDetailsBean.getData() == null) {
-            errorMsg(getString(R.string.serverError), 0);
-            return;
-        }
-        tv_title.setText(transferDetailsBean.getData().getTitle());
-        tv_orderPrice.setText(getString(R.string.renminbi) + transferDetailsBean.getData().getOrder_price());
-        tv_demand.setText(transferDetailsBean.getData().getSubtitle());
-        tv_time.setText(DataUtil.formatData(StringUtils.toLong(transferDetailsBean.getData().getStart_time()), "yyyy-MM-dd E HH:mm"));
-        tv_serviceTime.setText(DataUtil.formatData(StringUtils.toLong(transferDetailsBean.getData().getStart_time()), "yyyy-MM-dd E HH:mm"));
-        tv_placeDeparture.setText(transferDetailsBean.getData().getOrigin_name());
-        tv_deliveredAirport.setText(transferDetailsBean.getData().getDestination_name());
-        tv_reserveRequirements.setText(transferDetailsBean.getData().getBooking_request());
-        tv_orderNumber.setText(transferDetailsBean.getData().getOrder_number());
-        tv_orderIncome.setText(getString(R.string.rmb) + "  " + transferDetailsBean.getData().getOrder_price());
-        tv_aggregate.setText(getString(R.string.rmb) + "  " + transferDetailsBean.getData().getOrder_price());
-        String content = "<!DOCTYPE html><html lang=\"zh\"><head>\t<meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no\" /><title></title></head><body>" +
-                transferDetailsBean.getData().getPrice_comment() + "</body></html>";
-        web_descriptionThat.loadDataWithBaseURL("baseurl", content, "text/html", "utf-8", null);
-        if (transferDetailsBean.getData() != null && transferDetailsBean.getData().getModel_list() != null && transferDetailsBean.getData().getModel_list().size() == 1) {
-            tv_licensePlateNumber.setText(transferDetailsBean.getData().getModel_list().get(0).getLicense_plate());
-            tv_models.setText(transferDetailsBean.getData().getModel_list().get(0).getModel_name());
-            model_id = transferDetailsBean.getData().getModel_list().get(0).getId();
-            tv_selectVehicle.setVisibility(View.GONE);
-        }
-        if (transferDetailsBean.getData() != null && transferDetailsBean.getData().getModel_list() != null && transferDetailsBean.getData().getModel_list().size() > 1) {
-            tv_selectVehicle.setVisibility(View.VISIBLE);
-            setDialog(transferDetailsBean.getData().getModel_list());
+        if (flag == 0) {
+            TransferDetailsBean transferDetailsBean = (TransferDetailsBean) JsonUtil.getInstance().json2Obj(success, TransferDetailsBean.class);
+            if (transferDetailsBean == null || transferDetailsBean.getData() == null) {
+                errorMsg(getString(R.string.serverError), 0);
+                return;
+            }
+            tv_title.setText(transferDetailsBean.getData().getTitle());
+            tv_orderPrice.setText(getString(R.string.renminbi) + transferDetailsBean.getData().getOrder_price());
+            tv_demand.setText(transferDetailsBean.getData().getSubtitle());
+            tv_time.setText(DataUtil.formatData(StringUtils.toLong(transferDetailsBean.getData().getStart_time()), "yyyy-MM-dd E HH:mm"));
+            tv_serviceTime.setText(DataUtil.formatData(StringUtils.toLong(transferDetailsBean.getData().getStart_time()), "yyyy-MM-dd E HH:mm"));
+            tv_placeDeparture.setText(transferDetailsBean.getData().getOrigin_name());
+            tv_deliveredAirport.setText(transferDetailsBean.getData().getDestination_name());
+            tv_reserveRequirements.setText(transferDetailsBean.getData().getBooking_request());
+            tv_orderNumber.setText(transferDetailsBean.getData().getOrder_number());
+            tv_orderIncome.setText(getString(R.string.rmb) + "  " + transferDetailsBean.getData().getOrder_price());
+            tv_aggregate.setText(getString(R.string.rmb) + "  " + transferDetailsBean.getData().getOrder_price());
+            String content = "<!DOCTYPE html><html lang=\"zh\"><head>\t<meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no\" /><title></title></head><body>" +
+                    transferDetailsBean.getData().getPrice_comment() + "</body></html>";
+            web_descriptionThat.loadDataWithBaseURL("baseurl", content, "text/html", "utf-8", null);
+            if (transferDetailsBean.getData() != null && transferDetailsBean.getData().getModel_list() != null && transferDetailsBean.getData().getModel_list().size() == 1) {
+                tv_licensePlateNumber.setText(transferDetailsBean.getData().getModel_list().get(0).getLicense_plate());
+                tv_models.setText(transferDetailsBean.getData().getModel_list().get(0).getModel_name());
+                model_id = transferDetailsBean.getData().getModel_list().get(0).getId();
+                tv_selectVehicle.setVisibility(View.GONE);
+            }
+            if (transferDetailsBean.getData() != null && transferDetailsBean.getData().getModel_list() != null && transferDetailsBean.getData().getModel_list().size() > 1) {
+                tv_selectVehicle.setVisibility(View.VISIBLE);
+                setDialog(transferDetailsBean.getData().getModel_list());
+            }
+        } else if (flag == 1) {
+            Intent intent = new Intent();
+            // 获取内容
+            setResult(RESULT_OK, intent);
+            finish();
         }
     }
 

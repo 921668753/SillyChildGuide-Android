@@ -1,5 +1,6 @@
 package com.yinglan.scg.orderreceiving;
 
+import android.content.Intent;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -189,45 +190,52 @@ public class LineDetailsActivity extends BaseActivity implements CharterDetailsC
     @Override
     public void getSuccess(String success, int flag) {
         dismissLoadingDialog();
-        LineDetailsBean lineDetailsBean = (LineDetailsBean) JsonUtil.getInstance().json2Obj(success, LineDetailsBean.class);
-        if (lineDetailsBean == null || lineDetailsBean.getData() == null) {
-            errorMsg(getString(R.string.serverError), 0);
-            return;
-        }
-        tv_title.setText(lineDetailsBean.getData().getTitle());
-        tv_orderPrice.setText(getString(R.string.renminbi) + lineDetailsBean.getData().getOrder_price());
-        tv_demand.setText(lineDetailsBean.getData().getSubtitle());
-        tv_time.setText(DataUtil.formatData(StringUtils.toLong(lineDetailsBean.getData().getStart_time()), "yyyy-MM-dd") + "—"
-                + DataUtil.formatData(StringUtils.toLong(lineDetailsBean.getData().getEnd_time()), "yyyy-MM-dd"));
-        tv_serviceTime.setText(DataUtil.formatData(StringUtils.toLong(lineDetailsBean.getData().getStart_time()), "yyyy-MM-dd") + "—"
-                + DataUtil.formatData(StringUtils.toLong(lineDetailsBean.getData().getEnd_time()), "yyyy-MM-dd"));
-        tv_placeDeparture.setText(lineDetailsBean.getData().getOrigin_name());
-        tv_deliveredAirport.setText(lineDetailsBean.getData().getDestination_name());
-        tv_reserveRequirements.setText(lineDetailsBean.getData().getBooking_request());
-        tv_orderNumber.setText(lineDetailsBean.getData().getOrder_number());
-        tv_orderIncome.setText(getString(R.string.rmb) + "  " + lineDetailsBean.getData().getOrder_price());
-        tv_aggregate.setText(getString(R.string.rmb) + "  " + lineDetailsBean.getData().getOrder_price());
+        if (flag == 0) {
 
-        String product_description = "<!DOCTYPE html><html lang=\"zh\"><head>\t<meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no\" /><title></title></head><body>" +
-                lineDetailsBean.getData().getProduct_description() + "</body></html>";
-        web_lineDetails.loadDataWithBaseURL("baseurl", product_description, "text/html", "utf-8", null);
-        String book_comment = "<!DOCTYPE html><html lang=\"zh\"><head>\t<meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no\" /><title></title></head><body>" +
-                lineDetailsBean.getData().getBook_comment() + "</body></html>";
-        web_dueThat.loadDataWithBaseURL("baseurl", book_comment, "text/html", "utf-8", null);
-        String price_description = "<!DOCTYPE html><html lang=\"zh\"><head>\t<meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no\" /><title></title></head><body>" +
-                lineDetailsBean.getData().getPrice_comment() + "</body></html>";
-        web_descriptionThat.loadDataWithBaseURL("baseurl", price_description, "text/html", "utf-8", null);
-        if (lineDetailsBean.getData() != null && lineDetailsBean.getData().getModel_list() != null && lineDetailsBean.getData().getModel_list().size() == 1) {
-            tv_licensePlateNumber.setText(lineDetailsBean.getData().getModel_list().get(0).getLicense_plate());
-            tv_models.setText(lineDetailsBean.getData().getModel_list().get(0).getModel_name());
-            model_id = lineDetailsBean.getData().getModel_list().get(0).getId();
-            tv_selectVehicle.setVisibility(View.GONE);
-        }
-        if (lineDetailsBean.getData() != null && lineDetailsBean.getData().getModel_list() != null && lineDetailsBean.getData().getModel_list().size() > 1) {
-            tv_selectVehicle.setVisibility(View.VISIBLE);
-            setDialog(lineDetailsBean.getData().getModel_list());
-        }
+            LineDetailsBean lineDetailsBean = (LineDetailsBean) JsonUtil.getInstance().json2Obj(success, LineDetailsBean.class);
+            if (lineDetailsBean == null || lineDetailsBean.getData() == null) {
+                errorMsg(getString(R.string.serverError), 0);
+                return;
+            }
+            tv_title.setText(lineDetailsBean.getData().getTitle());
+            tv_orderPrice.setText(getString(R.string.renminbi) + lineDetailsBean.getData().getOrder_price());
+            tv_demand.setText(lineDetailsBean.getData().getSubtitle());
+            tv_time.setText(DataUtil.formatData(StringUtils.toLong(lineDetailsBean.getData().getStart_time()), "yyyy-MM-dd") + "—"
+                    + DataUtil.formatData(StringUtils.toLong(lineDetailsBean.getData().getEnd_time()), "yyyy-MM-dd"));
+            tv_serviceTime.setText(DataUtil.formatData(StringUtils.toLong(lineDetailsBean.getData().getStart_time()), "yyyy-MM-dd") + "—"
+                    + DataUtil.formatData(StringUtils.toLong(lineDetailsBean.getData().getEnd_time()), "yyyy-MM-dd"));
+            tv_placeDeparture.setText(lineDetailsBean.getData().getOrigin_name());
+            tv_deliveredAirport.setText(lineDetailsBean.getData().getDestination_name());
+            tv_reserveRequirements.setText(lineDetailsBean.getData().getBooking_request());
+            tv_orderNumber.setText(lineDetailsBean.getData().getOrder_number());
+            tv_orderIncome.setText(getString(R.string.rmb) + "  " + lineDetailsBean.getData().getOrder_price());
+            tv_aggregate.setText(getString(R.string.rmb) + "  " + lineDetailsBean.getData().getOrder_price());
 
+            String product_description = "<!DOCTYPE html><html lang=\"zh\"><head>\t<meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no\" /><title></title></head><body>" +
+                    lineDetailsBean.getData().getProduct_description() + "</body></html>";
+            web_lineDetails.loadDataWithBaseURL("baseurl", product_description, "text/html", "utf-8", null);
+            String book_comment = "<!DOCTYPE html><html lang=\"zh\"><head>\t<meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no\" /><title></title></head><body>" +
+                    lineDetailsBean.getData().getBook_comment() + "</body></html>";
+            web_dueThat.loadDataWithBaseURL("baseurl", book_comment, "text/html", "utf-8", null);
+            String price_description = "<!DOCTYPE html><html lang=\"zh\"><head>\t<meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no\" /><title></title></head><body>" +
+                    lineDetailsBean.getData().getPrice_comment() + "</body></html>";
+            web_descriptionThat.loadDataWithBaseURL("baseurl", price_description, "text/html", "utf-8", null);
+            if (lineDetailsBean.getData() != null && lineDetailsBean.getData().getModel_list() != null && lineDetailsBean.getData().getModel_list().size() == 1) {
+                tv_licensePlateNumber.setText(lineDetailsBean.getData().getModel_list().get(0).getLicense_plate());
+                tv_models.setText(lineDetailsBean.getData().getModel_list().get(0).getModel_name());
+                model_id = lineDetailsBean.getData().getModel_list().get(0).getId();
+                tv_selectVehicle.setVisibility(View.GONE);
+            }
+            if (lineDetailsBean.getData() != null && lineDetailsBean.getData().getModel_list() != null && lineDetailsBean.getData().getModel_list().size() > 1) {
+                tv_selectVehicle.setVisibility(View.VISIBLE);
+                setDialog(lineDetailsBean.getData().getModel_list());
+            }
+        } else if (flag == 1) {
+            Intent intent = new Intent();
+            // 获取内容
+            setResult(RESULT_OK, intent);
+            finish();
+        }
     }
 
     private void setDialog(List<ModelListBean> list) {

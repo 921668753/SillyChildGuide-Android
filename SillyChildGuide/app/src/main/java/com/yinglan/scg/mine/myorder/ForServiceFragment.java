@@ -87,7 +87,7 @@ public class ForServiceFragment extends BaseFragment implements AdapterView.OnIt
     protected void initData() {
         super.initData();
         mPresenter = new OrderPresenter(this);
-    //    mAdapter = new CharterOrderAdapter(aty);
+        mAdapter = new OrderViewAdapter(aty);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.yinglan.scg.orderreceiving;
 
+import android.content.Intent;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -200,50 +201,56 @@ public class PrivateCustomDetailsActivity extends BaseActivity implements Charte
     @Override
     public void getSuccess(String success, int flag) {
         dismissLoadingDialog();
-        PrivateCustomDetailsBean privateCustomDetailsBean = (PrivateCustomDetailsBean) JsonUtil.getInstance().json2Obj(success, PrivateCustomDetailsBean.class);
-        if (privateCustomDetailsBean == null || privateCustomDetailsBean.getData() == null) {
-            errorMsg(getString(R.string.serverError), 0);
-            return;
+        if (flag == 0) {
+            PrivateCustomDetailsBean privateCustomDetailsBean = (PrivateCustomDetailsBean) JsonUtil.getInstance().json2Obj(success, PrivateCustomDetailsBean.class);
+            if (privateCustomDetailsBean == null || privateCustomDetailsBean.getData() == null) {
+                errorMsg(getString(R.string.serverError), 0);
+                return;
+            }
+            tv_title.setText(privateCustomDetailsBean.getData().getTitle());
+            tv_orderPrice.setText(getString(R.string.renminbi) + privateCustomDetailsBean.getData().getOrder_price());
+            tv_demand.setText(privateCustomDetailsBean.getData().getSubtitle());
+            tv_time.setText(DataUtil.formatData(StringUtils.toLong(privateCustomDetailsBean.getData().getStart_time()), "yyyy-MM-dd") + "—"
+                    + DataUtil.formatData(StringUtils.toLong(privateCustomDetailsBean.getData().getEnd_time()), "yyyy-MM-dd"));
+            tv_serviceTime.setText(DataUtil.formatData(StringUtils.toLong(privateCustomDetailsBean.getData().getStart_time()), "yyyy-MM-dd") + "—"
+                    + DataUtil.formatData(StringUtils.toLong(privateCustomDetailsBean.getData().getEnd_time()), "yyyy-MM-dd"));
+
+            tv_travelPreferences.setText(privateCustomDetailsBean.getData().getTravel_preference());
+            tv_foodPreferences.setText(privateCustomDetailsBean.getData().getRepast_preference());
+            tv_accommodationPreferences.setText(privateCustomDetailsBean.getData().getStay_preference());
+
+            tv_placeDeparture.setText(privateCustomDetailsBean.getData().getOrigin_name());
+            tv_deliveredAirport.setText(privateCustomDetailsBean.getData().getDestination_name());
+            tv_reserveRequirements.setText(privateCustomDetailsBean.getData().getBooking_request());
+            tv_orderNumber.setText(privateCustomDetailsBean.getData().getOrder_number());
+            tv_orderIncome.setText(getString(R.string.rmb) + "  " + privateCustomDetailsBean.getData().getOrder_price());
+            tv_aggregate.setText(getString(R.string.rmb) + "  " + privateCustomDetailsBean.getData().getOrder_price());
+
+            String schedule = "<!DOCTYPE html><html lang=\"zh\"><head>\t<meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no\" /><title></title></head><body>" +
+                    privateCustomDetailsBean.getData().getSchedule() + "</body></html>";
+            web_detailedItinerary.loadDataWithBaseURL("baseurl", schedule, "text/html", "utf-8", null);
+            String book_comment = "<!DOCTYPE html><html lang=\"zh\"><head>\t<meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no\" /><title></title></head><body>" +
+                    privateCustomDetailsBean.getData().getBook_comment() + "</body></html>";
+            web_dueThat.loadDataWithBaseURL("baseurl", book_comment, "text/html", "utf-8", null);
+            String price_description = "<!DOCTYPE html><html lang=\"zh\"><head>\t<meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no\" /><title></title></head><body>" +
+                    privateCustomDetailsBean.getData().getPrice_comment() + "</body></html>";
+            web_descriptionThat.loadDataWithBaseURL("baseurl", price_description, "text/html", "utf-8", null);
+            if (privateCustomDetailsBean.getData() != null && privateCustomDetailsBean.getData().getModel_list() != null && privateCustomDetailsBean.getData().getModel_list().size() == 1) {
+                tv_licensePlateNumber.setText(privateCustomDetailsBean.getData().getModel_list().get(0).getLicense_plate());
+                tv_models.setText(privateCustomDetailsBean.getData().getModel_list().get(0).getModel_name());
+                model_id = privateCustomDetailsBean.getData().getModel_list().get(0).getId();
+                tv_selectVehicle.setVisibility(View.GONE);
+            }
+            if (privateCustomDetailsBean.getData() != null && privateCustomDetailsBean.getData().getModel_list() != null && privateCustomDetailsBean.getData().getModel_list().size() > 1) {
+                tv_selectVehicle.setVisibility(View.VISIBLE);
+                setDialog(privateCustomDetailsBean.getData().getModel_list());
+            }
+        } else if (flag == 1) {
+            Intent intent = new Intent();
+            // 获取内容
+            setResult(RESULT_OK, intent);
+            finish();
         }
-        tv_title.setText(privateCustomDetailsBean.getData().getTitle());
-        tv_orderPrice.setText(getString(R.string.renminbi) + privateCustomDetailsBean.getData().getOrder_price());
-        tv_demand.setText(privateCustomDetailsBean.getData().getSubtitle());
-        tv_time.setText(DataUtil.formatData(StringUtils.toLong(privateCustomDetailsBean.getData().getStart_time()), "yyyy-MM-dd") + "—"
-                + DataUtil.formatData(StringUtils.toLong(privateCustomDetailsBean.getData().getEnd_time()), "yyyy-MM-dd"));
-        tv_serviceTime.setText(DataUtil.formatData(StringUtils.toLong(privateCustomDetailsBean.getData().getStart_time()), "yyyy-MM-dd") + "—"
-                + DataUtil.formatData(StringUtils.toLong(privateCustomDetailsBean.getData().getEnd_time()), "yyyy-MM-dd"));
-
-        tv_travelPreferences.setText(privateCustomDetailsBean.getData().getTravel_preference());
-        tv_foodPreferences.setText(privateCustomDetailsBean.getData().getRepast_preference());
-        tv_accommodationPreferences.setText(privateCustomDetailsBean.getData().getStay_preference());
-
-        tv_placeDeparture.setText(privateCustomDetailsBean.getData().getOrigin_name());
-        tv_deliveredAirport.setText(privateCustomDetailsBean.getData().getDestination_name());
-        tv_reserveRequirements.setText(privateCustomDetailsBean.getData().getBooking_request());
-        tv_orderNumber.setText(privateCustomDetailsBean.getData().getOrder_number());
-        tv_orderIncome.setText(getString(R.string.rmb) + "  " + privateCustomDetailsBean.getData().getOrder_price());
-        tv_aggregate.setText(getString(R.string.rmb) + "  " + privateCustomDetailsBean.getData().getOrder_price());
-
-        String schedule = "<!DOCTYPE html><html lang=\"zh\"><head>\t<meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no\" /><title></title></head><body>" +
-                privateCustomDetailsBean.getData().getSchedule() + "</body></html>";
-        web_detailedItinerary.loadDataWithBaseURL("baseurl", schedule, "text/html", "utf-8", null);
-        String book_comment = "<!DOCTYPE html><html lang=\"zh\"><head>\t<meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no\" /><title></title></head><body>" +
-                privateCustomDetailsBean.getData().getBook_comment() + "</body></html>";
-        web_dueThat.loadDataWithBaseURL("baseurl", book_comment, "text/html", "utf-8", null);
-        String price_description = "<!DOCTYPE html><html lang=\"zh\"><head>\t<meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no\" /><title></title></head><body>" +
-                privateCustomDetailsBean.getData().getPrice_comment() + "</body></html>";
-        web_descriptionThat.loadDataWithBaseURL("baseurl", price_description, "text/html", "utf-8", null);
-        if (privateCustomDetailsBean.getData() != null && privateCustomDetailsBean.getData().getModel_list() != null && privateCustomDetailsBean.getData().getModel_list().size() == 1) {
-            tv_licensePlateNumber.setText(privateCustomDetailsBean.getData().getModel_list().get(0).getLicense_plate());
-            tv_models.setText(privateCustomDetailsBean.getData().getModel_list().get(0).getModel_name());
-            model_id = privateCustomDetailsBean.getData().getModel_list().get(0).getId();
-            tv_selectVehicle.setVisibility(View.GONE);
-        }
-        if (privateCustomDetailsBean.getData() != null && privateCustomDetailsBean.getData().getModel_list() != null && privateCustomDetailsBean.getData().getModel_list().size() > 1) {
-            tv_selectVehicle.setVisibility(View.VISIBLE);
-            setDialog(privateCustomDetailsBean.getData().getModel_list());
-        }
-
     }
 
     private void setDialog(List<ModelListBean> list) {
