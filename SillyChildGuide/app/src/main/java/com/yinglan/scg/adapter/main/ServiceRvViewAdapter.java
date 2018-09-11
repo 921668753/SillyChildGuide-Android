@@ -29,11 +29,11 @@ public class ServiceRvViewAdapter extends BGARecyclerViewAdapter<OrderBean.DataB
 
     @Override
     public int getItemViewType(int position) {
-        if (getItem(position).getStatus() == 1) {
-            return R.layout.item_airporttransportationorder;
-        } else {
-            return R.layout.item_charterorder;
-        }
+//        if (getItem(position).getStatus() == 1) {
+//            return R.layout.item_airporttransportationorder;
+//        } else {
+        return R.layout.item_charterorder;
+//        }
     }
 
 

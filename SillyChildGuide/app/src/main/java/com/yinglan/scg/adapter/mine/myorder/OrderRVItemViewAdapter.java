@@ -32,11 +32,11 @@ public class OrderRVItemViewAdapter extends BGARecyclerViewAdapter<ResultBean> {
 
     @Override
     public int getItemViewType(int position) {
-        if (getItem(position).getStatus() == 1) {
+        //if (getItem(position).getStatus() == 1) {
             return R.layout.item_airporttransportationorder;
-        } else {
-            return R.layout.item_charterorder;
-        }
+     //   } else {
+    //        return R.layout.item_charterorder;
+    //    }
     }
 
 

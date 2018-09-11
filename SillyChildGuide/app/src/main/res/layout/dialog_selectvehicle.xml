@@ -8,7 +8,6 @@
     <LinearLayout
         android:id="@+id/ll_content"
         style="@style/MatchWrap"
-        android:layout_height="@dimen/dimen275"
         android:layout_marginLeft="@dimen/dimen38"
         android:layout_marginTop="@dimen/dimen130"
         android:layout_marginRight="@dimen/dimen38"

@@ -202,7 +202,7 @@ public class ServiceFragment extends BaseFragment implements ServiceContract.Vie
             aty.showActivity(aty, TravelCalendarActivity.class);
         } else if (flag == 3) {
             Intent intent = new Intent(aty, CharterDetailsActivity.class);
-            intent.putExtra("id", mAdapter.getItem(selectedPosition).getOrder_id());
+          //  intent.putExtra("id", mAdapter.getItem(selectedPosition).getOrder_id());
 //            if () {
 //                intent.setClass(aty, CharterDetailsActivity.class);
 //            } else if (mAdapter.getItem(position)) {

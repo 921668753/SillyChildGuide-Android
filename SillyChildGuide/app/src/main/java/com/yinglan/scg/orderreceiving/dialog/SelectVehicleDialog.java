@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
@@ -13,6 +14,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.common.cklibrary.common.BaseDialog;
+import com.kymjs.common.DensityUtils;
 import com.yinglan.scg.R;
 import com.yinglan.scg.adapter.orderreceiving.dialog.SelectVehicleViewAdapter;
 import com.yinglan.scg.entity.orderreceiving.TransferDetailsBean.DataBean.ModelListBean;
@@ -51,6 +53,10 @@ public abstract class SelectVehicleDialog extends BaseDialog implements AdapterV
         lv_myVehicle.setAdapter(mAdapter);
         mAdapter.clear();
         mAdapter.addNewData(list);
+        if (list.size() > 2) {
+            ViewGroup.LayoutParams layoutParams = lv_myVehicle.getLayoutParams();
+            layoutParams.height = DensityUtils.dip2px(215);
+        }
         lv_myVehicle.setOnItemClickListener(this);
         TextView tv_determine = (TextView) findViewById(R.id.tv_determine);
         tv_determine.setOnClickListener(this);
