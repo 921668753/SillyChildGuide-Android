@@ -138,6 +138,10 @@ public class CharterDetailsActivity extends BaseActivity implements CharterDetai
             @Override
             public void onClickLeftCtv() {
                 super.onClickLeftCtv();
+                if (getIntent().getIntExtra("type", 0) == 1) {
+                    finish();
+                    return;
+                }
                 if (unwillingnessTakeOrdersDialog == null) {
                     initDialog();
                 }

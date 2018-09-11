@@ -133,6 +133,10 @@ public class TransferDetailsActivity extends BaseActivity implements CharterDeta
             @Override
             public void onClickLeftCtv() {
                 super.onClickLeftCtv();
+                if (getIntent().getIntExtra("type", 0) == 1) {
+                    finish();
+                    return;
+                }
                 if (unwillingnessTakeOrdersDialog == null) {
                     initDialog();
                 }

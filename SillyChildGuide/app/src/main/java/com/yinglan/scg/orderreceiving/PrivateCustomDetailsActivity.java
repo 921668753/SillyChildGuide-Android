@@ -104,7 +104,7 @@ public class PrivateCustomDetailsActivity extends BaseActivity implements Charte
     private int model_id = 0;
     private SelectVehicleDialog selectVehicleDialog = null;
     private UnwillingnessTakeOrdersDialog unwillingnessTakeOrdersDialog = null;
-    private OrderReceivingDialog orderReceivingDialog=null;
+    private OrderReceivingDialog orderReceivingDialog = null;
 
 
     @Override
@@ -148,6 +148,10 @@ public class PrivateCustomDetailsActivity extends BaseActivity implements Charte
             @Override
             public void onClickLeftCtv() {
                 super.onClickLeftCtv();
+                if (getIntent().getIntExtra("type", 0) == 1) {
+                    finish();
+                    return;
+                }
                 if (unwillingnessTakeOrdersDialog == null) {
                     initDialog();
                 }
