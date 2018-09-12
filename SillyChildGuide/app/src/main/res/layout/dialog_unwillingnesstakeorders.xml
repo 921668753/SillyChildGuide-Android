@@ -7,7 +7,6 @@
     <LinearLayout
         android:id="@+id/ll_content"
         style="@style/MatchWrap"
-        android:layout_height="@dimen/dimen275"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="@dimen/dimen38"
         android:layout_marginRight="@dimen/dimen38"
@@ -35,6 +34,7 @@
             style="@style/MatchWrap"
             android:divider="@color/background"
             android:dividerHeight="@dimen/dimen1"
+            android:listSelector="@android:color/transparent"
             android:scrollbars="none"
             tools:listitem="@layout/item_reason" />
 

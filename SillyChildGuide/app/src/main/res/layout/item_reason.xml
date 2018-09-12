@@ -4,6 +4,7 @@
     android:orientation="vertical">
 
     <TextView
+        android:id="@+id/tv_reason"
         style="@style/MatchWrap"
         android:paddingBottom="@dimen/dimen23"
         android:paddingLeft="@dimen/dimen36"

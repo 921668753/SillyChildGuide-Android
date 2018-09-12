@@ -113,7 +113,7 @@ public class LineDetailsActivity extends BaseActivity implements CharterDetailsC
     }
 
     private void initDialog() {
-        unwillingnessTakeOrdersDialog = new UnwillingnessTakeOrdersDialog(this);
+        unwillingnessTakeOrdersDialog = new UnwillingnessTakeOrdersDialog(this, order_number);
     }
 
 

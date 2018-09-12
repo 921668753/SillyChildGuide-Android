@@ -125,7 +125,7 @@ public class PrivateCustomDetailsActivity extends BaseActivity implements Charte
     }
 
     private void initDialog() {
-        unwillingnessTakeOrdersDialog = new UnwillingnessTakeOrdersDialog(this);
+        unwillingnessTakeOrdersDialog = new UnwillingnessTakeOrdersDialog(this, order_number);
     }
 
     private void initDialog1() {

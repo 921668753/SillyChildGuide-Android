@@ -109,7 +109,7 @@ public class TransferDetailsActivity extends BaseActivity implements CharterDeta
     }
 
     private void initDialog() {
-        unwillingnessTakeOrdersDialog = new UnwillingnessTakeOrdersDialog(this);
+        unwillingnessTakeOrdersDialog = new UnwillingnessTakeOrdersDialog(this, order_number);
     }
 
     private void initDialog1() {

@@ -102,6 +102,11 @@ public class URLConstants {
     public static String GETTRAVELORDERDETAILS = APIURL + "order/get_travel_order_details.do";
 
     /**
+     * 获取取消订单的原因列表
+     */
+    public static String CANCELREASONLIST = APIURL + "order/get_cancel_reason_list.do";
+
+    /**
      * 快速接单
      */
     public static String GUIDESUBMITORDER = APIURL + "order/guide_submit_order.do";

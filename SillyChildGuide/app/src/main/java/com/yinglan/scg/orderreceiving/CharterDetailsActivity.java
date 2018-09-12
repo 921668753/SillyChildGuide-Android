@@ -129,7 +129,7 @@ public class CharterDetailsActivity extends BaseActivity implements CharterDetai
 
 
     private void initDialog() {
-        unwillingnessTakeOrdersDialog = new UnwillingnessTakeOrdersDialog(this);
+        unwillingnessTakeOrdersDialog = new UnwillingnessTakeOrdersDialog(this, order_number);
     }
 
     @Override
@@ -209,10 +209,10 @@ public class CharterDetailsActivity extends BaseActivity implements CharterDetai
             tv_aggregate.setText(getString(R.string.rmb) + "  " + charterDetailsBean.getData().getOrder_price());
             String book_comment = "<!DOCTYPE html><html lang=\"zh\"><head>\t<meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no\" /><title></title></head><body>" +
                     charterDetailsBean.getData().getBook_comment() + "</body></html>";
-            web_dueThat.loadDataWithBaseURL("baseurl", book_comment, "text/html", "utf-8", null);
+            web_dueThat.loadDataWithBaseURL("", book_comment, "text/html", "utf-8", null);
             String price_description = "<!DOCTYPE html><html lang=\"zh\"><head>\t<meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no\" /><title></title></head><body>" +
                     charterDetailsBean.getData().getPrice_comment() + "</body></html>";
-            web_descriptionThat.loadDataWithBaseURL("baseurl", price_description, "text/html", "utf-8", null);
+            web_descriptionThat.loadDataWithBaseURL("", price_description, "text/html", "utf-8", null);
             if (charterDetailsBean.getData() != null && charterDetailsBean.getData().getModel_list() != null && charterDetailsBean.getData().getModel_list().size() == 1) {
                 tv_licensePlateNumber.setText(charterDetailsBean.getData().getModel_list().get(0).getLicense_plate());
                 tv_models.setText(charterDetailsBean.getData().getModel_list().get(0).getModel_name());

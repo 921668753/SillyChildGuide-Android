@@ -428,6 +428,13 @@ public class RequestClient {
     }
 
     /**
+     * 获取取消订单的原因列表
+     */
+    public static void getCancelReasonList(Context context, HttpParams httpParams, ResponseListener<String> listener) {
+        HttpRequest.requestGetHttp(context, URLConstants.CANCELREASONLIST, httpParams, listener);
+    }
+
+    /**
      * 快速接单
      */
     public static void postGuideSubmitOrder(Context context, HttpParams httpParams, ResponseListener<String> listener) {
