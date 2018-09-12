@@ -11,14 +11,15 @@ import java.util.List;
 
 public class OrderBean extends BaseResult<OrderBean.DataBean> {
 
+
     public class DataBean {
         /**
          * pageSize : 5
-         * totalCount : 35
+         * totalCount : 5
          * currentPageNo : 1
          * draw : 0
-         * result : [{"order_number":"SHZ20180910123749863894833","product_set_name":"精品线路","product_set_cd":5,"start_time":"1537459200","end_time":1537718400,"product_name":"大阪3天2夜精选路线","order_price":"0.02"},{"order_number":"SHZ20180903155402787087264","product_set_name":"接机","product_set_cd":1,"start_time":"1536134000","origin_name":"成田机场","destination_name":"gg","order_price":"0.01"},{"order_number":"SHZ20180903155604889329092","product_set_name":"送机","product_set_cd":2,"start_time":"1536047741","origin_name":"成田机场","destination_name":"cgf","order_price":"0.01"},{"order_number":"SHZ2018090316002280595258","product_set_name":"精品线路","product_set_cd":5,"start_time":"1536768000","end_time":1537027200,"product_name":"大阪3天2夜精选路线","order_price":"0.01"},{"order_number":"SHZ2018082413530409100405","product_set_name":"包车","product_set_cd":3,"start_time":"1535904000","end_time":"1536163200","product_name":"东京市内包车","order_price":"0.03"}]
-         * totalPageCount : 7
+         * result : [{"order_number":"SHZ20180904120014723654307","product_set_name":"私人定制","product_set_cd":4,"order_price":"0.01","product_name":"gg定制游","start_time":1537372800,"end_time":1537545600,"order_status":2},{"order_number":"SHZ2018082518191295203625","product_set_name":"接机","product_set_cd":1,"order_price":"0.01","start_time":1535685943,"order_status":1,"origin_name":"成田机场","destination_name":"放鹤路1088号"},{"order_number":"SHZ20180827094535332869911","product_set_name":"送机","product_set_cd":2,"order_price":"0.01","start_time":1535685943,"order_status":1,"origin_name":"成田机场","destination_name":"放鹤路1088号"},{"order_number":"SHZ2018082712375753977508","product_set_name":"包车","product_set_cd":3,"order_price":"0.04","start_time":1535904000,"end_time":1537163200,"order_status":1,"product_name":"东京市内包车"},{"order_number":"SHZ20180829095839568812511","product_set_name":"精品线路","product_set_cd":5,"order_price":"0.01","start_time":1535644800,"end_time":1537372800,"order_status":1,"product_name":"大阪3天2夜精选路线"}]
+         * totalPageCount : 1
          */
 
         private int pageSize;
@@ -79,26 +80,37 @@ public class OrderBean extends BaseResult<OrderBean.DataBean> {
 
         public class ResultBean {
             /**
-             * order_number : SHZ20180910123749863894833
-             * product_set_name : 精品线路
-             * product_set_cd : 5
-             * start_time : 1537459200
-             * end_time : 1537718400
-             * product_name : 大阪3天2夜精选路线
-             * order_price : 0.02
+             * order_number : SHZ20180904120014723654307
+             * product_set_name : 私人定制
+             * product_set_cd : 4
+             * order_price : 0.01
+             * product_name : gg定制游
+             * start_time : 1537372800
+             * end_time : 1537545600
+             * order_status : 2
              * origin_name : 成田机场
-             * destination_name : gg
+             * destination_name : 放鹤路1088号
              */
 
             private String order_number;
             private String product_set_name;
             private int product_set_cd;
+            private String order_price;
+            private int isFirst;
+            private String product_name;
             private String start_time;
             private String end_time;
-            private String product_name;
-            private String order_price;
+            private int order_status;
             private String origin_name;
             private String destination_name;
+
+            public int getIsFirst() {
+                return isFirst;
+            }
+
+            public void setIsFirst(int isFirst) {
+                this.isFirst = isFirst;
+            }
 
             public String getOrder_number() {
                 return order_number;
@@ -124,6 +136,22 @@ public class OrderBean extends BaseResult<OrderBean.DataBean> {
                 this.product_set_cd = product_set_cd;
             }
 
+            public String getOrder_price() {
+                return order_price;
+            }
+
+            public void setOrder_price(String order_price) {
+                this.order_price = order_price;
+            }
+
+            public String getProduct_name() {
+                return product_name;
+            }
+
+            public void setProduct_name(String product_name) {
+                this.product_name = product_name;
+            }
+
             public String getStart_time() {
                 return start_time;
             }
@@ -140,20 +168,12 @@ public class OrderBean extends BaseResult<OrderBean.DataBean> {
                 this.end_time = end_time;
             }
 
-            public String getProduct_name() {
-                return product_name;
+            public int getOrder_status() {
+                return order_status;
             }
 
-            public void setProduct_name(String product_name) {
-                this.product_name = product_name;
-            }
-
-            public String getOrder_price() {
-                return order_price;
-            }
-
-            public void setOrder_price(String order_price) {
-                this.order_price = order_price;
+            public void setOrder_status(int order_status) {
+                this.order_status = order_status;
             }
 
             public String getOrigin_name() {

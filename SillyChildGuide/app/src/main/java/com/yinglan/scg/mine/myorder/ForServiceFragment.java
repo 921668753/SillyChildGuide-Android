@@ -17,12 +17,14 @@ import android.widget.TextView;
 import com.common.cklibrary.common.BaseFragment;
 import com.common.cklibrary.common.BindView;
 import com.common.cklibrary.common.ViewInject;
+import com.common.cklibrary.utils.JsonUtil;
 import com.common.cklibrary.utils.RefreshLayoutUtil;
 import com.common.cklibrary.utils.rx.MsgEvent;
 import com.kymjs.common.Log;
 import com.yinglan.scg.R;
 import com.yinglan.scg.adapter.mine.myorder.OrderViewAdapter;
 import com.yinglan.scg.constant.NumericConstants;
+import com.yinglan.scg.entity.mine.myorder.OrderBean;
 import com.yinglan.scg.loginregister.LoginActivity;
 
 import java.util.List;
@@ -197,36 +199,51 @@ public class ForServiceFragment extends BaseFragment implements AdapterView.OnIt
     @Override
     public void getSuccess(String success, int flag) {
         if (flag == 0) {
+            dismissLoadingDialog();
             isShowLoadingMore = true;
             mRefreshLayout.setPullDownRefreshEnable(true);
             ll_commonError.setVisibility(View.GONE);
             mRefreshLayout.setVisibility(View.VISIBLE);
-//            CharterOrderBean charterOrderBean = (CharterOrderBean) JsonUtil.getInstance().json2Obj(success, CharterOrderBean.class);
-//            if (charterOrderBean.getData() == null && mMorePageNumber == NumericConstants.START_PAGE_NUMBER ||
-//                    charterOrderBean.getData().getResultX() == null && mMorePageNumber == NumericConstants.START_PAGE_NUMBER ||
-//                    charterOrderBean.getData().getResultX().size() <= 0 && mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
-//                errorMsg(getString(R.string.noOrder), 0);
-//                return;
-//            } else if (charterOrderBean.getData() == null && mMorePageNumber > NumericConstants.START_PAGE_NUMBER ||
-//                    charterOrderBean.getData().getResultX() == null && mMorePageNumber > NumericConstants.START_PAGE_NUMBER ||
-//                    charterOrderBean.getData().getResultX().size() <= 0 && mMorePageNumber > NumericConstants.START_PAGE_NUMBER) {
-//                ViewInject.toast(getString(R.string.noMoreData));
-//                isShowLoadingMore = false;
-//                dismissLoadingDialog();
-//                mRefreshLayout.endLoadingMore();
-//                return;
-//            }
-//            mMorePageNumber = charterOrderBean.getData().getCurrentPageNo();
-//            totalPageNumber = charterOrderBean.getData().getTotalPageCount();
-//            if (mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
-//                mRefreshLayout.endRefreshing();
-//                mAdapter.clear();
-//                mAdapter.addNewData(charterOrderBean.getData().getResultX());
-//            } else {
-//                mRefreshLayout.endLoadingMore();
-//                mAdapter.addMoreData(charterOrderBean.getData().getResultX());
-//            }
-//            dismissLoadingDialog();
+            OrderBean orderBean = (OrderBean) JsonUtil.getInstance().json2Obj(success, OrderBean.class);
+            if (orderBean.getData() == null && mMorePageNumber == NumericConstants.START_PAGE_NUMBER ||
+                    orderBean.getData().getResultX() == null && mMorePageNumber == NumericConstants.START_PAGE_NUMBER ||
+                    orderBean.getData().getResultX().size() <= 0 && mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
+                errorMsg(getString(R.string.noOrder), 0);
+                return;
+            } else if (orderBean.getData() == null && mMorePageNumber > NumericConstants.START_PAGE_NUMBER ||
+                    orderBean.getData().getResultX() == null && mMorePageNumber > NumericConstants.START_PAGE_NUMBER ||
+                    orderBean.getData().getResultX().size() <= 0 && mMorePageNumber > NumericConstants.START_PAGE_NUMBER) {
+                ViewInject.toast(getString(R.string.noMoreData));
+                isShowLoadingMore = false;
+                dismissLoadingDialog();
+                mRefreshLayout.endLoadingMore();
+                return;
+            }
+            mMorePageNumber = orderBean.getData().getCurrentPageNo();
+            totalPageNumber = orderBean.getData().getTotalPageCount();
+            boolean isFist = true;
+            for (int i = 0; i < orderBean.getData().getResultX().size(); i++) {
+                if (orderBean.getData().getResultX().get(i).getOrder_status() == 1 && !isFist) {
+                    orderBean.getData().getResultX().get(i).setIsFirst(1);
+                    isFist = true;
+                } else if (orderBean.getData().getResultX().get(i).getOrder_status() == 1 && isFist) {
+                    orderBean.getData().getResultX().get(i).setIsFirst(0);
+                } else if (orderBean.getData().getResultX().get(i).getOrder_status() == 2 && isFist) {
+                    orderBean.getData().getResultX().get(i).setIsFirst(1);
+                    isFist = false;
+                } else if (orderBean.getData().getResultX().get(i).getOrder_status() == 2 && !isFist) {
+                    orderBean.getData().getResultX().get(i).setIsFirst(0);
+                }
+            }
+            if (mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
+                mRefreshLayout.endRefreshing();
+                mAdapter.clear();
+                mAdapter.addNewData(orderBean.getData().getResultX());
+            } else {
+                mRefreshLayout.endLoadingMore();
+                mAdapter.addMoreData(orderBean.getData().getResultX());
+            }
+            dismissLoadingDialog();
 //        } else if (flag == 1) {//确认结束订单
 //            Intent intent = new Intent(aty, PaymentTravelOrderActivity.class);
 //            intent.putExtra("order_id", bean.getOrder_id());
@@ -292,8 +309,7 @@ public class ForServiceFragment extends BaseFragment implements AdapterView.OnIt
     @Override
     public void callMsgEvent(MsgEvent msgEvent) {
         super.callMsgEvent(msgEvent);
-        if (((String) msgEvent.getData()).equals("RxBusLoginEvent") && mPresenter != null || ((String) msgEvent.getData()).equals("RxBusLogOutEvent") && mPresenter != null ||
-                ((String) msgEvent.getData()).equals("RxBusPayTravelCompleteEvent") && mPresenter != null || ((String) msgEvent.getData()).equals("RxBusCharterCommentEvent") && mPresenter != null) {
+        if (((String) msgEvent.getData()).equals("RxBusLoginEvent") && mPresenter != null || ((String) msgEvent.getData()).equals("RxBusLogOutEvent") && mPresenter != null) {
             mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
             ((OrderContract.Presenter) mPresenter).getMyOrderPage(aty, status, mMorePageNumber);
         }

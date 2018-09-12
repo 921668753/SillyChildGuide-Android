@@ -7,14 +7,12 @@
     <TextView
         android:id="@+id/tv_statusOrder"
         style="@style/WrapWrap"
+        android:layout_width="@dimen/dimen81"
+        android:layout_height="@dimen/dimen27"
         android:layout_marginBottom="@dimen/dimen9"
         android:layout_marginLeft="@dimen/dimen27"
-        android:layout_marginTop="@dimen/dimen9"
         android:background="@drawable/shape_airporttransportationorder"
-        android:paddingBottom="@dimen/dimen7"
-        android:paddingLeft="@dimen/dimen18"
-        android:paddingRight="@dimen/dimen18"
-        android:paddingTop="@dimen/dimen7"
+        android:gravity="center"
         android:text="@string/ongoing"
         android:textColor="@color/greenColors"
         android:textSize="@dimen/textsize14" />

@@ -16,10 +16,9 @@ import cn.bingoogolapple.baseadapter.BGAViewHolderHelper;
  * 我的订单---适配器
  * Created by Admin on 2017/8/15.
  */
-
 public class OrderViewAdapter extends BGAAdapterViewAdapter<ResultBean> {
 
-//    public OrderViewAdapter(RecyclerView recyclerView) {
+    //    public OrderViewAdapter(RecyclerView recyclerView) {
 //        super(recyclerView, R.layout.item_order);
 //    }
     public OrderViewAdapter(Context context) {
@@ -39,8 +38,36 @@ public class OrderViewAdapter extends BGAAdapterViewAdapter<ResultBean> {
 
     @Override
     public void fillData(BGAViewHolderHelper viewHolderHelper, int position, ResultBean model) {
-        viewHolderHelper.setVisibility(R.id.tv_statusOrder, View.GONE);
+        if (model.getIsFirst() == 1) {
+            viewHolderHelper.setVisibility(R.id.tv_statusOrder, View.VISIBLE);
+        } else {
+            viewHolderHelper.setVisibility(R.id.tv_statusOrder, View.GONE);
+        }
         viewHolderHelper.setVisibility(R.id.tv_divider, View.GONE);
+        switch (model.getOrder_status()) {
+            case 1://待服务
+                viewHolderHelper.setText(R.id.tv_statusOrder, mContext.getString(R.string.pending));
+                viewHolderHelper.setTextColorRes(R.id.tv_statusOrder, R.color.fF5656Colors);
+                viewHolderHelper.setBackgroundRes(R.id.tv_statusOrder, R.drawable.shape_pending);
+                break;
+            case 2://进行中
+                viewHolderHelper.setText(R.id.tv_statusOrder, mContext.getString(R.string.ongoing));
+                viewHolderHelper.setTextColorRes(R.id.tv_statusOrder, R.color.greenColors);
+                viewHolderHelper.setBackgroundRes(R.id.tv_statusOrder, R.drawable.shape_airporttransportationorder);
+                break;
+            case 3://待评价
+                viewHolderHelper.setText(R.id.tv_statusOrder, mContext.getString(R.string.toEvaluate));
+                viewHolderHelper.setTextColorRes(R.id.tv_statusOrder, R.color.ff9955Colors);
+                viewHolderHelper.setBackgroundRes(R.id.tv_statusOrder, R.drawable.shape_toevaluate);
+                break;
+            case 4://完成
+                viewHolderHelper.setText(R.id.tv_statusOrder, mContext.getString(R.string.completed));
+                viewHolderHelper.setTextColorRes(R.id.tv_statusOrder, R.color.hintColors);
+                viewHolderHelper.setBackgroundRes(R.id.tv_statusOrder, R.drawable.shape_completed);
+                break;
+            default:
+                break;
+        }
         switch (model.getProduct_set_cd()) {
             case 1://接机
             case 2://送机

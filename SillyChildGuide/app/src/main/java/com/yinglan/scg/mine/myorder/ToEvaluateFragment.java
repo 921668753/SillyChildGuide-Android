@@ -2,7 +2,6 @@ package com.yinglan.scg.mine.myorder;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,9 +18,9 @@ import com.common.cklibrary.utils.JsonUtil;
 import com.common.cklibrary.utils.RefreshLayoutUtil;
 import com.common.cklibrary.utils.rx.MsgEvent;
 import com.yinglan.scg.R;
-import com.yinglan.scg.adapter.mine.myorder.OrderRVItemViewAdapter;
 import com.yinglan.scg.adapter.mine.myorder.OrderViewAdapter;
 import com.yinglan.scg.constant.NumericConstants;
+import com.yinglan.scg.entity.mine.myorder.OrderBean;
 import com.yinglan.scg.loginregister.LoginActivity;
 
 import cn.bingoogolapple.baseadapter.BGAOnItemChildClickListener;
@@ -177,31 +176,31 @@ public class ToEvaluateFragment extends BaseFragment implements AdapterView.OnIt
             mRefreshLayout.setPullDownRefreshEnable(true);
             ll_commonError.setVisibility(View.GONE);
             mRefreshLayout.setVisibility(View.VISIBLE);
-//            CharterOrderBean charterOrderBean = (CharterOrderBean) JsonUtil.getInstance().json2Obj(success, CharterOrderBean.class);
-//            if (charterOrderBean.getData() == null && mMorePageNumber == NumericConstants.START_PAGE_NUMBER ||
-//                    charterOrderBean.getData().getResultX() == null && mMorePageNumber == NumericConstants.START_PAGE_NUMBER ||
-//                    charterOrderBean.getData().getResultX().size() <= 0 && mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
-//                errorMsg(getString(R.string.noOrder), 0);
-//                return;
-//            } else if (charterOrderBean.getData() == null && mMorePageNumber > NumericConstants.START_PAGE_NUMBER ||
-//                    charterOrderBean.getData().getResultX() == null && mMorePageNumber > NumericConstants.START_PAGE_NUMBER ||
-//                    charterOrderBean.getData().getResultX().size() <= 0 && mMorePageNumber > NumericConstants.START_PAGE_NUMBER) {
-//                ViewInject.toast(getString(R.string.noMoreData));
-//                isShowLoadingMore = false;
-//                dismissLoadingDialog();
-//                mRefreshLayout.endLoadingMore();
-//                return;
-//            }
-//            mMorePageNumber = charterOrderBean.getData().getCurrentPageNo();
-//            totalPageNumber = charterOrderBean.getData().getTotalPageCount();
-//            if (mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
-//                mRefreshLayout.endRefreshing();
-//                mAdapter.clear();
-//                mAdapter.addNewData(charterOrderBean.getData().getResultX());
-//            } else {
-//                mRefreshLayout.endLoadingMore();
-//                mAdapter.addMoreData(charterOrderBean.getData().getResultX());
-//            }
+            OrderBean orderBean = (OrderBean) JsonUtil.getInstance().json2Obj(success, OrderBean.class);
+            if (orderBean.getData() == null && mMorePageNumber == NumericConstants.START_PAGE_NUMBER ||
+                    orderBean.getData().getResultX() == null && mMorePageNumber == NumericConstants.START_PAGE_NUMBER ||
+                    orderBean.getData().getResultX().size() <= 0 && mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
+                errorMsg(getString(R.string.noOrder), 0);
+                return;
+            } else if (orderBean.getData() == null && mMorePageNumber > NumericConstants.START_PAGE_NUMBER ||
+                    orderBean.getData().getResultX() == null && mMorePageNumber > NumericConstants.START_PAGE_NUMBER ||
+                    orderBean.getData().getResultX().size() <= 0 && mMorePageNumber > NumericConstants.START_PAGE_NUMBER) {
+                ViewInject.toast(getString(R.string.noMoreData));
+                isShowLoadingMore = false;
+                dismissLoadingDialog();
+                mRefreshLayout.endLoadingMore();
+                return;
+            }
+            mMorePageNumber = orderBean.getData().getCurrentPageNo();
+            totalPageNumber = orderBean.getData().getTotalPageCount();
+            if (mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
+                mRefreshLayout.endRefreshing();
+                mAdapter.clear();
+                mAdapter.addNewData(orderBean.getData().getResultX());
+            } else {
+                mRefreshLayout.endLoadingMore();
+                mAdapter.addMoreData(orderBean.getData().getResultX());
+            }
             dismissLoadingDialog();
         }
     }
@@ -225,7 +224,6 @@ public class ToEvaluateFragment extends BaseFragment implements AdapterView.OnIt
                 tv_hintText.setVisibility(View.GONE);
                 tv_button.setText(getString(R.string.login));
                 // ViewInject.toast(getString(R.string.reloginPrompting));
-                aty.showActivity(aty, LoginActivity.class);
                 return;
             } else if (msg.contains(getString(R.string.checkNetwork))) {
                 img_err.setImageResource(R.mipmap.no_network);

@@ -293,7 +293,7 @@ public class AllFragment extends BaseFragment implements AdapterView.OnItemClick
     public void callMsgEvent(MsgEvent msgEvent) {
         super.callMsgEvent(msgEvent);
         if (((String) msgEvent.getData()).equals("RxBusLoginEvent") && mPresenter != null || ((String) msgEvent.getData()).equals("RxBusLogOutEvent") && mPresenter != null ||
-                ((String) msgEvent.getData()).equals("RxBusPayTravelCompleteEvent") && mPresenter != null || ((String) msgEvent.getData()).equals("RxBusCharterCommentEvent") && mPresenter != null) {
+                ((String) msgEvent.getData()).equals("RxBusCharterCommentEvent") && mPresenter != null) {
             mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
             ((OrderContract.Presenter) mPresenter).getMyOrderPage(aty, status, mMorePageNumber);
         }
@@ -332,7 +332,7 @@ public class AllFragment extends BaseFragment implements AdapterView.OnItemClick
     @Override
     public void onPermissionsDenied(int requestCode, List<String> perms) {
         if (requestCode == NumericConstants.READ_AND_WRITE_CODE) {
-        //    ViewInject.toast(getString(R.string.callPermission));
+            //    ViewInject.toast(getString(R.string.callPermission));
         }
     }
 
