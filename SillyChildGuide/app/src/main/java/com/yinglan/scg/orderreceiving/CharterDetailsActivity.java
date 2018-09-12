@@ -224,6 +224,7 @@ public class CharterDetailsActivity extends BaseActivity implements CharterDetai
                 setDialog(charterDetailsBean.getData().getModel_list());
             }
         } else if (flag == 1) {
+            ViewInject.toast(getString(R.string.orderReceivedSuccessfully));
             Intent intent = new Intent();
             // 获取内容
             setResult(RESULT_OK, intent);

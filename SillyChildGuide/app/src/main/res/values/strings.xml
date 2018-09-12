@@ -136,6 +136,7 @@
     <!--接单-->
     <string name="finishVehicleAuditFirst">请先完成车辆审核，车辆审核通过后，才能接单！</string>
     <string name="missedOrders">错过的订单</string>
+    <string name="orderReceivedSuccessfully">接单订单成功</string>
     <string name="waitingResponseOrders">以下是等待响应的订单</string>
     <string name="rmb">RMB</string>
 

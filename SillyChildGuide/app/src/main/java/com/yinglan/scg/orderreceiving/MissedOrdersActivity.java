@@ -2,7 +2,6 @@ package com.yinglan.scg.orderreceiving;
 
 import android.content.Intent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -23,8 +22,6 @@ import com.yinglan.scg.entity.main.OrderReceivingBean;
 import com.yinglan.scg.loginregister.LoginActivity;
 
 import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
-
-import static com.yinglan.scg.constant.NumericConstants.RESULT_CODE_GET;
 
 /**
  * 错过的订单
