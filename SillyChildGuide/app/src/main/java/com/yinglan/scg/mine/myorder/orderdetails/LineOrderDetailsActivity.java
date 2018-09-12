@@ -1,6 +1,7 @@
 package com.yinglan.scg.mine.myorder.orderdetails;
 
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -163,35 +164,87 @@ public class LineOrderDetailsActivity extends BaseActivity implements CharterOrd
 
     @Override
     public void getSuccess(String success, int flag) {
-        dismissLoadingDialog();
-        LineOrderDetailsBean lineOrderDetailsBean = (LineOrderDetailsBean) JsonUtil.getInstance().json2Obj(success, LineOrderDetailsBean.class);
-        if (lineOrderDetailsBean == null || lineOrderDetailsBean.getData() == null) {
-            errorMsg(getString(R.string.serverError), 0);
-            return;
-        }
-        tv_title.setText(lineOrderDetailsBean.getData().getTitle());
-        tv_orderPrice.setText(getString(R.string.renminbi) + lineOrderDetailsBean.getData().getOrder_price());
-        tv_demand.setText(lineOrderDetailsBean.getData().getSubtitle());
-        tv_time.setText(DataUtil.formatData(StringUtils.toLong(lineOrderDetailsBean.getData().getStart_time()), "yyyy-MM-dd") + "—"
-                + DataUtil.formatData(StringUtils.toLong(lineOrderDetailsBean.getData().getEnd_time()), "yyyy-MM-dd"));
-        tv_serviceTime.setText(DataUtil.formatData(StringUtils.toLong(lineOrderDetailsBean.getData().getStart_time()), "yyyy-MM-dd") + "—"
-                + DataUtil.formatData(StringUtils.toLong(lineOrderDetailsBean.getData().getEnd_time()), "yyyy-MM-dd"));
-        tv_placeDeparture.setText(lineOrderDetailsBean.getData().getOrigin_name());
-        tv_deliveredAirport.setText(lineOrderDetailsBean.getData().getDestination_name());
-        tv_reserveRequirements.setText(lineOrderDetailsBean.getData().getBooking_request());
-        tv_orderNumber.setText(lineOrderDetailsBean.getData().getOrder_number());
-        tv_orderIncome.setText(getString(R.string.rmb) + "  " + lineOrderDetailsBean.getData().getOrder_price());
-        tv_aggregate.setText(getString(R.string.rmb) + "  " + lineOrderDetailsBean.getData().getOrder_price());
+        if (flag == 0) {
+            LineOrderDetailsBean lineOrderDetailsBean = (LineOrderDetailsBean) JsonUtil.getInstance().json2Obj(success, LineOrderDetailsBean.class);
+            if (lineOrderDetailsBean == null || lineOrderDetailsBean.getData() == null) {
+                errorMsg(getString(R.string.serverError), 0);
+                return;
+            }
+            tv_title.setText(lineOrderDetailsBean.getData().getTitle());
+            tv_orderPrice.setText(getString(R.string.renminbi) + lineOrderDetailsBean.getData().getOrder_price());
+            tv_demand.setText(lineOrderDetailsBean.getData().getSubtitle());
+            tv_time.setText(DataUtil.formatData(StringUtils.toLong(lineOrderDetailsBean.getData().getStart_time()), "yyyy-MM-dd") + "—"
+                    + DataUtil.formatData(StringUtils.toLong(lineOrderDetailsBean.getData().getEnd_time()), "yyyy-MM-dd"));
+            tv_serviceTime.setText(DataUtil.formatData(StringUtils.toLong(lineOrderDetailsBean.getData().getStart_time()), "yyyy-MM-dd") + "—"
+                    + DataUtil.formatData(StringUtils.toLong(lineOrderDetailsBean.getData().getEnd_time()), "yyyy-MM-dd"));
+            tv_placeDeparture.setText(lineOrderDetailsBean.getData().getOrigin_name());
+            tv_deliveredAirport.setText(lineOrderDetailsBean.getData().getDestination_name());
+            tv_reserveRequirements.setText(lineOrderDetailsBean.getData().getBooking_request());
+            tv_orderNumber.setText(lineOrderDetailsBean.getData().getOrder_number());
+            tv_orderIncome.setText(getString(R.string.rmb) + "  " + lineOrderDetailsBean.getData().getOrder_price());
+            tv_aggregate.setText(getString(R.string.rmb) + "  " + lineOrderDetailsBean.getData().getOrder_price());
 
-        String product_description = "<!DOCTYPE html><html lang=\"zh\"><head>\t<meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no\" /><title></title></head><body>" +
-                lineOrderDetailsBean.getData().getProduct_description() + "</body></html>";
-        web_lineDetails.loadDataWithBaseURL("", product_description, "text/html", "utf-8", null);
-        String book_comment = "<!DOCTYPE html><html lang=\"zh\"><head>\t<meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no\" /><title></title></head><body>" +
-                lineOrderDetailsBean.getData().getBook_comment() + "</body></html>";
-        web_dueThat.loadDataWithBaseURL("", book_comment, "text/html", "utf-8", null);
-        String price_description = "<!DOCTYPE html><html lang=\"zh\"><head>\t<meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no\" /><title></title></head><body>" +
-                lineOrderDetailsBean.getData().getPrice_comment() + "</body></html>";
-        web_descriptionThat.loadDataWithBaseURL("", price_description, "text/html", "utf-8", null);
+            tv_contact.setText(lineOrderDetailsBean.getData().getContact());
+            tv_contactWay.setText(lineOrderDetailsBean.getData().getConnect_number());
+            tv_licensePlateNumber.setText(lineOrderDetailsBean.getData().getLicense_plate());
+            tv_models.setText(lineOrderDetailsBean.getData().getModel_name());
+
+            String product_description = "<!DOCTYPE html><html lang=\"zh\"><head>\t<meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no\" /><title></title></head><body>" +
+                    lineOrderDetailsBean.getData().getProduct_description() + "</body></html>";
+            web_lineDetails.loadDataWithBaseURL("", product_description, "text/html", "utf-8", null);
+            String book_comment = "<!DOCTYPE html><html lang=\"zh\"><head>\t<meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no\" /><title></title></head><body>" +
+                    lineOrderDetailsBean.getData().getBook_comment() + "</body></html>";
+            web_dueThat.loadDataWithBaseURL("", book_comment, "text/html", "utf-8", null);
+            String price_description = "<!DOCTYPE html><html lang=\"zh\"><head>\t<meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no\" /><title></title></head><body>" +
+                    lineOrderDetailsBean.getData().getPrice_comment() + "</body></html>";
+            web_descriptionThat.loadDataWithBaseURL("", price_description, "text/html", "utf-8", null);
+
+            switch (lineOrderDetailsBean.getData().getOrder_status()) {
+                case 1://待服务
+                    tv_userEvaluation.setVisibility(View.GONE);
+                    ll_userEvaluation.setVisibility(View.GONE);
+                    rl_evaluateGuest.setVisibility(View.GONE);
+                    tv_submitAudit.setVisibility(View.GONE);
+                    ll_bottom.setVisibility(View.GONE);
+                    break;
+                case 2://进行中
+                    tv_userEvaluation.setVisibility(View.GONE);
+                    ll_userEvaluation.setVisibility(View.GONE);
+                    rl_evaluateGuest.setVisibility(View.GONE);
+                    tv_submitAudit.setVisibility(View.GONE);
+                    ll_bottom.setVisibility(View.VISIBLE);
+                    tv_selectVehicle.setVisibility(View.GONE);
+                    tv_quickOrder.setVisibility(View.GONE);
+                    tv_endTheOrder.setVisibility(View.VISIBLE);
+                    break;
+                case 3://待评价
+                    tv_userEvaluation.setVisibility(View.VISIBLE);
+                    ll_userEvaluation.setVisibility(View.VISIBLE);
+                    rl_evaluateGuest.setVisibility(View.VISIBLE);
+                    tv_submitAudit.setVisibility(View.VISIBLE);
+                    ll_bottom.setVisibility(View.GONE);
+                    break;
+                case 4://已完成
+                    tv_userEvaluation.setVisibility(View.GONE);
+                    ll_userEvaluation.setVisibility(View.GONE);
+                    rl_evaluateGuest.setVisibility(View.GONE);
+                    tv_submitAudit.setVisibility(View.GONE);
+                    ll_bottom.setVisibility(View.GONE);
+                    break;
+                default:
+                    tv_userEvaluation.setVisibility(View.GONE);
+                    ll_userEvaluation.setVisibility(View.GONE);
+                    rl_evaluateGuest.setVisibility(View.GONE);
+                    tv_submitAudit.setVisibility(View.GONE);
+                    ll_bottom.setVisibility(View.GONE);
+                    break;
+            }
+            dismissLoadingDialog();
+
+        } else if (flag == 1) {
+
+
+        }
 
     }
 

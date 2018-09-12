@@ -2,51 +2,41 @@ package com.yinglan.scg.entity.mine.myorder.orderdetails;
 
 import com.common.cklibrary.entity.BaseResult;
 
-import java.util.List;
-
 public class TransferOrderDetailsBean extends BaseResult<TransferOrderDetailsBean.DataBean> {
 
 
     public class DataBean {
         /**
-         * model_list : [{"id":2,"license_plate":"豫G77777","model_name":"迈腾","is_default":0},{"id":4,"license_plate":"京A777777","model_name":"帕萨特","is_default":1}]
-         * start_time : 1536134000
-         * booking_request : 2成人1行李
-         * order_number : SHZ20180903155402787087264
-         * subtitle : 2人1行李
-         * destination_name : gg
+         * order_number : SHZ2018082518191295203625
+         * destination_name : 放鹤路1088号
          * order_price : 0.01
          * title : 接机
+         * connect_number : 15515916027
+         * start_time : 1535685943
+         * order_status : 1
+         * license_plate : A123
+         * model_name : 途观
+         * booking_request : 3成人1行李
+         * subtitle : 3人1行李
+         * contact : 彪哥
          * origin_name : 成田机场
-         * price_comment : {"title":"不支持退订","content":"<p style=\"font-size:14px;color:green;\">&nbsp;&nbsp;&nbsp;&nbsp;这个是简短的退订政策，该订单不支持退订，请与服务人员了解详情<\/p>"}
+         * price_comment : <p><strong><span style="font-size: 18px;">费用包含</span></strong></p><ul class=" list-paddingleft-2" style="list-style-type: disc;"><li><p><span style="font-size: 14px;">基础服务费：基础服务费、基础服务费、基础服务费、基础服务费、基础服务费。</span></p></li><li><p><span style="font-size: 14px;">附加费用：附加费用、<span style="font-size: 18px;">附加费用、附加费用、附加费用、附加费用。</span></span></p><p><span style="font-size: 18px;"></span></p></li></ul><p><span style="font-size: 18px;"><span style="font-size: 18px;"></span><strong>费用不包含</strong></span></p><ul class=" list-paddingleft-2" style="list-style-type: disc;"><li><p><span style="font-size: 14px;">未提及费用</span><span style="font-size: 18px;"><br/></span></p></li></ul>
          */
 
-        private String start_time;
-        private String booking_request;
         private String order_number;
-        private String subtitle;
         private String destination_name;
         private String order_price;
         private String title;
+        private String connect_number;
+        private String start_time;
+        private int order_status;
+        private String license_plate;
+        private String model_name;
+        private String booking_request;
+        private String subtitle;
+        private String contact;
         private String origin_name;
         private String price_comment;
-        private List<ModelListBean> model_list;
-
-        public String getStart_time() {
-            return start_time;
-        }
-
-        public void setStart_time(String start_time) {
-            this.start_time = start_time;
-        }
-
-        public String getBooking_request() {
-            return booking_request;
-        }
-
-        public void setBooking_request(String booking_request) {
-            this.booking_request = booking_request;
-        }
 
         public String getOrder_number() {
             return order_number;
@@ -54,14 +44,6 @@ public class TransferOrderDetailsBean extends BaseResult<TransferOrderDetailsBea
 
         public void setOrder_number(String order_number) {
             this.order_number = order_number;
-        }
-
-        public String getSubtitle() {
-            return subtitle;
-        }
-
-        public void setSubtitle(String subtitle) {
-            this.subtitle = subtitle;
         }
 
         public String getDestination_name() {
@@ -88,6 +70,70 @@ public class TransferOrderDetailsBean extends BaseResult<TransferOrderDetailsBea
             this.title = title;
         }
 
+        public String getConnect_number() {
+            return connect_number;
+        }
+
+        public void setConnect_number(String connect_number) {
+            this.connect_number = connect_number;
+        }
+
+        public String getStart_time() {
+            return start_time;
+        }
+
+        public void setStart_time(String start_time) {
+            this.start_time = start_time;
+        }
+
+        public int getOrder_status() {
+            return order_status;
+        }
+
+        public void setOrder_status(int order_status) {
+            this.order_status = order_status;
+        }
+
+        public String getLicense_plate() {
+            return license_plate;
+        }
+
+        public void setLicense_plate(String license_plate) {
+            this.license_plate = license_plate;
+        }
+
+        public String getModel_name() {
+            return model_name;
+        }
+
+        public void setModel_name(String model_name) {
+            this.model_name = model_name;
+        }
+
+        public String getBooking_request() {
+            return booking_request;
+        }
+
+        public void setBooking_request(String booking_request) {
+            this.booking_request = booking_request;
+        }
+
+        public String getSubtitle() {
+            return subtitle;
+        }
+
+        public void setSubtitle(String subtitle) {
+            this.subtitle = subtitle;
+        }
+
+        public String getContact() {
+            return contact;
+        }
+
+        public void setContact(String contact) {
+            this.contact = contact;
+        }
+
         public String getOrigin_name() {
             return origin_name;
         }
@@ -102,61 +148,6 @@ public class TransferOrderDetailsBean extends BaseResult<TransferOrderDetailsBea
 
         public void setPrice_comment(String price_comment) {
             this.price_comment = price_comment;
-        }
-
-        public List<ModelListBean> getModel_list() {
-            return model_list;
-        }
-
-        public void setModel_list(List<ModelListBean> model_list) {
-            this.model_list = model_list;
-        }
-
-
-        public class ModelListBean {
-            /**
-             * id : 2
-             * license_plate : 豫G77777
-             * model_name : 迈腾
-             * is_default : 0
-             */
-
-            private int id;
-            private String license_plate;
-            private String model_name;
-            private int is_default;
-
-            public int getId() {
-                return id;
-            }
-
-            public void setId(int id) {
-                this.id = id;
-            }
-
-            public String getLicense_plate() {
-                return license_plate;
-            }
-
-            public void setLicense_plate(String license_plate) {
-                this.license_plate = license_plate;
-            }
-
-            public String getModel_name() {
-                return model_name;
-            }
-
-            public void setModel_name(String model_name) {
-                this.model_name = model_name;
-            }
-
-            public int getIs_default() {
-                return is_default;
-            }
-
-            public void setIs_default(int is_default) {
-                this.is_default = is_default;
-            }
         }
     }
 }

@@ -1,7 +1,6 @@
 package com.yinglan.scg.entity.mine.myorder.orderdetails;
 
 import com.common.cklibrary.entity.BaseResult;
-import com.yinglan.scg.entity.orderreceiving.TransferDetailsBean.DataBean.ModelListBean;
 
 import java.util.List;
 
@@ -35,7 +34,11 @@ public class LineOrderDetailsBean extends BaseResult<LineOrderDetailsBean.DataBe
         private String book_comment;
         private String product_description;
         private String price_comment;
-        private List<ModelListBean> model_list;
+        private int order_status;
+        private String license_plate;
+        private String model_name;
+        private String contact;
+        private String connect_number;
 
         public String getOrder_number() {
             return order_number;
@@ -133,13 +136,44 @@ public class LineOrderDetailsBean extends BaseResult<LineOrderDetailsBean.DataBe
             this.price_comment = price_comment;
         }
 
-        public List<ModelListBean> getModel_list() {
-            return model_list;
+        public int getOrder_status() {
+            return order_status;
         }
 
-        public void setModel_list(List<ModelListBean> model_list) {
-            this.model_list = model_list;
+        public void setOrder_status(int order_status) {
+            this.order_status = order_status;
         }
 
+        public String getLicense_plate() {
+            return license_plate;
+        }
+
+        public void setLicense_plate(String license_plate) {
+            this.license_plate = license_plate;
+        }
+
+        public String getModel_name() {
+            return model_name;
+        }
+
+        public void setModel_name(String model_name) {
+            this.model_name = model_name;
+        }
+
+        public String getContact() {
+            return contact;
+        }
+
+        public void setContact(String contact) {
+            this.contact = contact;
+        }
+
+        public String getConnect_number() {
+            return connect_number;
+        }
+
+        public void setConnect_number(String connect_number) {
+            this.connect_number = connect_number;
+        }
     }
 }

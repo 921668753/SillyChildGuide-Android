@@ -127,13 +127,13 @@ public class PrivateCustomOrderDetailsActivity extends BaseActivity implements C
     @BindView(id = R.id.tv_models)
     private TextView tv_models;
 
-    @BindView(id = R.id.tv_selectVehicle, click = true)
+    @BindView(id = R.id.tv_selectVehicle)
     private TextView tv_selectVehicle;
 
-    @BindView(id = R.id.tv_quickOrder, click = true)
+    @BindView(id = R.id.tv_quickOrder)
     private TextView tv_quickOrder;
 
-    @BindView(id = R.id.tv_endTheOrder)
+    @BindView(id = R.id.tv_endTheOrder, click = true)
     private TextView tv_endTheOrder;
 
     @BindView(id = R.id.ll_bottom)
@@ -199,6 +199,10 @@ public class PrivateCustomOrderDetailsActivity extends BaseActivity implements C
             tv_contactWay.setText(privateCustomOrderDetailsBean.getData().getConnect_number());
             tv_orderIncome.setText(getString(R.string.rmb) + "  " + privateCustomOrderDetailsBean.getData().getOrder_price());
             tv_aggregate.setText(getString(R.string.rmb) + "  " + privateCustomOrderDetailsBean.getData().getOrder_price());
+
+            tv_licensePlateNumber.setText(privateCustomOrderDetailsBean.getData().getLicense_plate());
+            tv_models.setText(privateCustomOrderDetailsBean.getData().getModel_name());
+
             String schedule = "<!DOCTYPE html><html lang=\"zh\"><head>\t<meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no\" /><title></title></head><body>" +
                     privateCustomOrderDetailsBean.getData().getSchedule() + "</body></html>";
             web_detailedItinerary.loadDataWithBaseURL("baseurl", schedule, "text/html", "utf-8", null);

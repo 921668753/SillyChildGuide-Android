@@ -339,7 +339,6 @@
                 android:textColor="@color/textColor"
                 android:textSize="@dimen/textsize15" />
 
-
             <LinearLayout
                 android:id="@+id/ll_userEvaluation"
                 style="@style/MatchWrap"

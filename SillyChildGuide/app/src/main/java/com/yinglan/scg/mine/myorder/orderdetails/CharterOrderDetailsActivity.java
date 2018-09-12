@@ -1,6 +1,7 @@
 package com.yinglan.scg.mine.myorder.orderdetails;
 
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -112,13 +113,13 @@ public class CharterOrderDetailsActivity extends BaseActivity implements Charter
     @BindView(id = R.id.tv_models)
     private TextView tv_models;
 
-    @BindView(id = R.id.tv_selectVehicle, click = true)
+    @BindView(id = R.id.tv_selectVehicle)
     private TextView tv_selectVehicle;
 
-    @BindView(id = R.id.tv_quickOrder, click = true)
+    @BindView(id = R.id.tv_quickOrder)
     private TextView tv_quickOrder;
 
-    @BindView(id = R.id.tv_endTheOrder)
+    @BindView(id = R.id.tv_endTheOrder, click = true)
     private TextView tv_endTheOrder;
 
     @BindView(id = R.id.ll_bottom)
@@ -157,29 +158,80 @@ public class CharterOrderDetailsActivity extends BaseActivity implements Charter
 
     @Override
     public void getSuccess(String success, int flag) {
-        dismissLoadingDialog();
-        CharterOrderDetailsBean charterOrderDetailsBean = (CharterOrderDetailsBean) JsonUtil.getInstance().json2Obj(success, CharterOrderDetailsBean.class);
-        if (charterOrderDetailsBean == null || charterOrderDetailsBean.getData() == null) {
-            errorMsg(getString(R.string.serverError), 0);
-            return;
+        if (flag == 0) {
+            CharterOrderDetailsBean charterOrderDetailsBean = (CharterOrderDetailsBean) JsonUtil.getInstance().json2Obj(success, CharterOrderDetailsBean.class);
+            if (charterOrderDetailsBean == null || charterOrderDetailsBean.getData() == null) {
+                errorMsg(getString(R.string.serverError), 0);
+                return;
+            }
+            tv_title.setText(charterOrderDetailsBean.getData().getTitle());
+            tv_orderPrice.setText(getString(R.string.renminbi) + charterOrderDetailsBean.getData().getOrder_price());
+            tv_demand.setText(charterOrderDetailsBean.getData().getSubtitle());
+            tv_time.setText(DataUtil.formatData(StringUtils.toLong(charterOrderDetailsBean.getData().getStart_time()), "yyyy-MM-dd E"));
+            tv_serviceTime.setText(DataUtil.formatData(StringUtils.toLong(charterOrderDetailsBean.getData().getStart_time()), "yyyy-MM-dd E"));
+            tv_placeDeparture.setText(charterOrderDetailsBean.getData().getOrigin_name());
+            tv_deliveredAirport.setText(charterOrderDetailsBean.getData().getDestination_name());
+            tv_reserveRequirements.setText(charterOrderDetailsBean.getData().getBooking_request());
+            tv_orderNumber.setText(charterOrderDetailsBean.getData().getOrder_number());
+            tv_orderIncome.setText(getString(R.string.rmb) + "  " + charterOrderDetailsBean.getData().getOrder_price());
+            tv_aggregate.setText(getString(R.string.rmb) + "  " + charterOrderDetailsBean.getData().getOrder_price());
+            tv_contact.setText(charterOrderDetailsBean.getData().getContact());
+            tv_contactWay.setText(charterOrderDetailsBean.getData().getConnect_number());
+            tv_licensePlateNumber.setText(charterOrderDetailsBean.getData().getLicense_plate());
+            tv_models.setText(charterOrderDetailsBean.getData().getModel_name());
+            String book_comment = "<!DOCTYPE html><html lang=\"zh\"><head>\t<meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no\" /><title></title></head><body>" +
+                    charterOrderDetailsBean.getData().getBook_comment() + "</body></html>";
+            web_dueThat.loadDataWithBaseURL("", book_comment, "text/html", "utf-8", null);
+            String price_description = "<!DOCTYPE html><html lang=\"zh\"><head>\t<meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no\" /><title></title></head><body>" +
+                    charterOrderDetailsBean.getData().getPrice_comment() + "</body></html>";
+            web_descriptionThat.loadDataWithBaseURL("", price_description, "text/html", "utf-8", null);
+
+            switch (charterOrderDetailsBean.getData().getOrder_status()) {
+                case 1://待服务
+                    tv_userEvaluation.setVisibility(View.GONE);
+                    ll_userEvaluation.setVisibility(View.GONE);
+                    rl_evaluateGuest.setVisibility(View.GONE);
+                    tv_submitAudit.setVisibility(View.GONE);
+                    ll_bottom.setVisibility(View.GONE);
+                    break;
+                case 2://进行中
+                    tv_userEvaluation.setVisibility(View.GONE);
+                    ll_userEvaluation.setVisibility(View.GONE);
+                    rl_evaluateGuest.setVisibility(View.GONE);
+                    tv_submitAudit.setVisibility(View.GONE);
+                    ll_bottom.setVisibility(View.VISIBLE);
+                    tv_selectVehicle.setVisibility(View.GONE);
+                    tv_quickOrder.setVisibility(View.GONE);
+                    tv_endTheOrder.setVisibility(View.VISIBLE);
+                    break;
+                case 3://待评价
+                    tv_userEvaluation.setVisibility(View.VISIBLE);
+                    ll_userEvaluation.setVisibility(View.VISIBLE);
+                    rl_evaluateGuest.setVisibility(View.VISIBLE);
+                    tv_submitAudit.setVisibility(View.VISIBLE);
+                    ll_bottom.setVisibility(View.GONE);
+                    break;
+                case 4://已完成
+                    tv_userEvaluation.setVisibility(View.GONE);
+                    ll_userEvaluation.setVisibility(View.GONE);
+                    rl_evaluateGuest.setVisibility(View.GONE);
+                    tv_submitAudit.setVisibility(View.GONE);
+                    ll_bottom.setVisibility(View.GONE);
+                    break;
+                default:
+                    tv_userEvaluation.setVisibility(View.GONE);
+                    ll_userEvaluation.setVisibility(View.GONE);
+                    rl_evaluateGuest.setVisibility(View.GONE);
+                    tv_submitAudit.setVisibility(View.GONE);
+                    ll_bottom.setVisibility(View.GONE);
+                    break;
+            }
+            dismissLoadingDialog();
+        } else if (flag == 1) {
+
+
         }
-        tv_title.setText(charterOrderDetailsBean.getData().getTitle());
-        tv_orderPrice.setText(getString(R.string.renminbi) + charterOrderDetailsBean.getData().getOrder_price());
-        tv_demand.setText(charterOrderDetailsBean.getData().getSubtitle());
-        tv_time.setText(DataUtil.formatData(StringUtils.toLong(charterOrderDetailsBean.getData().getStart_time()), "yyyy-MM-dd E"));
-        tv_serviceTime.setText(DataUtil.formatData(StringUtils.toLong(charterOrderDetailsBean.getData().getStart_time()), "yyyy-MM-dd E"));
-        tv_placeDeparture.setText(charterOrderDetailsBean.getData().getOrigin_name());
-        tv_deliveredAirport.setText(charterOrderDetailsBean.getData().getDestination_name());
-        tv_reserveRequirements.setText(charterOrderDetailsBean.getData().getBooking_request());
-        tv_orderNumber.setText(charterOrderDetailsBean.getData().getOrder_number());
-        tv_orderIncome.setText(getString(R.string.rmb) + "  " + charterOrderDetailsBean.getData().getOrder_price());
-        tv_aggregate.setText(getString(R.string.rmb) + "  " + charterOrderDetailsBean.getData().getOrder_price());
-        String book_comment = "<!DOCTYPE html><html lang=\"zh\"><head>\t<meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no\" /><title></title></head><body>" +
-                charterOrderDetailsBean.getData().getBook_comment() + "</body></html>";
-        web_dueThat.loadDataWithBaseURL("", book_comment, "text/html", "utf-8", null);
-        String price_description = "<!DOCTYPE html><html lang=\"zh\"><head>\t<meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no\" /><title></title></head><body>" +
-                charterOrderDetailsBean.getData().getPrice_comment() + "</body></html>";
-        web_descriptionThat.loadDataWithBaseURL("", price_description, "text/html", "utf-8", null);
+
     }
 
     @Override
