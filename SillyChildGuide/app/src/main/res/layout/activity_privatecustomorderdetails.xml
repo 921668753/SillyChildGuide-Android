@@ -223,7 +223,7 @@
                     android:id="@+id/tv_contact"
                     style="@style/WrapWrap"
                     android:paddingTop="@dimen/dimen1"
-                    android:text="201808271006"
+                    android:text="--"
                     android:textColor="@color/hintColors"
                     android:textSize="@dimen/textsize12" />
 
@@ -248,7 +248,7 @@
                     android:id="@+id/tv_contactWay"
                     style="@style/WrapWrap"
                     android:paddingTop="@dimen/dimen1"
-                    android:text="201808271006"
+                    android:text="--"
                     android:textColor="@color/hintColors"
                     android:textSize="@dimen/textsize12" />
 

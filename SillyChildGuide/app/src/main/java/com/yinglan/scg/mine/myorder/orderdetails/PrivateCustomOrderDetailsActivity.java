@@ -1,6 +1,7 @@
 package com.yinglan.scg.mine.myorder.orderdetails;
 
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -17,7 +18,7 @@ import com.common.cklibrary.utils.myview.NoScrollGridView;
 import com.common.cklibrary.utils.myview.WebViewLayout;
 import com.kymjs.common.StringUtils;
 import com.yinglan.scg.R;
-import com.yinglan.scg.entity.orderreceiving.PrivateCustomDetailsBean;
+import com.yinglan.scg.entity.mine.myorder.orderdetails.PrivateCustomOrderDetailsBean;
 import com.yinglan.scg.loginregister.LoginActivity;
 
 /**
@@ -51,6 +52,12 @@ public class PrivateCustomOrderDetailsActivity extends BaseActivity implements C
 
     @BindView(id = R.id.tv_orderNumber)
     private TextView tv_orderNumber;
+
+    @BindView(id = R.id.tv_contact)
+    private TextView tv_contact;
+
+    @BindView(id = R.id.tv_contactWay)
+    private TextView tv_contactWay;
 
     @BindView(id = R.id.web_detailedItinerary)
     private WebViewLayout web_detailedItinerary;
@@ -167,40 +174,86 @@ public class PrivateCustomOrderDetailsActivity extends BaseActivity implements C
 
     @Override
     public void getSuccess(String success, int flag) {
-        dismissLoadingDialog();
-        PrivateCustomDetailsBean privateCustomDetailsBean = (PrivateCustomDetailsBean) JsonUtil.getInstance().json2Obj(success, PrivateCustomDetailsBean.class);
-        if (privateCustomDetailsBean == null || privateCustomDetailsBean.getData() == null) {
-            errorMsg(getString(R.string.serverError), 0);
-            return;
+        if (flag == 0) {
+            PrivateCustomOrderDetailsBean privateCustomOrderDetailsBean = (PrivateCustomOrderDetailsBean) JsonUtil.getInstance().json2Obj(success, PrivateCustomOrderDetailsBean.class);
+            if (privateCustomOrderDetailsBean == null || privateCustomOrderDetailsBean.getData() == null) {
+                errorMsg(getString(R.string.serverError), 0);
+                return;
+            }
+            tv_title.setText(privateCustomOrderDetailsBean.getData().getTitle());
+            tv_orderPrice.setText(getString(R.string.renminbi) + privateCustomOrderDetailsBean.getData().getOrder_price());
+            tv_demand.setText(privateCustomOrderDetailsBean.getData().getSubtitle());
+            tv_time.setText(DataUtil.formatData(StringUtils.toLong(privateCustomOrderDetailsBean.getData().getStart_time()), "yyyy-MM-dd") + "—"
+                    + DataUtil.formatData(StringUtils.toLong(privateCustomOrderDetailsBean.getData().getEnd_time()), "yyyy-MM-dd"));
+            tv_serviceTime.setText(DataUtil.formatData(StringUtils.toLong(privateCustomOrderDetailsBean.getData().getStart_time()), "yyyy-MM-dd") + "—"
+                    + DataUtil.formatData(StringUtils.toLong(privateCustomOrderDetailsBean.getData().getEnd_time()), "yyyy-MM-dd"));
+            tv_travelPreferences.setText(privateCustomOrderDetailsBean.getData().getTravel_preference());
+            tv_foodPreferences.setText(privateCustomOrderDetailsBean.getData().getRepast_preference());
+            tv_accommodationPreferences.setText(privateCustomOrderDetailsBean.getData().getStay_preference());
+
+            tv_placeDeparture.setText(privateCustomOrderDetailsBean.getData().getOrigin_name());
+            tv_deliveredAirport.setText(privateCustomOrderDetailsBean.getData().getDestination_name());
+            tv_reserveRequirements.setText(privateCustomOrderDetailsBean.getData().getBooking_request());
+            tv_orderNumber.setText(privateCustomOrderDetailsBean.getData().getOrder_number());
+            tv_contact.setText(privateCustomOrderDetailsBean.getData().getContact());
+            tv_contactWay.setText(privateCustomOrderDetailsBean.getData().getConnect_number());
+            tv_orderIncome.setText(getString(R.string.rmb) + "  " + privateCustomOrderDetailsBean.getData().getOrder_price());
+            tv_aggregate.setText(getString(R.string.rmb) + "  " + privateCustomOrderDetailsBean.getData().getOrder_price());
+            String schedule = "<!DOCTYPE html><html lang=\"zh\"><head>\t<meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no\" /><title></title></head><body>" +
+                    privateCustomOrderDetailsBean.getData().getSchedule() + "</body></html>";
+            web_detailedItinerary.loadDataWithBaseURL("baseurl", schedule, "text/html", "utf-8", null);
+            String book_comment = "<!DOCTYPE html><html lang=\"zh\"><head>\t<meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no\" /><title></title></head><body>" +
+                    privateCustomOrderDetailsBean.getData().getBook_comment() + "</body></html>";
+            web_dueThat.loadDataWithBaseURL("baseurl", book_comment, "text/html", "utf-8", null);
+            String price_description = "<!DOCTYPE html><html lang=\"zh\"><head>\t<meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no\" /><title></title></head><body>" +
+                    privateCustomOrderDetailsBean.getData().getPrice_comment() + "</body></html>";
+            web_descriptionThat.loadDataWithBaseURL("baseurl", price_description, "text/html", "utf-8", null);
+
+            switch (privateCustomOrderDetailsBean.getData().getOrder_status()) {
+                case 1://待服务
+                    tv_userEvaluation.setVisibility(View.GONE);
+                    ll_userEvaluation.setVisibility(View.GONE);
+                    rl_evaluateGuest.setVisibility(View.GONE);
+                    tv_submitAudit.setVisibility(View.GONE);
+                    ll_bottom.setVisibility(View.GONE);
+                    break;
+                case 2://进行中
+                    tv_userEvaluation.setVisibility(View.GONE);
+                    ll_userEvaluation.setVisibility(View.GONE);
+                    rl_evaluateGuest.setVisibility(View.GONE);
+                    tv_submitAudit.setVisibility(View.GONE);
+                    ll_bottom.setVisibility(View.VISIBLE);
+                    tv_selectVehicle.setVisibility(View.GONE);
+                    tv_quickOrder.setVisibility(View.GONE);
+                    tv_endTheOrder.setVisibility(View.VISIBLE);
+                    break;
+                case 3://待评价
+                    tv_userEvaluation.setVisibility(View.VISIBLE);
+                    ll_userEvaluation.setVisibility(View.VISIBLE);
+                    rl_evaluateGuest.setVisibility(View.VISIBLE);
+                    tv_submitAudit.setVisibility(View.VISIBLE);
+                    ll_bottom.setVisibility(View.GONE);
+                    break;
+                case 4://已完成
+                    tv_userEvaluation.setVisibility(View.GONE);
+                    ll_userEvaluation.setVisibility(View.GONE);
+                    rl_evaluateGuest.setVisibility(View.GONE);
+                    tv_submitAudit.setVisibility(View.GONE);
+                    ll_bottom.setVisibility(View.GONE);
+                    break;
+                default:
+                    tv_userEvaluation.setVisibility(View.GONE);
+                    ll_userEvaluation.setVisibility(View.GONE);
+                    rl_evaluateGuest.setVisibility(View.GONE);
+                    tv_submitAudit.setVisibility(View.GONE);
+                    ll_bottom.setVisibility(View.GONE);
+                    break;
+            }
+            dismissLoadingDialog();
+        } else if (flag == 1) {
+
+
         }
-        tv_title.setText(privateCustomDetailsBean.getData().getTitle());
-        tv_orderPrice.setText(getString(R.string.renminbi) + privateCustomDetailsBean.getData().getOrder_price());
-        tv_demand.setText(privateCustomDetailsBean.getData().getSubtitle());
-        tv_time.setText(DataUtil.formatData(StringUtils.toLong(privateCustomDetailsBean.getData().getStart_time()), "yyyy-MM-dd") + "—"
-                + DataUtil.formatData(StringUtils.toLong(privateCustomDetailsBean.getData().getEnd_time()), "yyyy-MM-dd"));
-        tv_serviceTime.setText(DataUtil.formatData(StringUtils.toLong(privateCustomDetailsBean.getData().getStart_time()), "yyyy-MM-dd") + "—"
-                + DataUtil.formatData(StringUtils.toLong(privateCustomDetailsBean.getData().getEnd_time()), "yyyy-MM-dd"));
-
-        tv_travelPreferences.setText(privateCustomDetailsBean.getData().getTravel_preference());
-        tv_foodPreferences.setText(privateCustomDetailsBean.getData().getRepast_preference());
-        tv_accommodationPreferences.setText(privateCustomDetailsBean.getData().getStay_preference());
-
-        tv_placeDeparture.setText(privateCustomDetailsBean.getData().getOrigin_name());
-        tv_deliveredAirport.setText(privateCustomDetailsBean.getData().getDestination_name());
-        tv_reserveRequirements.setText(privateCustomDetailsBean.getData().getBooking_request());
-        tv_orderNumber.setText(privateCustomDetailsBean.getData().getOrder_number());
-        tv_orderIncome.setText(getString(R.string.rmb) + "  " + privateCustomDetailsBean.getData().getOrder_price());
-        tv_aggregate.setText(getString(R.string.rmb) + "  " + privateCustomDetailsBean.getData().getOrder_price());
-
-        String schedule = "<!DOCTYPE html><html lang=\"zh\"><head>\t<meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no\" /><title></title></head><body>" +
-                privateCustomDetailsBean.getData().getSchedule() + "</body></html>";
-        web_detailedItinerary.loadDataWithBaseURL("baseurl", schedule, "text/html", "utf-8", null);
-        String book_comment = "<!DOCTYPE html><html lang=\"zh\"><head>\t<meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no\" /><title></title></head><body>" +
-                privateCustomDetailsBean.getData().getBook_comment() + "</body></html>";
-        web_dueThat.loadDataWithBaseURL("baseurl", book_comment, "text/html", "utf-8", null);
-        String price_description = "<!DOCTYPE html><html lang=\"zh\"><head>\t<meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no\" /><title></title></head><body>" +
-                privateCustomDetailsBean.getData().getPrice_comment() + "</body></html>";
-        web_descriptionThat.loadDataWithBaseURL("baseurl", price_description, "text/html", "utf-8", null);
     }
 
     @Override

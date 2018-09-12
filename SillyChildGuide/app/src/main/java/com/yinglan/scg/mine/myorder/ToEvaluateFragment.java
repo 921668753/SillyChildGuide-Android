@@ -22,8 +22,11 @@ import com.yinglan.scg.adapter.mine.myorder.OrderViewAdapter;
 import com.yinglan.scg.constant.NumericConstants;
 import com.yinglan.scg.entity.mine.myorder.OrderBean;
 import com.yinglan.scg.loginregister.LoginActivity;
+import com.yinglan.scg.mine.myorder.orderdetails.CharterOrderDetailsActivity;
+import com.yinglan.scg.mine.myorder.orderdetails.LineOrderDetailsActivity;
+import com.yinglan.scg.mine.myorder.orderdetails.PrivateCustomOrderDetailsActivity;
+import com.yinglan.scg.mine.myorder.orderdetails.TransferOrderDetailsActivity;
 
-import cn.bingoogolapple.baseadapter.BGAOnItemChildClickListener;
 import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
 
 /**
@@ -31,7 +34,7 @@ import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
  * Created by Administrator on 2017/9/2.
  */
 
-public class ToEvaluateFragment extends BaseFragment implements AdapterView.OnItemClickListener, BGARefreshLayout.BGARefreshLayoutDelegate, OrderContract.View, BGAOnItemChildClickListener {
+public class ToEvaluateFragment extends BaseFragment implements AdapterView.OnItemClickListener, BGARefreshLayout.BGARefreshLayoutDelegate, OrderContract.View {
 
     private MyOrderActivity aty;
 
@@ -73,6 +76,8 @@ public class ToEvaluateFragment extends BaseFragment implements AdapterView.OnIt
 
     private String status = "2";
 
+    private int selectedPosition = 0;
+
     @Override
     protected View inflaterView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
         aty = (MyOrderActivity) getActivity();
@@ -92,7 +97,6 @@ public class ToEvaluateFragment extends BaseFragment implements AdapterView.OnIt
         RefreshLayoutUtil.initRefreshLayout(mRefreshLayout, this, aty, true);
         lv_order.setAdapter(mAdapter);
         lv_order.setOnItemClickListener(this);
-        //mAdapter.setOnItemChildClickListener(this);
         mRefreshLayout.beginRefreshing();
     }
 
@@ -111,32 +115,9 @@ public class ToEvaluateFragment extends BaseFragment implements AdapterView.OnIt
     }
 
     @Override
-    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        Intent intent = new Intent();
-//        if (mAdapter.getItem(i).getProduct_set_cd() == 1) {
-//            intent.setClass(aty, AirportPickupOrderDetailsActivity.class);
-//        } else if (mAdapter.getItem(i).getProduct_set_cd() == 2) {
-//            intent.setClass(aty, AirportDropOffOrderDetailsActivity.class);
-//        } else if (mAdapter.getItem(i).getProduct_set_cd() == 3) {
-//            intent.setClass(aty, CharterOrderDetailsActivity.class);
-//        } else if (mAdapter.getItem(i).getProduct_set_cd() == 4) {
-//            intent.setClass(aty, PrivateCustomOrderDetailsActivity.class);
-//        } else if (mAdapter.getItem(i).getProduct_set_cd() == 5) {
-//            intent.setClass(aty, BoutiqueLineOrderDetailsActivity.class);
-//        }
-        intent.putExtra("order_number", mAdapter.getItem(i).getOrder_number());
-        aty.showActivity(aty, intent);
-    }
-
-    @Override
-    public void onItemChildClick(ViewGroup parent, View childView, int position) {
-        switch (childView.getId()) {
-//            case R.id.tv_appraiseOrder:
-//                Intent intent1 = new Intent(aty, CommentActivity.class);
-//                intent1.putExtra("order_number", mAdapter.getItem(position).getOrder_number());
-//                aty.showActivity(aty, intent1);
-//                break;
-        }
+    public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+        selectedPosition = position;
+        ((OrderContract.Presenter) mPresenter).getIsLogin(aty, 1);
     }
 
     @Override
@@ -201,13 +182,26 @@ public class ToEvaluateFragment extends BaseFragment implements AdapterView.OnIt
                 mAdapter.addMoreData(orderBean.getData().getResultX());
             }
             dismissLoadingDialog();
+        } else if (flag == 1) {
+            Intent intent = new Intent();
+            if (mAdapter.getItem(selectedPosition).getProduct_set_cd() == 1 || mAdapter.getItem(selectedPosition).getProduct_set_cd() == 2) {
+                intent.setClass(aty, TransferOrderDetailsActivity.class);
+            } else if (mAdapter.getItem(selectedPosition).getProduct_set_cd() == 3) {
+                intent.setClass(aty, CharterOrderDetailsActivity.class);
+            } else if (mAdapter.getItem(selectedPosition).getProduct_set_cd() == 4) {
+                intent.setClass(aty, PrivateCustomOrderDetailsActivity.class);
+            } else if (mAdapter.getItem(selectedPosition).getProduct_set_cd() == 5) {
+                intent.setClass(aty, LineOrderDetailsActivity.class);
+            }
+            intent.putExtra("order_number", mAdapter.getItem(selectedPosition).getOrder_number());
+            aty.showActivity(aty, intent);
         }
     }
 
     @Override
     public void errorMsg(String msg, int flag) {
+        dismissLoadingDialog();
         if (flag == 0) {
-            dismissLoadingDialog();
             isShowLoadingMore = false;
             if (mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
                 mRefreshLayout.endRefreshing();
@@ -238,8 +232,13 @@ public class ToEvaluateFragment extends BaseFragment implements AdapterView.OnIt
                 tv_hintText.setText(msg);
                 tv_button.setText(getString(R.string.retry));
             }
+        } else if (flag == 1) {
+            if (isLogin(msg)) {
+                aty.showActivity(aty, LoginActivity.class);
+                return;
+            }
+            ViewInject.toast(msg);
         }
-
     }
 
     /**

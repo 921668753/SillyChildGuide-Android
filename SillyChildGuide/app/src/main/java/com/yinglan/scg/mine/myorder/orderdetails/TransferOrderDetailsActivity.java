@@ -18,6 +18,7 @@ import com.common.cklibrary.utils.myview.NoScrollGridView;
 import com.common.cklibrary.utils.myview.WebViewLayout;
 import com.kymjs.common.StringUtils;
 import com.yinglan.scg.R;
+import com.yinglan.scg.entity.mine.myorder.orderdetails.TransferOrderDetailsBean;
 import com.yinglan.scg.entity.orderreceiving.TransferDetailsBean;
 import com.yinglan.scg.entity.orderreceiving.TransferDetailsBean.DataBean.ModelListBean;
 import com.yinglan.scg.loginregister.LoginActivity;
@@ -57,6 +58,12 @@ public class TransferOrderDetailsActivity extends BaseActivity implements Charte
 
     @BindView(id = R.id.tv_orderNumber)
     private TextView tv_orderNumber;
+
+    @BindView(id = R.id.tv_contact)
+    private TextView tv_contact;
+
+    @BindView(id = R.id.tv_contactWay)
+    private TextView tv_contactWay;
 
     @BindView(id = R.id.tv_orderIncome)
     private TextView tv_orderIncome;
@@ -166,57 +173,27 @@ public class TransferOrderDetailsActivity extends BaseActivity implements Charte
     @Override
     public void getSuccess(String success, int flag) {
         dismissLoadingDialog();
-        TransferDetailsBean transferDetailsBean = (TransferDetailsBean) JsonUtil.getInstance().json2Obj(success, TransferDetailsBean.class);
-        if (transferDetailsBean == null || transferDetailsBean.getData() == null) {
+        TransferOrderDetailsBean transferOrderDetailsBean = (TransferOrderDetailsBean) JsonUtil.getInstance().json2Obj(success, TransferOrderDetailsBean.class);
+        if (transferOrderDetailsBean == null || transferOrderDetailsBean.getData() == null) {
             errorMsg(getString(R.string.serverError), 0);
             return;
         }
-        tv_title.setText(transferDetailsBean.getData().getTitle());
-        tv_orderPrice.setText(getString(R.string.renminbi) + transferDetailsBean.getData().getOrder_price());
-        tv_demand.setText(transferDetailsBean.getData().getSubtitle());
-        tv_time.setText(DataUtil.formatData(StringUtils.toLong(transferDetailsBean.getData().getStart_time()), "yyyy-MM-dd E HH:mm"));
-        tv_serviceTime.setText(DataUtil.formatData(StringUtils.toLong(transferDetailsBean.getData().getStart_time()), "yyyy-MM-dd E HH:mm"));
-        tv_placeDeparture.setText(transferDetailsBean.getData().getOrigin_name());
-        tv_deliveredAirport.setText(transferDetailsBean.getData().getDestination_name());
-        tv_reserveRequirements.setText(transferDetailsBean.getData().getBooking_request());
-        tv_orderNumber.setText(transferDetailsBean.getData().getOrder_number());
-        tv_orderIncome.setText(getString(R.string.rmb) + "  " + transferDetailsBean.getData().getOrder_price());
-        tv_aggregate.setText(getString(R.string.rmb) + "  " + transferDetailsBean.getData().getOrder_price());
+        tv_title.setText(transferOrderDetailsBean.getData().getTitle());
+        tv_orderPrice.setText(getString(R.string.renminbi) + transferOrderDetailsBean.getData().getOrder_price());
+        tv_demand.setText(transferOrderDetailsBean.getData().getSubtitle());
+        tv_time.setText(DataUtil.formatData(StringUtils.toLong(transferOrderDetailsBean.getData().getStart_time()), "yyyy-MM-dd E HH:mm"));
+        tv_serviceTime.setText(DataUtil.formatData(StringUtils.toLong(transferOrderDetailsBean.getData().getStart_time()), "yyyy-MM-dd E HH:mm"));
+        tv_placeDeparture.setText(transferOrderDetailsBean.getData().getOrigin_name());
+        tv_deliveredAirport.setText(transferOrderDetailsBean.getData().getDestination_name());
+        tv_reserveRequirements.setText(transferOrderDetailsBean.getData().getBooking_request());
+        tv_orderNumber.setText(transferOrderDetailsBean.getData().getOrder_number());
+        tv_orderIncome.setText(getString(R.string.rmb) + "  " + transferOrderDetailsBean.getData().getOrder_price());
+        tv_aggregate.setText(getString(R.string.rmb) + "  " + transferOrderDetailsBean.getData().getOrder_price());
         String content = "<!DOCTYPE html><html lang=\"zh\"><head>\t<meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no\" /><title></title></head><body>" +
-                transferDetailsBean.getData().getPrice_comment() + "</body></html>";
-        web_descriptionThat.loadDataWithBaseURL("baseurl", content, "text/html", "utf-8", null);
-        if (transferDetailsBean.getData() != null && transferDetailsBean.getData().getModel_list() != null && transferDetailsBean.getData().getModel_list().size() == 1) {
-            tv_licensePlateNumber.setText(transferDetailsBean.getData().getModel_list().get(0).getLicense_plate());
-            tv_models.setText(transferDetailsBean.getData().getModel_list().get(0).getModel_name());
-            model_id = transferDetailsBean.getData().getModel_list().get(0).getId();
-            tv_selectVehicle.setVisibility(View.GONE);
-        }
-        if (transferDetailsBean.getData() != null && transferDetailsBean.getData().getModel_list() != null && transferDetailsBean.getData().getModel_list().size() > 1) {
-            tv_selectVehicle.setVisibility(View.VISIBLE);
-            setDialog(transferDetailsBean.getData().getModel_list());
-        }
-    }
+                transferOrderDetailsBean.getData().getPrice_comment() + "</body></html>";
+        web_descriptionThat.loadDataWithBaseURL("", content, "text/html", "utf-8", null);
 
-    private void setDialog(List<ModelListBean> list) {
-        for (int i = 0; i < list.size(); i++) {
-            if (list.get(i).getIs_default() == 1) {
-                tv_licensePlateNumber.setText(list.get(i).getLicense_plate());
-                tv_models.setText(list.get(i).getModel_name());
-                model_id = list.get(i).getId();
-                break;
-            }
-        }
-        selectVehicleDialog = new SelectVehicleDialog(this, list) {
-            @Override
-            public void getModel(ModelListBean bean) {
-                model_id = bean.getId();
-                tv_licensePlateNumber.setText(bean.getLicense_plate());
-                tv_models.setText(bean.getModel_name());
-            }
-        };
-        //  selectVehicleDialog.setList(list);
     }
-
 
     @Override
     public void errorMsg(String msg, int flag) {

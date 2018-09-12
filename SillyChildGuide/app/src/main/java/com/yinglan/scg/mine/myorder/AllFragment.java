@@ -2,8 +2,6 @@ package com.yinglan.scg.mine.myorder;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,25 +17,23 @@ import com.common.cklibrary.common.ViewInject;
 import com.common.cklibrary.utils.JsonUtil;
 import com.common.cklibrary.utils.RefreshLayoutUtil;
 import com.common.cklibrary.utils.rx.MsgEvent;
-import com.kymjs.common.Log;
 import com.yinglan.scg.R;
 import com.yinglan.scg.adapter.mine.myorder.OrderViewAdapter;
 import com.yinglan.scg.constant.NumericConstants;
 import com.yinglan.scg.entity.mine.myorder.OrderBean;
 import com.yinglan.scg.loginregister.LoginActivity;
+import com.yinglan.scg.mine.myorder.orderdetails.CharterOrderDetailsActivity;
+import com.yinglan.scg.mine.myorder.orderdetails.LineOrderDetailsActivity;
+import com.yinglan.scg.mine.myorder.orderdetails.PrivateCustomOrderDetailsActivity;
+import com.yinglan.scg.mine.myorder.orderdetails.TransferOrderDetailsActivity;
 
-import java.util.List;
-
-import cn.bingoogolapple.baseadapter.BGAOnItemChildClickListener;
 import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
-import pub.devrel.easypermissions.AfterPermissionGranted;
-import pub.devrel.easypermissions.EasyPermissions;
 
 /**
  * 我的订单---全部
  * Created by Administrator on 2017/9/2.
  */
-public class AllFragment extends BaseFragment implements AdapterView.OnItemClickListener, EasyPermissions.PermissionCallbacks, BGARefreshLayout.BGARefreshLayoutDelegate, OrderContract.View, BGAOnItemChildClickListener {
+public class AllFragment extends BaseFragment implements AdapterView.OnItemClickListener, BGARefreshLayout.BGARefreshLayoutDelegate, OrderContract.View {
 
     private MyOrderActivity aty;
 
@@ -80,6 +76,7 @@ public class AllFragment extends BaseFragment implements AdapterView.OnItemClick
     private String status = "";
 
     private boolean isFist = true;
+    private int selectedPosition = 0;
 
     @Override
     protected View inflaterView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
@@ -100,7 +97,6 @@ public class AllFragment extends BaseFragment implements AdapterView.OnItemClick
         RefreshLayoutUtil.initRefreshLayout(mRefreshLayout, this, aty, true);
         lv_order.setAdapter(mAdapter);
         lv_order.setOnItemClickListener(this);
-        mAdapter.setOnItemChildClickListener(this);
         mRefreshLayout.beginRefreshing();
     }
 
@@ -120,53 +116,11 @@ public class AllFragment extends BaseFragment implements AdapterView.OnItemClick
 
 
     @Override
-    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        Intent intent = new Intent();
-//        if (mAdapter.getItem(i).getProduct_set_cd() == 1) {
-//            intent.setClass(aty, AirportPickupOrderDetailsActivity.class);
-//        } else if (mAdapter.getItem(i).getProduct_set_cd() == 2) {
-//            intent.setClass(aty, AirportDropOffOrderDetailsActivity.class);
-//        } else if (mAdapter.getItem(i).getProduct_set_cd() == 3) {
-//            intent.setClass(aty, CharterOrderDetailsActivity.class);
-//        } else if (mAdapter.getItem(i).getProduct_set_cd() == 4) {
-//            intent.setClass(aty, PrivateCustomOrderDetailsActivity.class);
-//        } else if (mAdapter.getItem(i).getProduct_set_cd() == 5) {
-//            intent.setClass(aty, BoutiqueLineOrderDetailsActivity.class);
-//        }
-//        intent.putExtra("order_number", mAdapter.getItem(i).getOrder_number());
-        aty.showActivity(aty, intent);
+    public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+        selectedPosition = position;
+        ((OrderContract.Presenter) mPresenter).getIsLogin(aty, 1);
     }
 
-    @Override
-    public void onItemChildClick(ViewGroup parent, View childView, int position) {
-//        bean = mAdapter.getItem(position);
-//        switch (childView.getId()) {
-//            case R.id.tv_confirmPayment:
-//                ((OrderContract.Presenter) mPresenter).getIsLogin(aty, 1);
-//                break;
-//            case R.id.tv_callUp:
-//                choiceLocationWrapper();
-//                break;
-//            case R.id.tv_sendPrivateChat:
-//                ((OrderContract.Presenter) mPresenter).getIsLogin(aty, 2);
-//                break;
-//            case R.id.tv_appraiseOrder:
-//                Intent intent1 = new Intent(aty, CommentActivity.class);
-//                intent1.putExtra("order_number", bean.getOrder_number());
-//                aty.showActivity(aty, intent1);
-//                break;
-//            case R.id.tv_additionalComments:
-//                Intent intent2 = new Intent(aty, AdditionalCommentsActivity.class);
-//                intent2.putExtra("order_id", bean.getOrder_id());
-////                intent1.putExtra("order_number", bean.getOrder_number());
-////                intent1.putExtra("pay_amount", bean.getPay_amount());
-////                intent1.putExtra("type", bean.getProduct_set_cd());
-////                intent1.putExtra("start_time", bean.getStart_time());
-////                intent1.putExtra("end_time", bean.getEnd_time());
-//                aty.showActivity(aty, intent2);
-//                break;
-//        }
-    }
 
     @Override
     public void onBGARefreshLayoutBeginRefreshing(BGARefreshLayout refreshLayout) {
@@ -253,25 +207,26 @@ public class AllFragment extends BaseFragment implements AdapterView.OnItemClick
                 mAdapter.addMoreData(orderBean.getData().getResultX());
             }
             dismissLoadingDialog();
-        } else if (flag == 1) {//确认结束订单
-//            Intent intent = new Intent(aty, PaymentTravelOrderActivity.class);
-//            intent.putExtra("order_id", bean.getOrder_id());
-//            intent.putExtra("order_number", bean.getOrder_number());
-//            intent.putExtra("pay_amount", bean.getPay_amount());
-//            intent.putExtra("type", bean.getProduct_set_cd());
-//            intent.putExtra("start_time", bean.getStart_time());
-//            intent.putExtra("end_time", bean.getEnd_time());
-//            aty.showActivity(aty, intent);
-//        } else if (flag == 2) {
-//            RongIMUtil.connectRongIM(aty);
-//            RongIM.getInstance().startConversation(aty, Conversation.ConversationType.PRIVATE, bean.getRong_id(), bean.getService_director());
+        } else if (flag == 1) {//订单详情
+            Intent intent = new Intent();
+            if (mAdapter.getItem(selectedPosition).getProduct_set_cd() == 1 || mAdapter.getItem(selectedPosition).getProduct_set_cd() == 2) {
+                intent.setClass(aty, TransferOrderDetailsActivity.class);
+            } else if (mAdapter.getItem(selectedPosition).getProduct_set_cd() == 3) {
+                intent.setClass(aty, CharterOrderDetailsActivity.class);
+            } else if (mAdapter.getItem(selectedPosition).getProduct_set_cd() == 4) {
+                intent.setClass(aty, PrivateCustomOrderDetailsActivity.class);
+            } else if (mAdapter.getItem(selectedPosition).getProduct_set_cd() == 5) {
+                intent.setClass(aty, LineOrderDetailsActivity.class);
+            }
+            intent.putExtra("order_number", mAdapter.getItem(selectedPosition).getOrder_number());
+            aty.showActivity(aty, intent);
         }
     }
 
     @Override
     public void errorMsg(String msg, int flag) {
+        dismissLoadingDialog();
         if (flag == 0) {
-            dismissLoadingDialog();
             isShowLoadingMore = false;
             if (mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
                 mRefreshLayout.endRefreshing();
@@ -303,8 +258,7 @@ public class AllFragment extends BaseFragment implements AdapterView.OnItemClick
                 tv_hintText.setText(msg);
                 tv_button.setText(getString(R.string.retry));
             }
-        } else if (flag == 1 || flag == 2) {
-            dismissLoadingDialog();
+        } else if (flag == 1) {
             if (isLogin(msg)) {
                 aty.showActivity(aty, LoginActivity.class);
                 return;
@@ -326,50 +280,9 @@ public class AllFragment extends BaseFragment implements AdapterView.OnItemClick
         }
     }
 
-
-    @AfterPermissionGranted(NumericConstants.READ_AND_WRITE_CODE)
-    private void choiceLocationWrapper() {
-//        String[] perms = {Manifest.permission.CALL_PHONE};
-//        if (EasyPermissions.hasPermissions(aty, perms)) {
-//            if (servicePhoneDialog == null) {
-//                servicePhoneDialog = new ServicePhoneDialog(aty);
-//            }
-//            if (servicePhoneDialog != null && !servicePhoneDialog.isShowing()) {
-//                servicePhoneDialog.show();
-//                servicePhoneDialog.setPhone(bean.getPhone());
-//            }
-//            return;
-//        }
-//        EasyPermissions.requestPermissions(this, getString(R.string.callSwitch), NumericConstants.READ_AND_WRITE_CODE, perms);
-    }
-
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        // EasyPermissions handles the request result.
-        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
-    }
-
-    @Override
-    public void onPermissionsGranted(int requestCode, List<String> perms) {
-        Log.d("tag", "onPermissionsDenied:" + requestCode + ":" + perms.size());
-    }
-
-    @Override
-    public void onPermissionsDenied(int requestCode, List<String> perms) {
-        if (requestCode == NumericConstants.READ_AND_WRITE_CODE) {
-            //    ViewInject.toast(getString(R.string.callPermission));
-        }
-    }
-
     @Override
     public void onDestroy() {
         super.onDestroy();
-//        if (servicePhoneDialog != null && servicePhoneDialog.isShowing()) {
-//            servicePhoneDialog.cancel();
-//        }
-//        servicePhoneDialog = null;
         mAdapter.clear();
         mAdapter = null;
     }

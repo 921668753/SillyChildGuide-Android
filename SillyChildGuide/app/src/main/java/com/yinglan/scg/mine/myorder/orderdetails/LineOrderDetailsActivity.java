@@ -1,7 +1,6 @@
 package com.yinglan.scg.mine.myorder.orderdetails;
 
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -14,12 +13,11 @@ import com.common.cklibrary.common.ViewInject;
 import com.common.cklibrary.utils.ActivityTitleUtils;
 import com.common.cklibrary.utils.DataUtil;
 import com.common.cklibrary.utils.JsonUtil;
-import com.common.cklibrary.utils.myview.ChildListView;
 import com.common.cklibrary.utils.myview.NoScrollGridView;
 import com.common.cklibrary.utils.myview.WebViewLayout;
 import com.kymjs.common.StringUtils;
 import com.yinglan.scg.R;
-import com.yinglan.scg.entity.orderreceiving.LineDetailsBean;
+import com.yinglan.scg.entity.mine.myorder.orderdetails.LineOrderDetailsBean;
 import com.yinglan.scg.loginregister.LoginActivity;
 
 /**
@@ -53,6 +51,12 @@ public class LineOrderDetailsActivity extends BaseActivity implements CharterOrd
 
     @BindView(id = R.id.tv_orderNumber)
     private TextView tv_orderNumber;
+
+    @BindView(id = R.id.tv_contact)
+    private TextView tv_contact;
+
+    @BindView(id = R.id.tv_contactWay)
+    private TextView tv_contactWay;
 
     @BindView(id = R.id.web_lineDetails)
     private WebViewLayout web_lineDetails;
@@ -160,34 +164,34 @@ public class LineOrderDetailsActivity extends BaseActivity implements CharterOrd
     @Override
     public void getSuccess(String success, int flag) {
         dismissLoadingDialog();
-        LineDetailsBean lineDetailsBean = (LineDetailsBean) JsonUtil.getInstance().json2Obj(success, LineDetailsBean.class);
-        if (lineDetailsBean == null || lineDetailsBean.getData() == null) {
+        LineOrderDetailsBean lineOrderDetailsBean = (LineOrderDetailsBean) JsonUtil.getInstance().json2Obj(success, LineOrderDetailsBean.class);
+        if (lineOrderDetailsBean == null || lineOrderDetailsBean.getData() == null) {
             errorMsg(getString(R.string.serverError), 0);
             return;
         }
-        tv_title.setText(lineDetailsBean.getData().getTitle());
-        tv_orderPrice.setText(getString(R.string.renminbi) + lineDetailsBean.getData().getOrder_price());
-        tv_demand.setText(lineDetailsBean.getData().getSubtitle());
-        tv_time.setText(DataUtil.formatData(StringUtils.toLong(lineDetailsBean.getData().getStart_time()), "yyyy-MM-dd") + "—"
-                + DataUtil.formatData(StringUtils.toLong(lineDetailsBean.getData().getEnd_time()), "yyyy-MM-dd"));
-        tv_serviceTime.setText(DataUtil.formatData(StringUtils.toLong(lineDetailsBean.getData().getStart_time()), "yyyy-MM-dd") + "—"
-                + DataUtil.formatData(StringUtils.toLong(lineDetailsBean.getData().getEnd_time()), "yyyy-MM-dd"));
-        tv_placeDeparture.setText(lineDetailsBean.getData().getOrigin_name());
-        tv_deliveredAirport.setText(lineDetailsBean.getData().getDestination_name());
-        tv_reserveRequirements.setText(lineDetailsBean.getData().getBooking_request());
-        tv_orderNumber.setText(lineDetailsBean.getData().getOrder_number());
-        tv_orderIncome.setText(getString(R.string.rmb) + "  " + lineDetailsBean.getData().getOrder_price());
-        tv_aggregate.setText(getString(R.string.rmb) + "  " + lineDetailsBean.getData().getOrder_price());
+        tv_title.setText(lineOrderDetailsBean.getData().getTitle());
+        tv_orderPrice.setText(getString(R.string.renminbi) + lineOrderDetailsBean.getData().getOrder_price());
+        tv_demand.setText(lineOrderDetailsBean.getData().getSubtitle());
+        tv_time.setText(DataUtil.formatData(StringUtils.toLong(lineOrderDetailsBean.getData().getStart_time()), "yyyy-MM-dd") + "—"
+                + DataUtil.formatData(StringUtils.toLong(lineOrderDetailsBean.getData().getEnd_time()), "yyyy-MM-dd"));
+        tv_serviceTime.setText(DataUtil.formatData(StringUtils.toLong(lineOrderDetailsBean.getData().getStart_time()), "yyyy-MM-dd") + "—"
+                + DataUtil.formatData(StringUtils.toLong(lineOrderDetailsBean.getData().getEnd_time()), "yyyy-MM-dd"));
+        tv_placeDeparture.setText(lineOrderDetailsBean.getData().getOrigin_name());
+        tv_deliveredAirport.setText(lineOrderDetailsBean.getData().getDestination_name());
+        tv_reserveRequirements.setText(lineOrderDetailsBean.getData().getBooking_request());
+        tv_orderNumber.setText(lineOrderDetailsBean.getData().getOrder_number());
+        tv_orderIncome.setText(getString(R.string.rmb) + "  " + lineOrderDetailsBean.getData().getOrder_price());
+        tv_aggregate.setText(getString(R.string.rmb) + "  " + lineOrderDetailsBean.getData().getOrder_price());
 
         String product_description = "<!DOCTYPE html><html lang=\"zh\"><head>\t<meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no\" /><title></title></head><body>" +
-                lineDetailsBean.getData().getProduct_description() + "</body></html>";
-        web_lineDetails.loadDataWithBaseURL("baseurl", product_description, "text/html", "utf-8", null);
+                lineOrderDetailsBean.getData().getProduct_description() + "</body></html>";
+        web_lineDetails.loadDataWithBaseURL("", product_description, "text/html", "utf-8", null);
         String book_comment = "<!DOCTYPE html><html lang=\"zh\"><head>\t<meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no\" /><title></title></head><body>" +
-                lineDetailsBean.getData().getBook_comment() + "</body></html>";
-        web_dueThat.loadDataWithBaseURL("baseurl", book_comment, "text/html", "utf-8", null);
+                lineOrderDetailsBean.getData().getBook_comment() + "</body></html>";
+        web_dueThat.loadDataWithBaseURL("", book_comment, "text/html", "utf-8", null);
         String price_description = "<!DOCTYPE html><html lang=\"zh\"><head>\t<meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no\" /><title></title></head><body>" +
-                lineDetailsBean.getData().getPrice_comment() + "</body></html>";
-        web_descriptionThat.loadDataWithBaseURL("baseurl", price_description, "text/html", "utf-8", null);
+                lineOrderDetailsBean.getData().getPrice_comment() + "</body></html>";
+        web_descriptionThat.loadDataWithBaseURL("", price_description, "text/html", "utf-8", null);
 
     }
 
