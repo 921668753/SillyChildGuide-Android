@@ -410,6 +410,25 @@ public class RequestClient {
     }
 
     /**
+     * 获取用户错过的订单
+     */
+    public static void getGuideMissOrderPage(Context context, HttpParams httpParams, ResponseListener<String> listener) {
+        doServer(context, new TokenCallback() {
+            @Override
+            public void execute() {
+                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+                if (StringUtils.isEmpty(cookies)) {
+                    listener.onFailure(NumericConstants.TOLINGIN + "");
+                    return;
+                }
+                httpParams.putHeaders("Cookie", cookies);
+                HttpRequest.requestGetHttp(context, URLConstants.GETGUIDEMISSORDERPAGE, httpParams, listener);
+            }
+        }, listener);
+    }
+
+
+    /**
      * 获取订单的详细信息
      */
     public static void getTravelOrderDetails(Context context, HttpParams httpParams, ResponseListener<String> listener) {

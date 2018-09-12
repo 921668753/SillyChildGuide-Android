@@ -108,13 +108,6 @@ public class UnwillingnessTakeOrdersDialog extends BaseDialog implements View.On
     }
 
     @Override
-    public void dismiss() {
-        super.dismiss();
-        mAdapter.clear();
-        mAdapter = null;
-    }
-
-    @Override
     public void errorMsg(String msg, int flag) {
         dismissLoadingDialog();
         if (isLogin(msg)) {

@@ -97,6 +97,11 @@ public class URLConstants {
     public static String GETGUIDEORDERPAGE = APIURL + "order/get_guide_order_page.do";
 
     /**
+     * 获取用户错过的订单
+     */
+    public static String GETGUIDEMISSORDERPAGE = APIURL + "order/get_guide_miss_order_page.do";
+
+    /**
      * 获取订单的详细信息
      */
     public static String GETTRAVELORDERDETAILS = APIURL + "order/get_travel_order_details.do";

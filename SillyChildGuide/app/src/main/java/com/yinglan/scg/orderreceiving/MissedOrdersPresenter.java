@@ -24,7 +24,7 @@ public class MissedOrdersPresenter implements MissedOrdersContract.Presenter {
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
         httpParams.put("pageno", page);
         httpParams.put("pagesize", 5);
-        RequestClient.getGuideOrderPage(context, httpParams, new ResponseListener<String>() {
+        RequestClient.getGuideMissOrderPage(context, httpParams, new ResponseListener<String>() {
             @Override
             public void onSuccess(String response) {
                 mView.getSuccess(response, 0);

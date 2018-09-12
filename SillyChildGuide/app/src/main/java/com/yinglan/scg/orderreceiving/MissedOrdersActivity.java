@@ -1,25 +1,27 @@
 package com.yinglan.scg.orderreceiving;
 
 import android.content.Intent;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.common.cklibrary.common.BaseActivity;
 import com.common.cklibrary.common.BindView;
 import com.common.cklibrary.common.ViewInject;
 import com.common.cklibrary.utils.ActivityTitleUtils;
+import com.common.cklibrary.utils.JsonUtil;
 import com.common.cklibrary.utils.RefreshLayoutUtil;
 import com.common.cklibrary.utils.rx.MsgEvent;
 import com.yinglan.scg.R;
-import com.yinglan.scg.adapter.main.OrderReceivingViewAdapter;
+import com.yinglan.scg.adapter.orderreceiving.MissedOrdersViewAdapter;
 import com.yinglan.scg.constant.NumericConstants;
+import com.yinglan.scg.entity.main.OrderReceivingBean;
 import com.yinglan.scg.loginregister.LoginActivity;
 
-import cn.bingoogolapple.baseadapter.BGAOnRVItemClickListener;
 import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
 
 import static com.yinglan.scg.constant.NumericConstants.RESULT_CODE_GET;
@@ -27,15 +29,15 @@ import static com.yinglan.scg.constant.NumericConstants.RESULT_CODE_GET;
 /**
  * 错过的订单
  */
-public class MissedOrdersActivity extends BaseActivity implements MissedOrdersContract.View, BGARefreshLayout.BGARefreshLayoutDelegate, BGAOnRVItemClickListener {
+public class MissedOrdersActivity extends BaseActivity implements MissedOrdersContract.View, BGARefreshLayout.BGARefreshLayoutDelegate, AdapterView.OnItemClickListener {
 
-    @BindView(id = R.id.mRefreshLayout, click = true)
+    @BindView(id = R.id.mRefreshLayout)
     private BGARefreshLayout mRefreshLayout;
 
-    @BindView(id = R.id.rv_order)
-    private RecyclerView rv_order;
+    @BindView(id = R.id.lv_order)
+    private ListView lv_order;
 
-    private OrderReceivingViewAdapter mAdapter;
+    private MissedOrdersViewAdapter mAdapter;
 
     /**
      * 错误提示页
@@ -76,7 +78,7 @@ public class MissedOrdersActivity extends BaseActivity implements MissedOrdersCo
     @Override
     public void initData() {
         super.initData();
-   //     mAdapter = new OrderReceivingViewAdapter(rv_order);
+        mAdapter = new MissedOrdersViewAdapter(this);
         mPresenter = new MissedOrdersPresenter(this);
     }
 
@@ -85,9 +87,8 @@ public class MissedOrdersActivity extends BaseActivity implements MissedOrdersCo
         super.initWidget();
         ActivityTitleUtils.initToolbar(aty, getString(R.string.missedOrders), true, R.id.titlebar);
         RefreshLayoutUtil.initRefreshLayout(mRefreshLayout, this, aty, true);
-      //  rv_order.setAdapter(mAdapter);
-       // mAdapter.setOnRVItemClickListener(this);
-        //    mAdapter.setOnItemChildClickListener(this);
+        lv_order.setAdapter(mAdapter);
+        lv_order.setOnItemClickListener(this);
         mRefreshLayout.beginRefreshing();
     }
 
@@ -99,9 +100,6 @@ public class MissedOrdersActivity extends BaseActivity implements MissedOrdersCo
     public void widgetClick(View v) {
         super.widgetClick(v);
         switch (v.getId()) {
-            case R.id.tv_missedOrders:
-                ((MissedOrdersContract.Presenter) mPresenter).getIsLogin(aty, 1);
-                break;
             case R.id.tv_button:
                 if (tv_button.getText().toString().contains(getString(R.string.retry))) {
                     mRefreshLayout.beginRefreshing();
@@ -113,17 +111,18 @@ public class MissedOrdersActivity extends BaseActivity implements MissedOrdersCo
     }
 
     @Override
-    public void onRVItemClick(ViewGroup parent, View itemView, int position) {
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         selectedPosition = position;
         ((MissedOrdersContract.Presenter) mPresenter).getIsLogin(aty, 2);
     }
+
 
     @Override
     public void onBGARefreshLayoutBeginRefreshing(BGARefreshLayout refreshLayout) {
         mRefreshLayout.endRefreshing();
         mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
         showLoadingDialog(getString(R.string.dataLoad));
-        // ((MissedOrdersContract.Presenter) mPresenter).get(aty, status, mMorePageNumber);
+        ((MissedOrdersContract.Presenter) mPresenter).getGuideMissOrderPage(aty, mMorePageNumber);
     }
 
     @Override
@@ -138,7 +137,7 @@ public class MissedOrdersActivity extends BaseActivity implements MissedOrdersCo
             return false;
         }
         showLoadingDialog(getString(R.string.dataLoad));
-        //  ((OrderReceivingContract.Presenter) mPresenter).getChartOrder(aty, status, mMorePageNumber);
+        ((MissedOrdersContract.Presenter) mPresenter).getGuideMissOrderPage(aty, mMorePageNumber);
         return true;
     }
 
@@ -154,45 +153,49 @@ public class MissedOrdersActivity extends BaseActivity implements MissedOrdersCo
             mRefreshLayout.setPullDownRefreshEnable(true);
             ll_commonError.setVisibility(View.GONE);
             mRefreshLayout.setVisibility(View.VISIBLE);
-//            CharterOrderBean charterOrderBean = (CharterOrderBean) JsonUtil.getInstance().json2Obj(success, CharterOrderBean.class);
-//            if (charterOrderBean.getData() == null && mMorePageNumber == NumericConstants.START_PAGE_NUMBER ||
-//                    charterOrderBean.getData().getResultX() == null && mMorePageNumber == NumericConstants.START_PAGE_NUMBER ||
-//                    charterOrderBean.getData().getResultX().size() <= 0 && mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
-//                errorMsg(getString(R.string.noOrder), 0);
-//                return;
-//            } else if (charterOrderBean.getData() == null && mMorePageNumber > NumericConstants.START_PAGE_NUMBER ||
-//                    charterOrderBean.getData().getResultX() == null && mMorePageNumber > NumericConstants.START_PAGE_NUMBER ||
-//                    charterOrderBean.getData().getResultX().size() <= 0 && mMorePageNumber > NumericConstants.START_PAGE_NUMBER) {
-//                ViewInject.toast(getString(R.string.noMoreData));
-//                isShowLoadingMore = false;
-//                dismissLoadingDialog();
-//                mRefreshLayout.endLoadingMore();
-//                return;
-//            }
-//            mMorePageNumber = charterOrderBean.getData().getCurrentPageNo();
-//            totalPageNumber = charterOrderBean.getData().getTotalPageCount();
-//            if (mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
-//                mRefreshLayout.endRefreshing();
-//                mAdapter.clear();
-//                mAdapter.addNewData(charterOrderBean.getData().getResultX());
-//            } else {
-//                mRefreshLayout.endLoadingMore();
-//                mAdapter.addMoreData(charterOrderBean.getData().getResultX());
-//            }
+            OrderReceivingBean orderReceivingBean = (OrderReceivingBean) JsonUtil.getInstance().json2Obj(success, OrderReceivingBean.class);
+            if (orderReceivingBean.getData() == null && mMorePageNumber == NumericConstants.START_PAGE_NUMBER ||
+                    orderReceivingBean.getData().getResultX() == null && mMorePageNumber == NumericConstants.START_PAGE_NUMBER ||
+                    orderReceivingBean.getData().getResultX().size() <= 0 && mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
+                errorMsg(getString(R.string.noOrder), 0);
+                return;
+            } else if (orderReceivingBean.getData() == null && mMorePageNumber > NumericConstants.START_PAGE_NUMBER ||
+                    orderReceivingBean.getData().getResultX() == null && mMorePageNumber > NumericConstants.START_PAGE_NUMBER ||
+                    orderReceivingBean.getData().getResultX().size() <= 0 && mMorePageNumber > NumericConstants.START_PAGE_NUMBER) {
+                ViewInject.toast(getString(R.string.noMoreData));
+                isShowLoadingMore = false;
+                dismissLoadingDialog();
+                mRefreshLayout.endLoadingMore();
+                return;
+            }
+            mMorePageNumber = orderReceivingBean.getData().getCurrentPageNo();
+            totalPageNumber = orderReceivingBean.getData().getTotalPageCount();
+            if (mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
+                mRefreshLayout.endRefreshing();
+                mAdapter.clear();
+                mAdapter.addNewData(orderReceivingBean.getData().getResultX());
+            } else {
+                mRefreshLayout.endLoadingMore();
+                mAdapter.addMoreData(orderReceivingBean.getData().getResultX());
+            }
             dismissLoadingDialog();
         } else if (flag == 1) {
             showActivity(aty, MissedOrdersActivity.class);
         } else if (flag == 2) {
-            Intent intent = new Intent(aty, CharterDetailsActivity.class);
+            Intent intent = new Intent();
+            if (mAdapter.getItem(selectedPosition).getProduct_set_cd() == 1 || mAdapter.getItem(selectedPosition).getProduct_set_cd() == 2) {
+                intent.setClass(aty, TransferDetailsActivity.class);
+            } else if (mAdapter.getItem(selectedPosition).getProduct_set_cd() == 3) {
+                intent.setClass(aty, CharterDetailsActivity.class);
+            } else if (mAdapter.getItem(selectedPosition).getProduct_set_cd() == 4) {
+                intent.setClass(aty, PrivateCustomDetailsActivity.class);
+            } else if (mAdapter.getItem(selectedPosition).getProduct_set_cd() == 5) {
+                intent.setClass(aty, LineDetailsActivity.class);
+            }
             intent.putExtra("order_number", mAdapter.getItem(selectedPosition).getOrder_number());
-//            if () {
-//                intent.setClass(aty, CharterDetailsActivity.class);
-//            } else if (mAdapter.getItem(position)) {
-//                intent.setClass(aty, PrivateCustomDetailsActivity.class);
-//            } else if (mAdapter.getItem(position)) {
-//                intent.setClass(aty, LineDetailsActivity.class);
-//            }
-            startActivityForResult(intent, RESULT_CODE_GET);
+            intent.putExtra("type", 1);
+            //startActivityForResult(intent, RESULT_CODE_GET);
+            showActivity(aty, intent);
         }
         dismissLoadingDialog();
     }
@@ -242,20 +245,6 @@ public class MissedOrdersActivity extends BaseActivity implements MissedOrdersCo
     }
 
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        switch (requestCode) {
-            case RESULT_CODE_GET:
-                if (resultCode == RESULT_OK && data != null) {
-                    mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
-                    // ((OrderReceivingContract.Presenter) mPresenter).get(aty, status, mMorePageNumber);
-                }
-                break;
-        }
-    }
-
-
     /**
      * 在接收消息的时候，选择性接收消息：
      */
@@ -264,8 +253,9 @@ public class MissedOrdersActivity extends BaseActivity implements MissedOrdersCo
         super.callMsgEvent(msgEvent);
         if (((String) msgEvent.getData()).equals("RxBusLoginEvent") && mPresenter != null || ((String) msgEvent.getData()).equals("RxBusLogOutEvent") && mPresenter != null) {
             mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
-            // ((OrderReceivingContract.Presenter) mPresenter).get(aty, status, mMorePageNumber);
+            ((MissedOrdersContract.Presenter) mPresenter).getGuideMissOrderPage(aty, mMorePageNumber);
         }
     }
+
 
 }

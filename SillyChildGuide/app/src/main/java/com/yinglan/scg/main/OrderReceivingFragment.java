@@ -46,7 +46,7 @@ public class OrderReceivingFragment extends BaseFragment implements OrderReceivi
     @BindView(id = R.id.tv_missedOrders, click = true)
     private TextView tv_missedOrders;
 
-    @BindView(id = R.id.mRefreshLayout, click = true)
+    @BindView(id = R.id.mRefreshLayout)
     private BGARefreshLayout mRefreshLayout;
 
     @BindView(id = R.id.lv_order)
