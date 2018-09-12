@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.common.cklibrary.common.BaseFragment;
@@ -43,8 +44,8 @@ public class AllFragment extends BaseFragment implements AdapterView.OnItemClick
     @BindView(id = R.id.mRefreshLayout)
     private BGARefreshLayout mRefreshLayout;
 
-    @BindView(id = R.id.rv_order)
-    private RecyclerView rv_order;
+    @BindView(id = R.id.lv_order)
+    private ListView lv_order;
 
     /**
      * 错误提示页
@@ -86,15 +87,15 @@ public class AllFragment extends BaseFragment implements AdapterView.OnItemClick
     protected void initData() {
         super.initData();
         mPresenter = new OrderPresenter(this);
-    //    mAdapter = new CharterOrderAdapter(aty);
+        mAdapter = new OrderViewAdapter(aty);
     }
 
     @Override
     protected void initWidget(View parentView) {
         super.initWidget(parentView);
         RefreshLayoutUtil.initRefreshLayout(mRefreshLayout, this, aty, true);
-      //  lv_order.setAdapter(mAdapter);
-    //    lv_order.setOnItemClickListener(this);
+        lv_order.setAdapter(mAdapter);
+        lv_order.setOnItemClickListener(this);
         mAdapter.setOnItemChildClickListener(this);
         mRefreshLayout.beginRefreshing();
     }
