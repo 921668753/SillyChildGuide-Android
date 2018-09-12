@@ -167,7 +167,6 @@
                     android:textColor="@color/textColor"
                     android:textSize="@dimen/textsize14" />
 
-
                 <TextView
                     android:id="@+id/tv_reserveRequirements"
                     style="@style/WrapWrap"
@@ -512,6 +511,6 @@
 
     </ScrollView>
 
-    <!--<include layout="@layout/item_orderdetails_bottombar" />-->
+    <include layout="@layout/item_orderdetails_bottombar" />
 
 </LinearLayout>

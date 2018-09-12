@@ -20,6 +20,7 @@ import com.kymjs.common.StringUtils;
 import com.yinglan.scg.R;
 import com.yinglan.scg.entity.mine.myorder.orderdetails.CharterOrderDetailsBean;
 import com.yinglan.scg.loginregister.LoginActivity;
+import com.yinglan.scg.service.dialog.EndTheOrderDialog;
 
 /**
  * 包车订单详情
@@ -127,6 +128,8 @@ public class CharterOrderDetailsActivity extends BaseActivity implements Charter
 
     private String order_number;
 
+    private EndTheOrderDialog endTheOrderDialog;
+
     @Override
     public void setRootView() {
         setContentView(R.layout.activity_charterorderdetails);
@@ -139,7 +142,13 @@ public class CharterOrderDetailsActivity extends BaseActivity implements Charter
         order_number = getIntent().getStringExtra("order_number");
         showLoadingDialog(getString(R.string.dataLoad));
         ((CharterOrderDetailsContract.Presenter) mPresenter).getMyOrderDetails(order_number);
+        initDialog();
     }
+
+    private void initDialog() {
+        endTheOrderDialog = new EndTheOrderDialog(this, order_number);
+    }
+
 
     @Override
     public void initWidget() {
@@ -149,6 +158,21 @@ public class CharterOrderDetailsActivity extends BaseActivity implements Charter
         web_dueThat.getWebView().setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
         web_descriptionThat.setTitleVisibility(false);
         web_descriptionThat.getWebView().setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+    }
+
+    @Override
+    public void widgetClick(View v) {
+        super.widgetClick(v);
+        switch (v.getId()) {
+            case R.id.tv_endTheOrder:
+                if (endTheOrderDialog == null) {
+                    initDialog();
+                }
+                if (endTheOrderDialog != null && !endTheOrderDialog.isShowing()) {
+                    endTheOrderDialog.show();
+                }
+                break;
+        }
     }
 
     @Override
@@ -231,7 +255,6 @@ public class CharterOrderDetailsActivity extends BaseActivity implements Charter
 
 
         }
-
     }
 
     @Override
@@ -245,5 +268,15 @@ public class CharterOrderDetailsActivity extends BaseActivity implements Charter
             return;
         }
         ViewInject.toast(msg);
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (endTheOrderDialog != null) {
+            endTheOrderDialog.cancel();
+        }
+        endTheOrderDialog = null;
     }
 }

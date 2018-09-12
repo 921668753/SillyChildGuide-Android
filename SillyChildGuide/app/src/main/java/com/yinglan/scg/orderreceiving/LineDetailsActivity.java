@@ -191,7 +191,6 @@ public class LineDetailsActivity extends BaseActivity implements CharterDetailsC
     public void getSuccess(String success, int flag) {
         dismissLoadingDialog();
         if (flag == 0) {
-
             LineDetailsBean lineDetailsBean = (LineDetailsBean) JsonUtil.getInstance().json2Obj(success, LineDetailsBean.class);
             if (lineDetailsBean == null || lineDetailsBean.getData() == null) {
                 errorMsg(getString(R.string.serverError), 0);

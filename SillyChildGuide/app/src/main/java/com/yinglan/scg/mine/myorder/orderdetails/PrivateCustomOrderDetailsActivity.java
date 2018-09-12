@@ -20,6 +20,7 @@ import com.kymjs.common.StringUtils;
 import com.yinglan.scg.R;
 import com.yinglan.scg.entity.mine.myorder.orderdetails.PrivateCustomOrderDetailsBean;
 import com.yinglan.scg.loginregister.LoginActivity;
+import com.yinglan.scg.service.dialog.EndTheOrderDialog;
 
 /**
  * 私人定制订单详情
@@ -140,6 +141,7 @@ public class PrivateCustomOrderDetailsActivity extends BaseActivity implements C
     private LinearLayout ll_bottom;
 
     private String order_number;
+    private EndTheOrderDialog endTheOrderDialog;
 
     @Override
     public void setRootView() {
@@ -153,6 +155,11 @@ public class PrivateCustomOrderDetailsActivity extends BaseActivity implements C
         order_number = getIntent().getStringExtra("order_number");
         showLoadingDialog(getString(R.string.dataLoad));
         ((CharterOrderDetailsContract.Presenter) mPresenter).getMyOrderDetails(order_number);
+        initDialog();
+    }
+
+    private void initDialog() {
+        endTheOrderDialog = new EndTheOrderDialog(this, order_number);
     }
 
     @Override
@@ -165,6 +172,21 @@ public class PrivateCustomOrderDetailsActivity extends BaseActivity implements C
         web_dueThat.getWebView().setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
         web_descriptionThat.setTitleVisibility(false);
         web_descriptionThat.getWebView().setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+    }
+
+    @Override
+    public void widgetClick(View v) {
+        super.widgetClick(v);
+        switch (v.getId()) {
+            case R.id.tv_endTheOrder:
+                if (endTheOrderDialog == null) {
+                    initDialog();
+                }
+                if (endTheOrderDialog != null && !endTheOrderDialog.isShowing()) {
+                    endTheOrderDialog.show();
+                }
+                break;
+        }
     }
 
     @Override
@@ -271,5 +293,14 @@ public class PrivateCustomOrderDetailsActivity extends BaseActivity implements C
             return;
         }
         ViewInject.toast(msg);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (endTheOrderDialog != null) {
+            endTheOrderDialog.cancel();
+        }
+        endTheOrderDialog = null;
     }
 }

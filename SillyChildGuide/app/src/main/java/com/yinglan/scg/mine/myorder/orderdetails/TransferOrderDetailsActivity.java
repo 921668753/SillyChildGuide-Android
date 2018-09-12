@@ -20,7 +20,7 @@ import com.kymjs.common.StringUtils;
 import com.yinglan.scg.R;
 import com.yinglan.scg.entity.mine.myorder.orderdetails.TransferOrderDetailsBean;
 import com.yinglan.scg.loginregister.LoginActivity;
-import com.yinglan.scg.orderreceiving.dialog.SelectVehicleDialog;
+import com.yinglan.scg.service.dialog.EndTheOrderDialog;
 
 
 /**
@@ -126,8 +126,7 @@ public class TransferOrderDetailsActivity extends BaseActivity implements Charte
 
     private String order_number;
 
-    private SelectVehicleDialog selectVehicleDialog = null;
-    private int model_id = 0;
+    private EndTheOrderDialog endTheOrderDialog;
 
     @Override
     public void setRootView() {
@@ -141,6 +140,11 @@ public class TransferOrderDetailsActivity extends BaseActivity implements Charte
         order_number = getIntent().getStringExtra("order_number");
         showLoadingDialog(getString(R.string.dataLoad));
         ((CharterOrderDetailsContract.Presenter) mPresenter).getMyOrderDetails(order_number);
+        initDialog();
+    }
+
+    private void initDialog() {
+        endTheOrderDialog = new EndTheOrderDialog(this, order_number);
     }
 
     @Override
@@ -155,11 +159,13 @@ public class TransferOrderDetailsActivity extends BaseActivity implements Charte
     public void widgetClick(View v) {
         super.widgetClick(v);
         switch (v.getId()) {
-            case R.id.tv_selectVehicle:
-                selectVehicleDialog.show();
-                break;
-            case R.id.tv_quickOrder:
-
+            case R.id.tv_endTheOrder:
+                if (endTheOrderDialog == null) {
+                    initDialog();
+                }
+                if (endTheOrderDialog != null && !endTheOrderDialog.isShowing()) {
+                    endTheOrderDialog.show();
+                }
                 break;
         }
     }
@@ -242,7 +248,6 @@ public class TransferOrderDetailsActivity extends BaseActivity implements Charte
         } else if (flag == 1) {
 
 
-
         }
     }
 
@@ -262,9 +267,9 @@ public class TransferOrderDetailsActivity extends BaseActivity implements Charte
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (selectVehicleDialog != null) {
-            selectVehicleDialog.cancel();
+        if (endTheOrderDialog != null) {
+            endTheOrderDialog.cancel();
         }
-        selectVehicleDialog = null;
+        endTheOrderDialog = null;
     }
 }

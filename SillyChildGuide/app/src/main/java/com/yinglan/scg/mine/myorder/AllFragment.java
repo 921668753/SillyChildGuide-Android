@@ -274,7 +274,7 @@ public class AllFragment extends BaseFragment implements AdapterView.OnItemClick
     public void callMsgEvent(MsgEvent msgEvent) {
         super.callMsgEvent(msgEvent);
         if (((String) msgEvent.getData()).equals("RxBusLoginEvent") && mPresenter != null || ((String) msgEvent.getData()).equals("RxBusLogOutEvent") && mPresenter != null ||
-                ((String) msgEvent.getData()).equals("RxBusCharterCommentEvent") && mPresenter != null) {
+                ((String) msgEvent.getData()).equals("RxBusEndTheOrderEvent") && mPresenter != null || ((String) msgEvent.getData()).equals("RxBusCharterCommentEvent") && mPresenter != null) {
             mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
             ((OrderContract.Presenter) mPresenter).getMyOrderPage(aty, status, mMorePageNumber);
         }

@@ -20,6 +20,7 @@ import com.kymjs.common.StringUtils;
 import com.yinglan.scg.R;
 import com.yinglan.scg.entity.mine.myorder.orderdetails.LineOrderDetailsBean;
 import com.yinglan.scg.loginregister.LoginActivity;
+import com.yinglan.scg.service.dialog.EndTheOrderDialog;
 
 /**
  * 线路订单详情
@@ -116,19 +117,20 @@ public class LineOrderDetailsActivity extends BaseActivity implements CharterOrd
     @BindView(id = R.id.tv_models)
     private TextView tv_models;
 
-    @BindView(id = R.id.tv_selectVehicle, click = true)
+    @BindView(id = R.id.tv_selectVehicle)
     private TextView tv_selectVehicle;
 
-    @BindView(id = R.id.tv_quickOrder, click = true)
+    @BindView(id = R.id.tv_quickOrder)
     private TextView tv_quickOrder;
 
-    @BindView(id = R.id.tv_endTheOrder)
+    @BindView(id = R.id.tv_endTheOrder, click = true)
     private TextView tv_endTheOrder;
 
     @BindView(id = R.id.ll_bottom)
     private LinearLayout ll_bottom;
 
     private String order_number;
+    private EndTheOrderDialog endTheOrderDialog;
 
     @Override
     public void setRootView() {
@@ -142,8 +144,12 @@ public class LineOrderDetailsActivity extends BaseActivity implements CharterOrd
         order_number = getIntent().getStringExtra("order_number");
         showLoadingDialog(getString(R.string.dataLoad));
         ((CharterOrderDetailsContract.Presenter) mPresenter).getMyOrderDetails(order_number);
+        initDialog();
     }
 
+    private void initDialog() {
+        endTheOrderDialog = new EndTheOrderDialog(this, order_number);
+    }
 
     @Override
     public void initWidget() {
@@ -155,6 +161,21 @@ public class LineOrderDetailsActivity extends BaseActivity implements CharterOrd
         web_dueThat.getWebView().setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
         web_descriptionThat.setTitleVisibility(false);
         web_descriptionThat.getWebView().setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+    }
+
+    @Override
+    public void widgetClick(View v) {
+        super.widgetClick(v);
+        switch (v.getId()) {
+            case R.id.tv_endTheOrder:
+                if (endTheOrderDialog == null) {
+                    initDialog();
+                }
+                if (endTheOrderDialog != null && !endTheOrderDialog.isShowing()) {
+                    endTheOrderDialog.show();
+                }
+                break;
+        }
     }
 
     @Override
@@ -261,5 +282,13 @@ public class LineOrderDetailsActivity extends BaseActivity implements CharterOrd
         ViewInject.toast(msg);
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (endTheOrderDialog != null) {
+            endTheOrderDialog.cancel();
+        }
+        endTheOrderDialog = null;
+    }
 
 }
