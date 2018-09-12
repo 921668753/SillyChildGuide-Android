@@ -171,7 +171,6 @@ public class ToEvaluateFragment extends BaseFragment implements AdapterView.OnIt
     @Override
     public void getSuccess(String success, int flag) {
         if (flag == 0) {
-            dismissLoadingDialog();
             isShowLoadingMore = true;
             mRefreshLayout.setPullDownRefreshEnable(true);
             ll_commonError.setVisibility(View.GONE);
@@ -208,6 +207,7 @@ public class ToEvaluateFragment extends BaseFragment implements AdapterView.OnIt
     @Override
     public void errorMsg(String msg, int flag) {
         if (flag == 0) {
+            dismissLoadingDialog();
             isShowLoadingMore = false;
             if (mMorePageNumber == NumericConstants.START_PAGE_NUMBER) {
                 mRefreshLayout.endRefreshing();
@@ -239,6 +239,7 @@ public class ToEvaluateFragment extends BaseFragment implements AdapterView.OnIt
                 tv_button.setText(getString(R.string.retry));
             }
         }
+
     }
 
     /**

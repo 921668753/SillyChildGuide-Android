@@ -19,7 +19,6 @@ public class OrderPresenter implements OrderContract.Presenter {
         mView.setPresenter(this);
     }
 
-
     @Override
     public void getMyOrderPage(Context context, String status, int page) {
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();

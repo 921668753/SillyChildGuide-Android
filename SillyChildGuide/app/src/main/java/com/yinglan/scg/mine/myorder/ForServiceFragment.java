@@ -80,6 +80,8 @@ public class ForServiceFragment extends BaseFragment implements AdapterView.OnIt
 
     private String status = "1";
 
+    private boolean isFist = true;
+
     @Override
     protected View inflaterView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
         aty = (MyOrderActivity) getActivity();
@@ -199,7 +201,6 @@ public class ForServiceFragment extends BaseFragment implements AdapterView.OnIt
     @Override
     public void getSuccess(String success, int flag) {
         if (flag == 0) {
-            dismissLoadingDialog();
             isShowLoadingMore = true;
             mRefreshLayout.setPullDownRefreshEnable(true);
             ll_commonError.setVisibility(View.GONE);
@@ -221,7 +222,6 @@ public class ForServiceFragment extends BaseFragment implements AdapterView.OnIt
             }
             mMorePageNumber = orderBean.getData().getCurrentPageNo();
             totalPageNumber = orderBean.getData().getTotalPageCount();
-            boolean isFist = true;
             for (int i = 0; i < orderBean.getData().getResultX().size(); i++) {
                 if (orderBean.getData().getResultX().get(i).getOrder_status() == 1 && !isFist) {
                     orderBean.getData().getResultX().get(i).setIsFirst(1);
