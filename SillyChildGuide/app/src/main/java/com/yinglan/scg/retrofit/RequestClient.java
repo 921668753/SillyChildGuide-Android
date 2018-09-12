@@ -471,6 +471,44 @@ public class RequestClient {
         }, listener);
     }
 
+
+    /**
+     * 获取我的订单列表
+     */
+    public static void getMyOrderPage(Context context, HttpParams httpParams, ResponseListener<String> listener) {
+        doServer(context, new TokenCallback() {
+            @Override
+            public void execute() {
+                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+                if (StringUtils.isEmpty(cookies)) {
+                    listener.onFailure(NumericConstants.TOLINGIN + "");
+                    return;
+                }
+                httpParams.putHeaders("Cookie", cookies);
+                HttpRequest.requestGetHttp(context, URLConstants.GETMYORDERPAGE, httpParams, listener);
+            }
+        }, listener);
+    }
+
+    /**
+     * 获取我的订单列表
+     */
+    public static void getMyOrderDetails(Context context, HttpParams httpParams, ResponseListener<String> listener) {
+        doServer(context, new TokenCallback() {
+            @Override
+            public void execute() {
+                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+                if (StringUtils.isEmpty(cookies)) {
+                    listener.onFailure(NumericConstants.TOLINGIN + "");
+                    return;
+                }
+                httpParams.putHeaders("Cookie", cookies);
+                HttpRequest.requestGetHttp(context, URLConstants.GETMYORDERDETAIL, httpParams, listener);
+            }
+        }, listener);
+    }
+
+
     /**
      * 获取系统消息首页
      */

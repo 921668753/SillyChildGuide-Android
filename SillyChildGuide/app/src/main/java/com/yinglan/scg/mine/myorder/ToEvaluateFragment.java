@@ -20,6 +20,7 @@ import com.common.cklibrary.utils.RefreshLayoutUtil;
 import com.common.cklibrary.utils.rx.MsgEvent;
 import com.yinglan.scg.R;
 import com.yinglan.scg.adapter.mine.myorder.OrderRVItemViewAdapter;
+import com.yinglan.scg.adapter.mine.myorder.OrderViewAdapter;
 import com.yinglan.scg.constant.NumericConstants;
 import com.yinglan.scg.loginregister.LoginActivity;
 
@@ -35,13 +36,13 @@ public class ToEvaluateFragment extends BaseFragment implements AdapterView.OnIt
 
     private MyOrderActivity aty;
 
-    private OrderRVItemViewAdapter mAdapter;
+    private OrderViewAdapter mAdapter;
 
     @BindView(id = R.id.mRefreshLayout)
     private BGARefreshLayout mRefreshLayout;
 
-    @BindView(id = R.id.rv_order)
-    private RecyclerView rv_order;
+    @BindView(id = R.id.lv_order)
+    private ListView lv_order;
 
     /**
      * 错误提示页
@@ -83,16 +84,16 @@ public class ToEvaluateFragment extends BaseFragment implements AdapterView.OnIt
     protected void initData() {
         super.initData();
         mPresenter = new OrderPresenter(this);
-       // mAdapter = new CharterOrderAdapter(aty);
+        mAdapter = new OrderViewAdapter(aty);
     }
 
     @Override
     protected void initWidget(View parentView) {
         super.initWidget(parentView);
         RefreshLayoutUtil.initRefreshLayout(mRefreshLayout, this, aty, true);
-      //  lv_order.setAdapter(mAdapter);
-      //  lv_order.setOnItemClickListener(this);
-        mAdapter.setOnItemChildClickListener(this);
+        lv_order.setAdapter(mAdapter);
+        lv_order.setOnItemClickListener(this);
+        //mAdapter.setOnItemChildClickListener(this);
         mRefreshLayout.beginRefreshing();
     }
 
@@ -144,7 +145,7 @@ public class ToEvaluateFragment extends BaseFragment implements AdapterView.OnIt
         mRefreshLayout.endRefreshing();
         mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
         showLoadingDialog(getString(R.string.dataLoad));
-        ((OrderContract.Presenter) mPresenter).getChartOrder(aty, status, mMorePageNumber);
+        ((OrderContract.Presenter) mPresenter).getMyOrderPage(aty, status, mMorePageNumber);
     }
 
     @Override
@@ -159,7 +160,7 @@ public class ToEvaluateFragment extends BaseFragment implements AdapterView.OnIt
             return false;
         }
         showLoadingDialog(getString(R.string.dataLoad));
-        ((OrderContract.Presenter) mPresenter).getChartOrder(aty, status, mMorePageNumber);
+        ((OrderContract.Presenter) mPresenter).getMyOrderPage(aty, status, mMorePageNumber);
         return true;
     }
 
@@ -251,7 +252,7 @@ public class ToEvaluateFragment extends BaseFragment implements AdapterView.OnIt
         if (((String) msgEvent.getData()).equals("RxBusLoginEvent") && mPresenter != null || ((String) msgEvent.getData()).equals("RxBusLogOutEvent") && mPresenter != null ||
                 ((String) msgEvent.getData()).equals("RxBusCharterCommentEvent") && mPresenter != null) {
             mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
-            ((OrderContract.Presenter) mPresenter).getChartOrder(aty, status, mMorePageNumber);
+            ((OrderContract.Presenter) mPresenter).getMyOrderPage(aty, status, mMorePageNumber);
         }
     }
 

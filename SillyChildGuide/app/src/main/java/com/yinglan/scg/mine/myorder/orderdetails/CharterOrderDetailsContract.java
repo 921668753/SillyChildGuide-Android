@@ -14,7 +14,7 @@ public interface CharterOrderDetailsContract {
         /**
          * 获取订单的详细信息
          */
-        void getTravelOrderDetails(String order_number);
+        void getMyOrderDetails(String order_number);
 
         /**
          * 获取会员登录状态

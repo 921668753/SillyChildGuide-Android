@@ -23,10 +23,10 @@ public class CharterOrderDetailsPresenter implements CharterOrderDetailsContract
      * 获取订单的详细信息
      */
     @Override
-    public void getTravelOrderDetails(String order_number) {
+    public void getMyOrderDetails(String order_number) {
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
         httpParams.put("order_number", order_number);
-        RequestClient.getTravelOrderDetails(KJActivityStack.create().topActivity(), httpParams, new ResponseListener<String>() {
+        RequestClient.getMyOrderDetails(KJActivityStack.create().topActivity(), httpParams, new ResponseListener<String>() {
             @Override
             public void onSuccess(String response) {
                 mView.getSuccess(response, 0);

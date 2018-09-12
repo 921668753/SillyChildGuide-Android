@@ -21,24 +21,24 @@ public class OrderPresenter implements OrderContract.Presenter {
 
 
     @Override
-    public void getChartOrder(Context context, String status, int page) {
+    public void getMyOrderPage(Context context, String status, int page) {
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
         if (!StringUtils.isEmpty(status)) {
             httpParams.put("status", status);
         }
         httpParams.put("pageno", page);
         httpParams.put("pagesize", 5);
-//        RequestClient.getChartOrderList(context, httpParams, new ResponseListener<String>() {
-//            @Override
-//            public void onSuccess(String response) {
-//                mView.getSuccess(response, 0);
-//            }
-//
-//            @Override
-//            public void onFailure(String msg) {
-//                mView.errorMsg(msg, 0);
-//            }
-//        });
+        RequestClient.getMyOrderPage(context, httpParams, new ResponseListener<String>() {
+            @Override
+            public void onSuccess(String response) {
+                mView.getSuccess(response, 0);
+            }
+
+            @Override
+            public void onFailure(String msg) {
+                mView.errorMsg(msg, 0);
+            }
+        });
     }
 
 

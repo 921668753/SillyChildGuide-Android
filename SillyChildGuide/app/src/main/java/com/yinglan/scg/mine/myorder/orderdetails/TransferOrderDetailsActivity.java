@@ -1,7 +1,11 @@
 package com.yinglan.scg.mine.myorder.orderdetails;
 
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.common.cklibrary.common.BaseActivity;
@@ -10,13 +14,13 @@ import com.common.cklibrary.common.ViewInject;
 import com.common.cklibrary.utils.ActivityTitleUtils;
 import com.common.cklibrary.utils.DataUtil;
 import com.common.cklibrary.utils.JsonUtil;
+import com.common.cklibrary.utils.myview.NoScrollGridView;
 import com.common.cklibrary.utils.myview.WebViewLayout;
 import com.kymjs.common.StringUtils;
 import com.yinglan.scg.R;
 import com.yinglan.scg.entity.orderreceiving.TransferDetailsBean;
 import com.yinglan.scg.entity.orderreceiving.TransferDetailsBean.DataBean.ModelListBean;
 import com.yinglan.scg.loginregister.LoginActivity;
-import com.yinglan.scg.orderreceiving.CharterDetailsContract;
 import com.yinglan.scg.orderreceiving.dialog.SelectVehicleDialog;
 
 import java.util.List;
@@ -64,6 +68,36 @@ public class TransferOrderDetailsActivity extends BaseActivity implements Charte
     @BindView(id = R.id.web_descriptionThat)
     private WebViewLayout web_descriptionThat;
 
+    @BindView(id = R.id.img_head)
+    private ImageView img_head;
+
+    @BindView(id = R.id.tv_nickName)
+    private TextView tv_nickName;
+
+    @BindView(id = R.id.img_satisfactionLevel)
+    private ImageView img_satisfactionLevel;
+
+    @BindView(id = R.id.tv_content)
+    private TextView tv_content;
+
+    @BindView(id = R.id.gv_imgComments)
+    private NoScrollGridView gv_imgComments;
+
+    @BindView(id = R.id.tv_time1)
+    private TextView tv_time1;
+
+    @BindView(id = R.id.rl_evaluateGuest)
+    private RelativeLayout rl_evaluateGuest;
+
+    @BindView(id = R.id.et_evaluateGuest)
+    private EditText et_evaluateGuest;
+
+    @BindView(id = R.id.recyclerView)
+    private RecyclerView recyclerView;
+
+    @BindView(id = R.id.tv_submitAudit, click = true)
+    private TextView tv_submitAudit;
+
     @BindView(id = R.id.tv_licensePlateNumber)
     private TextView tv_licensePlateNumber;
 
@@ -79,8 +113,11 @@ public class TransferOrderDetailsActivity extends BaseActivity implements Charte
     @BindView(id = R.id.tv_endTheOrder)
     private TextView tv_endTheOrder;
 
+    @BindView(id = R.id.ll_bottom)
+    private LinearLayout ll_bottom;
 
     private String order_number;
+
     private SelectVehicleDialog selectVehicleDialog = null;
     private int model_id = 0;
 
@@ -95,7 +132,7 @@ public class TransferOrderDetailsActivity extends BaseActivity implements Charte
         mPresenter = new CharterOrderDetailsPresenter(this);
         order_number = getIntent().getStringExtra("order_number");
         showLoadingDialog(getString(R.string.dataLoad));
-        ((CharterDetailsContract.Presenter) mPresenter).getTravelOrderDetails(order_number);
+        ((CharterOrderDetailsContract.Presenter) mPresenter).getMyOrderDetails(order_number);
     }
 
     @Override

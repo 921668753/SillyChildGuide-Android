@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.common.cklibrary.common.BaseActivity;
@@ -77,6 +78,12 @@ public class PrivateCustomOrderDetailsActivity extends BaseActivity implements C
     @BindView(id = R.id.web_descriptionThat)
     private WebViewLayout web_descriptionThat;
 
+    @BindView(id = R.id.tv_userEvaluation)
+    private TextView tv_userEvaluation;
+
+    @BindView(id = R.id.ll_userEvaluation)
+    private LinearLayout ll_userEvaluation;
+
     @BindView(id = R.id.img_head)
     private ImageView img_head;
 
@@ -95,6 +102,9 @@ public class PrivateCustomOrderDetailsActivity extends BaseActivity implements C
     @BindView(id = R.id.tv_time1)
     private TextView tv_time1;
 
+    @BindView(id = R.id.rl_evaluateGuest)
+    private RelativeLayout rl_evaluateGuest;
+
     @BindView(id = R.id.et_evaluateGuest)
     private EditText et_evaluateGuest;
 
@@ -103,6 +113,24 @@ public class PrivateCustomOrderDetailsActivity extends BaseActivity implements C
 
     @BindView(id = R.id.tv_submitAudit, click = true)
     private TextView tv_submitAudit;
+
+    @BindView(id = R.id.tv_licensePlateNumber)
+    private TextView tv_licensePlateNumber;
+
+    @BindView(id = R.id.tv_models)
+    private TextView tv_models;
+
+    @BindView(id = R.id.tv_selectVehicle, click = true)
+    private TextView tv_selectVehicle;
+
+    @BindView(id = R.id.tv_quickOrder, click = true)
+    private TextView tv_quickOrder;
+
+    @BindView(id = R.id.tv_endTheOrder)
+    private TextView tv_endTheOrder;
+
+    @BindView(id = R.id.ll_bottom)
+    private LinearLayout ll_bottom;
 
     private String order_number;
 
@@ -117,7 +145,7 @@ public class PrivateCustomOrderDetailsActivity extends BaseActivity implements C
         mPresenter = new CharterOrderDetailsPresenter(this);
         order_number = getIntent().getStringExtra("order_number");
         showLoadingDialog(getString(R.string.dataLoad));
-        ((CharterOrderDetailsContract.Presenter) mPresenter).getTravelOrderDetails(order_number);
+        ((CharterOrderDetailsContract.Presenter) mPresenter).getMyOrderDetails(order_number);
     }
 
     @Override

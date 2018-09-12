@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.common.cklibrary.common.BaseFragment;
@@ -44,8 +45,8 @@ public class ForServiceFragment extends BaseFragment implements AdapterView.OnIt
     @BindView(id = R.id.mRefreshLayout)
     private BGARefreshLayout mRefreshLayout;
 
-    @BindView(id = R.id.rv_order)
-    private RecyclerView rv_order;
+    @BindView(id = R.id.lv_order)
+    private ListView lv_order;
 
     /**
      * 错误提示页
@@ -75,7 +76,7 @@ public class ForServiceFragment extends BaseFragment implements AdapterView.OnIt
      */
     private boolean isShowLoadingMore = false;
 
-    private String status = "";
+    private String status = "1";
 
     @Override
     protected View inflaterView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
@@ -94,8 +95,8 @@ public class ForServiceFragment extends BaseFragment implements AdapterView.OnIt
     protected void initWidget(View parentView) {
         super.initWidget(parentView);
         RefreshLayoutUtil.initRefreshLayout(mRefreshLayout, this, aty, true);
-     //   lv_order.setAdapter(mAdapter);
-      //  lv_order.setOnItemClickListener(this);
+        lv_order.setAdapter(mAdapter);
+        lv_order.setOnItemClickListener(this);
         mAdapter.setOnItemChildClickListener(this);
         mRefreshLayout.beginRefreshing();
     }
@@ -161,7 +162,7 @@ public class ForServiceFragment extends BaseFragment implements AdapterView.OnIt
 //                intent1.putExtra("end_time", bean.getEnd_time());
 //                aty.showActivity(aty, intent2);
 //                break;
-    //    }
+        //    }
     }
 
     @Override
@@ -169,7 +170,7 @@ public class ForServiceFragment extends BaseFragment implements AdapterView.OnIt
         mRefreshLayout.endRefreshing();
         mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
         showLoadingDialog(getString(R.string.dataLoad));
-        ((OrderContract.Presenter) mPresenter).getChartOrder(aty, status, mMorePageNumber);
+        ((OrderContract.Presenter) mPresenter).getMyOrderPage(aty, status, mMorePageNumber);
     }
 
     @Override
@@ -184,7 +185,7 @@ public class ForServiceFragment extends BaseFragment implements AdapterView.OnIt
             return false;
         }
         showLoadingDialog(getString(R.string.dataLoad));
-        ((OrderContract.Presenter) mPresenter).getChartOrder(aty, status, mMorePageNumber);
+        ((OrderContract.Presenter) mPresenter).getMyOrderPage(aty, status, mMorePageNumber);
         return true;
     }
 
@@ -261,7 +262,6 @@ public class ForServiceFragment extends BaseFragment implements AdapterView.OnIt
                 tv_hintText.setVisibility(View.GONE);
                 tv_button.setText(getString(R.string.login));
                 // ViewInject.toast(getString(R.string.reloginPrompting));
-                aty.showActivity(aty, LoginActivity.class);
                 return;
             } else if (msg.contains(getString(R.string.checkNetwork))) {
                 img_err.setImageResource(R.mipmap.no_network);
@@ -295,7 +295,7 @@ public class ForServiceFragment extends BaseFragment implements AdapterView.OnIt
         if (((String) msgEvent.getData()).equals("RxBusLoginEvent") && mPresenter != null || ((String) msgEvent.getData()).equals("RxBusLogOutEvent") && mPresenter != null ||
                 ((String) msgEvent.getData()).equals("RxBusPayTravelCompleteEvent") && mPresenter != null || ((String) msgEvent.getData()).equals("RxBusCharterCommentEvent") && mPresenter != null) {
             mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
-            ((OrderContract.Presenter) mPresenter).getChartOrder(aty, status, mMorePageNumber);
+            ((OrderContract.Presenter) mPresenter).getMyOrderPage(aty, status, mMorePageNumber);
         }
     }
 
@@ -313,7 +313,7 @@ public class ForServiceFragment extends BaseFragment implements AdapterView.OnIt
 //            }
 //            return;
 //        }
-     //   EasyPermissions.requestPermissions(this, getString(R.string.callSwitch), NumericConstants.READ_AND_WRITE_CODE, perms);
+        //   EasyPermissions.requestPermissions(this, getString(R.string.callSwitch), NumericConstants.READ_AND_WRITE_CODE, perms);
     }
 
 
@@ -332,7 +332,7 @@ public class ForServiceFragment extends BaseFragment implements AdapterView.OnIt
     @Override
     public void onPermissionsDenied(int requestCode, List<String> perms) {
         if (requestCode == NumericConstants.READ_AND_WRITE_CODE) {
-        //    ViewInject.toast(getString(R.string.callPermission));
+            //    ViewInject.toast(getString(R.string.callPermission));
         }
     }
 

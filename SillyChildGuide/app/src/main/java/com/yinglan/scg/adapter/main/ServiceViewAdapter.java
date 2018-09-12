@@ -12,11 +12,11 @@ import cn.bingoogolapple.baseadapter.BGAAdapterViewAdapter;
 import cn.bingoogolapple.baseadapter.BGAViewHolderHelper;
 
 /**
- * 接单列表适配器
+ * 服务列表适配器
  */
-public class OrderReceivingViewAdapter extends BGAAdapterViewAdapter<ResultBean> {
+public class ServiceViewAdapter extends BGAAdapterViewAdapter<ResultBean> {
 
-    public OrderReceivingViewAdapter(Context context) {
+    public ServiceViewAdapter(Context context) {
         super(context, R.layout.item_order);
     }
 
@@ -70,6 +70,6 @@ public class OrderReceivingViewAdapter extends BGAAdapterViewAdapter<ResultBean>
             default:
                 break;
         }
-
     }
+
 }

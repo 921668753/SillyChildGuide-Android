@@ -14,10 +14,9 @@ public interface ServiceContract {
     interface Presenter extends BasePresenter {
 
         /**
-         * 获取分类广告
+         * 获取我的订单列表
          */
-        void getAdvCat();
-
+        void getMyOrderPage(Context context, int status, int pageno);
 
         /**
          * 获取会员登录状态

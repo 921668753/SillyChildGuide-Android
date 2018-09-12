@@ -11,23 +11,23 @@
 
         <!-- item_companyguidemassage -->
 
-        <!--<ListView-->
-        <!--android:id="@+id/lv_order"-->
-        <!--style="@style/MatchMatch"-->
-        <!--android:divider="@color/background"-->
-        <!--android:dividerHeight="@dimen/dimen10"-->
-        <!--android:overScrollMode="never"-->
-        <!--android:scrollbars="none"-->
-        <!--tools:listitem="@layout/item_airporttransportationorder" />-->
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv_order"
+        <ListView
+            android:id="@+id/lv_order"
             style="@style/MatchMatch"
             android:divider="@color/background"
             android:dividerHeight="@dimen/dimen10"
             android:overScrollMode="never"
             android:scrollbars="none"
             tools:listitem="@layout/item_airporttransportationorder" />
+
+        <!--<android.support.v7.widget.RecyclerView-->
+        <!--android:id="@+id/rv_order"-->
+        <!--style="@style/MatchMatch"-->
+        <!--android:divider="@color/background"-->
+        <!--android:dividerHeight="@dimen/dimen10"-->
+        <!--android:overScrollMode="never"-->
+        <!--android:scrollbars="none"-->
+        <!--tools:listitem="@layout/item_airporttransportationorder" />-->
 
     </cn.bingoogolapple.refreshlayout.BGARefreshLayout>
 

@@ -8,7 +8,7 @@ import com.kymjs.rxvolley.client.HttpParams;
 import com.yinglan.scg.retrofit.RequestClient;
 
 /**
- * Created by ruitu on 2016/9/24.
+ * Created by ruitu on 2018/9/24.
  */
 
 public class ServicePresenter implements ServiceContract.Presenter {
@@ -21,21 +21,22 @@ public class ServicePresenter implements ServiceContract.Presenter {
     }
 
     @Override
-    public void getAdvCat() {
-//        HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
-//        httpParams.put("acid", "2");
-//        RequestClient.getAdvCat(KJActivityStack.create().topActivity(), httpParams, new ResponseListener<String>() {
-//            @Override
-//            public void onSuccess(String response) {
-//
-//                mView.getSuccess(response, 0);
-//            }
-//
-//            @Override
-//            public void onFailure(String msg) {
-//                mView.getSuccess(msg, 0);
-//            }
-//        });
+    public void getMyOrderPage(Context context, int status, int pageno) {
+        HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
+        httpParams.put("status", status);
+        httpParams.put("pageno", pageno);
+        httpParams.put("pagesize", 5);
+        RequestClient.getMyOrderPage(context, httpParams, new ResponseListener<String>() {
+            @Override
+            public void onSuccess(String response) {
+                mView.getSuccess(response, 0);
+            }
+
+            @Override
+            public void onFailure(String msg) {
+                mView.errorMsg(msg, 0);
+            }
+        });
     }
 
     @Override

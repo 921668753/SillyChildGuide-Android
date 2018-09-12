@@ -86,8 +86,8 @@
         android:background="@color/background"
         android:paddingTop="@dimen/dimen6">
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv_order"
+        <ListView
+            android:id="@+id/lv_order"
             style="@style/MatchMatch"
             android:divider="@color/background"
             android:dividerHeight="@dimen/dimen10"
@@ -97,6 +97,41 @@
 
     </cn.bingoogolapple.refreshlayout.BGARefreshLayout>
 
-    <include layout="@layout/common_error" />
+    <LinearLayout
+        android:id="@+id/ll_commonError"
+        style="@style/MatchAuto"
+        android:background="@color/background"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/img_err"
+            style="@style/MatchWrap"
+            android:layout_marginTop="@dimen/dimen50"
+            android:src="@mipmap/no_network" />
+
+        <TextView
+            android:id="@+id/tv_hintText"
+            style="@style/WrapWrap"
+            android:layout_marginTop="@dimen/dimen35"
+            android:gravity="center"
+            android:text="---"
+            android:textColor="@color/titletextcolors"
+            android:textSize="@dimen/textsize13" />
+
+        <TextView
+            android:id="@+id/tv_button"
+            android:layout_width="@dimen/dimen130"
+            android:layout_height="@dimen/dimen40"
+            android:layout_marginTop="@dimen/dimen35"
+            android:background="@drawable/shape_login1"
+            android:gravity="center"
+            android:text="---"
+            android:textColor="@color/whiteColors"
+            android:textSize="@dimen/textsize15" />
+
+
+    </LinearLayout>
 
 </LinearLayout>

@@ -117,6 +117,16 @@ public class URLConstants {
     public static String GUIDESUBMITORDER = APIURL + "order/guide_submit_order.do";
 
     /**
+     * 获取我的订单列表
+     */
+    public static String GETMYORDERPAGE = APIURL + "order/get_my_order_page.do";
+
+    /**
+     * 获取我的订单详情
+     */
+    public static String GETMYORDERDETAIL = APIURL + "order/get_my_order_details.do";
+
+    /**
      * 获取系统消息首页
      */
     public static String NEWLISTBUYTITLE = APIURL + "news/listByTitle.do";

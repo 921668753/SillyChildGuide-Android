@@ -18,6 +18,7 @@ import com.common.cklibrary.common.ViewInject;
 import com.common.cklibrary.utils.JsonUtil;
 import com.common.cklibrary.utils.RefreshLayoutUtil;
 import com.common.cklibrary.utils.rx.MsgEvent;
+import com.common.cklibrary.utils.rx.RxBus;
 import com.kymjs.common.PreferenceHelper;
 import com.yinglan.scg.R;
 import com.yinglan.scg.adapter.main.OrderReceivingViewAdapter;
@@ -276,6 +277,10 @@ public class OrderReceivingFragment extends BaseFragment implements OrderReceivi
         switch (requestCode) {
             case RESULT_CODE_GET:
                 if (resultCode == RESULT_OK && data != null) {
+                    /**
+                     * 发送消息
+                     */
+                    RxBus.getInstance().post(new MsgEvent<String>("RxBusServiceFragmentEvent"));
                     mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
                     ((OrderReceivingContract.Presenter) mPresenter).getGuideOrderPage(aty, mMorePageNumber);
                 }

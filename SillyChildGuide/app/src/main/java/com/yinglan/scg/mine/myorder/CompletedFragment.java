@@ -40,8 +40,8 @@ public class CompletedFragment extends BaseFragment implements AdapterView.OnIte
     @BindView(id = R.id.mRefreshLayout)
     private BGARefreshLayout mRefreshLayout;
 
-    @BindView(id = R.id.rv_order)
-    private RecyclerView rv_order;
+    @BindView(id = R.id.lv_order)
+    private ListView lv_order;
 
     /**
      * 错误提示页
@@ -149,7 +149,7 @@ public class CompletedFragment extends BaseFragment implements AdapterView.OnIte
         mRefreshLayout.endRefreshing();
         mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
         showLoadingDialog(getString(R.string.dataLoad));
-        ((OrderContract.Presenter) mPresenter).getChartOrder(aty, status, mMorePageNumber);
+        ((OrderContract.Presenter) mPresenter).getMyOrderPage(aty, status, mMorePageNumber);
     }
 
     @Override
@@ -164,7 +164,7 @@ public class CompletedFragment extends BaseFragment implements AdapterView.OnIte
             return false;
         }
         showLoadingDialog(getString(R.string.dataLoad));
-        ((OrderContract.Presenter) mPresenter).getChartOrder(aty, status, mMorePageNumber);
+        ((OrderContract.Presenter) mPresenter).getMyOrderPage(aty, status, mMorePageNumber);
         return true;
     }
 
@@ -256,7 +256,7 @@ public class CompletedFragment extends BaseFragment implements AdapterView.OnIte
         if (((String) msgEvent.getData()).equals("RxBusLoginEvent") && mPresenter != null || ((String) msgEvent.getData()).equals("RxBusLogOutEvent") && mPresenter != null ||
                 ((String) msgEvent.getData()).equals("RxBusCharterCommentEvent") && mPresenter != null) {
             mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
-            ((OrderContract.Presenter) mPresenter).getChartOrder(aty, status, mMorePageNumber);
+            ((OrderContract.Presenter) mPresenter).getMyOrderPage(aty, status, mMorePageNumber);
         }
     }
 

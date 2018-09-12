@@ -17,7 +17,6 @@
             style="@style/MatchMatch"
             android:orientation="vertical">
 
-
             <LinearLayout
                 style="@style/MatchWrap"
                 android:background="@color/whiteColors"
@@ -197,6 +196,56 @@
 
                 <TextView
                     android:id="@+id/tv_orderNumber"
+                    style="@style/WrapWrap"
+                    android:paddingTop="@dimen/dimen1"
+                    android:text="201808271006"
+                    android:textColor="@color/hintColors"
+                    android:textSize="@dimen/textsize12" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/MatchWrap"
+                android:background="@color/whiteColors"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/dimen27"
+                android:paddingRight="@dimen/dimen27">
+
+                <TextView
+                    style="@style/AutoWrap"
+                    android:paddingBottom="@dimen/dimen23"
+                    android:text="@string/contact"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize14" />
+
+
+                <TextView
+                    android:id="@+id/tv_contact"
+                    style="@style/WrapWrap"
+                    android:paddingTop="@dimen/dimen1"
+                    android:text="201808271006"
+                    android:textColor="@color/hintColors"
+                    android:textSize="@dimen/textsize12" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/MatchWrap"
+                android:background="@color/whiteColors"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/dimen27"
+                android:paddingRight="@dimen/dimen27">
+
+                <TextView
+                    style="@style/AutoWrap"
+                    android:paddingBottom="@dimen/dimen23"
+                    android:text="@string/contactWay"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize14" />
+
+
+                <TextView
+                    android:id="@+id/tv_contactWay"
                     style="@style/WrapWrap"
                     android:paddingTop="@dimen/dimen1"
                     android:text="201808271006"
@@ -413,6 +462,7 @@
                 android:background="@color/whiteColors" />
 
             <TextView
+                android:id="@+id/tv_userEvaluation"
                 style="@style/Match40"
                 android:layout_marginTop="@dimen/dimen6"
                 android:background="@color/whiteColors"
@@ -423,6 +473,7 @@
                 android:textSize="@dimen/textsize15" />
 
             <LinearLayout
+                android:id="@+id/ll_userEvaluation"
                 style="@style/MatchWrap"
                 android:layout_marginTop="@dimen/dimen1"
                 android:background="@color/whiteColors"
@@ -498,6 +549,7 @@
 
 
             <RelativeLayout
+                android:id="@+id/rl_evaluateGuest"
                 style="@style/MatchWrap"
                 android:layout_marginTop="@dimen/dimen1"
                 android:background="@color/whiteColors">
@@ -560,6 +612,6 @@
 
     </ScrollView>
 
-    <!--<include layout="@layout/item_orderdetails_bottombar" />-->
+    <include layout="@layout/item_orderdetails_bottombar" />
 
 </LinearLayout>

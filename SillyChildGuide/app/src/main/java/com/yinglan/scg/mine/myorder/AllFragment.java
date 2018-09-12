@@ -168,7 +168,7 @@ public class AllFragment extends BaseFragment implements AdapterView.OnItemClick
         mRefreshLayout.endRefreshing();
         mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
         showLoadingDialog(getString(R.string.dataLoad));
-        ((OrderContract.Presenter) mPresenter).getChartOrder(aty, status, mMorePageNumber);
+        ((OrderContract.Presenter) mPresenter).getMyOrderPage(aty, status, mMorePageNumber);
     }
 
     @Override
@@ -183,7 +183,7 @@ public class AllFragment extends BaseFragment implements AdapterView.OnItemClick
             return false;
         }
         showLoadingDialog(getString(R.string.dataLoad));
-        ((OrderContract.Presenter) mPresenter).getChartOrder(aty, status, mMorePageNumber);
+        ((OrderContract.Presenter) mPresenter).getMyOrderPage(aty, status, mMorePageNumber);
         return true;
     }
 
@@ -294,7 +294,7 @@ public class AllFragment extends BaseFragment implements AdapterView.OnItemClick
         if (((String) msgEvent.getData()).equals("RxBusLoginEvent") && mPresenter != null || ((String) msgEvent.getData()).equals("RxBusLogOutEvent") && mPresenter != null ||
                 ((String) msgEvent.getData()).equals("RxBusPayTravelCompleteEvent") && mPresenter != null || ((String) msgEvent.getData()).equals("RxBusCharterCommentEvent") && mPresenter != null) {
             mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
-            ((OrderContract.Presenter) mPresenter).getChartOrder(aty, status, mMorePageNumber);
+            ((OrderContract.Presenter) mPresenter).getMyOrderPage(aty, status, mMorePageNumber);
         }
     }
 
