@@ -13,10 +13,9 @@ public interface MissedOrdersContract {
     interface Presenter extends BasePresenter {
 
         /**
-         * 获取首页信息
+         * 获取用户错过的订单
          */
-        void getHomePage(Context context);
-
+        void getGuideMissOrderPage(Context context, int page);
 
         /**
          * 获取会员登录状态

@@ -211,13 +211,13 @@ public class LineDetailsActivity extends BaseActivity implements CharterDetailsC
             tv_orderIncome.setText(getString(R.string.rmb) + "  " + lineDetailsBean.getData().getOrder_price());
             tv_aggregate.setText(getString(R.string.rmb) + "  " + lineDetailsBean.getData().getOrder_price());
 
-            String product_description = "<!DOCTYPE html><html lang=\"zh\"><head>\t<meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no\" /><title></title></head><body>" +
+            String product_description = "<!DOCTYPE html><html lang=\"zh\"><head>\t<meta charset=\"UTF-8\"/><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no\" /><title></title></head><body>" +
                     lineDetailsBean.getData().getProduct_description() + "</body></html>";
             web_lineDetails.loadDataWithBaseURL("baseurl", product_description, "text/html", "utf-8", null);
-            String book_comment = "<!DOCTYPE html><html lang=\"zh\"><head>\t<meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no\" /><title></title></head><body>" +
+            String book_comment = "<!DOCTYPE html><html lang=\"zh\"><head>\t<meta charset=\"UTF-8\"/><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no\" /><title></title></head><body>" +
                     lineDetailsBean.getData().getBook_comment() + "</body></html>";
             web_dueThat.loadDataWithBaseURL("baseurl", book_comment, "text/html", "utf-8", null);
-            String price_description = "<!DOCTYPE html><html lang=\"zh\"><head>\t<meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no\" /><title></title></head><body>" +
+            String price_description = "<!DOCTYPE html><html lang=\"zh\"><head>\t<meta charset=\"UTF-8\"/><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no\" /><title></title></head><body>" +
                     lineDetailsBean.getData().getPrice_comment() + "</body></html>";
             web_descriptionThat.loadDataWithBaseURL("baseurl", price_description, "text/html", "utf-8", null);
             if (lineDetailsBean.getData() != null && lineDetailsBean.getData().getModel_list() != null && lineDetailsBean.getData().getModel_list().size() == 1) {

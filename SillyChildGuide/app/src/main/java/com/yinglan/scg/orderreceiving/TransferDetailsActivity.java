@@ -199,7 +199,7 @@ public class TransferDetailsActivity extends BaseActivity implements CharterDeta
             tv_orderNumber.setText(transferDetailsBean.getData().getOrder_number());
             tv_orderIncome.setText(getString(R.string.rmb) + "  " + transferDetailsBean.getData().getOrder_price());
             tv_aggregate.setText(getString(R.string.rmb) + "  " + transferDetailsBean.getData().getOrder_price());
-            String content = "<!DOCTYPE html><html lang=\"zh\"><head>\t<meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no\" /><title></title></head><body>" +
+            String content = "<!DOCTYPE html><html lang=\"zh\"><head>\t<meta charset=\"UTF-8\"/><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no\" /><title></title></head><body>" +
                     transferDetailsBean.getData().getPrice_comment() + "</body></html>";
             web_descriptionThat.loadDataWithBaseURL("baseurl", content, "text/html", "utf-8", null);
             if (transferDetailsBean.getData() != null && transferDetailsBean.getData().getModel_list() != null && transferDetailsBean.getData().getModel_list().size() == 1) {

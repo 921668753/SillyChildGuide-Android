@@ -20,22 +20,23 @@ public class MissedOrdersPresenter implements MissedOrdersContract.Presenter {
     }
 
     @Override
-    public void getHomePage(Context context) {
+    public void getGuideMissOrderPage(Context context, int page) {
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
-//        RequestClient.getStoreInfo(context, httpParams, new ResponseListener<String>() {
-//            @Override
-//            public void onSuccess(String response) {
-//                mView.getSuccess(response, 0);
-//            }
-//
-//            @Override
-//            public void onFailure(String msg) {
-//                mView.errorMsg(msg, 0);
-//            }
-//        });
+        httpParams.put("pageno", page);
+        httpParams.put("pagesize", 5);
+        RequestClient.getGuideOrderPage(context, httpParams, new ResponseListener<String>() {
+            @Override
+            public void onSuccess(String response) {
+                mView.getSuccess(response, 0);
+            }
+
+            @Override
+            public void onFailure(String msg) {
+                mView.errorMsg(msg, 0);
+            }
+        });
     }
-
-
+    
     @Override
     public void getIsLogin(Context context, int flag) {
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
@@ -51,5 +52,4 @@ public class MissedOrdersPresenter implements MissedOrdersContract.Presenter {
             }
         });
     }
-
 }
