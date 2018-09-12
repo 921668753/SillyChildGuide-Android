@@ -20,6 +20,7 @@ import com.common.cklibrary.utils.RefreshLayoutUtil;
 import com.common.cklibrary.utils.rx.MsgEvent;
 import com.yinglan.scg.R;
 import com.yinglan.scg.adapter.mine.myorder.OrderRVItemViewAdapter;
+import com.yinglan.scg.adapter.mine.myorder.OrderViewAdapter;
 import com.yinglan.scg.constant.NumericConstants;
 import com.yinglan.scg.loginregister.LoginActivity;
 
@@ -35,7 +36,7 @@ public class CompletedFragment extends BaseFragment implements AdapterView.OnIte
 
     private MyOrderActivity aty;
 
-    private OrderRVItemViewAdapter mAdapter;
+    private OrderViewAdapter mAdapter;
 
     @BindView(id = R.id.mRefreshLayout)
     private BGARefreshLayout mRefreshLayout;
@@ -83,16 +84,16 @@ public class CompletedFragment extends BaseFragment implements AdapterView.OnIte
     protected void initData() {
         super.initData();
         mPresenter = new OrderPresenter(this);
-        //  mAdapter = new CharterOrderAdapter(aty);
+        mAdapter = new OrderViewAdapter(aty);
     }
 
     @Override
     protected void initWidget(View parentView) {
         super.initWidget(parentView);
         RefreshLayoutUtil.initRefreshLayout(mRefreshLayout, this, aty, true);
-        //   lv_order.setAdapter(mAdapter);
-     //   lv_order.setOnItemClickListener(this);
-        //   mAdapter.setOnItemChildClickListener(this);
+        lv_order.setAdapter(mAdapter);
+        lv_order.setOnItemClickListener(this);
+        mAdapter.setOnItemChildClickListener(this);
         mRefreshLayout.beginRefreshing();
     }
 
