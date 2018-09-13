@@ -30,7 +30,6 @@ public class EndTheOrderDialog extends BaseDialog implements View.OnClickListene
         this.order_number = order_number;
     }
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
