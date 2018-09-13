@@ -39,7 +39,6 @@ public class DayTimeAdapter extends RecyclerView.Adapter<DayTimeViewHolder> {
         // 因为RecyclerView 通过Holder检查复用
         View v = LayoutInflater.from(context).inflate(R.layout.item_recycler_selectday, parent, false);
         ret = new DayTimeViewHolder(v);
-
         return ret;
     }
 
@@ -171,6 +170,8 @@ public class DayTimeAdapter extends RecyclerView.Adapter<DayTimeViewHolder> {
                     && TravelCalendarActivity.dayDatas.get(i).getDay() == dayTimeEntity.getDay()) {
                 //开始和结束同一天
                 holder.select_ly_day.setBackgroundResource(R.drawable.bg_time_startstop);
+                TravelCalendarActivity.dayDatas.remove(i);
+                break;
             }
         }
 
@@ -223,7 +224,7 @@ public class DayTimeAdapter extends RecyclerView.Adapter<DayTimeViewHolder> {
         if (dayTimeEntity.getStatus() == 100) {
             holder.select_ly_day.setBackgroundResource(R.drawable.bg_time_gray);
         } else {
-         //   holder.select_ly_day.setBackgroundResource(R.color.white);
+            //   holder.select_ly_day.setBackgroundResource(R.color.white);
         }
         //   }
 
