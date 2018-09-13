@@ -21,10 +21,10 @@ public class EndTheOrderPresenter implements EndTheOrderContract.Presenter {
     }
 
     @Override
-    public void postEndTheOrder(Context context, String order_number) {
+    public void postEndOrder(Context context, String order_number) {
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
         httpParams.put("order_number", order_number);
-        RequestClient.getMyOrderPage(context, httpParams, new ResponseListener<String>() {
+        RequestClient.postEndOrder(context, httpParams, new ResponseListener<String>() {
             @Override
             public void onSuccess(String response) {
                 mView.getSuccess(response, 0);

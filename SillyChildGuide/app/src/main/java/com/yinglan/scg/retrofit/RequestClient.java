@@ -786,6 +786,24 @@ public class RequestClient {
         HttpRequest.requestPostFORMHttp(context, URLConstants.GETMODELLISTBYNAME, httpParams, listener);
     }
 
+    /**
+     * 获取车辆名称列表
+     */
+    public static void postEndOrder(Context context, HttpParams httpParams, ResponseListener<String> listener) {
+        Log.d("tag", "postEndOrder");
+        doServer(context, new TokenCallback() {
+            @Override
+            public void execute() {
+                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+                if (StringUtils.isEmpty(cookies)) {
+                    listener.onFailure(NumericConstants.TOLINGIN + "");
+                    return;
+                }
+                httpParams.putHeaders("Cookie", cookies);
+                HttpRequest.requestPostFORMHttp(context, URLConstants.ENDORDER, httpParams, listener);
+            }
+        }, listener);
+    }
 
     /**
      * 获取钱包余额

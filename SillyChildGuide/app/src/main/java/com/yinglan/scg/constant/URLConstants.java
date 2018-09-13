@@ -212,6 +212,11 @@ public class URLConstants {
     public static String GETMODELLISTBYNAME = APIURL + "model/get_model_list_by_name.do";
 
     /**
+     * 模糊查询车辆列表信息
+     */
+    public static String ENDORDER = APIURL + "order/end_order.do";
+
+    /**
      * 获取钱包余额
      */
     public static String PURSEGET = APIURL + "wallet/get.do";

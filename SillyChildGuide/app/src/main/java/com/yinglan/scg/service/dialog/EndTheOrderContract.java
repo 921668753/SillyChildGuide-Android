@@ -16,7 +16,7 @@ public interface EndTheOrderContract {
         /**
          * 结束订单弹框
          */
-        void postEndTheOrder(Context context, String order_number);
+        void postEndOrder(Context context, String order_number);
     }
 
     interface View extends BaseView<Presenter, String> {

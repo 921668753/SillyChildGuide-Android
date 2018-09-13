@@ -172,7 +172,7 @@
     <!--服务订单详情-->
     <string name="endTheOrder">结束订单</string>
     <string name="finalizeOrder">您确定结束该订单？</string>
-
+    <string name="endTheOrderSuccessfully">结束订单订单成功</string>
 
     <!--消息-->
     <string name="interactiveMessage">互动消息</string>

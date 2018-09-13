@@ -63,7 +63,7 @@ public class EndTheOrderDialog extends BaseDialog implements View.OnClickListene
             case R.id.tv_determine:
                 dismiss();
                 showLoadingDialog(mContext.getString(R.string.dataLoad));
-                ((EndTheOrderContract.Presenter) mPresenter).postEndTheOrder(mContext, order_number);
+                ((EndTheOrderContract.Presenter) mPresenter).postEndOrder(mContext, order_number);
                 break;
         }
     }
@@ -76,6 +76,7 @@ public class EndTheOrderDialog extends BaseDialog implements View.OnClickListene
     @Override
     public void getSuccess(String success, int flag) {
         dismissLoadingDialog();
+        ViewInject.toast(mContext.getString(R.string.endTheOrderSuccessfully));
         /**
          * 发送消息
          */
