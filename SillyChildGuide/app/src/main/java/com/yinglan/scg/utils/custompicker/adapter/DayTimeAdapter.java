@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.common.cklibrary.utils.DataUtil;
 import com.yinglan.scg.R;
 import com.yinglan.scg.service.TravelCalendarActivity;
 import com.yinglan.scg.utils.custompicker.bean.DayTimeEntity;
@@ -64,6 +65,12 @@ public class DayTimeAdapter extends RecyclerView.Adapter<DayTimeViewHolder> {
         holder.select_ly_day.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                TravelCalendarActivity.selectDay.setDay(dayTimeEntity.getDay());           // 该item 天数的 年月日等信息  赋给  开始日期
+                TravelCalendarActivity.selectDay.setMonth(dayTimeEntity.getMonth());
+                TravelCalendarActivity.selectDay.setYear(dayTimeEntity.getYear());
+                TravelCalendarActivity.selectDay.setMonthPosition(dayTimeEntity.getMonthPosition());
+                TravelCalendarActivity.selectDay.setDayPosition(position);
+
 //                if (TravelCalendarActivity.startDay.getYear() == 0) {          // 第一次点击开始的位置，因为开始默认参数是 0,0,0,0
 //                    TravelCalendarActivity.startDay.setDay(dayTimeEntity.getDay());           // 该item 天数的 年月日等信息  赋给  开始日期
 //                    TravelCalendarActivity.startDay.setMonth(dayTimeEntity.getMonth());
@@ -148,26 +155,24 @@ public class DayTimeAdapter extends RecyclerView.Adapter<DayTimeViewHolder> {
 //                    TravelCalendarActivity.stopDay.setMonthPosition(-1);
 //                    TravelCalendarActivity.stopDay.setDayPosition(-1);
 //                }
-//                EventBus.getDefault().post(new UpdataCalendar()); // 发消息刷新适配器，目的为了显示日历上各个日期的背景颜色
+                EventBus.getDefault().post(new UpdataCalendar()); // 发消息刷新适配器，目的为了显示日历上各个日期的背景颜色
             }
         });
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        for (int i = 0; i < TravelCalendarActivity.dayDatas.size(); i++) {
+//            long time = DataUtil.getStringToDate(TravelCalendarActivity.dayDatas.get(i).getYear() + "-" + TravelCalendarActivity.dayDatas.get(i).getMonth() + "-" + TravelCalendarActivity.dayDatas.get(i).getDay() + " 00:00", "yyyy-MM-dd HH:mm");
+//            long time1;
+//            if (i + 1 < TravelCalendarActivity.dayDatas.size()) {
+//                time1 = DataUtil.getStringToDate(TravelCalendarActivity.dayDatas.get(i + 1).getYear() + "-" + TravelCalendarActivity.dayDatas.get(i + 1).getMonth() + "-" + TravelCalendarActivity.dayDatas.get(i + 1).getDay() + " 00:00", "yyyy-MM-dd HH:mm");
+//            }
+            if (TravelCalendarActivity.dayDatas.get(i).getYear() == dayTimeEntity.getYear() &&
+                    TravelCalendarActivity.dayDatas.get(i).getMonth() == dayTimeEntity.getMonth()
+                    && TravelCalendarActivity.dayDatas.get(i).getDay() == dayTimeEntity.getDay()) {
+                //开始和结束同一天
+                holder.select_ly_day.setBackgroundResource(R.drawable.bg_time_startstop);
+            }
+        }
 
 
 //        if (TravelCalendarActivity.startDay.getYear() == dayTimeEntity.getYear() && TravelCalendarActivity.startDay.getMonth() == dayTimeEntity.getMonth() && TravelCalendarActivity.startDay.getDay() == dayTimeEntity.getDay()
@@ -213,14 +218,14 @@ public class DayTimeAdapter extends RecyclerView.Adapter<DayTimeViewHolder> {
 //                    }
 //                }
 //            }
-//
+
 //        } else {
-//            if (dayTimeEntity.getStatus() == 100) {
-//                holder.select_ly_day.setBackgroundResource(R.drawable.bg_time_gray);
-//            } else {
-//                holder.select_ly_day.setBackgroundResource(R.color.white);
-//            }
-//        }
+        if (dayTimeEntity.getStatus() == 100) {
+            holder.select_ly_day.setBackgroundResource(R.drawable.bg_time_gray);
+        } else {
+         //   holder.select_ly_day.setBackgroundResource(R.color.white);
+        }
+        //   }
 
     }
 

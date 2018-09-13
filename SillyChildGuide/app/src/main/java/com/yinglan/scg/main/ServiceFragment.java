@@ -51,7 +51,7 @@ public class ServiceFragment extends BaseFragment implements ServiceContract.Vie
     @BindView(id = R.id.ll_travelCalendar, click = true)
     private LinearLayout ll_travelCalendar;
 
-    @BindView(id = R.id.mRefreshLayout, click = true)
+    @BindView(id = R.id.mRefreshLayout)
     private BGARefreshLayout mRefreshLayout;
 
     @BindView(id = R.id.lv_order)

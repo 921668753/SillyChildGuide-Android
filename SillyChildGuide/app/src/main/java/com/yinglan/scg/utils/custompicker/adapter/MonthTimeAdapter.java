@@ -67,7 +67,6 @@ public class MonthTimeAdapter extends RecyclerView.Adapter<MonthTimeViewHolder> 
             } else {
                 days.add(new DayTimeEntity(i, monthTimeEntity.getMonth(), monthTimeEntity.getYear(), position));
             }
-
         }
 
         DayTimeAdapter adapter = new DayTimeAdapter(days, context);
