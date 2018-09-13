@@ -15,6 +15,7 @@ import com.kymjs.common.StringUtils;
 import com.luck.picture.lib.rxbus2.Subscribe;
 import com.luck.picture.lib.rxbus2.ThreadMode;
 import com.yinglan.scg.R;
+import com.yinglan.scg.service.dialog.TripDialog;
 import com.yinglan.scg.utils.custompicker.adapter.MonthTimeAdapter;
 import com.yinglan.scg.utils.custompicker.bean.DayTimeEntity;
 import com.yinglan.scg.utils.custompicker.bean.MonthTimeEntity;
@@ -40,6 +41,7 @@ public class TravelCalendarActivity extends BaseActivity {
     private ArrayList<MonthTimeEntity> datas;
     public static ArrayList<DayTimeEntity> dayDatas;
     public static DayTimeEntity selectDay;
+    private TripDialog tripDialog;
 
     @Override
     public void setRootView() {
@@ -109,6 +111,11 @@ public class TravelCalendarActivity extends BaseActivity {
         EventBus.getDefault().register(this);
     }
 
+    private void initDialog() {
+        tripDialog = new TripDialog(this);
+    }
+
+
     @Override
     public void initWidget() {
         super.initWidget();
@@ -129,17 +136,22 @@ public class TravelCalendarActivity extends BaseActivity {
 //        tv_chooseTimeNeedServe.setText(getString(R.string.startTime) + selectDay.getYear() + getString(R.string.year) + selectDay.getMonth() + getString(R.string.month) +
 //                selectDay.getDay() + getString(R.string.day));
 
-
-
-
-
-
-
+        if (tripDialog == null) {
+            initDialog();
+        }
+        if (tripDialog != null && !tripDialog.isShowing()) {
+            tripDialog.show();
+           // tripDialog.setTitle();
+        }
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        if (tripDialog != null) {
+            tripDialog.cancel();
+        }
+        tripDialog = null;
         EventBus.getDefault().unregister(this);
     }
 

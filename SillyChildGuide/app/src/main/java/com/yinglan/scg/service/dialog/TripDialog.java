@@ -66,6 +66,16 @@ public class TripDialog extends BaseDialog implements TripContract.View, View.On
         }
     }
 
+
+    public void setTime(String time) {
+
+
+    }
+
+
+
+
+
 //    @Override
 //    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 //
