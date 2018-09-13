@@ -30,6 +30,7 @@ import com.yinglan.scg.orderreceiving.LineDetailsActivity;
 import com.yinglan.scg.orderreceiving.MissedOrdersActivity;
 import com.yinglan.scg.orderreceiving.PrivateCustomDetailsActivity;
 import com.yinglan.scg.orderreceiving.TransferDetailsActivity;
+import com.yinglan.scg.orderreceiving.dialog.CertificationDialog;
 
 import cn.bingoogolapple.refreshlayout.BGARefreshLayout;
 
@@ -84,6 +85,7 @@ public class OrderReceivingFragment extends BaseFragment implements OrderReceivi
      */
     private boolean isShowLoadingMore = false;
     private int selectedPosition = 0;
+    private CertificationDialog certificationDialog;
 
 
     @Override
@@ -199,8 +201,35 @@ public class OrderReceivingFragment extends BaseFragment implements OrderReceivi
         } else if (flag == 1) {
             aty.showActivity(aty, MissedOrdersActivity.class);
         } else if (flag == 2) {
+            dismissLoadingDialog();
+            int approve_status = PreferenceHelper.readInt(aty, StringConstants.FILENAME, "approve_status", 0);
+            if (approve_status == 0) {
+                if (certificationDialog == null) {
+                    certificationDialog = new CertificationDialog(aty);
+                }
+                if (certificationDialog != null && !certificationDialog.isShowing()) {
+                    certificationDialog.show();
+                    certificationDialog.setOrdersBouncedDialog(0);
+                }
+                return;
+            }
+            if (approve_status == 2) {
+                if (certificationDialog == null) {
+                    certificationDialog = new CertificationDialog(aty);
+                }
+                if (certificationDialog != null && !certificationDialog.isShowing()) {
+                    certificationDialog.show();
+                    certificationDialog.setOrdersBouncedDialog(1);
+                }
+                return;
+            }
+            if (approve_status == 1) {
+                errorMsg(getString(R.string.certificationProcess1), 1);
+                return;
+            }
             boolean model_status = PreferenceHelper.readBoolean(aty, StringConstants.FILENAME, "model_status", false);
             if (!model_status) {
+                dismissLoadingDialog();
                 errorMsg(getString(R.string.finishVehicleAuditFirst), 1);
                 return;
             }
@@ -301,5 +330,14 @@ public class OrderReceivingFragment extends BaseFragment implements OrderReceivi
         }
     }
 
-
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (certificationDialog != null) {
+            certificationDialog.cancel();
+        }
+        certificationDialog = null;
+        mAdapter.clear();
+        mAdapter = null;
+    }
 }

@@ -31,7 +31,7 @@ public class UserInfoBean extends BaseResult<UserInfoBean.DataBean> implements S
         private String nickname;
         private String remark;
         private String guide_level_name;
-        private String approve_status;
+        private int approve_status;
         private String invite_code;
 
         public boolean isModel_status() {
@@ -106,11 +106,11 @@ public class UserInfoBean extends BaseResult<UserInfoBean.DataBean> implements S
             this.guide_level_name = guide_level_name;
         }
 
-        public String getApprove_status() {
+        public int getApprove_status() {
             return approve_status;
         }
 
-        public void setApprove_status(String approve_status) {
+        public void setApprove_status(int approve_status) {
             this.approve_status = approve_status;
         }
 

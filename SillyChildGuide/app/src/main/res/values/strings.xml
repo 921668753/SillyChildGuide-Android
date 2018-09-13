@@ -134,6 +134,8 @@
     <string name="clickAgainExitProgram">再按一次退出程序</string>
 
     <!--接单-->
+    <string name="notCertified">您还未认证，是否去未认证？</string>
+    <string name="notCertified1">您还认证失败，是否去重新认证？</string>
     <string name="finishVehicleAuditFirst">请先完成车辆审核，车辆审核通过后，才能接单！</string>
     <string name="missedOrders">错过的订单</string>
     <string name="orderReceivedSuccessfully">接单订单成功</string>
