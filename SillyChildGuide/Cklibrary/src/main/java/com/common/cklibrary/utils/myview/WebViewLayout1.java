@@ -175,6 +175,9 @@ public class WebViewLayout1 extends LinearLayout {
             } else if (url.contains("tel:")) {
                 callBack.backOnclick(url);
                 return true;
+            } else if (url.contains("intent://activity")) {
+                callBack.backOnclick(url);
+                return true;
             }
             Log.d("tag", url);
             return super.shouldOverrideUrlLoading(view, url);
