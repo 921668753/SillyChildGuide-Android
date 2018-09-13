@@ -5,6 +5,7 @@
 
 
     <TextView
+        android:id="@+id/tv_title"
         style="@style/MatchWrap"
         android:paddingBottom="@dimen/dimen24"
         android:paddingLeft="@dimen/dimen38"
@@ -22,6 +23,7 @@
         android:background="@color/background" />
 
     <TextView
+        android:id="@+id/tv_content"
         style="@style/MatchWrap"
         android:paddingBottom="@dimen/dimen25"
         android:paddingLeft="@dimen/dimen38"
@@ -37,6 +39,7 @@
         android:background="@color/background" />
 
     <TextView
+        android:id="@+id/tv_time"
         style="@style/MatchWrap"
         android:paddingBottom="@dimen/dimen25"
         android:paddingLeft="@dimen/dimen38"
