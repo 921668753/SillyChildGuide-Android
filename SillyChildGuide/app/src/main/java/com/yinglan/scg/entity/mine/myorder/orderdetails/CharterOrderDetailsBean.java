@@ -2,6 +2,10 @@ package com.yinglan.scg.entity.mine.myorder.orderdetails;
 
 import com.common.cklibrary.entity.BaseResult;
 
+
+import com.yinglan.scg.entity.mine.myorder.orderdetails.TransferOrderDetailsBean.DataBean.ReviewDataBean;
+
+
 public class CharterOrderDetailsBean extends BaseResult<CharterOrderDetailsBean.DataBean> {
 
 
@@ -41,6 +45,15 @@ public class CharterOrderDetailsBean extends BaseResult<CharterOrderDetailsBean.
         private String book_comment;
         private String origin_name;
         private String price_comment;
+        private ReviewDataBean review_data;
+
+        public ReviewDataBean getReview_data() {
+            return review_data;
+        }
+
+        public void setReview_data(ReviewDataBean review_data) {
+            this.review_data = review_data;
+        }
 
         public String getOrder_number() {
             return order_number;

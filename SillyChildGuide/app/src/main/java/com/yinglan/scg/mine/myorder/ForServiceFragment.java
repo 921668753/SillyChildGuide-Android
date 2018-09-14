@@ -148,10 +148,20 @@ public class ForServiceFragment extends BaseFragment implements AdapterView.OnIt
                 return;
             }
             mRefreshLayout.endRefreshing();
-            mAdapter.clear();
-            mAdapter.addNewData(forServiceBean.getData().getProcessing_list());
-            mAdapter1.clear();
-            mAdapter1.addNewData(forServiceBean.getData().getWaiting_list());
+            if (forServiceBean.getData().getProcessing_list() != null && forServiceBean.getData().getProcessing_list().size() > 0) {
+                lv_processing.setVisibility(View.VISIBLE);
+                mAdapter.clear();
+                mAdapter.addNewData(forServiceBean.getData().getProcessing_list());
+            } else {
+                lv_processing.setVisibility(View.GONE);
+            }
+            if (forServiceBean.getData().getWaiting_list() != null && forServiceBean.getData().getWaiting_list().size() > 0) {
+                lv_waiting.setVisibility(View.VISIBLE);
+                mAdapter1.clear();
+                mAdapter1.addNewData(forServiceBean.getData().getWaiting_list());
+            } else {
+                lv_waiting.setVisibility(View.GONE);
+            }
             dismissLoadingDialog();
         } else if (flag == 1) {//订单详情
             Intent intent = new Intent();

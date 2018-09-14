@@ -328,7 +328,9 @@
     <string name="noOrder">亲，您还没有订单哟~</string>
     <string name="userEvaluation">用户评价</string>
     <string name="evaluateGuest">对客人进行评价</string>
+    <string name="evaluateGuest1">请对客人进行评价</string>
     <string name="submitEvaluation">提交评价</string>
+    <string name="submitEvaluationSuccessful">提交评价成功</string>
 
 
     <!--提现成功-->

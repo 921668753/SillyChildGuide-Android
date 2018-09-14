@@ -2,6 +2,8 @@ package com.yinglan.scg.entity.mine.myorder.orderdetails;
 
 import com.common.cklibrary.entity.BaseResult;
 
+import java.util.List;
+
 public class TransferOrderDetailsBean extends BaseResult<TransferOrderDetailsBean.DataBean> {
 
 
@@ -37,6 +39,7 @@ public class TransferOrderDetailsBean extends BaseResult<TransferOrderDetailsBea
         private String contact;
         private String origin_name;
         private String price_comment;
+        private ReviewDataBean review_data;
 
         public String getOrder_number() {
             return order_number;
@@ -148,6 +151,80 @@ public class TransferOrderDetailsBean extends BaseResult<TransferOrderDetailsBea
 
         public void setPrice_comment(String price_comment) {
             this.price_comment = price_comment;
+        }
+
+        public ReviewDataBean getReview_data() {
+            return review_data;
+        }
+
+        public void setReview_data(ReviewDataBean review_data) {
+            this.review_data = review_data;
+        }
+
+        public class ReviewDataBean {
+            /**
+             * nickname : 天若有情x
+             * face : http://img.shahaizhi.com/FuIb5rJYd2wozXtjE-ma507JRaOp
+             * content : 图片测试4张图片测试4张图片测试4张图片测试4张图片测试4张图片测试4张图片测试4张图片测试4张图片测试4张图片测试4张图片测试4张图片测试4张图片测试4张图片测试4张图片测试4张图片测试4张图片测试4张图片测试4张
+             * picture : ["http://img.shahaizhi.com/Fo73lizwItYpAp4U5wA7UTMD5ae1","http://img.shahaizhi.com/FsfMvWNBvC3V3cO2WWeJQpKnx2Ie"]
+             * satisfaction_level : 5
+             * create_time : 1535619416
+             */
+
+            private String nickname;
+            private String face;
+            private String content;
+            private int satisfaction_level;
+            private String create_time;
+            private List<String> picture;
+
+            public String getNickname() {
+                return nickname;
+            }
+
+            public void setNickname(String nickname) {
+                this.nickname = nickname;
+            }
+
+            public String getFace() {
+                return face;
+            }
+
+            public void setFace(String face) {
+                this.face = face;
+            }
+
+            public String getContent() {
+                return content;
+            }
+
+            public void setContent(String content) {
+                this.content = content;
+            }
+
+            public int getSatisfaction_level() {
+                return satisfaction_level;
+            }
+
+            public void setSatisfaction_level(int satisfaction_level) {
+                this.satisfaction_level = satisfaction_level;
+            }
+
+            public String getCreate_time() {
+                return create_time;
+            }
+
+            public void setCreate_time(String create_time) {
+                this.create_time = create_time;
+            }
+
+            public List<String> getPicture() {
+                return picture;
+            }
+
+            public void setPicture(List<String> picture) {
+                this.picture = picture;
+            }
         }
     }
 }

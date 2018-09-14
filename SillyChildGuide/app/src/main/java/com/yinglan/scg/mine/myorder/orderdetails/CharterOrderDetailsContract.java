@@ -4,6 +4,9 @@ import android.content.Context;
 
 import com.common.cklibrary.common.BasePresenter;
 import com.common.cklibrary.common.BaseView;
+import com.luck.picture.lib.entity.LocalMedia;
+
+import java.util.List;
 
 /**
  * Created by ruitu on 2016/9/24.
@@ -24,7 +27,7 @@ public interface CharterOrderDetailsContract {
         /**
          * 司导评论
          */
-        void postAddReview(Context context, String order_number, String content, String pictures);
+        void postAddReview(Context context, String order_number, String content, List<LocalMedia> selectList);
     }
 
     interface View extends BaseView<Presenter, String> {

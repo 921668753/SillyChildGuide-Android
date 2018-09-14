@@ -3,10 +3,19 @@ package com.yinglan.scg.mine.myorder.orderdetails;
 import android.content.Context;
 
 import com.common.cklibrary.common.KJActivityStack;
+import com.common.cklibrary.common.StringConstants;
 import com.common.cklibrary.utils.httputil.HttpUtilParams;
 import com.common.cklibrary.utils.httputil.ResponseListener;
+import com.common.cklibrary.utils.httputil.ResponseProgressbarListener;
+import com.kymjs.common.PreferenceHelper;
+import com.kymjs.common.StringUtils;
 import com.kymjs.rxvolley.client.HttpParams;
+import com.luck.picture.lib.entity.LocalMedia;
+import com.yinglan.scg.R;
 import com.yinglan.scg.retrofit.RequestClient;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by ruitu on 2018/9/24.
@@ -40,8 +49,80 @@ public class CharterOrderDetailsPresenter implements CharterOrderDetailsContract
     }
 
     @Override
-    public void postAddReview(Context context, String order_number, String content, String pictures) {
+    public void postAddReview(Context context, String order_number, String content, List<LocalMedia> selectList) {
+        if (StringUtils.isEmpty(content)) {
+            mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.evaluateGuest1), 1);
+            return;
+        }
+        List<String> listStr = new ArrayList<String>();
+        if (selectList.size() <= 0) {
+            postAddReview1(context, order_number, content, listStr);
+            return;
+        }
+        PreferenceHelper.write(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "selectListSize", 0);
+        for (int i = 0; i < selectList.size(); i++) {
+            if (StringUtils.isEmpty(selectList.get(i).getPath())) {
+                mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.noData), 1);
+                return;
+            }
+            listStr.add("");
+            if (selectList.get(i).getPath().startsWith("http")) {
+                listStr.set(i, selectList.get(i).getPath());
+                int selectListSize = PreferenceHelper.readInt(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "selectListSize", 0);
+                selectListSize = selectListSize + 1;
+                PreferenceHelper.write(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "selectListSize", selectListSize);
+                if (selectListSize == selectList.size()) {
+                    postAddReview1(context, order_number, content, listStr);
+                    selectList.clear();
+                }
+                continue;
+            }
+            //参数 图片路径,图片名,token,成功的回调
+            int finalI = i;
+            RequestClient.upLoadImg(KJActivityStack.create().topActivity(), selectList.get(i).getPath(), 1, new ResponseProgressbarListener<String>() {
+                @Override
+                public void onProgress(String progress) {
+                    //  mView.showLoadingDialog(KJActivityStack.create().topActivity().getString(R.string.crossLoad) + progress + "%");
+                }
+
+                @Override
+                public void onSuccess(String response) {
+                    int selectListSize = PreferenceHelper.readInt(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "selectListSize", 0);
+                    selectListSize = selectListSize + 1;
+                    PreferenceHelper.write(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "selectListSize", selectListSize);
+                    listStr.set(finalI, response);
+                    if (selectListSize == selectList.size()) {
+                        postAddReview1(context, order_number, content, listStr);
+                        selectList.clear();
+                    }
+                }
+
+                @Override
+                public void onFailure(String msg) {
+                    KJActivityStack.create().topActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            mView.errorMsg(msg, 1);
+                            return;
+                        }
+                    });
+                }
+            });
+        }
+    }
+
+
+    public void postAddReview1(Context context, String order_number, String content, List<String> selectList) {
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
+        String imgsStr = "";
+        if (selectList.size() > 0) {
+            for (int i = 0; i < selectList.size(); i++) {
+                imgsStr = imgsStr + "," + selectList.get(i);
+            }
+            httpParams.put("pictures", imgsStr.substring(1));
+        }
+        httpParams.put("order_number", order_number);
+        httpParams.put("content", content);
         RequestClient.postAddReview(context, httpParams, new ResponseListener<String>() {
             @Override
             public void onSuccess(String response) {
@@ -54,6 +135,7 @@ public class CharterOrderDetailsPresenter implements CharterOrderDetailsContract
             }
         });
     }
+
 
     @Override
     public void getIsLogin(Context context, int flag) {

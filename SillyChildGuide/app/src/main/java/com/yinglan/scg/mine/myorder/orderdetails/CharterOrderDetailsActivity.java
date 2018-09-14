@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -21,6 +22,8 @@ import com.common.cklibrary.utils.DataUtil;
 import com.common.cklibrary.utils.JsonUtil;
 import com.common.cklibrary.utils.myview.NoScrollGridView;
 import com.common.cklibrary.utils.myview.WebViewLayout;
+import com.common.cklibrary.utils.rx.MsgEvent;
+import com.common.cklibrary.utils.rx.RxBus;
 import com.kymjs.common.FileUtils;
 import com.kymjs.common.StringUtils;
 import com.luck.picture.lib.PictureSelector;
@@ -30,10 +33,12 @@ import com.luck.picture.lib.entity.LocalMedia;
 import com.luck.picture.lib.permissions.RxPermissions;
 import com.luck.picture.lib.tools.PictureFileUtils;
 import com.yinglan.scg.R;
+import com.yinglan.scg.adapter.mine.myorder.orderdetails.ImgCommentsViewAdapter;
 import com.yinglan.scg.adapter.mine.myvehicle.GridImageAdapter;
 import com.yinglan.scg.entity.mine.myorder.orderdetails.CharterOrderDetailsBean;
 import com.yinglan.scg.loginregister.LoginActivity;
 import com.yinglan.scg.service.dialog.EndTheOrderDialog;
+import com.yinglan.scg.utils.GlideImageLoader;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,7 +49,7 @@ import io.reactivex.disposables.Disposable;
 /**
  * 包车订单详情
  */
-public class CharterOrderDetailsActivity extends BaseActivity implements CharterOrderDetailsContract.View, GridImageAdapter.OnItemClickListener {
+public class CharterOrderDetailsActivity extends BaseActivity implements CharterOrderDetailsContract.View, GridImageAdapter.OnItemClickListener, AdapterView.OnItemClickListener {
 
     @BindView(id = R.id.tv_title)
     private TextView tv_title;
@@ -155,6 +160,7 @@ public class CharterOrderDetailsActivity extends BaseActivity implements Charter
     private int maxSelectNum = 9;
 
     private EndTheOrderDialog endTheOrderDialog;
+    private ImgCommentsViewAdapter mAdapter;
 
     @Override
     public void setRootView() {
@@ -169,6 +175,7 @@ public class CharterOrderDetailsActivity extends BaseActivity implements Charter
         selectList = new ArrayList<LocalMedia>();
         themeId = R.style.picture_default_style;
         adapter = new GridImageAdapter(this, onAddPicClickListener);
+        mAdapter = new ImgCommentsViewAdapter(this);
         showLoadingDialog(getString(R.string.dataLoad));
         ((CharterOrderDetailsContract.Presenter) mPresenter).getMyOrderDetails(order_number);
         initDialog();
@@ -216,10 +223,16 @@ public class CharterOrderDetailsActivity extends BaseActivity implements Charter
     public void initWidget() {
         super.initWidget();
         ActivityTitleUtils.initToolbar(aty, "", true, R.id.titlebar);
+        tv_title.setFocusable(true);
+        tv_title.requestFocus();
+        tv_title.setFocusableInTouchMode(true);
+        tv_title.requestFocusFromTouch();
         web_dueThat.setTitleVisibility(false);
         web_dueThat.getWebView().setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
         web_descriptionThat.setTitleVisibility(false);
         web_descriptionThat.getWebView().setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+        gv_imgComments.setAdapter(mAdapter);
+        gv_imgComments.setOnItemClickListener(this);
         FullyGridLayoutManager manager = new FullyGridLayoutManager(this, 3, GridLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(manager);
         adapter.setList(selectList);
@@ -263,6 +276,24 @@ public class CharterOrderDetailsActivity extends BaseActivity implements Charter
                 if (endTheOrderDialog != null && !endTheOrderDialog.isShowing()) {
                     endTheOrderDialog.show();
                 }
+                break;
+            case R.id.tv_submitAudit:
+                showLoadingDialog(getString(R.string.submissionLoad));
+                ((CharterOrderDetailsContract.Presenter) mPresenter).postAddReview(this, order_number, et_evaluateGuest.getText().toString().trim(), selectList);
+                break;
+        }
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        LocalMedia media = mAdapter.getItem(position);
+        String pictureType = media.getPictureType();
+        int mediaType = PictureMimeType.pictureToVideo(pictureType);
+        switch (mediaType) {
+            case 1:
+                // 预览图片 可自定长按保存路径
+                //PictureSelector.create(MainActivity.this).themeStyle(themeId).externalPicturePreview(position, "/custom_file", selectList);
+                PictureSelector.create(CharterOrderDetailsActivity.this).themeStyle(themeId).openExternalPreview(position, mAdapter.getData());
                 break;
         }
     }
@@ -317,7 +348,6 @@ public class CharterOrderDetailsActivity extends BaseActivity implements Charter
             String price_description = "<!DOCTYPE html><html lang=\"zh\"><head>\t<meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no\" /><title></title></head><body>" +
                     charterOrderDetailsBean.getData().getPrice_comment() + "</body></html>";
             web_descriptionThat.loadDataWithBaseURL("", price_description, "text/html", "utf-8", null);
-
             switch (charterOrderDetailsBean.getData().getOrder_status()) {
                 case 1://待服务
                     tv_userEvaluation.setVisibility(View.GONE);
@@ -358,12 +388,77 @@ public class CharterOrderDetailsActivity extends BaseActivity implements Charter
                     ll_bottom.setVisibility(View.GONE);
                     break;
             }
+            setComment(charterOrderDetailsBean);
             dismissLoadingDialog();
         } else if (flag == 1) {
-
-
+            dismissLoadingDialog();
+            ViewInject.toast(getString(R.string.submitEvaluationSuccessful));
+            /**
+             * 发送消息
+             */
+            RxBus.getInstance().post(new MsgEvent<String>("RxBusCommentEvent"));
+            finish();
         }
     }
+
+
+    private void setComment(CharterOrderDetailsBean privateCustomOrderDetailsBean) {
+        if (privateCustomOrderDetailsBean != null && privateCustomOrderDetailsBean.getData() != null && privateCustomOrderDetailsBean.getData().getReview_data() != null &&
+                privateCustomOrderDetailsBean.getData().getReview_data().getSatisfaction_level() >= 0) {
+
+            GlideImageLoader.glideLoader(this, privateCustomOrderDetailsBean.getData().getReview_data().getFace(), img_head, 0, R.mipmap.avatar);
+
+            tv_nickName.setText(privateCustomOrderDetailsBean.getData().getReview_data().getNickname());
+
+            switch (privateCustomOrderDetailsBean.getData().getReview_data().getSatisfaction_level()) {
+                case 1:
+                    img_satisfactionLevel.setImageResource(R.mipmap.comment_star_one);
+                    break;
+                case 2:
+                    img_satisfactionLevel.setImageResource(R.mipmap.comment_star_two);
+                    break;
+                case 3:
+                    img_satisfactionLevel.setImageResource(R.mipmap.comment_star_three);
+                    break;
+                case 4:
+                    img_satisfactionLevel.setImageResource(R.mipmap.comment_star_four);
+                    break;
+                case 5:
+                    img_satisfactionLevel.setImageResource(R.mipmap.comment_star_five);
+                    break;
+                default:
+                    img_satisfactionLevel.setImageDrawable(null);
+                    break;
+            }
+            if (!StringUtils.isEmpty(privateCustomOrderDetailsBean.getData().getReview_data().getContent())) {
+                tv_content.setVisibility(View.VISIBLE);
+                tv_content.setText(privateCustomOrderDetailsBean.getData().getReview_data().getContent());
+            } else {
+                tv_content.setVisibility(View.GONE);
+            }
+            if (privateCustomOrderDetailsBean.getData().getReview_data().getPicture() != null && privateCustomOrderDetailsBean.getData().getReview_data().getPicture().size() > 0) {
+                gv_imgComments.setVisibility(View.VISIBLE);
+                mAdapter.clear();
+                for (int i = 0; i < privateCustomOrderDetailsBean.getData().getReview_data().getPicture().size(); i++) {
+                    LocalMedia localMedia1 = new LocalMedia();
+                    localMedia1.setHttpPath(privateCustomOrderDetailsBean.getData().getReview_data().getPicture().get(i));
+                    localMedia1.setPath(privateCustomOrderDetailsBean.getData().getReview_data().getPicture().get(i));
+                    localMedia1.setPictureType("image/jpeg");
+                    mAdapter.addLastItem(localMedia1);
+                }
+            } else {
+                gv_imgComments.setVisibility(View.GONE);
+            }
+            tv_time1.setText(DataUtil.formatData(StringUtils.toLong(privateCustomOrderDetailsBean.getData().getReview_data().getCreate_time()), "yyyy.MM.dd"));
+            return;
+        }
+        tv_userEvaluation.setVisibility(View.GONE);
+        ll_userEvaluation.setVisibility(View.GONE);
+        rl_evaluateGuest.setVisibility(View.GONE);
+        tv_submitAudit.setVisibility(View.GONE);
+        ll_bottom.setVisibility(View.GONE);
+    }
+
 
     @Override
     public void errorMsg(String msg, int flag) {
@@ -403,7 +498,8 @@ public class CharterOrderDetailsActivity extends BaseActivity implements Charter
         adapter = null;
         selectList.clear();
         selectList = null;
+        mAdapter.clear();
+        mAdapter = null;
     }
-
 
 }

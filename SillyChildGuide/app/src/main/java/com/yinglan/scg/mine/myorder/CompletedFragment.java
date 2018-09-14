@@ -249,7 +249,7 @@ public class CompletedFragment extends BaseFragment implements AdapterView.OnIte
     public void callMsgEvent(MsgEvent msgEvent) {
         super.callMsgEvent(msgEvent);
         if (((String) msgEvent.getData()).equals("RxBusLoginEvent") && mPresenter != null || ((String) msgEvent.getData()).equals("RxBusLogOutEvent") && mPresenter != null ||
-                ((String) msgEvent.getData()).equals("RxBusCharterCommentEvent") && mPresenter != null) {
+                ((String) msgEvent.getData()).equals("RxBusCommentEvent") && mPresenter != null) {
             mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
             ((OrderContract.Presenter) mPresenter).getMyOrderPage(aty, status, mMorePageNumber);
         }
