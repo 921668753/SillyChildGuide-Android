@@ -40,6 +40,22 @@ public class CharterOrderDetailsPresenter implements CharterOrderDetailsContract
     }
 
     @Override
+    public void postAddReview(Context context, String order_number, String content, String pictures) {
+        HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
+        RequestClient.getIsLogin(context, httpParams, new ResponseListener<String>() {
+            @Override
+            public void onSuccess(String response) {
+                mView.getSuccess(response, 1);
+            }
+
+            @Override
+            public void onFailure(String msg) {
+                mView.errorMsg(msg, 1);
+            }
+        });
+    }
+
+    @Override
     public void getIsLogin(Context context, int flag) {
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
         RequestClient.getIsLogin(context, httpParams, new ResponseListener<String>() {
@@ -54,4 +70,6 @@ public class CharterOrderDetailsPresenter implements CharterOrderDetailsContract
             }
         });
     }
+
+
 }

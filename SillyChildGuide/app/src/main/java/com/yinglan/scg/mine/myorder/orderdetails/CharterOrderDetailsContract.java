@@ -20,6 +20,11 @@ public interface CharterOrderDetailsContract {
          * 获取会员登录状态
          */
         void getIsLogin(Context context, int flag);
+
+        /**
+         * 司导评论
+         */
+        void postAddReview(Context context, String order_number, String content, String pictures);
     }
 
     interface View extends BaseView<Presenter, String> {

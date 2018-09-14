@@ -160,18 +160,36 @@ public class DayTimeAdapter extends RecyclerView.Adapter<DayTimeViewHolder> {
 
 
         for (int i = 0; i < TravelCalendarActivity.dayDatas.size(); i++) {
-//            long time = DataUtil.getStringToDate(TravelCalendarActivity.dayDatas.get(i).getYear() + "-" + TravelCalendarActivity.dayDatas.get(i).getMonth() + "-" + TravelCalendarActivity.dayDatas.get(i).getDay() + " 00:00", "yyyy-MM-dd HH:mm");
-//            long time1;
-//            if (i + 1 < TravelCalendarActivity.dayDatas.size()) {
-//                time1 = DataUtil.getStringToDate(TravelCalendarActivity.dayDatas.get(i + 1).getYear() + "-" + TravelCalendarActivity.dayDatas.get(i + 1).getMonth() + "-" + TravelCalendarActivity.dayDatas.get(i + 1).getDay() + " 00:00", "yyyy-MM-dd HH:mm");
-//            }
             if (TravelCalendarActivity.dayDatas.get(i).getYear() == dayTimeEntity.getYear() &&
                     TravelCalendarActivity.dayDatas.get(i).getMonth() == dayTimeEntity.getMonth()
                     && TravelCalendarActivity.dayDatas.get(i).getDay() == dayTimeEntity.getDay()) {
+                dayTimeEntity.setStatus(102);
                 //开始和结束同一天
                 holder.select_ly_day.setBackgroundResource(R.drawable.bg_time_startstop);
                 break;
             }
+//            long time = DataUtil.getStringToDate(TravelCalendarActivity.dayDatas.get(i).getYear() + "-" + TravelCalendarActivity.dayDatas.get(i).getMonth() + "-" + TravelCalendarActivity.dayDatas.get(i).getDay() + " 00:00", "yyyy-MM-dd HH:mm");
+//            long time1 = 0;
+//            if (i + 1 < TravelCalendarActivity.dayDatas.size()) {
+//                time1 = DataUtil.getStringToDate(TravelCalendarActivity.dayDatas.get(i + 1).getYear() + "-" + TravelCalendarActivity.dayDatas.get(i + 1).getMonth() + "-" + TravelCalendarActivity.dayDatas.get(i + 1).getDay() + " 00:00", "yyyy-MM-dd HH:mm");
+//            }
+//            if (TravelCalendarActivity.dayDatas.get(i).getYear() == dayTimeEntity.getYear() &&
+//                    TravelCalendarActivity.dayDatas.get(i).getMonth() == dayTimeEntity.getMonth()
+//                    && TravelCalendarActivity.dayDatas.get(i).getDay() == dayTimeEntity.getDay() && time1 - time > 24 * 3600 * 1000) {
+//                dayTimeEntity.setStatus(102);
+//                //开始和结束同一天
+//                holder.select_ly_day.setBackgroundResource(R.drawable.bg_time_startstop);
+//                break;
+//            }
+//            if (TravelCalendarActivity.dayDatas.get(i).getYear() == dayTimeEntity.getYear() &&
+//                    TravelCalendarActivity.dayDatas.get(i).getMonth() == dayTimeEntity.getMonth()
+//                    && TravelCalendarActivity.dayDatas.get(i).getDay() == dayTimeEntity.getDay() && i == TravelCalendarActivity.dayDatas.size() - 1) {
+//                dayTimeEntity.setStatus(102);
+//                //开始和结束同一天
+//                holder.select_ly_day.setBackgroundResource(R.drawable.bg_time_startstop);
+//                break;
+//            }
+
         }
 
 
@@ -222,8 +240,8 @@ public class DayTimeAdapter extends RecyclerView.Adapter<DayTimeViewHolder> {
 //        } else {
         if (dayTimeEntity.getStatus() == 100) {
             holder.select_ly_day.setBackgroundResource(R.drawable.bg_time_gray);
-        } else {
-            //   holder.select_ly_day.setBackgroundResource(R.color.white);
+        } else if (dayTimeEntity.getStatus() != 102) {
+            holder.select_ly_day.setBackgroundResource(R.color.white);
         }
         //   }
 

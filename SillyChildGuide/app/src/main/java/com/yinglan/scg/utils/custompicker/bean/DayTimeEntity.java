@@ -19,7 +19,7 @@ public class DayTimeEntity implements Serializable {
     private int dayPosition;      //属于的日期位置，注意是该日期在每个月（内层列表）中的位置
 
     private int status;
-
+    private int position;   //属于的日期位置，注意是该日期在每个月（内层列表）中的位置
 
     public DayTimeEntity(int day, int month, int year, int monthPosition) {
         this.day = day;
@@ -85,5 +85,11 @@ public class DayTimeEntity implements Serializable {
         this.dayPosition = dayPosition;
     }
 
+    public int getPosition() {
+        return position;
+    }
 
+    public void setPosition(int position) {
+        this.position = position;
+    }
 }
