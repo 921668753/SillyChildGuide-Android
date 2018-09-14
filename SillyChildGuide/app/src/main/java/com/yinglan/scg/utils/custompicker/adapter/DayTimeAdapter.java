@@ -170,7 +170,6 @@ public class DayTimeAdapter extends RecyclerView.Adapter<DayTimeViewHolder> {
                     && TravelCalendarActivity.dayDatas.get(i).getDay() == dayTimeEntity.getDay()) {
                 //开始和结束同一天
                 holder.select_ly_day.setBackgroundResource(R.drawable.bg_time_startstop);
-                TravelCalendarActivity.dayDatas.remove(i);
                 break;
             }
         }

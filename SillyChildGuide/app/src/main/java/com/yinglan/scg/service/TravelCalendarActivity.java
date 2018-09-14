@@ -92,8 +92,6 @@ public class TravelCalendarActivity extends BaseActivity {
                 StringUtils.toInt(DataUtil.formatData((System.currentTimeMillis() + 60 * 60 * 24 * 9 * 1000) / 1000, "yyyy")),
                 StringUtils.toInt(DataUtil.formatData((System.currentTimeMillis() + 60 * 60 * 24 * 9 * 1000) / 1000, "MM")) - month);
         dayDatas.add(startDay6);
-
-
         datas = new ArrayList<>();
         Calendar c = Calendar.getInstance();
         c.add(Calendar.MONTH, 1);
@@ -126,13 +124,13 @@ public class TravelCalendarActivity extends BaseActivity {
                         false);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
-        recyclerView.scrollToPosition(selectDay.getMonthPosition());
+        // recyclerView.scrollToPosition(selectDay.getMonthPosition());
     }
 
     @SuppressLint("SetTextI18n")
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEventMainThread(UpdataCalendar event) {
-        //adapter.notifyDataSetChanged();
+        adapter.notifyDataSetChanged();
 //        tv_chooseTimeNeedServe.setText(getString(R.string.startTime) + selectDay.getYear() + getString(R.string.year) + selectDay.getMonth() + getString(R.string.month) +
 //                selectDay.getDay() + getString(R.string.day));
 
@@ -141,7 +139,7 @@ public class TravelCalendarActivity extends BaseActivity {
         }
         if (tripDialog != null && !tripDialog.isShowing()) {
             tripDialog.show();
-           // tripDialog.setTitle();
+            // tripDialog.setTitle();
         }
     }
 

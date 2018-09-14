@@ -33,7 +33,6 @@ public class TripDialog extends BaseDialog implements TripContract.View, View.On
         super(context, R.style.MyDialog);
     }
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
