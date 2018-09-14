@@ -6,7 +6,7 @@ import android.view.View;
 import com.common.cklibrary.utils.DataUtil;
 import com.kymjs.common.StringUtils;
 import com.yinglan.scg.R;
-import com.yinglan.scg.entity.mine.myorder.OrderBean.DataBean.ResultBean;
+import com.yinglan.scg.entity.mine.myorder.ForServiceBean.DataBean.WaitingListBean;
 
 import cn.bingoogolapple.baseadapter.BGAAdapterViewAdapter;
 import cn.bingoogolapple.baseadapter.BGAViewHolderHelper;
@@ -15,11 +15,15 @@ import cn.bingoogolapple.baseadapter.BGAViewHolderHelper;
  * 我的订单---适配器
  * Created by Admin on 2017/8/15.
  */
-public class OrderViewAdapter extends BGAAdapterViewAdapter<ResultBean> {
+public class ForServiceWaitingViewAdapter extends BGAAdapterViewAdapter<WaitingListBean> {
 
-    public OrderViewAdapter(Context context) {
+    //    public OrderViewAdapter(RecyclerView recyclerView) {
+//        super(recyclerView, R.layout.item_order);
+//    }
+    public ForServiceWaitingViewAdapter(Context context) {
         super(context, R.layout.item_order);
     }
+
 
 //    @Override
 //    protected void setItemChildListener(BGAViewHolderHelper helper, int viewType) {
@@ -32,10 +36,12 @@ public class OrderViewAdapter extends BGAAdapterViewAdapter<ResultBean> {
 //    }
 
     @Override
-    public void fillData(BGAViewHolderHelper viewHolderHelper, int position, ResultBean model) {
-
-        viewHolderHelper.setVisibility(R.id.tv_statusOrder, View.GONE);
-
+    public void fillData(BGAViewHolderHelper viewHolderHelper, int position, WaitingListBean model) {
+        if (position == 0) {
+            viewHolderHelper.setVisibility(R.id.tv_statusOrder, View.VISIBLE);
+        } else {
+            viewHolderHelper.setVisibility(R.id.tv_statusOrder, View.GONE);
+        }
         viewHolderHelper.setVisibility(R.id.tv_divider, View.GONE);
         switch (model.getOrder_status()) {
             case 1://待服务

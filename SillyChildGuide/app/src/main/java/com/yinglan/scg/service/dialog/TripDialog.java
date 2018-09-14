@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 
@@ -18,7 +17,7 @@ import com.common.cklibrary.utils.JsonUtil;
 import com.kymjs.common.DensityUtils;
 import com.yinglan.scg.R;
 import com.yinglan.scg.adapter.service.TripViewAdapter;
-import com.yinglan.scg.entity.orderreceiving.dialog.UnwillingnessTakeOrdersBean;
+import com.yinglan.scg.entity.service.dialog.TripBean;
 import com.yinglan.scg.loginregister.LoginActivity;
 
 /**
@@ -26,7 +25,7 @@ import com.yinglan.scg.loginregister.LoginActivity;
  */
 public class TripDialog extends BaseDialog implements TripContract.View, View.OnClickListener {
 
-    private ListView lv_reason;
+    private ListView lv_trip;
     private TripViewAdapter mAdapter;
 
     public TripDialog(@NonNull Context context) {
@@ -49,10 +48,9 @@ public class TripDialog extends BaseDialog implements TripContract.View, View.On
         mPresenter = new TripPresenter(this);
         ImageView img_cross = (ImageView) findViewById(R.id.img_cross);
         img_cross.setOnClickListener(this);
-        lv_reason = (ListView) findViewById(R.id.lv_reason);
-        //  lv_reason.setOnItemClickListener(this);
+        lv_trip = (ListView) findViewById(R.id.lv_trip);
         mAdapter = new TripViewAdapter(mContext);
-        lv_reason.setAdapter(mAdapter);
+        lv_trip.setAdapter(mAdapter);
     }
 
 
@@ -66,19 +64,10 @@ public class TripDialog extends BaseDialog implements TripContract.View, View.On
     }
 
 
-    public void setTime(String time) {
-
-
+    public void setTripTime(long time) {
+        showLoadingDialog(mContext.getString(R.string.dataLoad));
+        ((TripContract.Presenter) mPresenter).getGuideOrderStroke(mContext, String.valueOf(time));
     }
-
-
-
-
-
-//    @Override
-//    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//
-//    }
 
     @Override
     public void setPresenter(TripContract.Presenter presenter) {
@@ -88,17 +77,17 @@ public class TripDialog extends BaseDialog implements TripContract.View, View.On
     @Override
     public void getSuccess(String success, int flag) {
         dismissLoadingDialog();
-        UnwillingnessTakeOrdersBean unwillingnessTakeOrdersBean = (UnwillingnessTakeOrdersBean) JsonUtil.getInstance().json2Obj(success, UnwillingnessTakeOrdersBean.class);
-        if (unwillingnessTakeOrdersBean == null || unwillingnessTakeOrdersBean.getData() == null || unwillingnessTakeOrdersBean.getData().size() <= 0) {
+        TripBean tripBean = (TripBean) JsonUtil.getInstance().json2Obj(success, TripBean.class);
+        if (tripBean == null || tripBean.getData() == null || tripBean.getData().size() <= 0) {
             errorMsg(mContext.getString(R.string.serverError), 0);
             return;
         }
-        if (unwillingnessTakeOrdersBean.getData().size() > 1) {
-            ViewGroup.LayoutParams layoutParams = lv_reason.getLayoutParams();
-            layoutParams.height = DensityUtils.dip2px(245);
+        if (tripBean.getData().size() > 1) {
+            ViewGroup.LayoutParams layoutParams = lv_trip.getLayoutParams();
+            layoutParams.height = DensityUtils.dip2px(285);
         }
         mAdapter.clear();
-        mAdapter.addNewData(unwillingnessTakeOrdersBean.getData());
+        mAdapter.addNewData(tripBean.getData());
     }
 
     @Override

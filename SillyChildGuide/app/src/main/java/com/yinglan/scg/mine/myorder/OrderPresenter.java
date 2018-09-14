@@ -40,6 +40,22 @@ public class OrderPresenter implements OrderContract.Presenter {
         });
     }
 
+    @Override
+    public void getProcessingGuideOrder(Context context) {
+        HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
+        RequestClient.getProcessingGuideOrder(context, httpParams, new ResponseListener<String>() {
+            @Override
+            public void onSuccess(String response) {
+                mView.getSuccess(response, 0);
+            }
+
+            @Override
+            public void onFailure(String msg) {
+                mView.errorMsg(msg, 0);
+            }
+        });
+    }
+
 
     @Override
     public void getIsLogin(Context context, int flag) {

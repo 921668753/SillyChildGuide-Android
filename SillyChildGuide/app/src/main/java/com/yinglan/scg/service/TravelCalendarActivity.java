@@ -8,12 +8,16 @@ import android.widget.TextView;
 
 import com.common.cklibrary.common.BaseActivity;
 import com.common.cklibrary.common.BindView;
+import com.common.cklibrary.common.ViewInject;
 import com.common.cklibrary.utils.ActivityTitleUtils;
 import com.common.cklibrary.utils.DataUtil;
+import com.common.cklibrary.utils.JsonUtil;
 import com.kymjs.common.StringUtils;
 import com.luck.picture.lib.rxbus2.Subscribe;
 import com.luck.picture.lib.rxbus2.ThreadMode;
 import com.yinglan.scg.R;
+import com.yinglan.scg.entity.service.TravelCalendarBean;
+import com.yinglan.scg.loginregister.LoginActivity;
 import com.yinglan.scg.service.dialog.TripDialog;
 import com.yinglan.scg.utils.custompicker.adapter.MonthTimeAdapter;
 import com.yinglan.scg.utils.custompicker.bean.DayTimeEntity;
@@ -28,10 +32,7 @@ import io.rong.eventbus.EventBus;
 /**
  * 行程日历
  */
-public class TravelCalendarActivity extends BaseActivity {
-
-    @BindView(id = R.id.tv_chooseTimeNeedServe)
-    private TextView tv_chooseTimeNeedServe;
+public class TravelCalendarActivity extends BaseActivity implements TravelCalendarContract.View {
 
     @BindView(id = R.id.recyclerView)
     private RecyclerView recyclerView;
@@ -52,69 +53,8 @@ public class TravelCalendarActivity extends BaseActivity {
         super.initData();
         selectDay = new DayTimeEntity(0, 0, 0, 0);
         dayDatas = new ArrayList<DayTimeEntity>();
-//        stopDay = (DayTimeEntity) getIntent().getSerializableExtra("stopDayBean");
-//        if (startDay == null || stopDay == null) {
-        int month = StringUtils.toInt(DataUtil.formatData(System.currentTimeMillis() / 1000, "MM"));
-        DayTimeEntity startDay = new DayTimeEntity(StringUtils.toInt(DataUtil.formatData(System.currentTimeMillis() / 1000, "dd"), 0),
-                StringUtils.toInt(DataUtil.formatData(System.currentTimeMillis() / 1000, "MM")),
-                StringUtils.toInt(DataUtil.formatData(System.currentTimeMillis() / 1000, "yyyy")),
-                StringUtils.toInt(DataUtil.formatData(System.currentTimeMillis() / 1000, "MM")) - month,102);
-//            stopDay = new DayTimeEntity(-1, -1, -1, -1);
-//        }
-        dayDatas.add(startDay);
-        DayTimeEntity startDay1 = new DayTimeEntity(StringUtils.toInt(DataUtil.formatData((System.currentTimeMillis() + 60 * 60 * 24 * 2 * 1000) / 1000, "dd"), 0),
-                StringUtils.toInt(DataUtil.formatData((System.currentTimeMillis() + 60 * 60 * 24 * 2 * 1000) / 1000, "MM")),
-                StringUtils.toInt(DataUtil.formatData((System.currentTimeMillis() + 60 * 60 * 24 * 2 * 1000) / 1000, "yyyy")),
-                StringUtils.toInt(DataUtil.formatData((System.currentTimeMillis() + 60 * 60 * 24 * 2 * 1000) / 1000, "MM")) - month,102);
-        dayDatas.add(startDay1);
-        DayTimeEntity startDay2 = new DayTimeEntity(StringUtils.toInt(DataUtil.formatData((System.currentTimeMillis() + 60 * 60 * 24 * 4 * 1000) / 1000, "dd"), 0),
-                StringUtils.toInt(DataUtil.formatData((System.currentTimeMillis() + 60 * 60 * 24 * 4 * 1000) / 1000, "MM")),
-                StringUtils.toInt(DataUtil.formatData((System.currentTimeMillis() + 60 * 60 * 24 * 4 * 1000) / 1000, "yyyy")),
-                StringUtils.toInt(DataUtil.formatData((System.currentTimeMillis() + 60 * 60 * 24 * 4 * 1000) / 1000, "MM")) - month,102);
-        dayDatas.add(startDay2);
-        DayTimeEntity startDay3 = new DayTimeEntity(StringUtils.toInt(DataUtil.formatData((System.currentTimeMillis() + 60 * 60 * 24 * 5 * 1000) / 1000, "dd"), 0),
-                StringUtils.toInt(DataUtil.formatData((System.currentTimeMillis() + 60 * 60 * 24 * 5 * 1000) / 1000, "MM")),
-                StringUtils.toInt(DataUtil.formatData((System.currentTimeMillis() + 60 * 60 * 24 * 5 * 1000) / 1000, "yyyy")),
-                StringUtils.toInt(DataUtil.formatData((System.currentTimeMillis() + 60 * 60 * 24 * 5 * 1000) / 1000, "MM")) - month,102);
-
-        dayDatas.add(startDay3);
-        DayTimeEntity startDay4 = new DayTimeEntity(StringUtils.toInt(DataUtil.formatData((System.currentTimeMillis() + 60 * 60 * 24 * 7 * 1000) / 1000, "dd"), 0),
-                StringUtils.toInt(DataUtil.formatData((System.currentTimeMillis() + 60 * 60 * 24 * 7 * 1000) / 1000, "MM")),
-                StringUtils.toInt(DataUtil.formatData((System.currentTimeMillis() + 60 * 60 * 24 * 7 * 1000) / 1000, "yyyy")),
-                StringUtils.toInt(DataUtil.formatData((System.currentTimeMillis() + 60 * 60 * 24 * 7 * 1000) / 1000, "MM")) - month,102);
-        dayDatas.add(startDay4);
-
-        DayTimeEntity startDay5 = new DayTimeEntity(StringUtils.toInt(DataUtil.formatData((System.currentTimeMillis() + 60 * 60 * 24 * 8 * 1000) / 1000, "dd"), 0),
-                StringUtils.toInt(DataUtil.formatData((System.currentTimeMillis() + 60 * 60 * 24 * 8 * 1000) / 1000, "MM")),
-                StringUtils.toInt(DataUtil.formatData((System.currentTimeMillis() + 60 * 60 * 24 * 8 * 1000) / 1000, "yyyy")),
-                StringUtils.toInt(DataUtil.formatData((System.currentTimeMillis() + 60 * 60 * 24 * 8 * 1000) / 1000, "MM")) - month,102);
-        dayDatas.add(startDay5);
-        DayTimeEntity startDay6 = new DayTimeEntity(StringUtils.toInt(DataUtil.formatData((System.currentTimeMillis() + 60 * 60 * 24 * 9 * 1000) / 1000, "dd"), 0),
-                StringUtils.toInt(DataUtil.formatData((System.currentTimeMillis() + 60 * 60 * 24 * 9 * 1000) / 1000, "MM")),
-                StringUtils.toInt(DataUtil.formatData((System.currentTimeMillis() + 60 * 60 * 24 * 9 * 1000) / 1000, "yyyy")),
-                StringUtils.toInt(DataUtil.formatData((System.currentTimeMillis() + 60 * 60 * 24 * 9 * 1000) / 1000, "MM")) - month,102);
-        dayDatas.add(startDay6);
-
-//        for (int i = 0; i <dayDatas.size() ; i++) {
-//
-//
-//
-//
-//
-//        }
-
-
-
-
-
-
-
-
-
-
-
-
         datas = new ArrayList<>();
+        mPresenter = new TravelCalendarPresenter(this);
         Calendar c = Calendar.getInstance();
         c.add(Calendar.MONTH, 1);
         int nextYear = c.get(Calendar.YEAR);
@@ -129,12 +69,13 @@ public class TravelCalendarActivity extends BaseActivity {
         }
         adapter = new MonthTimeAdapter(datas, this);
         EventBus.getDefault().register(this);
+        showLoadingDialog(getString(R.string.dataLoad));
+        ((TravelCalendarContract.Presenter) mPresenter).getDateList(aty);
     }
 
     private void initDialog() {
-        tripDialog = new TripDialog(this);
+        tripDialog = new TripDialog(aty);
     }
-
 
     @Override
     public void initWidget() {
@@ -155,14 +96,58 @@ public class TravelCalendarActivity extends BaseActivity {
         //  adapter.notifyDataSetChanged();
 //        tv_chooseTimeNeedServe.setText(getString(R.string.startTime) + selectDay.getYear() + getString(R.string.year) + selectDay.getMonth() + getString(R.string.month) +
 //                selectDay.getDay() + getString(R.string.day));
-
+        if (selectDay.getStatus() != 102) {
+            return;
+        }
         if (tripDialog == null) {
             initDialog();
         }
-        if (tripDialog != null && !tripDialog.isShowing() && selectDay.getStatus() == 102) {
+        if (tripDialog != null && !tripDialog.isShowing()) {
             tripDialog.show();
-            // tripDialog.setTitle();
+            long time = DataUtil.getStringToDate(selectDay.getYear() + "-" + selectDay.getMonth() + "-" + selectDay.getDay() + " 0:00", "yyyy-MM-dd HH:mm");
+            tripDialog.setTripTime(time);
         }
+    }
+
+
+    @Override
+    public void setPresenter(TravelCalendarContract.Presenter presenter) {
+        mPresenter = presenter;
+    }
+
+    @Override
+    public void getSuccess(String success, int flag) {
+        dismissLoadingDialog();
+        TravelCalendarBean travelCalendarBean = (TravelCalendarBean) JsonUtil.getInstance().json2Obj(success, TravelCalendarBean.class);
+        if (travelCalendarBean == null || travelCalendarBean.getData() == null || travelCalendarBean.getData().size() <= 0) {
+            return;
+        }
+        int year = StringUtils.toInt(DataUtil.formatData(System.currentTimeMillis() / 1000, "yyyy"));
+        int month = StringUtils.toInt(DataUtil.formatData(System.currentTimeMillis() / 1000, "MM"));
+        for (int i = 0; i < travelCalendarBean.getData().size(); i++) {
+            int newYear = StringUtils.toInt(DataUtil.formatData(travelCalendarBean.getData().get(i), "yyyy"));
+            int newMonth = StringUtils.toInt(DataUtil.formatData(travelCalendarBean.getData().get(i), "MM"));
+            int day = StringUtils.toInt(DataUtil.formatData(travelCalendarBean.getData().get(i), "dd"));
+            DayTimeEntity dayTimeEntity = null;
+            if (newYear == year) {
+                dayTimeEntity = new DayTimeEntity(day, newMonth, newYear, newMonth - month, 102);
+            } else {
+                dayTimeEntity = new DayTimeEntity(day, newMonth, newYear, 12 - month + (newYear - year - 1) * 12 + newMonth, 102);
+            }
+            dayTimeEntity.setTime(travelCalendarBean.getData().get(i));
+            dayDatas.add(dayTimeEntity);
+        }
+        adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void errorMsg(String msg, int flag) {
+        dismissLoadingDialog();
+        if (isLogin(msg)) {
+            skipActivity(aty, LoginActivity.class);
+            return;
+        }
+        ViewInject.toast(msg);
     }
 
     @Override

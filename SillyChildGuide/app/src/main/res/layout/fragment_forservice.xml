@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/MatchMatch"
+    android:background="@color/background"
+    android:orientation="vertical">
+
+    <cn.bingoogolapple.refreshlayout.BGARefreshLayout
+        android:id="@+id/mRefreshLayout"
+        style="@style/MatchAuto">
+
+        <!-- item_companyguidemassage -->
+        <ScrollView
+            style="@style/MatchMatch"
+            android:scrollbars="none">
+
+            <LinearLayout
+                style="@style/MatchMatch"
+                android:orientation="vertical">
+
+                <com.common.cklibrary.utils.myview.ChildListView
+                    android:id="@+id/lv_processing"
+                    style="@style/MatchMatch"
+                    android:divider="@color/background"
+                    android:dividerHeight="@dimen/dimen10"
+                    android:overScrollMode="never"
+                    android:scrollbars="none"
+                    tools:listitem="@layout/item_airporttransportationorder" />
+
+                <com.common.cklibrary.utils.myview.ChildListView
+                    android:id="@+id/lv_waiting"
+                    style="@style/MatchMatch"
+                    android:layout_marginTop="@dimen/dimen10"
+                    android:divider="@color/background"
+                    android:dividerHeight="@dimen/dimen10"
+                    android:overScrollMode="never"
+                    android:scrollbars="none"
+                    tools:listitem="@layout/item_airporttransportationorder" />
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </cn.bingoogolapple.refreshlayout.BGARefreshLayout>
+
+    <include layout="@layout/common_error" />
+
+</LinearLayout>

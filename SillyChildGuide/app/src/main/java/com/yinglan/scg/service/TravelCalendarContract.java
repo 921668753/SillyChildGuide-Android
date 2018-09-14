@@ -1,4 +1,5 @@
-package com.yinglan.scg.service.dialog;
+package com.yinglan.scg.service;
+
 
 import android.content.Context;
 
@@ -6,21 +7,21 @@ import com.common.cklibrary.common.BasePresenter;
 import com.common.cklibrary.common.BaseView;
 
 /**
- * Created by Administrator on 2017/2/11.
+ * Created by ruitu on 2016/9/24.
  */
-
-public interface TripContract {
+interface TravelCalendarContract {
 
     interface Presenter extends BasePresenter {
 
         /**
-         * 获取出行日历弹框数据
+         * 获取出行日历时间
          */
-        void getGuideOrderStroke(Context context, String time);
+        void getDateList(Context context);
 
     }
 
     interface View extends BaseView<Presenter, String> {
+
     }
 
 }

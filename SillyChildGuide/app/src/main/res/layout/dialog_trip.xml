@@ -7,11 +7,9 @@
     <LinearLayout
         android:id="@+id/ll_content"
         style="@style/MatchWrap"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
         android:layout_marginLeft="@dimen/dimen38"
         android:layout_marginRight="@dimen/dimen38"
-        android:layout_marginTop="@dimen/dimen196"
+        android:layout_marginTop="@dimen/dimen130"
         android:background="@drawable/shape_clearcache"
         android:gravity="center"
         android:orientation="vertical">
@@ -23,6 +21,7 @@
             android:layout_marginLeft="@dimen/dimen10"
             android:layout_marginRight="@dimen/dimen10"
             android:divider="@color/background"
+            android:listSelector="@color/whiteColors"
             android:dividerHeight="@dimen/dimen1"
             android:scrollbars="none"
             tools:listitem="@layout/item_trip" />

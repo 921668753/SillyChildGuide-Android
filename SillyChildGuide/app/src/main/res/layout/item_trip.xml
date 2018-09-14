@@ -13,7 +13,7 @@
         android:paddingTop="@dimen/dimen24"
         android:text="送机"
         android:textColor="@color/textColor"
-        android:textSize="@dimen/textsize19"
+        android:textSize="@dimen/textsize18"
         android:textStyle="bold" />
 
 
@@ -31,7 +31,7 @@
         android:paddingTop="@dimen/dimen25"
         android:text="2人3行李"
         android:textColor="@color/textColor"
-        android:textSize="@dimen/textsize18" />
+        android:textSize="@dimen/textsize17" />
 
     <TextView
         android:layout_width="match_parent"
@@ -47,5 +47,5 @@
         android:paddingTop="@dimen/dimen25"
         android:text="08月 27日 周一 09:00"
         android:textColor="@color/textColor"
-        android:textSize="@dimen/textsize18" />
+        android:textSize="@dimen/textsize17" />
 </LinearLayout>

@@ -42,7 +42,7 @@ public class CharterOrderDetailsPresenter implements CharterOrderDetailsContract
     @Override
     public void postAddReview(Context context, String order_number, String content, String pictures) {
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
-        RequestClient.getIsLogin(context, httpParams, new ResponseListener<String>() {
+        RequestClient.postAddReview(context, httpParams, new ResponseListener<String>() {
             @Override
             public void onSuccess(String response) {
                 mView.getSuccess(response, 1);
@@ -70,6 +70,5 @@ public class CharterOrderDetailsPresenter implements CharterOrderDetailsContract
             }
         });
     }
-
 
 }

@@ -491,7 +491,61 @@ public class RequestClient {
     }
 
     /**
+     * 获取出行日历时间
+     */
+    public static void getDateList(Context context, HttpParams httpParams, ResponseListener<String> listener) {
+        doServer(context, new TokenCallback() {
+            @Override
+            public void execute() {
+                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+                if (StringUtils.isEmpty(cookies)) {
+                    listener.onFailure(NumericConstants.TOLINGIN + "");
+                    return;
+                }
+                httpParams.putHeaders("Cookie", cookies);
+                HttpRequest.requestGetHttp(context, URLConstants.DATALIST, httpParams, listener);
+            }
+        }, listener);
+    }
+
+    /**
+     * 获取出行日历弹框数据
+     */
+    public static void getGuideOrderStroke(Context context, HttpParams httpParams, ResponseListener<String> listener) {
+        doServer(context, new TokenCallback() {
+            @Override
+            public void execute() {
+                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+                if (StringUtils.isEmpty(cookies)) {
+                    listener.onFailure(NumericConstants.TOLINGIN + "");
+                    return;
+                }
+                httpParams.putHeaders("Cookie", cookies);
+                HttpRequest.requestGetHttp(context, URLConstants.GUIDEORDERSTROKE, httpParams, listener);
+            }
+        }, listener);
+    }
+
+    /**
      * 获取我的订单列表
+     */
+    public static void getProcessingGuideOrder(Context context, HttpParams httpParams, ResponseListener<String> listener) {
+        doServer(context, new TokenCallback() {
+            @Override
+            public void execute() {
+                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+                if (StringUtils.isEmpty(cookies)) {
+                    listener.onFailure(NumericConstants.TOLINGIN + "");
+                    return;
+                }
+                httpParams.putHeaders("Cookie", cookies);
+                HttpRequest.requestGetHttp(context, URLConstants.PROCESSINFGUIDEORDER, httpParams, listener);
+            }
+        }, listener);
+    }
+
+    /**
+     * 获取我的订单详情
      */
     public static void getMyOrderDetails(Context context, HttpParams httpParams, ResponseListener<String> listener) {
         doServer(context, new TokenCallback() {
@@ -508,6 +562,23 @@ public class RequestClient {
         }, listener);
     }
 
+    /**
+     * 获取我的订单列表
+     */
+    public static void postAddReview(Context context, HttpParams httpParams, ResponseListener<String> listener) {
+        doServer(context, new TokenCallback() {
+            @Override
+            public void execute() {
+                String cookies = PreferenceHelper.readString(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "Cookie", "");
+                if (StringUtils.isEmpty(cookies)) {
+                    listener.onFailure(NumericConstants.TOLINGIN + "");
+                    return;
+                }
+                httpParams.putHeaders("Cookie", cookies);
+                HttpRequest.requestGetHttp(context, URLConstants.ADDREVIEW, httpParams, listener);
+            }
+        }, listener);
+    }
 
     /**
      * 获取系统消息首页

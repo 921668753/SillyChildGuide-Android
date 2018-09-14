@@ -1,5 +1,8 @@
 package com.yinglan.scg.mine.myorder.orderdetails;
 
+import android.Manifest;
+import android.content.Intent;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.EditText;
@@ -10,22 +13,38 @@ import android.widget.TextView;
 
 import com.common.cklibrary.common.BaseActivity;
 import com.common.cklibrary.common.BindView;
+import com.common.cklibrary.common.StringConstants;
 import com.common.cklibrary.common.ViewInject;
+import com.common.cklibrary.common.pictureselector.FullyGridLayoutManager;
 import com.common.cklibrary.utils.ActivityTitleUtils;
 import com.common.cklibrary.utils.DataUtil;
 import com.common.cklibrary.utils.JsonUtil;
 import com.common.cklibrary.utils.myview.NoScrollGridView;
 import com.common.cklibrary.utils.myview.WebViewLayout;
+import com.kymjs.common.FileUtils;
 import com.kymjs.common.StringUtils;
+import com.luck.picture.lib.PictureSelector;
+import com.luck.picture.lib.config.PictureConfig;
+import com.luck.picture.lib.config.PictureMimeType;
+import com.luck.picture.lib.entity.LocalMedia;
+import com.luck.picture.lib.permissions.RxPermissions;
+import com.luck.picture.lib.tools.PictureFileUtils;
 import com.yinglan.scg.R;
+import com.yinglan.scg.adapter.mine.myvehicle.GridImageAdapter;
 import com.yinglan.scg.entity.mine.myorder.orderdetails.CharterOrderDetailsBean;
 import com.yinglan.scg.loginregister.LoginActivity;
 import com.yinglan.scg.service.dialog.EndTheOrderDialog;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import io.reactivex.Observer;
+import io.reactivex.disposables.Disposable;
+
 /**
  * 包车订单详情
  */
-public class CharterOrderDetailsActivity extends BaseActivity implements CharterOrderDetailsContract.View {
+public class CharterOrderDetailsActivity extends BaseActivity implements CharterOrderDetailsContract.View, GridImageAdapter.OnItemClickListener {
 
     @BindView(id = R.id.tv_title)
     private TextView tv_title;
@@ -128,6 +147,13 @@ public class CharterOrderDetailsActivity extends BaseActivity implements Charter
 
     private String order_number;
 
+    private List<LocalMedia> selectList = null;
+    private GridImageAdapter adapter;
+    private int themeId;
+    private int chooseMode = PictureMimeType.ofImage();
+    private int aspect_ratio_x = 16, aspect_ratio_y = 9;
+    private int maxSelectNum = 9;
+
     private EndTheOrderDialog endTheOrderDialog;
 
     @Override
@@ -140,10 +166,46 @@ public class CharterOrderDetailsActivity extends BaseActivity implements Charter
         super.initData();
         mPresenter = new CharterOrderDetailsPresenter(this);
         order_number = getIntent().getStringExtra("order_number");
+        selectList = new ArrayList<LocalMedia>();
+        themeId = R.style.picture_default_style;
+        adapter = new GridImageAdapter(this, onAddPicClickListener);
         showLoadingDialog(getString(R.string.dataLoad));
         ((CharterOrderDetailsContract.Presenter) mPresenter).getMyOrderDetails(order_number);
         initDialog();
     }
+
+    private GridImageAdapter.onAddPicClickListener onAddPicClickListener = new GridImageAdapter.onAddPicClickListener() {
+        @Override
+        public void onAddPicClick() {
+            if (selectList.size() > 0) {
+                String pictureType = selectList.get(selectList.size() - 1).getPictureType();
+                int mediaType = PictureMimeType.pictureToVideo(pictureType);
+                if (mediaType == 2 || mediaType == 3) {
+                    ViewInject.toast(getString(R.string.videoOnlyAddOne));
+                    return;
+                }
+            }
+            // 进入相册 以下是例子：不需要的api可以不写
+            PictureSelector.create(CharterOrderDetailsActivity.this)
+                    .openGallery(chooseMode)// 全部.PictureMimeType.ofAll()、图片.ofImage()、视频.ofVideo()、音频.ofAudio()
+                    .theme(themeId)// 主题样式设置 具体参考 values/styles   用法：R.style.picture.white.style
+                    .maxSelectNum(maxSelectNum)// 最大图片选择数量
+                    .minSelectNum(1)// 最小选择数量
+                    .imageSpanCount(4)// 每行显示个数
+                    .selectionMode(PictureConfig.MULTIPLE)// 多选 or 单选
+                    .previewImage(true)// 是否可预览图片
+                    .compress(false)// 是否压缩
+                    .isCamera(true)// 是否显示拍照按钮
+                    .setOutputCameraPath(FileUtils.getSaveFolder(StringConstants.PHOTOPATH).getAbsolutePath())// 自定义拍照保存路径
+                    .glideOverride(160, 160)// glide 加载宽高，越小图片列表越流畅，但会影响列表图片浏览的清晰度
+                    .withAspectRatio(aspect_ratio_x, aspect_ratio_y)// 裁剪比例 如16:9 3:2 3:4 1:1 可自定义
+                    .isGif(true)// 是否显示gif图片
+                    .selectionMedia(selectList)// 是否传入已选图片
+                    .minimumCompressSize(StringConstants.COMPRESSION_SIZE)// 小于100kb的图片不压缩
+                    .forResult(PictureConfig.CHOOSE_REQUEST);//结果回调onActivityResult code
+        }
+    };
+
 
     private void initDialog() {
         endTheOrderDialog = new EndTheOrderDialog(this, order_number);
@@ -158,6 +220,36 @@ public class CharterOrderDetailsActivity extends BaseActivity implements Charter
         web_dueThat.getWebView().setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
         web_descriptionThat.setTitleVisibility(false);
         web_descriptionThat.getWebView().setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+        FullyGridLayoutManager manager = new FullyGridLayoutManager(this, 3, GridLayoutManager.VERTICAL, false);
+        recyclerView.setLayoutManager(manager);
+        adapter.setList(selectList);
+        adapter.setSelectMax(maxSelectNum);
+        recyclerView.setAdapter(adapter);
+        adapter.setOnItemClickListener(this);
+        // 清空图片缓存，包括裁剪、压缩后的图片 注意:必须要在上传完成后调用 必须要获取权限
+        RxPermissions permissions = new RxPermissions(this);
+        permissions.request(Manifest.permission.WRITE_EXTERNAL_STORAGE).subscribe(new Observer<Boolean>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+            }
+
+            @Override
+            public void onNext(Boolean aBoolean) {
+                if (aBoolean) {
+                    PictureFileUtils.deleteCacheDirFile(CharterOrderDetailsActivity.this);
+                } else {
+                    ViewInject.toast(getString(R.string.picture_jurisdiction));
+                }
+            }
+
+            @Override
+            public void onError(Throwable e) {
+            }
+
+            @Override
+            public void onComplete() {
+            }
+        });
     }
 
     @Override
@@ -172,6 +264,22 @@ public class CharterOrderDetailsActivity extends BaseActivity implements Charter
                     endTheOrderDialog.show();
                 }
                 break;
+        }
+    }
+
+    @Override
+    public void onItemClick(int position, View v) {
+        if (selectList.size() > 0) {
+            LocalMedia media = selectList.get(position);
+            String pictureType = media.getPictureType();
+            int mediaType = PictureMimeType.pictureToVideo(pictureType);
+            switch (mediaType) {
+                case 1:
+                    // 预览图片 可自定长按保存路径
+                    //PictureSelector.create(MainActivity.this).themeStyle(themeId).externalPicturePreview(position, "/custom_file", selectList);
+                    PictureSelector.create(CharterOrderDetailsActivity.this).themeStyle(themeId).openExternalPreview(position, selectList);
+                    break;
+            }
         }
     }
 
@@ -236,9 +344,9 @@ public class CharterOrderDetailsActivity extends BaseActivity implements Charter
                     ll_bottom.setVisibility(View.GONE);
                     break;
                 case 4://已完成
-                    tv_userEvaluation.setVisibility(View.GONE);
-                    ll_userEvaluation.setVisibility(View.GONE);
-                    rl_evaluateGuest.setVisibility(View.GONE);
+                    tv_userEvaluation.setVisibility(View.VISIBLE);
+                    ll_userEvaluation.setVisibility(View.VISIBLE);
+                    rl_evaluateGuest.setVisibility(View.VISIBLE);
                     tv_submitAudit.setVisibility(View.GONE);
                     ll_bottom.setVisibility(View.GONE);
                     break;
@@ -270,6 +378,20 @@ public class CharterOrderDetailsActivity extends BaseActivity implements Charter
         ViewInject.toast(msg);
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK && data != null) {
+            switch (requestCode) {
+                case PictureConfig.CHOOSE_REQUEST:
+                    // 图片选择结果回调
+                    selectList = PictureSelector.obtainMultipleResult(data);
+                    adapter.setList(selectList);
+                    adapter.notifyDataSetChanged();
+                    break;
+            }
+        }
+    }
 
     @Override
     protected void onDestroy() {
@@ -278,5 +400,10 @@ public class CharterOrderDetailsActivity extends BaseActivity implements Charter
             endTheOrderDialog.cancel();
         }
         endTheOrderDialog = null;
+        adapter = null;
+        selectList.clear();
+        selectList = null;
     }
+
+
 }

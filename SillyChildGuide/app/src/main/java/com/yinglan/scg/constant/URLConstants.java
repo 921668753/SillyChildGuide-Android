@@ -9,14 +9,13 @@ public class URLConstants {
     /**
      * 正式服务器地址URL
      */
-    //  public static String SERVERURL = "http://user.api.shahaizhi.com/";
-    public static String SERVERURL1 = "http://www.shahaizhi.com/";
+//    public static String SERVERURL = "http://user.api.shahaizhi.com/";
+    public static String SERVERURL1 = "http://www.shahaizhi.tech/";
 
     /**
      * 测试服务器地址URL
      */
     public static String SERVERURL = "http://192.168.1.247:8080/";
-    //public static String SERVERURL = "http://api.shahaizi.keiousoft.com/";
 
     /**
      * 请求地址URL
@@ -122,9 +121,29 @@ public class URLConstants {
     public static String GETMYORDERPAGE = APIURL + "order/get_my_order_page.do";
 
     /**
+     * 获取出行日历时间
+     */
+    public static String DATALIST = APIURL + "order/get_date_list.do";
+
+    /**
+     * 获取出行日历弹框数据
+     */
+    public static String GUIDEORDERSTROKE = APIURL + "order/get_guide_order_stroke.do";
+
+    /**
+     * 获取我的订单待服务列表
+     */
+    public static String PROCESSINFGUIDEORDER = APIURL + "order/get_processing_guide_order.do";
+
+    /**
      * 获取我的订单详情
      */
     public static String GETMYORDERDETAIL = APIURL + "order/get_my_order_details.do";
+
+    /**
+     * 司导评论
+     */
+    public static String ADDREVIEW = APIURL + "review/add_review.do";
 
     /**
      * 获取系统消息首页
