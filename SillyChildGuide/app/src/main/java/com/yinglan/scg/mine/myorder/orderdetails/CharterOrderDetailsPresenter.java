@@ -73,7 +73,6 @@ public class CharterOrderDetailsPresenter implements CharterOrderDetailsContract
                 PreferenceHelper.write(KJActivityStack.create().topActivity(), StringConstants.FILENAME, "selectListSize", selectListSize);
                 if (selectListSize == selectList.size()) {
                     postAddReview1(context, order_number, content, listStr);
-                    selectList.clear();
                 }
                 continue;
             }
@@ -120,6 +119,8 @@ public class CharterOrderDetailsPresenter implements CharterOrderDetailsContract
                 imgsStr = imgsStr + "," + selectList.get(i);
             }
             httpParams.put("pictures", imgsStr.substring(1));
+        } else {
+            httpParams.put("pictures", imgsStr);
         }
         httpParams.put("order_number", order_number);
         httpParams.put("content", content);
