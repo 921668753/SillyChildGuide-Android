@@ -4,7 +4,7 @@ import com.common.cklibrary.entity.BaseResult;
 
 
 import com.yinglan.scg.entity.mine.myorder.orderdetails.TransferOrderDetailsBean.DataBean.ReviewDataBean;
-
+import com.yinglan.scg.entity.mine.myorder.orderdetails.TransferOrderDetailsBean.DataBean.GuideReviewDataBean;
 
 public class CharterOrderDetailsBean extends BaseResult<CharterOrderDetailsBean.DataBean> {
 
@@ -46,6 +46,7 @@ public class CharterOrderDetailsBean extends BaseResult<CharterOrderDetailsBean.
         private String origin_name;
         private String price_comment;
         private ReviewDataBean review_data;
+        private GuideReviewDataBean guide_review_data;
 
         public ReviewDataBean getReview_data() {
             return review_data;
@@ -181,6 +182,14 @@ public class CharterOrderDetailsBean extends BaseResult<CharterOrderDetailsBean.
 
         public void setPrice_comment(String price_comment) {
             this.price_comment = price_comment;
+        }
+
+        public GuideReviewDataBean getGuide_review_data() {
+            return guide_review_data;
+        }
+
+        public void setGuide_review_data(GuideReviewDataBean guide_review_data) {
+            this.guide_review_data = guide_review_data;
         }
     }
 }

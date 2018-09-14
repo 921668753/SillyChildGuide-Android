@@ -40,6 +40,7 @@ public class TransferOrderDetailsBean extends BaseResult<TransferOrderDetailsBea
         private String origin_name;
         private String price_comment;
         private ReviewDataBean review_data;
+        private GuideReviewDataBean guide_review_data;
 
         public String getOrder_number() {
             return order_number;
@@ -159,6 +160,40 @@ public class TransferOrderDetailsBean extends BaseResult<TransferOrderDetailsBea
 
         public void setReview_data(ReviewDataBean review_data) {
             this.review_data = review_data;
+        }
+
+        public GuideReviewDataBean getGuide_review_data() {
+            return guide_review_data;
+        }
+
+        public void setGuide_review_data(GuideReviewDataBean guide_review_data) {
+            this.guide_review_data = guide_review_data;
+        }
+
+        public class GuideReviewDataBean {
+            /**
+             * content : 太累了
+             * pictures : ["http://img.shahaizhi.com/FgdCCAy-2gt-Jh9_GwK7kZvB6_7t"]
+             */
+
+            private String content;
+            private List<String> pictures;
+
+            public String getContent() {
+                return content;
+            }
+
+            public void setContent(String content) {
+                this.content = content;
+            }
+
+            public List<String> getPictures() {
+                return pictures;
+            }
+
+            public void setPictures(List<String> pictures) {
+                this.pictures = pictures;
+            }
         }
 
         public class ReviewDataBean {

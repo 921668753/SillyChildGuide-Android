@@ -420,6 +420,18 @@
                 android:layout_marginTop="@dimen/dimen1"
                 android:background="@color/whiteColors">
 
+                <TextView
+                    android:id="@+id/tv_guideEvaluation"
+                    style="@style/Match40"
+                    android:layout_marginTop="@dimen/dimen6"
+                    android:background="@color/whiteColors"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/dimen27"
+                    android:text="@string/guideEvaluation"
+                    android:textColor="@color/textColor"
+                    android:textSize="@dimen/textsize15"
+                    android:visibility="gone" />
+
                 <EditText
                     android:id="@+id/et_evaluateGuest"
                     style="@style/MatchWrap"
@@ -437,6 +449,24 @@
                     android:textColorHint="@color/hintColors"
                     android:textCursorDrawable="@drawable/shape_cursor"
                     android:textSize="@dimen/textsize12" />
+
+                <com.common.cklibrary.utils.myview.NoScrollGridView
+                    android:id="@+id/gv_imgComments1"
+                    style="@style/MatchWrap"
+                    android:layout_below="@id/et_evaluateGuest"
+                    android:layout_marginBottom="@dimen/dimen10"
+                    android:layout_marginLeft="@dimen/dimen29"
+                    android:layout_marginRight="@dimen/dimen29"
+                    android:layout_marginTop="@dimen/dimen10"
+                    android:background="@color/whiteColors"
+                    android:horizontalSpacing="@dimen/dimen15"
+                    android:numColumns="3"
+                    android:overScrollMode="never"
+                    android:paddingTop="@dimen/dimen5"
+                    android:scrollbars="none"
+                    android:verticalSpacing="@dimen/dimen10"
+                    android:visibility="gone"
+                    tools:listitem="@layout/item_imgcomment" />
 
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/recyclerView"

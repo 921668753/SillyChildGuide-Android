@@ -11,6 +11,7 @@ public class PrivateCustomOrderDetailsBean extends BaseResult<PrivateCustomOrder
         /**
          * stay_preference : 住宿1
          * order_number : SHZ20180904120014723654307
+         * guide_review_data : {"content":"太累了","pictures":["http://img.shahaizhi.com/FgdCCAy-2gt-Jh9_GwK7kZvB6_7t"]}
          * end_time : 1537545600
          * travel_preference : 出行1
          * destination_name : 行程结束地
@@ -19,7 +20,7 @@ public class PrivateCustomOrderDetailsBean extends BaseResult<PrivateCustomOrder
          * connect_number : 17051335257
          * start_time : 1537372800
          * schedule : <p>这个是行程安排</p>
-         * order_status : 3
+         * order_status : 4
          * license_plate : A123
          * model_name : 途观
          * booking_request : 3成人1行李
@@ -34,6 +35,7 @@ public class PrivateCustomOrderDetailsBean extends BaseResult<PrivateCustomOrder
 
         private String stay_preference;
         private String order_number;
+        private GuideReviewDataBean guide_review_data;
         private String end_time;
         private String travel_preference;
         private String destination_name;
@@ -68,6 +70,14 @@ public class PrivateCustomOrderDetailsBean extends BaseResult<PrivateCustomOrder
 
         public void setOrder_number(String order_number) {
             this.order_number = order_number;
+        }
+
+        public GuideReviewDataBean getGuide_review_data() {
+            return guide_review_data;
+        }
+
+        public void setGuide_review_data(GuideReviewDataBean guide_review_data) {
+            this.guide_review_data = guide_review_data;
         }
 
         public String getEnd_time() {
@@ -220,6 +230,32 @@ public class PrivateCustomOrderDetailsBean extends BaseResult<PrivateCustomOrder
 
         public void setPrice_comment(String price_comment) {
             this.price_comment = price_comment;
+        }
+
+        public class GuideReviewDataBean {
+            /**
+             * content : 太累了
+             * pictures : ["http://img.shahaizhi.com/FgdCCAy-2gt-Jh9_GwK7kZvB6_7t"]
+             */
+
+            private String content;
+            private List<String> pictures;
+
+            public String getContent() {
+                return content;
+            }
+
+            public void setContent(String content) {
+                this.content = content;
+            }
+
+            public List<String> getPictures() {
+                return pictures;
+            }
+
+            public void setPictures(List<String> pictures) {
+                this.pictures = pictures;
+            }
         }
 
         public class ReviewDataBean {

@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -137,8 +139,14 @@ public class PrivateCustomOrderDetailsActivity extends BaseActivity implements C
     @BindView(id = R.id.rl_evaluateGuest)
     private RelativeLayout rl_evaluateGuest;
 
+    @BindView(id = R.id.tv_guideEvaluation)
+    private TextView tv_guideEvaluation;
+
     @BindView(id = R.id.et_evaluateGuest)
     private EditText et_evaluateGuest;
+
+    @BindView(id = R.id.gv_imgComments1)
+    private NoScrollGridView gv_imgComments1;
 
     @BindView(id = R.id.recyclerView)
     private RecyclerView recyclerView;
@@ -174,6 +182,7 @@ public class PrivateCustomOrderDetailsActivity extends BaseActivity implements C
     private int aspect_ratio_x = 16, aspect_ratio_y = 9;
     private int maxSelectNum = 9;
     private ImgCommentsViewAdapter mAdapter;
+    private ImgCommentsViewAdapter mAdapter1;
 
     @Override
     public void setRootView() {
@@ -189,6 +198,7 @@ public class PrivateCustomOrderDetailsActivity extends BaseActivity implements C
         themeId = R.style.picture_default_style;
         adapter = new GridImageAdapter(this, onAddPicClickListener);
         mAdapter = new ImgCommentsViewAdapter(this);
+        mAdapter1 = new ImgCommentsViewAdapter(this);
         showLoadingDialog(getString(R.string.dataLoad));
         ((CharterOrderDetailsContract.Presenter) mPresenter).getMyOrderDetails(order_number);
         initDialog();
@@ -246,6 +256,8 @@ public class PrivateCustomOrderDetailsActivity extends BaseActivity implements C
         web_descriptionThat.getWebView().setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
         gv_imgComments.setAdapter(mAdapter);
         gv_imgComments.setOnItemClickListener(this);
+        gv_imgComments1.setAdapter(mAdapter1);
+        gv_imgComments1.setOnItemClickListener(this);
         FullyGridLayoutManager manager = new FullyGridLayoutManager(this, 3, GridLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(manager);
         adapter.setList(selectList);
@@ -299,15 +311,28 @@ public class PrivateCustomOrderDetailsActivity extends BaseActivity implements C
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        LocalMedia media = mAdapter.getItem(position);
-        String pictureType = media.getPictureType();
-        int mediaType = PictureMimeType.pictureToVideo(pictureType);
-        switch (mediaType) {
-            case 1:
-                // 预览图片 可自定长按保存路径
-                //PictureSelector.create(MainActivity.this).themeStyle(themeId).externalPicturePreview(position, "/custom_file", selectList);
-                PictureSelector.create(PrivateCustomOrderDetailsActivity.this).themeStyle(themeId).openExternalPreview(position, mAdapter.getData());
-                break;
+        if (parent.getId() == R.id.gv_imgComments) {
+            LocalMedia media = mAdapter.getItem(position);
+            String pictureType = media.getPictureType();
+            int mediaType = PictureMimeType.pictureToVideo(pictureType);
+            switch (mediaType) {
+                case 1:
+                    // 预览图片 可自定长按保存路径
+                    //PictureSelector.create(MainActivity.this).themeStyle(themeId).externalPicturePreview(position, "/custom_file", selectList);
+                    PictureSelector.create(PrivateCustomOrderDetailsActivity.this).themeStyle(themeId).openExternalPreview(position, mAdapter.getData());
+                    break;
+            }
+        } else if (parent.getId() == R.id.gv_imgComments1) {
+            LocalMedia media = mAdapter1.getItem(position);
+            String pictureType = media.getPictureType();
+            int mediaType = PictureMimeType.pictureToVideo(pictureType);
+            switch (mediaType) {
+                case 1:
+                    // 预览图片 可自定长按保存路径
+                    //PictureSelector.create(MainActivity.this).themeStyle(themeId).externalPicturePreview(position, "/custom_file", selectList);
+                    PictureSelector.create(PrivateCustomOrderDetailsActivity.this).themeStyle(themeId).openExternalPreview(position, mAdapter1.getData());
+                    break;
+            }
         }
     }
 
@@ -395,8 +420,11 @@ public class PrivateCustomOrderDetailsActivity extends BaseActivity implements C
                     tv_userEvaluation.setVisibility(View.VISIBLE);
                     ll_userEvaluation.setVisibility(View.VISIBLE);
                     rl_evaluateGuest.setVisibility(View.VISIBLE);
+                    gv_imgComments1.setVisibility(View.GONE);
+                    tv_guideEvaluation.setVisibility(View.GONE);
                     tv_submitAudit.setVisibility(View.VISIBLE);
                     ll_bottom.setVisibility(View.GONE);
+
                     break;
                 case 4://已完成
                     tv_userEvaluation.setVisibility(View.VISIBLE);
@@ -404,6 +432,7 @@ public class PrivateCustomOrderDetailsActivity extends BaseActivity implements C
                     rl_evaluateGuest.setVisibility(View.VISIBLE);
                     tv_submitAudit.setVisibility(View.GONE);
                     ll_bottom.setVisibility(View.GONE);
+                    setGuideReviewData(privateCustomOrderDetailsBean);
                     break;
                 default:
                     tv_userEvaluation.setVisibility(View.GONE);
@@ -484,6 +513,38 @@ public class PrivateCustomOrderDetailsActivity extends BaseActivity implements C
         ll_bottom.setVisibility(View.GONE);
     }
 
+    private void setGuideReviewData(PrivateCustomOrderDetailsBean privateCustomOrderDetailsBean) {
+        if (privateCustomOrderDetailsBean != null && privateCustomOrderDetailsBean.getData() != null && privateCustomOrderDetailsBean.getData().getGuide_review_data() != null) {
+            tv_guideEvaluation.setVisibility(View.VISIBLE);
+            if (!StringUtils.isEmpty(privateCustomOrderDetailsBean.getData().getGuide_review_data().getContent())) {
+                et_evaluateGuest.setVisibility(View.VISIBLE);
+                et_evaluateGuest.setMinHeight(0);
+                et_evaluateGuest.setText(privateCustomOrderDetailsBean.getData().getGuide_review_data().getContent());
+                et_evaluateGuest.setFocusable(false);
+                et_evaluateGuest.clearFocus();
+            } else {
+                et_evaluateGuest.setVisibility(View.GONE);
+            }
+            if (privateCustomOrderDetailsBean.getData().getGuide_review_data().getPictures() != null && privateCustomOrderDetailsBean.getData().getGuide_review_data().getPictures().size() > 0) {
+                recyclerView.setVisibility(View.GONE);
+                gv_imgComments1.setVisibility(View.VISIBLE);
+                mAdapter1.clear();
+                for (int i = 0; i < privateCustomOrderDetailsBean.getData().getGuide_review_data().getPictures().size(); i++) {
+                    LocalMedia localMedia1 = new LocalMedia();
+                    localMedia1.setHttpPath(privateCustomOrderDetailsBean.getData().getGuide_review_data().getPictures().get(i));
+                    localMedia1.setPath(privateCustomOrderDetailsBean.getData().getGuide_review_data().getPictures().get(i));
+                    localMedia1.setPictureType("image/jpeg");
+                    mAdapter1.addLastItem(localMedia1);
+                }
+            } else {
+                recyclerView.setVisibility(View.GONE);
+                gv_imgComments1.setVisibility(View.GONE);
+            }
+        } else {
+            rl_evaluateGuest.setVisibility(View.GONE);
+        }
+    }
+
 
     @Override
     public void errorMsg(String msg, int flag) {
@@ -525,6 +586,8 @@ public class PrivateCustomOrderDetailsActivity extends BaseActivity implements C
         selectList = null;
         mAdapter.clear();
         mAdapter = null;
+        mAdapter1.clear();
+        mAdapter1 = null;
     }
 
 
