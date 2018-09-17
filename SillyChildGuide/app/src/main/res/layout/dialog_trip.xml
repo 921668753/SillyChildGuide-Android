@@ -22,7 +22,7 @@
             android:layout_marginRight="@dimen/dimen10"
             android:divider="@color/background"
             android:listSelector="@color/whiteColors"
-            android:dividerHeight="@dimen/dimen1"
+            android:dividerHeight="@dimen/dimen10"
             android:scrollbars="none"
             tools:listitem="@layout/item_trip" />
 

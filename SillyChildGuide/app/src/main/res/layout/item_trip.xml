@@ -16,7 +16,6 @@
         android:textSize="@dimen/textsize18"
         android:textStyle="bold" />
 
-
     <TextView
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimen1"

@@ -84,7 +84,7 @@ public class TripDialog extends BaseDialog implements TripContract.View, View.On
         }
         if (tripBean.getData().size() > 1) {
             ViewGroup.LayoutParams layoutParams = lv_trip.getLayoutParams();
-            layoutParams.height = DensityUtils.dip2px(285);
+            layoutParams.height = DensityUtils.dip2px(300);
         }
         mAdapter.clear();
         mAdapter.addNewData(tripBean.getData());

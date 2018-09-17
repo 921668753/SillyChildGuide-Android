@@ -104,7 +104,7 @@ public class TravelCalendarActivity extends BaseActivity implements TravelCalend
         }
         if (tripDialog != null && !tripDialog.isShowing()) {
             tripDialog.show();
-            long time = DataUtil.getStringToDate(selectDay.getYear() + "-" + selectDay.getMonth() + "-" + selectDay.getDay() + " 0:00", "yyyy-MM-dd HH:mm");
+            long time = DataUtil.getStringToDate(selectDay.getYear() + "-" + selectDay.getMonth() + "-" + selectDay.getDay() + " 00:00", "yyyy-MM-dd HH:mm") / 1000;
             tripDialog.setTripTime(time);
         }
     }
