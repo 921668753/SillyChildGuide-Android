@@ -11,7 +11,7 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         applicationId "com.yinglan.scg"
         versionCode 50
-        versionName "1.0.0.1808291916"
+        versionName "1.0.0.1809171916"
         multiDexEnabled true
 
         aaptOptions.cruncherEnabled = false
