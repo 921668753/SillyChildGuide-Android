@@ -150,6 +150,7 @@
     <string name="orderNumber">订单号</string>
     <string name="contact">联系人</string>
     <string name="contactWay">联系方式</string>
+
     <string name="dueThat">预定说明</string>
     <string name="dueThat1">暂无预定说明</string>
     <string name="descriptionThat">费用说明</string>
@@ -159,6 +160,7 @@
     <string name="quickOrder">快速接单</string>
     <string name="selectVehicle">选择车辆</string>
     <string name="detailedItinerary">详细行程</string>
+    <string name="noDetailedItinerary">暂无详细行程</string>
     <string name="customPreferences">定制偏好</string>
     <string name="travelPreferences">出行偏好</string>
     <string name="foodPreferences">美食偏好</string>

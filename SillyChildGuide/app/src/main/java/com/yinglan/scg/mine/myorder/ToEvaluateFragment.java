@@ -74,7 +74,7 @@ public class ToEvaluateFragment extends BaseFragment implements AdapterView.OnIt
      */
     private boolean isShowLoadingMore = false;
 
-    private String status = "2";
+    private String status = "3";
 
     private int selectedPosition = 0;
 

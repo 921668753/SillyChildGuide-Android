@@ -228,6 +228,9 @@ public class PrivateCustomDetailsActivity extends BaseActivity implements Charte
             tv_orderIncome.setText(getString(R.string.rmb) + "  " + privateCustomDetailsBean.getData().getOrder_price());
             tv_aggregate.setText(getString(R.string.rmb) + "  " + privateCustomDetailsBean.getData().getOrder_price());
 
+            if (StringUtils.isEmpty(privateCustomDetailsBean.getData().getSchedule())) {
+                privateCustomDetailsBean.getData().setSchedule(getString(R.string.noDetailedItinerary));
+            }
             String schedule = "<!DOCTYPE html><html lang=\"zh\"><head>\t<meta charset=\"UTF-8\"/><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no\" /><title></title></head><body>" +
                     privateCustomDetailsBean.getData().getSchedule() + "</body></html>";
             web_detailedItinerary.loadDataWithBaseURL("baseurl", schedule, "text/html", "utf-8", null);

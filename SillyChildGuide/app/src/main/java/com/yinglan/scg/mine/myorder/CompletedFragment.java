@@ -74,7 +74,7 @@ public class CompletedFragment extends BaseFragment implements AdapterView.OnIte
      */
     private boolean isShowLoadingMore = false;
 
-    private String status = "3";
+    private String status = "30";
     private int selectedPosition = 0;
 
     @Override
