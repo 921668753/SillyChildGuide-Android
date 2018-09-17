@@ -171,7 +171,7 @@ public class TransferOrderDetailsActivity extends BaseActivity implements Charte
 
     @Override
     public void setRootView() {
-        setContentView(R.layout.activity_transferdetails);
+        setContentView(R.layout.activity_transferorderdetails);
     }
 
     @Override
@@ -362,7 +362,9 @@ public class TransferOrderDetailsActivity extends BaseActivity implements Charte
             tv_contactWay.setText(transferOrderDetailsBean.getData().getConnect_number());
             tv_licensePlateNumber.setText(transferOrderDetailsBean.getData().getLicense_plate());
             tv_models.setText(transferOrderDetailsBean.getData().getModel_name());
-
+            if (StringUtils.isEmpty(transferOrderDetailsBean.getData().getPrice_comment())) {
+                transferOrderDetailsBean.getData().setPrice_comment(getString(R.string.descriptionThat1));
+            }
             String content = "<!DOCTYPE html><html lang=\"zh\"><head>\t<meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no\" /><title></title></head><body>" +
                     transferOrderDetailsBean.getData().getPrice_comment() + "</body></html>";
             web_descriptionThat.loadDataWithBaseURL("", content, "text/html", "utf-8", null);

@@ -12,6 +12,8 @@ import com.common.cklibrary.utils.ActivityTitleUtils;
 import com.common.cklibrary.utils.DataUtil;
 import com.common.cklibrary.utils.JsonUtil;
 import com.common.cklibrary.utils.myview.WebViewLayout;
+import com.common.cklibrary.utils.rx.MsgEvent;
+import com.common.cklibrary.utils.rx.RxBus;
 import com.kymjs.common.StringUtils;
 import com.yinglan.scg.R;
 import com.yinglan.scg.entity.orderreceiving.LineDetailsBean;
@@ -213,9 +215,15 @@ public class LineDetailsActivity extends BaseActivity implements CharterDetailsC
             String product_description = "<!DOCTYPE html><html lang=\"zh\"><head>\t<meta charset=\"UTF-8\"/><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no\" /><title></title></head><body>" +
                     lineDetailsBean.getData().getProduct_description() + "</body></html>";
             web_lineDetails.loadDataWithBaseURL("baseurl", product_description, "text/html", "utf-8", null);
+            if (StringUtils.isEmpty(lineDetailsBean.getData().getBook_comment())) {
+                lineDetailsBean.getData().setBook_comment(getString(R.string.dueThat1));
+            }
             String book_comment = "<!DOCTYPE html><html lang=\"zh\"><head>\t<meta charset=\"UTF-8\"/><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no\" /><title></title></head><body>" +
                     lineDetailsBean.getData().getBook_comment() + "</body></html>";
             web_dueThat.loadDataWithBaseURL("baseurl", book_comment, "text/html", "utf-8", null);
+            if (StringUtils.isEmpty(lineDetailsBean.getData().getPrice_comment())) {
+                lineDetailsBean.getData().setPrice_comment(getString(R.string.descriptionThat1));
+            }
             String price_description = "<!DOCTYPE html><html lang=\"zh\"><head>\t<meta charset=\"UTF-8\"/><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no\" /><title></title></head><body>" +
                     lineDetailsBean.getData().getPrice_comment() + "</body></html>";
             web_descriptionThat.loadDataWithBaseURL("baseurl", price_description, "text/html", "utf-8", null);
@@ -230,6 +238,10 @@ public class LineDetailsActivity extends BaseActivity implements CharterDetailsC
                 setDialog(lineDetailsBean.getData().getModel_list());
             }
         } else if (flag == 1) {
+            /**
+             * 发送消息
+             */
+            RxBus.getInstance().post(new MsgEvent<String>("RxBusOrderReceivingEvent"));
             ViewInject.toast(getString(R.string.orderReceivedSuccessfully));
             Intent intent = new Intent();
             // 获取内容

@@ -376,9 +376,18 @@ public class LineOrderDetailsActivity extends BaseActivity implements CharterOrd
             String product_description = "<!DOCTYPE html><html lang=\"zh\"><head>\t<meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no\" /><title></title></head><body>" +
                     lineOrderDetailsBean.getData().getProduct_description() + "</body></html>";
             web_lineDetails.loadDataWithBaseURL("", product_description, "text/html", "utf-8", null);
+
+            if (StringUtils.isEmpty(lineOrderDetailsBean.getData().getBook_comment())) {
+                lineOrderDetailsBean.getData().setBook_comment(getString(R.string.dueThat1));
+            }
+
             String book_comment = "<!DOCTYPE html><html lang=\"zh\"><head>\t<meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no\" /><title></title></head><body>" +
                     lineOrderDetailsBean.getData().getBook_comment() + "</body></html>";
             web_dueThat.loadDataWithBaseURL("", book_comment, "text/html", "utf-8", null);
+
+            if (StringUtils.isEmpty(lineOrderDetailsBean.getData().getPrice_comment())) {
+                lineOrderDetailsBean.getData().setPrice_comment(getString(R.string.descriptionThat1));
+            }
             String price_description = "<!DOCTYPE html><html lang=\"zh\"><head>\t<meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no\" /><title></title></head><body>" +
                     lineOrderDetailsBean.getData().getPrice_comment() + "</body></html>";
             web_descriptionThat.loadDataWithBaseURL("", price_description, "text/html", "utf-8", null);

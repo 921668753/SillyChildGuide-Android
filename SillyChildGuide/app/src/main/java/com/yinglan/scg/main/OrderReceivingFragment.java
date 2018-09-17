@@ -297,6 +297,8 @@ public class OrderReceivingFragment extends BaseFragment implements OrderReceivi
     @Override
     public void onChange() {
         super.onChange();
+        mMorePageNumber = NumericConstants.START_PAGE_NUMBER;
+        ((OrderReceivingContract.Presenter) mPresenter).getGuideOrderPage(aty, mMorePageNumber);
     }
 
 

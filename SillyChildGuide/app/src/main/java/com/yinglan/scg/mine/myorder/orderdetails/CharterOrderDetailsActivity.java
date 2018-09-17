@@ -367,9 +367,15 @@ public class CharterOrderDetailsActivity extends BaseActivity implements Charter
             tv_contactWay.setText(charterOrderDetailsBean.getData().getConnect_number());
             tv_licensePlateNumber.setText(charterOrderDetailsBean.getData().getLicense_plate());
             tv_models.setText(charterOrderDetailsBean.getData().getModel_name());
+            if (StringUtils.isEmpty(charterOrderDetailsBean.getData().getBook_comment())) {
+                charterOrderDetailsBean.getData().setBook_comment(getString(R.string.dueThat1));
+            }
             String book_comment = "<!DOCTYPE html><html lang=\"zh\"><head>\t<meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no\" /><title></title></head><body>" +
                     charterOrderDetailsBean.getData().getBook_comment() + "</body></html>";
             web_dueThat.loadDataWithBaseURL("", book_comment, "text/html", "utf-8", null);
+            if (StringUtils.isEmpty(charterOrderDetailsBean.getData().getPrice_comment())) {
+                charterOrderDetailsBean.getData().setPrice_comment(getString(R.string.descriptionThat1));
+            }
             String price_description = "<!DOCTYPE html><html lang=\"zh\"><head>\t<meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no\" /><title></title></head><body>" +
                     charterOrderDetailsBean.getData().getPrice_comment() + "</body></html>";
             web_descriptionThat.loadDataWithBaseURL("", price_description, "text/html", "utf-8", null);

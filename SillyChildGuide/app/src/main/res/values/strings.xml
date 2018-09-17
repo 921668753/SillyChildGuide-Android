@@ -151,7 +151,9 @@
     <string name="contact">联系人</string>
     <string name="contactWay">联系方式</string>
     <string name="dueThat">预定说明</string>
+    <string name="dueThat1">暂无预定说明</string>
     <string name="descriptionThat">费用说明</string>
+    <string name="descriptionThat1">暂无费用说明</string>
     <string name="actualRevenueComposition">实际收入构成</string>
     <string name="aggregate">总计</string>
     <string name="quickOrder">快速接单</string>
@@ -164,7 +166,6 @@
     <string name="lineDetails">线路详情</string>
     <string name="determineOrder">您确定接单？</string>
     <string name="unwillingnessTakeOrders">不愿意接单？</string>
-
 
     <!--服务-->
     <string name="order">订单</string>

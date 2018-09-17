@@ -391,9 +391,17 @@ public class PrivateCustomOrderDetailsActivity extends BaseActivity implements C
             String schedule = "<!DOCTYPE html><html lang=\"zh\"><head>\t<meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no\" /><title></title></head><body>" +
                     privateCustomOrderDetailsBean.getData().getSchedule() + "</body></html>";
             web_detailedItinerary.loadDataWithBaseURL("baseurl", schedule, "text/html", "utf-8", null);
+
+            if (StringUtils.isEmpty(privateCustomOrderDetailsBean.getData().getBook_comment())) {
+                privateCustomOrderDetailsBean.getData().setBook_comment(getString(R.string.dueThat1));
+            }
             String book_comment = "<!DOCTYPE html><html lang=\"zh\"><head>\t<meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no\" /><title></title></head><body>" +
                     privateCustomOrderDetailsBean.getData().getBook_comment() + "</body></html>";
             web_dueThat.loadDataWithBaseURL("baseurl", book_comment, "text/html", "utf-8", null);
+
+            if (StringUtils.isEmpty(privateCustomOrderDetailsBean.getData().getPrice_comment())) {
+                privateCustomOrderDetailsBean.getData().setPrice_comment(getString(R.string.descriptionThat1));
+            }
             String price_description = "<!DOCTYPE html><html lang=\"zh\"><head>\t<meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no\" /><title></title></head><body>" +
                     privateCustomOrderDetailsBean.getData().getPrice_comment() + "</body></html>";
             web_descriptionThat.loadDataWithBaseURL("baseurl", price_description, "text/html", "utf-8", null);
