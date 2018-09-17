@@ -399,6 +399,7 @@ public class CharterOrderDetailsActivity extends BaseActivity implements Charter
                     gv_imgComments1.setVisibility(View.GONE);
                     tv_guideEvaluation.setVisibility(View.GONE);
                     ll_bottom.setVisibility(View.GONE);
+                    setComment(charterOrderDetailsBean);
                     break;
                 case 4://已完成
                     tv_userEvaluation.setVisibility(View.VISIBLE);
@@ -406,6 +407,7 @@ public class CharterOrderDetailsActivity extends BaseActivity implements Charter
                     rl_evaluateGuest.setVisibility(View.VISIBLE);
                     tv_submitAudit.setVisibility(View.GONE);
                     ll_bottom.setVisibility(View.GONE);
+                    setComment(charterOrderDetailsBean);
                     setGuideReviewData(charterOrderDetailsBean);
                     break;
                 default:
@@ -416,7 +418,6 @@ public class CharterOrderDetailsActivity extends BaseActivity implements Charter
                     ll_bottom.setVisibility(View.GONE);
                     break;
             }
-            setComment(charterOrderDetailsBean);
             dismissLoadingDialog();
         } else if (flag == 1) {
             dismissLoadingDialog();

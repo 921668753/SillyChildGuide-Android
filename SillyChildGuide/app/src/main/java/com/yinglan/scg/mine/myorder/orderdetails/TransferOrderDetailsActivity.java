@@ -392,6 +392,7 @@ public class TransferOrderDetailsActivity extends BaseActivity implements Charte
                     gv_imgComments1.setVisibility(View.GONE);
                     tv_guideEvaluation.setVisibility(View.GONE);
                     ll_bottom.setVisibility(View.GONE);
+                    setComment(transferOrderDetailsBean);
                     break;
                 case 4://已完成
                     tv_userEvaluation.setVisibility(View.VISIBLE);
@@ -399,6 +400,7 @@ public class TransferOrderDetailsActivity extends BaseActivity implements Charte
                     rl_evaluateGuest.setVisibility(View.VISIBLE);
                     tv_submitAudit.setVisibility(View.GONE);
                     ll_bottom.setVisibility(View.GONE);
+                    setComment(transferOrderDetailsBean);
                     setGuideReviewData(transferOrderDetailsBean);
                     break;
                 default:
@@ -409,7 +411,6 @@ public class TransferOrderDetailsActivity extends BaseActivity implements Charte
                     ll_bottom.setVisibility(View.GONE);
                     break;
             }
-            setComment(transferOrderDetailsBean);
             dismissLoadingDialog();
         } else if (flag == 1) {
             dismissLoadingDialog();
@@ -426,7 +427,6 @@ public class TransferOrderDetailsActivity extends BaseActivity implements Charte
         if (privateCustomOrderDetailsBean != null && privateCustomOrderDetailsBean.getData() != null && privateCustomOrderDetailsBean.getData().getReview_data() != null &&
                 privateCustomOrderDetailsBean.getData().getReview_data().getSatisfaction_level() >= 0) {
             GlideImageLoader.glideLoader(this, privateCustomOrderDetailsBean.getData().getReview_data().getFace(), img_head, 0, R.mipmap.avatar);
-
             tv_nickName.setText(privateCustomOrderDetailsBean.getData().getReview_data().getNickname());
 
             switch (privateCustomOrderDetailsBean.getData().getReview_data().getSatisfaction_level()) {

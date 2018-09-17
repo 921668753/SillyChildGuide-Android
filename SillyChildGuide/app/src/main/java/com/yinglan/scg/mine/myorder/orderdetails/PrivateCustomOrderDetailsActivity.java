@@ -424,7 +424,7 @@ public class PrivateCustomOrderDetailsActivity extends BaseActivity implements C
                     tv_guideEvaluation.setVisibility(View.GONE);
                     tv_submitAudit.setVisibility(View.VISIBLE);
                     ll_bottom.setVisibility(View.GONE);
-
+                    setComment(privateCustomOrderDetailsBean);
                     break;
                 case 4://已完成
                     tv_userEvaluation.setVisibility(View.VISIBLE);
@@ -432,6 +432,7 @@ public class PrivateCustomOrderDetailsActivity extends BaseActivity implements C
                     rl_evaluateGuest.setVisibility(View.VISIBLE);
                     tv_submitAudit.setVisibility(View.GONE);
                     ll_bottom.setVisibility(View.GONE);
+                    setComment(privateCustomOrderDetailsBean);
                     setGuideReviewData(privateCustomOrderDetailsBean);
                     break;
                 default:
@@ -442,7 +443,6 @@ public class PrivateCustomOrderDetailsActivity extends BaseActivity implements C
                     ll_bottom.setVisibility(View.GONE);
                     break;
             }
-            setComment(privateCustomOrderDetailsBean);
             dismissLoadingDialog();
         } else if (flag == 1) {
             dismissLoadingDialog();
