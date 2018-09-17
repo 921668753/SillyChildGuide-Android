@@ -35,6 +35,7 @@ import com.luck.picture.lib.entity.LocalMedia;
 import com.luck.picture.lib.permissions.RxPermissions;
 import com.luck.picture.lib.tools.PictureFileUtils;
 import com.yinglan.scg.R;
+import com.yinglan.scg.adapter.mine.myorder.orderdetails.ImgCommentsRvViewAdapter;
 import com.yinglan.scg.adapter.mine.myorder.orderdetails.ImgCommentsViewAdapter;
 import com.yinglan.scg.adapter.mine.myvehicle.GridImageAdapter;
 import com.yinglan.scg.entity.mine.myorder.orderdetails.LineOrderDetailsBean;
@@ -45,13 +46,14 @@ import com.yinglan.scg.utils.GlideImageLoader;
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.bingoogolapple.baseadapter.BGAOnRVItemClickListener;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 
 /**
  * 线路订单详情
  */
-public class LineOrderDetailsActivity extends BaseActivity implements CharterOrderDetailsContract.View, GridImageAdapter.OnItemClickListener, AdapterView.OnItemClickListener {
+public class LineOrderDetailsActivity extends BaseActivity implements CharterOrderDetailsContract.View, GridImageAdapter.OnItemClickListener, BGAOnRVItemClickListener {
 
     @BindView(id = R.id.tv_title)
     private TextView tv_title;
@@ -119,8 +121,8 @@ public class LineOrderDetailsActivity extends BaseActivity implements CharterOrd
     @BindView(id = R.id.tv_content)
     private TextView tv_content;
 
-    @BindView(id = R.id.gv_imgComments)
-    private NoScrollGridView gv_imgComments;
+    @BindView(id = R.id.rv_imgComments)
+    private RecyclerView rv_imgComments;
 
     @BindView(id = R.id.tv_time1)
     private TextView tv_time1;
@@ -134,8 +136,8 @@ public class LineOrderDetailsActivity extends BaseActivity implements CharterOrd
     @BindView(id = R.id.et_evaluateGuest)
     private EditText et_evaluateGuest;
 
-    @BindView(id = R.id.gv_imgComments1)
-    private NoScrollGridView gv_imgComments1;
+    @BindView(id = R.id.rv_imgComments1)
+    private RecyclerView rv_imgComments1;
 
     @BindView(id = R.id.recyclerView)
     private RecyclerView recyclerView;
@@ -170,8 +172,8 @@ public class LineOrderDetailsActivity extends BaseActivity implements CharterOrd
     private int chooseMode = PictureMimeType.ofImage();
     private int aspect_ratio_x = 16, aspect_ratio_y = 9;
     private int maxSelectNum = 9;
-    private ImgCommentsViewAdapter mAdapter;
-    private ImgCommentsViewAdapter mAdapter1;
+    private ImgCommentsRvViewAdapter mAdapter;
+    private ImgCommentsRvViewAdapter mAdapter1;
 
     @Override
     public void setRootView() {
@@ -186,8 +188,8 @@ public class LineOrderDetailsActivity extends BaseActivity implements CharterOrd
         selectList = new ArrayList<LocalMedia>();
         themeId = R.style.picture_default_style;
         adapter = new GridImageAdapter(this, onAddPicClickListener);
-        mAdapter = new ImgCommentsViewAdapter(this);
-        mAdapter1 = new ImgCommentsViewAdapter(this);
+        mAdapter = new ImgCommentsRvViewAdapter(rv_imgComments);
+        mAdapter1 = new ImgCommentsRvViewAdapter(rv_imgComments1);
         showLoadingDialog(getString(R.string.dataLoad));
         ((CharterOrderDetailsContract.Presenter) mPresenter).getMyOrderDetails(order_number);
         initDialog();
@@ -243,12 +245,16 @@ public class LineOrderDetailsActivity extends BaseActivity implements CharterOrd
         web_dueThat.getWebView().setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
         web_descriptionThat.setTitleVisibility(false);
         web_descriptionThat.getWebView().setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-        gv_imgComments.setAdapter(mAdapter);
-        gv_imgComments.setOnItemClickListener(this);
-        gv_imgComments1.setAdapter(mAdapter1);
-        gv_imgComments1.setOnItemClickListener(this);
-        FullyGridLayoutManager manager = new FullyGridLayoutManager(this, 3, GridLayoutManager.VERTICAL, false);
-        recyclerView.setLayoutManager(manager);
+        GridLayoutManager manager = new GridLayoutManager(this, 3, GridLayoutManager.VERTICAL, false);
+        rv_imgComments.setLayoutManager(manager);
+        rv_imgComments.setAdapter(mAdapter);
+        mAdapter.setOnRVItemClickListener(this);
+        GridLayoutManager manager1 = new GridLayoutManager(this, 3, GridLayoutManager.VERTICAL, false);
+        rv_imgComments1.setLayoutManager(manager1);
+        rv_imgComments1.setAdapter(mAdapter1);
+        mAdapter1.setOnRVItemClickListener(this);
+        FullyGridLayoutManager manager2 = new FullyGridLayoutManager(this, 3, GridLayoutManager.VERTICAL, false);
+        recyclerView.setLayoutManager(manager2);
         adapter.setList(selectList);
         adapter.setSelectMax(maxSelectNum);
         recyclerView.setAdapter(adapter);
@@ -299,8 +305,8 @@ public class LineOrderDetailsActivity extends BaseActivity implements CharterOrd
     }
 
     @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        if (parent.getId() == R.id.gv_imgComments) {
+    public void onRVItemClick(ViewGroup parent, View itemView, int position) {
+        if (parent.getId() == R.id.rv_imgComments) {
             LocalMedia media = mAdapter.getItem(position);
             String pictureType = media.getPictureType();
             int mediaType = PictureMimeType.pictureToVideo(pictureType);
@@ -311,7 +317,7 @@ public class LineOrderDetailsActivity extends BaseActivity implements CharterOrd
                     PictureSelector.create(LineOrderDetailsActivity.this).themeStyle(themeId).openExternalPreview(position, mAdapter.getData());
                     break;
             }
-        } else if (parent.getId() == R.id.gv_imgComments1) {
+        } else if (parent.getId() == R.id.rv_imgComments1) {
             LocalMedia media = mAdapter1.getItem(position);
             String pictureType = media.getPictureType();
             int mediaType = PictureMimeType.pictureToVideo(pictureType);
@@ -324,6 +330,7 @@ public class LineOrderDetailsActivity extends BaseActivity implements CharterOrd
             }
         }
     }
+
 
     @Override
     public void onItemClick(int position, View v) {
@@ -415,7 +422,7 @@ public class LineOrderDetailsActivity extends BaseActivity implements CharterOrd
                     ll_userEvaluation.setVisibility(View.VISIBLE);
                     rl_evaluateGuest.setVisibility(View.VISIBLE);
                     tv_submitAudit.setVisibility(View.VISIBLE);
-                    gv_imgComments1.setVisibility(View.GONE);
+                    rv_imgComments1.setVisibility(View.GONE);
                     tv_guideEvaluation.setVisibility(View.GONE);
                     ll_bottom.setVisibility(View.GONE);
                     setComment(lineOrderDetailsBean);
@@ -486,7 +493,7 @@ public class LineOrderDetailsActivity extends BaseActivity implements CharterOrd
                 tv_content.setVisibility(View.GONE);
             }
             if (privateCustomOrderDetailsBean.getData().getReview_data().getPicture() != null && privateCustomOrderDetailsBean.getData().getReview_data().getPicture().size() > 0) {
-                gv_imgComments.setVisibility(View.VISIBLE);
+                rv_imgComments.setVisibility(View.VISIBLE);
                 mAdapter.clear();
                 for (int i = 0; i < privateCustomOrderDetailsBean.getData().getReview_data().getPicture().size(); i++) {
                     LocalMedia localMedia1 = new LocalMedia();
@@ -496,7 +503,7 @@ public class LineOrderDetailsActivity extends BaseActivity implements CharterOrd
                     mAdapter.addLastItem(localMedia1);
                 }
             } else {
-                gv_imgComments.setVisibility(View.GONE);
+                rv_imgComments.setVisibility(View.GONE);
             }
             tv_time1.setText(DataUtil.formatData(StringUtils.toLong(privateCustomOrderDetailsBean.getData().getReview_data().getCreate_time()), "yyyy.MM.dd"));
             return;
@@ -524,7 +531,7 @@ public class LineOrderDetailsActivity extends BaseActivity implements CharterOrd
             }
             if (privateCustomOrderDetailsBean.getData().getGuide_review_data().getPictures() != null && privateCustomOrderDetailsBean.getData().getGuide_review_data().getPictures().size() > 0) {
                 recyclerView.setVisibility(View.GONE);
-                gv_imgComments1.setVisibility(View.VISIBLE);
+                rv_imgComments1.setVisibility(View.VISIBLE);
                 mAdapter1.clear();
                 for (int i = 0; i < privateCustomOrderDetailsBean.getData().getGuide_review_data().getPictures().size(); i++) {
                     LocalMedia localMedia1 = new LocalMedia();
@@ -535,7 +542,7 @@ public class LineOrderDetailsActivity extends BaseActivity implements CharterOrd
                 }
             } else {
                 recyclerView.setVisibility(View.GONE);
-                gv_imgComments1.setVisibility(View.GONE);
+                rv_imgComments1.setVisibility(View.GONE);
             }
         } else {
             rl_evaluateGuest.setVisibility(View.GONE);
@@ -585,5 +592,6 @@ public class LineOrderDetailsActivity extends BaseActivity implements CharterOrd
         mAdapter1.clear();
         mAdapter1 = null;
     }
+
 
 }

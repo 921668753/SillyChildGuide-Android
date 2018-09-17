@@ -410,19 +410,27 @@
                     android:textColor="@color/tabColors"
                     android:textSize="@dimen/textsize12" />
 
-                <com.common.cklibrary.utils.myview.NoScrollGridView
-                    android:id="@+id/gv_imgComments"
-                    style="@style/MatchWrap"
-                    android:layout_marginBottom="@dimen/dimen10"
-                    android:layout_marginLeft="@dimen/dimen29"
-                    android:layout_marginRight="@dimen/dimen29"
-                    android:background="@color/whiteColors"
-                    android:horizontalSpacing="@dimen/dimen15"
-                    android:numColumns="3"
-                    android:overScrollMode="never"
-                    android:scrollbars="none"
-                    android:verticalSpacing="@dimen/dimen10"
-                    tools:listitem="@layout/item_imgcomment" />
+
+                <RelativeLayout style="@style/MatchWrap">
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/rv_imgComments"
+                        style="@style/MatchWrap"
+                        android:layout_marginBottom="@dimen/dimen10"
+                        android:layout_marginLeft="@dimen/dimen29"
+                        android:layout_marginRight="@dimen/dimen29"
+                        android:background="@color/whiteColors"
+                        android:choiceMode="singleChoice"
+                        android:divider="@null"
+                        android:fadingEdge="none"
+                        android:listSelector="@android:color/transparent"
+                        android:nestedScrollingEnabled="false"
+                        android:scrollbarStyle="outsideOverlay"
+                        app:layoutManager="android.support.v7.widget.GridLayoutManager"
+                        app:spanCount="3"
+                        tools:listitem="@layout/item_imgcomment" />
+
+                </RelativeLayout>
 
                 <TextView
                     android:id="@+id/tv_time1"
@@ -473,8 +481,8 @@
                     android:textCursorDrawable="@drawable/shape_cursor"
                     android:textSize="@dimen/textsize12" />
 
-                <com.common.cklibrary.utils.myview.NoScrollGridView
-                    android:id="@+id/gv_imgComments1"
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_imgComments1"
                     style="@style/MatchWrap"
                     android:layout_below="@id/et_evaluateGuest"
                     android:layout_marginBottom="@dimen/dimen10"
@@ -482,13 +490,15 @@
                     android:layout_marginRight="@dimen/dimen29"
                     android:layout_marginTop="@dimen/dimen10"
                     android:background="@color/whiteColors"
-                    android:horizontalSpacing="@dimen/dimen15"
-                    android:numColumns="3"
-                    android:overScrollMode="never"
+                    android:choiceMode="singleChoice"
+                    android:divider="@null"
+                    android:fadingEdge="none"
+                    android:listSelector="@android:color/transparent"
+                    android:nestedScrollingEnabled="false"
                     android:paddingTop="@dimen/dimen5"
-                    android:scrollbars="none"
-                    android:verticalSpacing="@dimen/dimen10"
-                    android:visibility="gone"
+                    android:scrollbarStyle="outsideOverlay"
+                    app:layoutManager="android.support.v7.widget.GridLayoutManager"
+                    app:spanCount="3"
                     tools:listitem="@layout/item_imgcomment" />
 
                 <android.support.v7.widget.RecyclerView
