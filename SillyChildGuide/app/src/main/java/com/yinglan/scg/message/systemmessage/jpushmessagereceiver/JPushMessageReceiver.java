@@ -68,8 +68,8 @@ public class JPushMessageReceiver extends BroadcastReceiver {
             //打开自定义的Activity
             Intent news = new Intent(context, MainActivity.class);
             news.putExtras(bundle);
-            news.putExtra("chageIcon", 1);
-            news.putExtra("newChageIcon", 1);
+            news.putExtra("chageIcon", 2);
+            news.putExtra("newChageIcon", 2);
             news.putExtra("chageMessageIcon", 21);
             news.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
             context.startActivity(news);

@@ -30,8 +30,8 @@ public class RongIMPushMessageReceiver extends PushMessageReceiver {
         Log.d("RY", "[RongIMPushMessageReceiver] 用户点击打开了通知");
         //打开自定义的Activity
         Intent news = new Intent(context, MainActivity.class);
-        news.putExtra("chageIcon", 1);
-        news.putExtra("newChageIcon", 1);
+        news.putExtra("chageIcon", 2);
+        news.putExtra("newChageIcon", 2);
         news.putExtra("chageMessageIcon", 20);
         news.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
         context.startActivity(news);
