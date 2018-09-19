@@ -26,6 +26,8 @@ import com.yinglan.scg.utils.custompicker.bean.UpdataCalendar;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
+import java.util.TreeSet;
 
 import io.rong.eventbus.EventBus;
 
@@ -96,7 +98,7 @@ public class TravelCalendarActivity extends BaseActivity implements TravelCalend
         //  adapter.notifyDataSetChanged();
 //        tv_chooseTimeNeedServe.setText(getString(R.string.startTime) + selectDay.getYear() + getString(R.string.year) + selectDay.getMonth() + getString(R.string.month) +
 //                selectDay.getDay() + getString(R.string.day));
-        if (selectDay.getStatus() != 102) {
+        if (!(selectDay.getStatus() == 102 || selectDay.getStatus() == 103 || selectDay.getStatus() == 104 || selectDay.getStatus() == 105)) {
             return;
         }
         if (tripDialog == null) {
@@ -122,19 +124,32 @@ public class TravelCalendarActivity extends BaseActivity implements TravelCalend
         if (travelCalendarBean == null || travelCalendarBean.getData() == null || travelCalendarBean.getData().size() <= 0) {
             return;
         }
+        List<Integer> list = new ArrayList<>(new TreeSet(travelCalendarBean.getData()));
         int year = StringUtils.toInt(DataUtil.formatData(System.currentTimeMillis() / 1000, "yyyy"));
         int month = StringUtils.toInt(DataUtil.formatData(System.currentTimeMillis() / 1000, "MM"));
-        for (int i = 0; i < travelCalendarBean.getData().size(); i++) {
-            int newYear = StringUtils.toInt(DataUtil.formatData(travelCalendarBean.getData().get(i), "yyyy"));
-            int newMonth = StringUtils.toInt(DataUtil.formatData(travelCalendarBean.getData().get(i), "MM"));
-            int day = StringUtils.toInt(DataUtil.formatData(travelCalendarBean.getData().get(i), "dd"));
+        for (int i = 0; i < list.size(); i++) {
+            int newYear = StringUtils.toInt(DataUtil.formatData(list.get(i), "yyyy"));
+            int newMonth = StringUtils.toInt(DataUtil.formatData(list.get(i), "MM"));
+            int day = StringUtils.toInt(DataUtil.formatData(list.get(i), "dd"));
             DayTimeEntity dayTimeEntity = null;
             if (newYear == year) {
                 dayTimeEntity = new DayTimeEntity(day, newMonth, newYear, newMonth - month, 102);
             } else {
                 dayTimeEntity = new DayTimeEntity(day, newMonth, newYear, 12 - month + (newYear - year - 1) * 12 + newMonth, 102);
             }
-            dayTimeEntity.setTime(travelCalendarBean.getData().get(i));
+            if (i + 1 < list.size() && i - 1 >= 0 && list.get(i) - list.get(i - 1) > 24 * 3600 &&
+                    list.get(i + 1) - list.get(i) == 24 * 3600 || i == 0 && i + 1 < list.size() &&
+                    list.get(i + 1) - list.get(i) == 24 * 3600) {
+                dayTimeEntity.setStatus(103);
+            } else if (i + 1 < list.size() && i - 1 >= 0 && list.get(i) - list.get(i - 1) == 24 * 3600 &&
+                    list.get(i + 1) - list.get(i) == 24 * 3600) {
+                dayTimeEntity.setStatus(104);
+            } else if (i + 1 < list.size() && i - 1 >= 0 && list.get(i) - list.get(i - 1) == 24 * 3600 &&
+                    list.get(i + 1) - list.get(i) > 24 * 3600 ||
+                    i == list.size() - 1 && i - 1 >= 0 && list.get(i) - list.get(i - 1) == 24 * 3600) {
+                dayTimeEntity.setStatus(105);
+            }
+            dayTimeEntity.setTime(list.get(i));
             dayDatas.add(dayTimeEntity);
         }
         adapter.notifyDataSetChanged();

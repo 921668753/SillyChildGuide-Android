@@ -63,7 +63,7 @@ public class DayTimeAdapter extends RecyclerView.Adapter<DayTimeViewHolder> {
         holder.select_ly_day.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (dayTimeEntity.getStatus() != 102) {
+                if (!(dayTimeEntity.getStatus() == 102 || dayTimeEntity.getStatus() == 103 || dayTimeEntity.getStatus() == 104 || dayTimeEntity.getStatus() == 105)) {
                     return;
                 }
                 TravelCalendarActivity.selectDay.setDay(dayTimeEntity.getDay());           // 该item 天数的 年月日等信息  赋给  开始日期
@@ -166,11 +166,32 @@ public class DayTimeAdapter extends RecyclerView.Adapter<DayTimeViewHolder> {
         for (int i = 0; i < TravelCalendarActivity.dayDatas.size(); i++) {
             if (TravelCalendarActivity.dayDatas.get(i).getYear() == dayTimeEntity.getYear() &&
                     TravelCalendarActivity.dayDatas.get(i).getMonth() == dayTimeEntity.getMonth()
-                    && TravelCalendarActivity.dayDatas.get(i).getDay() == dayTimeEntity.getDay() && TravelCalendarActivity.dayDatas.get(i).getStatus() == 102) {
-                dayTimeEntity.setStatus(102);
-                dayTimeEntity.setTime(TravelCalendarActivity.dayDatas.get(i).getTime());
-                //开始和结束同一天
-                holder.select_ly_day.setBackgroundResource(R.drawable.bg_time_startstop);
+                    && TravelCalendarActivity.dayDatas.get(i).getDay() == dayTimeEntity.getDay()) {
+                switch (TravelCalendarActivity.dayDatas.get(i).getStatus()) {
+                    case 102:  //开始和结束同一天
+                        dayTimeEntity.setStatus(102);
+                        dayTimeEntity.setTime(TravelCalendarActivity.dayDatas.get(i).getTime());
+                        holder.select_ly_day.setBackgroundResource(R.drawable.bg_time_startstop);
+                        break;
+                    case 103:  //开始一天
+                        dayTimeEntity.setStatus(103);
+                        dayTimeEntity.setTime(TravelCalendarActivity.dayDatas.get(i).getTime());
+                        holder.select_ly_day.setBackgroundResource(R.drawable.bg_time_start);
+                        break;
+                    case 104:  //中间时间
+                        dayTimeEntity.setStatus(104);
+                        dayTimeEntity.setTime(TravelCalendarActivity.dayDatas.get(i).getTime());
+                        holder.select_ly_day.setBackgroundResource(R.color.greenColors);
+                        break;
+                    case 105:  //结束一天
+                        dayTimeEntity.setStatus(105);
+                        dayTimeEntity.setTime(TravelCalendarActivity.dayDatas.get(i).getTime());
+                        holder.select_ly_day.setBackgroundResource(R.drawable.bg_time_stop);
+                        break;
+                    default:
+                        holder.select_ly_day.setBackgroundResource(R.color.whiteColors);
+                        break;
+                }
                 break;
             }
 //            if (TravelCalendarActivity.dayDatas.get(i).getYear() == dayTimeEntity.getYear() &&
@@ -253,8 +274,8 @@ public class DayTimeAdapter extends RecyclerView.Adapter<DayTimeViewHolder> {
 //        } else {
         if (dayTimeEntity.getStatus() == 100) {
             holder.select_ly_day.setBackgroundResource(R.drawable.bg_time_gray);
-        } else if (dayTimeEntity.getStatus() != 102) {
-            holder.select_ly_day.setBackgroundResource(R.color.whiteColors);
+        } else if (dayTimeEntity.getStatus() != 102 || dayTimeEntity.getStatus() != 103 || dayTimeEntity.getStatus() != 104 || dayTimeEntity.getStatus() != 105) {
+            //   holder.select_ly_day.setBackgroundResource(R.color.whiteColors);
         }
         //   }
 
