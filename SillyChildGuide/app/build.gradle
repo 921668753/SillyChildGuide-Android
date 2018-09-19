@@ -10,8 +10,8 @@ android {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         applicationId "com.yinglan.scg"
-        versionCode 32
-        versionName "1.0.0.1809191701"
+        versionCode 33
+        versionName "1.0.0.1809191707"
         multiDexEnabled true
 
         aaptOptions.cruncherEnabled = false
