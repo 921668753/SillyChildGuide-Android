@@ -466,6 +466,9 @@ public class PersonalDataActivity extends BaseActivity implements PersonalDataCo
                         case 3:
                             tv_authenticationInformation.setText(getString(R.string.approve));
                             break;
+                        case 4:
+                            tv_authenticationInformation.setText(getString(R.string.disabled1));
+                            break;
                     }
                 }
                 break;
@@ -493,6 +496,11 @@ public class PersonalDataActivity extends BaseActivity implements PersonalDataCo
         if (pictureSourceDialog != null) {
             pictureSourceDialog.cancel();
         }
+
+        if (permissionsDialog != null) {
+            permissionsDialog.cancel();
+        }
+        permissionsDialog = null;
         selectList.clear();
         onAddPicClickListener = null;
         selectList = null;

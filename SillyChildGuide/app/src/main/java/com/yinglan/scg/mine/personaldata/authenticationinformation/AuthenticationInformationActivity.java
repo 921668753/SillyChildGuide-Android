@@ -27,6 +27,7 @@ import com.yinglan.scg.entity.mine.personaldata.authenticationinformation.Authen
 import com.yinglan.scg.loginregister.LoginActivity;
 import com.yinglan.scg.mine.personaldata.authenticationinformation.dialog.SubmitAuditDialog;
 import com.yinglan.scg.mine.personaldata.authenticationinformation.servicearea.ServiceAreaActivity;
+import com.yinglan.scg.startpage.dialog.PermissionsDialog;
 import com.yinglan.scg.utils.GlideImageLoader;
 
 import java.util.ArrayList;
@@ -95,6 +96,7 @@ public class AuthenticationInformationActivity extends BaseActivity implements A
 
     private int city_id = 0;
     private SubmitAuditDialog submitAuditDialog;
+    private PermissionsDialog permissionsDialog;
 
     @Override
     public void setRootView() {
@@ -111,6 +113,7 @@ public class AuthenticationInformationActivity extends BaseActivity implements A
         selectLegallyList = new ArrayList<LocalMedia>();
         selectYachtDrivingLicenseList = new ArrayList<LocalMedia>();
         initDialog();
+        initDialog1();
         int approve_status = PreferenceHelper.readInt(aty, StringConstants.FILENAME, "approve_status", 0);
         if (approve_status != 0) {
             showLoadingDialog(getString(R.string.dataLoad));
@@ -124,6 +127,15 @@ public class AuthenticationInformationActivity extends BaseActivity implements A
             public void submitAuditDo() {
                 dismiss();
                 postEidtCertification1();
+            }
+        };
+    }
+
+    private void initDialog1() {
+        permissionsDialog = new PermissionsDialog(this) {
+            @Override
+            public void doAction() {
+
             }
         };
     }
@@ -310,6 +322,20 @@ public class AuthenticationInformationActivity extends BaseActivity implements A
                     isImgYachtDrivingLicense = false;
                     GlideImageLoader.glideOrdinaryLoader(this, selectYachtDrivingLicenseList.get(0).getPath(), img_yachtDrivingLicense, R.mipmap.placeholderfigure);
                 }
+                int approve_status = PreferenceHelper.readInt(aty, StringConstants.FILENAME, "approve_status", 0);
+                if (approve_status == 2) {
+                    if (authenticationInformationBean == null || authenticationInformationBean.getData() == null ||
+                            authenticationInformationBean.getData().getMessage_list() == null || authenticationInformationBean.getData().getMessage_list().size() <= 0) {
+                        return;
+                    }
+                    if (permissionsDialog == null) {
+                        initDialog();
+                    }
+                    if (permissionsDialog != null && !permissionsDialog.isShowing()) {
+                        permissionsDialog.show();
+                        permissionsDialog.setContent(authenticationInformationBean.getData().getMessage_list().get(0).getApprove_message());
+                    }
+                }
             }
         }
     }
@@ -433,9 +459,6 @@ public class AuthenticationInformationActivity extends BaseActivity implements A
             }
         }
     }
-
-
-
 
 
     @Override
