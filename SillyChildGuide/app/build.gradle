@@ -26,12 +26,13 @@ android {
             // 还可以添加 'x86', 'x86_64', 'mips', 'mips64'
         }
         manifestPlaceholders = [
-                JPUSH_PKGNAME : applicationId,
-                JPUSH_APPKEY  : "17702d87c51be25d226d8d8d", //JPush上注册的包名对应的appkey.
-                JPUSH_CHANNEL : "developer-default", //暂时填写默认值即可.
-                UMENG_APPKEY  : "5b8e38c4b27b0a64570001e5",//友盟分享上注册的包名对应的appkey.
-                BAIDU_APPKEY  : "yFsR6oDpLXznfvrwxKCRpDi2MuUbuvzI",//百度定位上注册的包名对应的appkey.
-                RONGYUN_APPKEY: "pkfcgjstpo5w8"//融云即时通讯上注册的包名对应的appkey.
+                JPUSH_PKGNAME  : applicationId,
+                JPUSH_APPKEY   : "17702d87c51be25d226d8d8d", //JPush上注册的包名对应的appkey.
+                JPUSH_APPSECRET: "2d8ef7bcc4d7eeddc7812d7e", //JPush上注册的包名对应的appkey.
+                JPUSH_CHANNEL  : "developer-default", //暂时填写默认值即可.
+                UMENG_APPKEY   : "5b8e38c4b27b0a64570001e5",//友盟分享上注册的包名对应的appkey.
+                BAIDU_APPKEY   : "yFsR6oDpLXznfvrwxKCRpDi2MuUbuvzI",//百度定位上注册的包名对应的appkey.
+                RONGYUN_APPKEY : "pkfcgjstpo5w8"//融云即时通讯上注册的包名对应的appkey.
         ]
         //   useLibrary 'org.apache.http.legacy'
     }

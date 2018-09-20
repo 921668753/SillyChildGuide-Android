@@ -1,6 +1,5 @@
 package com.yinglan.scg.main;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -11,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.common.cklibrary.common.BaseFragment;
@@ -20,6 +18,7 @@ import com.common.cklibrary.common.StringConstants;
 import com.common.cklibrary.common.ViewInject;
 import com.common.cklibrary.utils.JsonUtil;
 import com.common.cklibrary.utils.RefreshLayoutUtil;
+import com.common.cklibrary.utils.myview.ObservableScrollView;
 import com.common.cklibrary.utils.rx.MsgEvent;
 import com.kymjs.common.PreferenceHelper;
 import com.kymjs.common.StringUtils;
@@ -46,8 +45,8 @@ import static com.yinglan.scg.constant.URLConstants.COLLEGE;
  * 个人中心
  * Created by Admin on 2017/8/10.
  */
-@SuppressLint("NewApi")
-public class MineFragment extends BaseFragment implements MineContract.View, View.OnScrollChangeListener, BGARefreshLayout.BGARefreshLayoutDelegate {
+
+public class MineFragment extends BaseFragment implements MineContract.View, ObservableScrollView.ScrollViewListener, BGARefreshLayout.BGARefreshLayoutDelegate {
 
     private MainActivity aty;
 
@@ -55,7 +54,7 @@ public class MineFragment extends BaseFragment implements MineContract.View, Vie
     private BGARefreshLayout mRefreshLayout;
 
     @BindView(id = R.id.sv_mine)
-    private ScrollView sv_mine;
+    private ObservableScrollView sv_mine;
 
     @BindView(id = R.id.rl_title)
     private RelativeLayout rl_title;
@@ -133,7 +132,7 @@ public class MineFragment extends BaseFragment implements MineContract.View, Vie
     protected void initWidget(View parentView) {
         super.initWidget(parentView);
         RefreshLayoutUtil.initRefreshLayout(mRefreshLayout, this, aty, false);
-        sv_mine.setOnScrollChangeListener(this);
+        sv_mine.setScrollViewListener(this);
         mRefreshLayout.beginRefreshing();
     }
 
@@ -290,7 +289,7 @@ public class MineFragment extends BaseFragment implements MineContract.View, Vie
     }
 
     @Override
-    public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+    public void onScrollChanged(ObservableScrollView scrollView, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
         if (scrollY <= 0) {
             rl_title.setBackgroundColor(Color.TRANSPARENT);
             //                          设置文字颜色，黑色，加透明度
@@ -336,6 +335,6 @@ public class MineFragment extends BaseFragment implements MineContract.View, Vie
         if (((String) msgEvent.getData()).equals("RxBusLoginEvent") && mPresenter != null || ((String) msgEvent.getData()).equals("RxBusLogOutEvent") && mPresenter != null || ((String) msgEvent.getData()).equals("RxBusMineFragmentEvent") && mPresenter != null) {
             ((MinePresenter) mPresenter).getInfo(aty);
         }
-
     }
+
 }

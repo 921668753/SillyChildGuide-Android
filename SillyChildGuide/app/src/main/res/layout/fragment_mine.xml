@@ -9,7 +9,7 @@
         style="@style/MatchMatch"
         android:background="@color/background">
 
-        <ScrollView
+        <com.common.cklibrary.utils.myview.ObservableScrollView
             android:id="@+id/sv_mine"
             style="@style/MatchMatch"
             android:scrollbars="none">
@@ -409,7 +409,7 @@
                     android:layout_height="@dimen/dimen20" />
 
             </LinearLayout>
-        </ScrollView>
+        </com.common.cklibrary.utils.myview.ObservableScrollView>
 
     </cn.bingoogolapple.refreshlayout.BGARefreshLayout>
 
