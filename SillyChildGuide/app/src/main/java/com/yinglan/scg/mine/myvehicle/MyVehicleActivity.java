@@ -131,6 +131,7 @@ public class MyVehicleActivity extends BaseActivity implements MyVehicleContract
         if (flag == 0) {
             MyVehicleBean myVehicleBean = (MyVehicleBean) JsonUtil.getInstance().json2Obj(success, MyVehicleBean.class);
             if (myVehicleBean == null || myVehicleBean.getData() == null || myVehicleBean.getData().size() <= 0) {
+                dismissLoadingDialog();
                 return;
             }
             mAdapter.clear();
