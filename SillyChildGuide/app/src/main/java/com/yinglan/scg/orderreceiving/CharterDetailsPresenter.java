@@ -7,6 +7,7 @@ import com.common.cklibrary.common.KJActivityStack;
 import com.common.cklibrary.utils.MathUtil;
 import com.common.cklibrary.utils.httputil.HttpUtilParams;
 import com.common.cklibrary.utils.httputil.ResponseListener;
+import com.kymjs.common.StringUtils;
 import com.kymjs.rxvolley.client.HttpParams;
 import com.kymjs.rxvolley.client.ProgressListener;
 import com.yinglan.scg.R;
@@ -33,6 +34,10 @@ public class CharterDetailsPresenter implements CharterDetailsContract.Presenter
      */
     @Override
     public void getTravelOrderDetails(String order_number) {
+        if (StringUtils.isEmpty(order_number)) {
+            mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.serverError), 0);
+            return;
+        }
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
         httpParams.put("order_number", order_number);
         RequestClient.getTravelOrderDetails(KJActivityStack.create().topActivity(), httpParams, new ResponseListener<String>() {

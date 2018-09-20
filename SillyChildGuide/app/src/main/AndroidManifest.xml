@@ -62,7 +62,6 @@
         <!--启动页-->
         <activity
             android:name=".startpage.StartPageActivity"
-            android:screenOrientation="portrait"
             android:theme="@style/Theme.AppStartLoadTranslucent">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
