@@ -12,8 +12,11 @@ import android.widget.ScrollView;
  * 通过View事件分发机制，进行事件拦截
  */
 public class ScrollInterceptScrollView extends ScrollView {
+
     private int downX, downY;
     private int mTouchSlop;
+
+    private ScrollViewListener scrollViewListener = null;
 
     public ScrollInterceptScrollView(Context context) {
         this(context, null);
@@ -34,6 +37,23 @@ public class ScrollInterceptScrollView extends ScrollView {
         mTouchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
     }
 
+    public void setScrollViewListener(ScrollViewListener scrollViewListener) {
+        this.scrollViewListener = scrollViewListener;
+    }
+
+    @Override
+    protected void onScrollChanged(int x, int y, int oldx, int oldy) {
+        super.onScrollChanged(x, y, oldx, oldy);
+        if (scrollViewListener != null) {
+            scrollViewListener.onScrollChanged(this, x, y, oldx, oldy);
+        }
+    }
+
+    public interface ScrollViewListener {
+        void onScrollChanged(ScrollInterceptScrollView scrollView, int scrollX, int scrollY, int oldScrollX, int oldScrollY);
+    }
+
+
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
         int action = ev.getAction();
@@ -52,7 +72,6 @@ public class ScrollInterceptScrollView extends ScrollView {
             default:
                 break;
         }
-
         return super.onInterceptTouchEvent(ev);
     }
 }
