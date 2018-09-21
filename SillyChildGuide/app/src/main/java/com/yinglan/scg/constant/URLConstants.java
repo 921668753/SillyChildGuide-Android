@@ -9,13 +9,13 @@ public class URLConstants {
     /**
      * 正式服务器地址URL
      */
-    public static String SERVERURL = "http://guide.api.shahaizhi.com/";
+//    public static String SERVERURL = "http://guide.api.shahaizhi.com/";
     public static String SERVERURL1 = "http://www.shahaizhi.tech/";
 
     /**
      * 测试服务器地址URL
      */
-//    public static String SERVERURL = "http://192.168.1.247:8080/";
+    public static String SERVERURL = "http://192.168.1.247:8080/";
 
     /**
      * 请求地址URL
