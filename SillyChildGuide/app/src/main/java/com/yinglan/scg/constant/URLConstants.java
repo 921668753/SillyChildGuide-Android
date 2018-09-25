@@ -4,7 +4,6 @@ package com.yinglan.scg.constant;
  * 用于存放url常量的类
  * Created by ruitu ck on 2016/9/14.
  */
-
 public class URLConstants {
     /**
      * 正式服务器地址URL
