@@ -2,6 +2,7 @@ package com.yinglan.scg.mine.personaldata;
 
 import android.Manifest;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -31,6 +32,7 @@ import com.yinglan.scg.adapter.mine.setup.GridImageAdapter;
 import com.yinglan.scg.constant.NumericConstants;
 import com.yinglan.scg.entity.mine.personaldata.PersonalDataBean;
 import com.yinglan.scg.loginregister.LoginActivity;
+import com.yinglan.scg.message.interactivemessage.imuitl.UserUtil;
 import com.yinglan.scg.mine.personaldata.authenticationinformation.AuthenticationInformationActivity;
 import com.yinglan.scg.mine.personaldata.dialog.PictureSourceDialog;
 import com.yinglan.scg.mine.personaldata.setnickname.SetNickNameActivity;
@@ -45,6 +47,8 @@ import java.util.List;
 import cn.bingoogolapple.titlebar.BGATitleBar;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
+import io.rong.imkit.RongIM;
+import io.rong.imlib.model.UserInfo;
 import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.EasyPermissions;
 
@@ -475,6 +479,8 @@ public class PersonalDataActivity extends BaseActivity implements PersonalDataCo
             case 2:
                 isRefresh = true;
                 GlideImageLoader.glideLoader(aty, success, iv_headPortrait, 0, R.mipmap.avatar);
+                UserInfo userInfo = new UserInfo(UserUtil.getRcId(this), tv_nickname.getText().toString(), Uri.parse(success));
+                RongIM.getInstance().refreshUserInfoCache(userInfo);
                 break;
         }
         dismissLoadingDialog();
