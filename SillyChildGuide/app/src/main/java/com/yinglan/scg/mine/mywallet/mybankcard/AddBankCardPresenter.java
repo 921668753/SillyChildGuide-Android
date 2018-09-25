@@ -73,7 +73,7 @@ public class AddBankCardPresenter implements AddBankCardContract.Presenter {
             return;
         }
         String all = "^[A-Za-z\\u4e00-\\u9fa5]{2,10}";//{2,10}表示字符的长度是2-10
-        Pattern pattern = Pattern.compile(all);
+      //  Pattern pattern = Pattern.compile(all);
         boolean tf = Pattern.matches(all, account_name);
         if (!tf) {
             mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.hintName1), 0);
