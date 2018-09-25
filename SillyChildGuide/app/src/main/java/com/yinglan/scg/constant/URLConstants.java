@@ -26,7 +26,6 @@ public class URLConstants {
      */
     public static String QINIUKEY = SERVERURL + "api/public/key/qiniu.do";
 
-
     /**
      * 根据融云token获取头像性别昵称
      */
