@@ -173,7 +173,7 @@ public class AccountDetailsActivity extends BaseActivity implements AdapterView.
             tv_hintText.setVisibility(View.GONE);
             tv_button.setText(getString(R.string.login));
             // ViewInject.toast(getString(R.string.reloginPrompting));
-            showActivity(aty, LoginActivity.class);
+            skipActivity(aty, LoginActivity.class);
             return;
         } else if (msg.contains(getString(R.string.checkNetwork))) {
             img_err.setImageResource(R.mipmap.no_network);
