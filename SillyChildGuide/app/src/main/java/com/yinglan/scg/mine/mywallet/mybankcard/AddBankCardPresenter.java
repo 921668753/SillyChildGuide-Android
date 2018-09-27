@@ -52,7 +52,7 @@ public class AddBankCardPresenter implements AddBankCardContract.Presenter {
     @Override
     public void getBank() {
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
-        RequestClient.getBank(KJActivityStack.create().topActivity(),httpParams, new ResponseListener<String>() {
+        RequestClient.getBank(KJActivityStack.create().topActivity(), httpParams, new ResponseListener<String>() {
             @Override
             public void onSuccess(String response) {
                 mView.getSuccess(response, 1);
@@ -73,10 +73,14 @@ public class AddBankCardPresenter implements AddBankCardContract.Presenter {
             return;
         }
         String all = "^[A-Za-z\\u4e00-\\u9fa5]{2,10}";//{2,10}表示字符的长度是2-10
-      //  Pattern pattern = Pattern.compile(all);
+        //  Pattern pattern = Pattern.compile(all);
         boolean tf = Pattern.matches(all, account_name);
         if (!tf) {
             mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.hintName1), 0);
+            return;
+        }
+        if (StringUtils.isEmpty(id_number)) {
+            mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.pleaseidNumber1), 0);
             return;
         }
 //        if (!(id_number.length() == 15 || id_number.length() == 18)) {

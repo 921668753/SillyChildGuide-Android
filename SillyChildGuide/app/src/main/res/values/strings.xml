@@ -405,6 +405,7 @@
     <string name="accountHolderName1">请输入持卡人姓名</string>
     <string name="idNumber">身份证号</string>
     <string name="pleaseidNumber">请正确填写身份证号码</string>
+    <string name="pleaseidNumber1">请输入身份证号码</string>
     <string name="bankCardNumber">银行卡号</string>
     <string name="bankCardNumber1">请输入银行卡号</string>
     <string name="hintName1">请输入正确的姓名</string>
