@@ -42,6 +42,8 @@ public class MyWalletActivity extends BaseActivity implements MyWalletContract.V
     @BindView(id = R.id.ll_bankCard, click = true)
     private LinearLayout ll_bankCard;
 
+    @BindView(id = R.id.tv_withdrawalRuleDescription)
+    private TextView tv_withdrawalRuleDescription;
 
 //    private String bankCardName;
 //    private String bankCardNun;
@@ -127,6 +129,7 @@ public class MyWalletActivity extends BaseActivity implements MyWalletContract.V
 //                    fee = myWalletBean.getData().getFee() + "%";
 //                    get_time = myWalletBean.getData().getGet_time();
 //                }
+                tv_withdrawalRuleDescription.setText(myWalletBean.getData().getWithdrawal_rules());
             }
         }
         dismissLoadingDialog();

@@ -110,6 +110,7 @@
             android:textSize="@dimen/textsize14" />
 
         <TextView
+            android:id="@+id/tv_withdrawalRuleDescription"
             style="@style/MatchWrap"
             android:paddingBottom="@dimen/dimen15"
             android:paddingLeft="@dimen/dimen10"
