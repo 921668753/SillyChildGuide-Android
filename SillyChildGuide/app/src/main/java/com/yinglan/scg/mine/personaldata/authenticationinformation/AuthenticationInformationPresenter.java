@@ -2,6 +2,7 @@ package com.yinglan.scg.mine.personaldata.authenticationinformation;
 
 import com.common.cklibrary.common.KJActivityStack;
 import com.common.cklibrary.common.StringConstants;
+import com.common.cklibrary.utils.JsonUtil;
 import com.common.cklibrary.utils.httputil.HttpUtilParams;
 import com.common.cklibrary.utils.httputil.ResponseListener;
 import com.common.cklibrary.utils.httputil.ResponseProgressbarListener;
@@ -14,7 +15,9 @@ import com.yinglan.scg.retrofit.RequestClient;
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Administrator on 2017/2/11.
@@ -146,16 +149,18 @@ public class AuthenticationInformationPresenter implements AuthenticationInforma
             return;
         }
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
-        httpParams.put("city_id", city_id);
-        httpParams.put("car_inspection_certificate", selectList.get(0).getHttpPath());
-        httpParams.put("driver_license", selectList.get(1).getHttpPath());
-        httpParams.put("id_card", selectList.get(2).getHttpPath());
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("city_id", String.valueOf(city_id));
+        map.put("car_inspection_certificate", selectList.get(0).getHttpPath());
+        map.put("driver_license", selectList.get(1).getHttpPath());
+        map.put("id_card", selectList.get(2).getHttpPath());
         if (selectList != null && selectList.size() > 0 && !StringUtils.isEmpty(selectList.get(3).getHttpPath())) {
-            httpParams.put("guide_card", selectList.get(3).getHttpPath());
+            map.put("guide_card", selectList.get(3).getHttpPath());
         }
         if (selectList != null && selectList.size() > 0 && !StringUtils.isEmpty(selectList.get(4).getHttpPath())) {
-            httpParams.put("yacht_driving_license", selectList.get(4).getHttpPath());
+            map.put("yacht_driving_license", selectList.get(4).getHttpPath());
         }
+        httpParams.putJsonParams(JsonUtil.getInstance().obj2JsonString(map));
         RequestClient.postAddCertification(KJActivityStack.create().topActivity(), httpParams, new ResponseListener<String>() {
             @Override
             public void onSuccess(String response) {

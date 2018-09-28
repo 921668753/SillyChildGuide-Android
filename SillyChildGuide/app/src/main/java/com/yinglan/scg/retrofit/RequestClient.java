@@ -575,7 +575,7 @@ public class RequestClient {
                     return;
                 }
                 httpParams.putHeaders("Cookie", cookies);
-                HttpRequest.requestPostFORMHttp(context, URLConstants.ADDREVIEW, httpParams, listener);
+                HttpRequest.requestPostHttp(context, URLConstants.ADDREVIEW, httpParams, listener);
             }
         }, listener);
     }
@@ -707,7 +707,7 @@ public class RequestClient {
                     return;
                 }
                 httpParams.putHeaders("Cookie", cookies);
-                HttpRequest.requestPostFORMHttp(context, URLConstants.ADDCERTIFICATION, httpParams, listener);
+                HttpRequest.requestPostHttp(context, URLConstants.ADDCERTIFICATION, httpParams, listener);
             }
         }, listener);
     }
@@ -827,7 +827,7 @@ public class RequestClient {
                     return;
                 }
                 httpParams.putHeaders("Cookie", cookies);
-                HttpRequest.requestPostFORMHttp(context, URLConstants.EIDTMODEL, httpParams, listener);
+                HttpRequest.requestPostHttp(context, URLConstants.EIDTMODEL, httpParams, listener);
             }
         }, listener);
     }
@@ -1046,7 +1046,7 @@ public class RequestClient {
                     return;
                 }
                 httpParams.putHeaders("Cookie", cookies);
-                HttpRequest.requestPostFORMHttp(context, URLConstants.ADVICEPOST, httpParams, listener);
+                HttpRequest.requestPostHttp(context, URLConstants.ADVICEPOST, httpParams, listener);
             }
         }, listener);
     }

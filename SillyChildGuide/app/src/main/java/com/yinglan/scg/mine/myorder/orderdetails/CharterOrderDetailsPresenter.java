@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.common.cklibrary.common.KJActivityStack;
 import com.common.cklibrary.common.StringConstants;
+import com.common.cklibrary.utils.JsonUtil;
 import com.common.cklibrary.utils.httputil.HttpUtilParams;
 import com.common.cklibrary.utils.httputil.ResponseListener;
 import com.common.cklibrary.utils.httputil.ResponseProgressbarListener;
@@ -15,7 +16,9 @@ import com.yinglan.scg.R;
 import com.yinglan.scg.retrofit.RequestClient;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by ruitu on 2018/9/24.
@@ -113,17 +116,19 @@ public class CharterOrderDetailsPresenter implements CharterOrderDetailsContract
 
     public void postAddReview1(Context context, String order_number, String content, List<String> selectList) {
         HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
+        Map<String, Object> map = new HashMap<String, Object>();
         String imgsStr = "";
         if (selectList.size() > 0) {
             for (int i = 0; i < selectList.size(); i++) {
                 imgsStr = imgsStr + "," + selectList.get(i);
             }
-            httpParams.put("pictures", imgsStr.substring(1));
+            map.put("pictures", imgsStr.substring(1));
         } else {
-            httpParams.put("pictures", imgsStr);
+            map.put("pictures", imgsStr);
         }
-        httpParams.put("order_number", order_number);
-        httpParams.put("content", content);
+        map.put("order_number", order_number);
+        map.put("content", content);
+        httpParams.putJsonParams(JsonUtil.getInstance().obj2JsonString(map));
         RequestClient.postAddReview(context, httpParams, new ResponseListener<String>() {
             @Override
             public void onSuccess(String response) {

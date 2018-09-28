@@ -2,6 +2,7 @@ package com.yinglan.scg.mine.myvehicle;
 
 import com.common.cklibrary.common.KJActivityStack;
 import com.common.cklibrary.common.StringConstants;
+import com.common.cklibrary.utils.JsonUtil;
 import com.common.cklibrary.utils.httputil.HttpUtilParams;
 import com.common.cklibrary.utils.httputil.ResponseListener;
 import com.common.cklibrary.utils.httputil.ResponseProgressbarListener;
@@ -13,7 +14,9 @@ import com.yinglan.scg.R;
 import com.yinglan.scg.retrofit.RequestClient;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Administrator on 2018/2/11.
@@ -132,29 +135,31 @@ public class AddVehiclePresenter implements AddVehicleContract.Presenter {
 
 
     private void postEidtModel2(int model_id, List<String> selectList, int model_name_id, int passenger_number, int baggage_number, long model_year, String license_plate, int is_insurance) {
-        HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
-        if (model_id > 0) {
-            httpParams.put("model_id", model_id);
-        } else {
-            httpParams.put("model_id", "");
-        }
         if (selectList.size() <= 0) {
             mView.errorMsg(KJActivityStack.create().topActivity().getString(R.string.vehicleImages1), 1);
             return;
+        }
+        HttpParams httpParams = HttpUtilParams.getInstance().getHttpParams();
+        Map<String, Object> map = new HashMap<String, Object>();
+        if (model_id > 0) {
+            map.put("model_id", String.valueOf(model_id));
+        } else {
+            map.put("model_id", "");
         }
         String imgsStr = "";
         if (selectList.size() > 0) {
             for (int i = 0; i < selectList.size(); i++) {
                 imgsStr = imgsStr + "," + selectList.get(i);
             }
-            httpParams.put("model_picture", imgsStr.substring(1));
+            map.put("model_picture", imgsStr.substring(1));
         }
-        httpParams.put("model_name_id", model_name_id);
-        httpParams.put("passenger_number", passenger_number);
-        httpParams.put("baggage_number", baggage_number);
-        httpParams.put("model_year", String.valueOf(model_year));
-        httpParams.put("license_plate", license_plate);
-        httpParams.put("is_insurance", is_insurance);
+        map.put("model_name_id", String.valueOf(model_name_id));
+        map.put("passenger_number", String.valueOf(passenger_number));
+        map.put("baggage_number", String.valueOf(baggage_number));
+        map.put("model_year", String.valueOf(model_year));
+        map.put("license_plate", license_plate);
+        map.put("is_insurance", String.valueOf(is_insurance));
+        httpParams.putJsonParams(JsonUtil.getInstance().obj2JsonString(map));
         RequestClient.postEidtModel(KJActivityStack.create().topActivity(), httpParams, new ResponseListener<String>() {
             @Override
             public void onSuccess(String response) {
