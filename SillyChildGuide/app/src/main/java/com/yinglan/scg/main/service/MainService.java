@@ -37,17 +37,20 @@ public class MainService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        try {
 //        if (mThread != null && !mThread.isAlive()) {
 //            mThread.run();
 //        } else {
 //            mThread = new Thread(new Runnable() {
 //                @Override
 //                public void run() {
-        getSystemMessage();
+            getSystemMessage();
 //                }
 //            });
 //            mThread.start();
-        //  }
+            //  }
+        } catch (Exception e) {
+        }
         return super.onStartCommand(intent, flags, startId);
     }
 
